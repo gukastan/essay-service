@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - openai@7.39.0
