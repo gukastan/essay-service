@@ -1,0 +1,9 @@
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+
+ Test Files  2 passed (2)
+      Tests  26 passed (26)
+   Start at  17:26:08
+   Duration  206ms (import 78%, tests 13%, transform 8%, worker 1%)
+

@@ -1,0 +1,10 @@
+$ vitest run
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+
+ Test Files  10 passed | 1 skipped (11)
+      Tests  156 passed | 1 skipped (157)
+   Start at  17:32:38
+   Duration  415ms (import 76%, tests 14%, transform 8%, worker 2%)
+

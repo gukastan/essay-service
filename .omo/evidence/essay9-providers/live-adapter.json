@@ -1,0 +1,115 @@
+{
+  "status": "completed",
+  "startedAt": "2026-10-19T08:30:05.936Z",
+  "elapsedMs": 4700,
+  "model": "gpt-5.6-terra",
+  "reasoning": "low",
+  "sdk": "7.39.0",
+  "retries": 0,
+  "maxOutputTokens": 3000,
+  "result": {
+    "value": {
+      "officialCareersUrl": "https://openai.com/careers/search/?q=Software+Engineer"
+    },
+    "usage": {
+      "inputTokens": 8626,
+      "outputTokens": 97
+    },
+    "providerEvidence": {
+      "verification": "unverified",
+      "actions": [
+        {
+          "type": "search",
+          "queries": [
+            "OpenAI Software Engineer"
+          ],
+          "query": "OpenAI Software Engineer",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=Software+Engineer"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-platform-systems-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-openai-presence-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/full-stack-software-engineer-codex-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=software"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-api-multimodal-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-product-velocity-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-developer-productivity-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/full-stack-software-engineer-api-experience-new-york-city/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/software-engineer-full-stack-%28people-innovation%29-us-remote/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=softwa"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/gpt-4-5-system-card.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/o1-system-card-20241205.pdf?trk=public_post_comment-text"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/o3-mini-system-card.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf?TB_iframe=true&height=512.1&width=921.6"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/pdf/2a7d98b1-57e5-4147-8d0e-683894d782ae/5p1_codex_max_card_03.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf"
+            }
+          ]
+        }
+      ],
+      "toolCallsReported": 1,
+      "toolCallsReserved": 2,
+      "serverToolCallLimit": 2
+    }
+  },
+  "budget": {
+    "modelCalls": 1,
+    "searches": 0,
+    "pageReads": 0,
+    "nativeToolCallsReserved": 2,
+    "deadline": 1792398785936
+  }
+}

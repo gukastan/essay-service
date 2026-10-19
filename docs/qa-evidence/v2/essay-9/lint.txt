@@ -1,0 +1,2 @@
+$ biome check src tests *.json *.ts
+Checked 41 files in 16ms. No fixes applied.

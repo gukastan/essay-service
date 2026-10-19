@@ -3,15 +3,24 @@
   "project": "ESSAY",
   "site": "https://kmskojb.atlassian.net",
   "epic": "ESSAY-8",
-  "status": "할 일",
-  "implementation": "not_started",
+  "status": "진행 중",
+  "implementation": "foundation_complete",
+  "updatedAt": "2026-10-19T17:39:08+09:00",
+  "verificationReport": "docs/qa-evidence/v2/essay-9/verification.md",
+  "researchStrategy": {
+    "provider": "OpenAI Responses web_search",
+    "approvedByUser": "2026-10-19",
+    "nativeToolCallsReserved": 2,
+    "max_tool_calls": 2,
+    "internalQueryAndPageCountsControlled": false
+  },
   "issues": [
     {
       "id": "V2-01",
       "key": "ESSAY-9",
       "summary": "공통 계약·LangGraph 실행 기반 구성",
       "type": "작업",
-      "status": "할 일",
+      "status": "완료",
       "parent": "ESSAY-8",
       "blockedBy": [],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-9"
@@ -167,5 +176,5 @@
       "outwardIssue": "ESSAY-17"
     }
   ],
-  "verification": "Re-read all 10 issues: statuses, parent and outward/inward Blocks links matched."
+  "verification": "ESSAY-9 transition31 returned 완료 after156 tests/typecheck/lint/build and4 live provider probes passed. ESSAY-8 remains 진행 중; ESSAY-10~17 remain 할 일. Existing parent and10 Blocks links preserved. Acceptance criteria updated to approved native tool-call cap2."
 }

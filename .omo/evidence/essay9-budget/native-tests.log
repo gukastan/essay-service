@@ -1,0 +1,36 @@
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > dispatches one Responses request when native reservations race 3ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > reserves no hosted tools when ordinary models already consumed the model cap 1ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > keeps the combined model cap when native and ordinary calls race 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > retains full reservations after provider failure=false 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > retains full reservations after provider failure=true 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > retains both reservations when external cancellation interrupts dispatch 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > bounds native dispatch to 30000 ms when starting at 0 1ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > bounds native dispatch to 5000 ms when starting at 40000 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > bounds native dispatch to 1000 ms when starting at 179000 0ms
+ ✓ src/server/workflow/budget-native.test.ts > native research reservations > reserves nothing when research has already expired 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches only 6 parallel model attempts when the cap is raced 2ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches only 2 parallel search attempts when the cap is raced 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches only 3 parallel page attempts when the cap is raced 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > consumes failed attempts without retry when the provider rejects 1ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > settles and aborts all work when a model ignores its 30 second signal 1ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > uses the remaining research deadline when search precedes model summarization 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > bounds the entire research callback when no provider operation is active 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > uses the shared request remainder when a model begins near 180 seconds 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches nothing when the request deadline expired while idle 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches nothing when the research deadline expired while idle 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > rejects active and future work when externally aborted without refunding attempts 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > dispatches nothing when the external signal was already aborted 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > removes external listeners and timers when successful work settles 1ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > cancels pending work when the owning request disposes the budget 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > bounds request orchestration when no provider call is active 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > rejects late completion when synchronous provider work passes the deadline 0ms
+ ✓ src/server/workflow/budget.test.ts > request execution budget > keeps model reservations isolated when separate requests run concurrently 0ms
+
+ Test Files  2 passed (2)
+      Tests  27 passed (27)
+   Start at  17:28:41
+   Duration  72ms (transform 38%, tests 32%, import 23%, worker 6%)
+

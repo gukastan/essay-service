@@ -1,0 +1,5 @@
+src/shared/contracts-v2.ts pure LOC 210
+src/shared/contracts-v2.test.ts pure LOC 117
+src/server/workflow/state.ts pure LOC 85
+src/server/workflow/state.test.ts pure LOC 126
+Forbidden AST nodes: 0

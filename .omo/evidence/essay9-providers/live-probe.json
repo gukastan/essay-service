@@ -1,0 +1,135 @@
+[
+  {
+    "name": "structured-output",
+    "model": "gpt-5.6-terra",
+    "sdk": "7.39.0",
+    "startedAt": "2026-10-19T08:20:40.840Z",
+    "elapsedMs": 2417,
+    "status": "completed",
+    "usage": {
+      "input_tokens": 33,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 13,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 46
+    },
+    "outputText": "{\"ok\":true}",
+    "actions": [],
+    "retries": 0,
+    "maxToolCalls": 0
+  },
+  {
+    "name": "native-search-capability",
+    "model": "gpt-5.6-terra",
+    "sdk": "7.39.0",
+    "startedAt": "2026-10-19T08:20:43.258Z",
+    "elapsedMs": 3315,
+    "status": "completed",
+    "usage": {
+      "input_tokens": 8589,
+      "input_tokens_details": {
+        "cache_write_tokens": 4352,
+        "cached_tokens": 0
+      },
+      "output_tokens": 52,
+      "output_tokens_details": {
+        "reasoning_tokens": 33
+      },
+      "total_tokens": 8641
+    },
+    "outputText": "https://openai.com/careers/search/?q=Software+Engineer",
+    "actions": [
+      {
+        "status": "completed",
+        "action": {
+          "type": "search",
+          "queries": [
+            "site:openai.com careers software engineering OpenAI"
+          ],
+          "query": "site:openai.com careers software engineering OpenAI",
+          "sources": [
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=Software+Engineer"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=software"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?action=apply"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=f002fe09-4cec-46b0-8add-8bf9ff438a62%2Cab2b9da4-24a4-47df-8bed-1ed5a39c7036"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?q=AI+Engineer"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/full-stack-software-engineer-codex-san-francisco/"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?source=engmgrjobs"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=e1e973fe-6f0a-475f-9361-a9b6c095d869%2Cf002fe09-4cec-46b0-8add-8bf9ff438a62%2Cab2b9da4-24a4-47df-8bed-1ed5a39c7036"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=a6b9fe68-e9dd-4897-a8e6-89982ad811e7"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=c16efb3c-493d-401c-a76f-a493cfccbeb8"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=e1e973fe-6f0a-475f-9361-a9b6c095d869%2Cf002fe09-4cec-46b0-8add-8bf9ff438a62%2Cab2b9da4-24a4-47df-8bed-1ed5a39c7036&l=bbd9f7fe-aae5-476a-9108-f25aea8f6cd2"
+            },
+            {
+              "type": "url",
+              "url": "https://openai.com/careers/search/?c=1888df7a-5060-4de1-a08d-a07e0ef96ab9"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/global-affairs/06025361-1ede-4402-97d2-daf1e5918b43/jobs-in-the-intelligence-age-sept-2025.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/o1-system-card-20241205.pdf?trk=public_post_comment-text"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/deep-research-system-card.pdf"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf?_bhlid=645d1d7f848292b5dbb0345092e27d210f820276"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/o1-system-card-20241205.pdf?_bhlid=0d3f5865e58b5b15be3b296c971c76a292dfb8c1"
+            },
+            {
+              "type": "url",
+              "url": "https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf"
+            }
+          ]
+        }
+      }
+    ],
+    "retries": 0,
+    "maxToolCalls": 1
+  }
+]

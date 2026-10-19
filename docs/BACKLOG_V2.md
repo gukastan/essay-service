@@ -1,9 +1,9 @@
 # v2 구현 백로그
 
-- 작성일: 2026-10-19 / 상태: 명세 및 Jira 등록 완료, 제품 구현 전
+- 작성일: 2026-10-19 / 상태: ESSAY-9 공통 기반 구현·검증, 후속 제품 구현 대기
 - 현재 v1 ESSAY-1~7은 모두 완료. 아래는 신규 v2 작업이다.
 - [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [QA 계획](qa-v2.md)
-- 에픽: [ESSAY-8](https://kmskojb.atlassian.net/browse/ESSAY-8). 에픽과 자식 9개 모두 `할 일` 상태이며 구현 착수·검증 완료를 의미하지 않는다.
+- 에픽: [ESSAY-8](https://kmskojb.atlassian.net/browse/ESSAY-8)은 `진행 중`, ESSAY-9는 `완료`. 이번 사용자가 지정한 범위는 ESSAY-9 구현·검증까지다. ESSAY-10~17은 `할 일`이며 실제 네 역할·API·화면과 최종 QA는 남아 있다. [ESSAY-9 검증 증거](qa-evidence/v2/essay-9/verification.md)를 따른다.
 
 ## 순서와 소유권
 
@@ -33,16 +33,18 @@ Jira: [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9)
 - 유형: 작업
 - 요구사항: V2-R1, V2-R6
 - 선행: 없음
-- 소유 범위: package.json·pnpm-lock.yaml, src/shared/contracts-v2.ts, src/server/workflow/state.ts·budget.ts·providers.ts (신규 예정)
+- 소유 범위: package.json·pnpm-lock.yaml, src/shared/contracts-v2.ts, src/server/workflow/state.ts·budget.ts·providers.ts·native-provider.ts·provider-schemas.ts 및 해당 테스트
 
 기존 /api/drafts를 유지하면서 /api/v2/drafts의 입력·출력, 네 역할의 상태와 근거 ID, 공통 실행 예산을 정의한다. LangGraph JS와 현재 Next.js/Node/OpenAI 조합의 호환성을 확인하고 버전을 고정한다. 검색·페이지 읽기는 교체 가능한 서버 어댑터로 정의하며 실제 제공자/자격증명/지원 모델을 작은 실연결 검사로 확정해 ADR에 기록한다.
 
 완료 조건:
 
-- [ ] 필수 4개 입력과 선택 공고 URL·본문, ready/needs_input/error 계약을 런타임 스키마로 검증한다.
-- [ ] 모델 호출 최대 6회, 자동 재시도 0, 호출당 최대 30초, 요청 180초 및 조사 전체 45초 예산을 공유한다. 병렬 실행에서도 원자적으로 차감한다.
-- [ ] 검색 2회·페이지 읽기 3회 상한과 남은 시간에 따른 취소를 정의하고 예산 초과가 추가 호출을 막는 테스트를 통과한다.
-- [ ] v1 API·기존 테스트는 유지된다. 모델/검색 제공자 지원 여부와 필요한 환경변수 이름만 기록하고 키는 노출하지 않는다.
+- [x] 필수 4개 입력과 선택 공고 URL·본문, ready/needs_input/error 계약을 런타임 스키마로 검증한다.
+- [x] 모델 호출 최대 6회, 자동 재시도 0, 호출당 최대 30초, 요청 180초 및 조사 전체 45초 예산을 공유한다. 병렬 실행에서도 원자적으로 차감한다.
+- [x] 사용자 승인에 따라 기본 내장 도구 호출 최대 2회로 변경했다. 모델1/내장 도구 용량2 원자 예약·취소·무환불·추가 호출 차단을 검사하고 실제 서버의 `max_tool_calls=2` 반영을 확인했다. 별도 주입 검색2/직접 읽기3 제한도 개별 검사했다.
+- [x] v1 API·기존 테스트는 유지된다. 모델/검색 제공자 지원 여부와 필요한 환경변수 이름만 기록하고 키는 노출하지 않는다.
+
+제공자 내부 검색어·페이지 수·바이트는 독립 통제하지 않는다. `nativeToolCallsReserved`는 용량 예약이며 실제 보고 도구 수와 구분한다. 구현 상세와 작은 실연결 4회의 증거는 [ADR](decisions/langgraph-v2.md), 전체 확인 결과는 [QA 기록](qa-v2.md)에 있다.
 
 ### V2-02 기업·직무 조사 역할과 출처 검증 구현
 
@@ -61,7 +63,7 @@ Jira: [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10)
 - [ ] 각 사실에 sourceId, URL 또는 사용자 제공 본문 표시, 확인 시각, 근거 구절을 연결한다. 공고의 날짜·모집 종료 여부는 확인된 경우에만 기록한다.
 - [ ] 사용자 제공 공고 본문은 user_provided로 표시하며 공식 확인 완료라고 표현하지 않는다. 실제 직무 요건을 일반 인재상보다 우선한다.
 - [ ] 기업 식별 모호/직무 근거 없음은 needs_input, 값어치 있는 인재상 자료만 없는 경우는 생략한다. 403·404·빈 문서·지시문 삽입·상충 출처를 검증한다.
-- [ ] URL/리다이렉트의 내부망·로컬 주소 접근을 막고 응답 크기·읽기 시간·검색/페이지 읽기 상한을 지킨다.
+- [ ] 기본 내장 검색은 도구 호출 최대 2회·공통 시간 예산을 지킨다. 직접 읽기 어댑터를 추가할 때는 URL/DNS/리다이렉트 내부망 차단, 페이지당 1 MiB·정리 텍스트 합계 12,000 코드 포인트, 외부 검색2/직접 읽기3 상한을 검증한다. 내장 내부 검색/페이지/바이트에 같은 보장을 주장하지 않는다.
 
 ### V2-03 경험·문항 분석 역할과 원문 근거 추출 구현
 

@@ -1,0 +1,9 @@
+$ tsc --noEmit
+src/server/workflow/native-provider.ts(57,13): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(body: ResponseCreateParamsNonStreaming, options?: RequestOptions | undefined): APIPromise<Response>', gave the following error.
+    Object literal may only specify known properties, and 'max_tool_calls' does not exist in type 'ResponseCreateParamsNonStreaming'.
+  Overload 2 of 3, '(body: ResponseCreateParamsStreaming, options?: RequestOptions | undefined): APIPromise<Stream<ResponseStreamEvent>>', gave the following error.
+    Object literal may only specify known properties, and 'max_tool_calls' does not exist in type 'ResponseCreateParamsStreaming'.
+  Overload 3 of 3, '(body: ResponseCreateParamsBase, options?: RequestOptions | undefined): APIPromise<Response | Stream<ResponseStreamEvent>>', gave the following error.
+    Object literal may only specify known properties, and 'max_tool_calls' does not exist in type 'ResponseCreateParamsBase'.
+[ELIFECYCLE] Command failed with exit code 2.

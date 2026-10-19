@@ -2,7 +2,7 @@
 
 기업명·직무·문항·경험으로 자기소개서 초안을 생성하고, 원본 경험과 비교해 편집·복사하는 Next.js + TypeScript 앱이다.
 
-현재 실행 버전은 완료된 v1이다. LangGraph의 기업·직무 조사, 경험·문항 분석, 작성, 검토를 연결하는 v2는 문서와 Jira 백로그를 준비한 상태이며 아직 구현하지 않았다.
+현재 실행 버전은 완료된 v1이다. v2는 ESSAY-9의 공통 계약·LangGraph 상태·실행 예산·OpenAI 제공자 기반을 구현했다. 기업·직무 조사, 경험·문항 분석, 작성, 검토의 실제 연결과 v2 API·화면은 ESSAY-10~17에서 이어간다.
 
 ## 문서
 
@@ -15,11 +15,11 @@
 
 ## OMO로 시작하기
 
-v2 구현을 시작하려면 이 폴더를 Codex의 개발 프로젝트로 열고 다음을 입력한다. 문서 작성이나 티켓 생성만으로 개발을 시작한 것은 아니다.
+후속 v2 개발은 이 폴더를 Codex의 개발 프로젝트로 열고 원하는 티켓 범위를 지정한다. ESSAY-9 기반 다음에는 조사 ESSAY-10·분석 ESSAY-11·화면 ESSAY-15를 병렬로 진행할 수 있다.
 
 ```text
 $omo:teammode
-AGENTS.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md의 요청문에 따라 ESSAY-9(V2-01)부터 개발을 시작해줘.
+AGENTS.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md에 따라 ESSAY-10, ESSAY-11, ESSAY-15를 구현·검증하고 Jira도 갱신해줘.
 ```
 
 ## 설치와 실행
@@ -64,6 +64,20 @@ QA_BASE_URL=http://127.0.0.1:3000 \
 QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/new-run \
 node tests/run-live-samples.mjs --confirm-live-model
 ```
+
+## v2 공통 기반 확인
+
+LangGraph 1.5.1·LangChain core 1.2.18·Zod 4.6.7을 고정했다. `pnpm test`는 실제 LangGraph 상태 합류와 요청 간 격리, 입력/출력 계약, 병렬 예산·취소, 제공자 경계를 검사한다. 일반 테스트에는 실제 유료 요청이 없다.
+
+기존 OpenAI 키와 모델 설정으로 내장 검색을 사용할 수 있다. 사용자 결정에 따라 요청당 내장 도구 용량 2회를 선예약하고 `max_tool_calls=2`를 전송한다. 모델 최대 6회·회당 30초·조사 45초·요청 180초를 공유한다. 제공자 내부 검색어·페이지 수는 별도 통제하지 않으며, 출처 후보의 공식성 검증은 후속 조사 역할에서 수행한다.
+
+실제 제품 어댑터의 연결을 다시 확인하려면 아래 명령을 사용한다. 1회의 유료 요청을 실행하며 공개 OpenAI 회사/직무만 보낸다. 기존 `.omo/evidence/essay9-providers/live-adapter.json`을 먼저 다른 증거 폴더에 복사해 보존한다.
+
+```sh
+RUN_V2_NATIVE_ADAPTER_PROBE=1 pnpm exec vitest run tests/probe-v2-provider.live.test.ts
+```
+
+검증 결과와 미검증 범위는 [ESSAY-9 기록](docs/qa-evidence/v2/essay-9/verification.md), 제공자 선택은 [결정 기록](docs/decisions/langgraph-v2.md)을 따른다. `/api/v2/drafts`와 `DRAFT_PIPELINE_VERSION`은 아직 연결하지 않았으므로 아래 시연은 현재 v1 기준이다.
 
 ## 3분 시연
 
