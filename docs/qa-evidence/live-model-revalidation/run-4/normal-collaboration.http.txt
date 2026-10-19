@@ -1,0 +1,9 @@
+HTTP/1.1 422 Unprocessable Entity
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 06:05:16 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"error","code":"LENGTH_RETRY_EXHAUSTED","message":"한 번 수정한 뒤에도 801~1,000자를 맞추지 못했습니다. 경험을 보완한 뒤 다시 시도해 주세요."}

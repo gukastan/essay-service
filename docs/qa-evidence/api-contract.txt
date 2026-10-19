@@ -1,0 +1,62 @@
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={} with no model calls 3ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":""} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":" \n\t "} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":123} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":null} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":[]} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects company={"value":{}} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":""} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":" \n\t "} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":123} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":null} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":[]} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects role={"value":{}} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":""} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":" \n\t "} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":123} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":null} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":[]} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects question={"value":{}} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":""} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":" \n\t "} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":123} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":null} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":[]} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects experience={"value":{}} with no model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects non-object body {"body":null} 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects non-object body {"body":[]} 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects non-object body {"body":"text"} 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects non-object body {"body":42} 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > rejects malformed JSON without model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: validation before model invocation > returns CONFIG_ERROR with no key and zero model calls 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > accepts 801 characters in exactly one call 1ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > accepts 1000 characters in exactly one call 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > rewrites 800 characters once with original context 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > rewrites 1001 characters once with original context 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > rejects second invalid length 800 without a third call 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > rejects second invalid length 1001 without a third call 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > normalizes CRLF and CR, preserves spaces and counts Unicode code points 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > ends needs_input on call 1 without a length rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: length and bounded rewriting > ends needs_input on call 2 without a length rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > stops provider failure on call 1 and hides internal details 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > stops provider failure on call 2 and hides internal details 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output null without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output {} without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output {"status":"draft"} without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output {"status":"draft","draft":123} without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output {"status":"needs_input","message":""} without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > rejects malformed model output {"status":"surprise","draft":"가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가"} without rewrite 0ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > cancels call 1 at 30 seconds and performs no additional calls 1ms
+ ✓ tests/api-contract.test.ts > actual POST route: errors never trigger retries > cancels call 2 at 30 seconds and performs no additional calls 0ms
+
+ Test Files  1 passed (1)
+      Tests  53 passed (53)
+   Start at  13:55:22
+   Duration  139ms (import 61%, transform 23%, tests 14%, worker 2%)
+

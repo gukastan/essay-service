@@ -1,0 +1,11 @@
+--- .omo/evidence/factuality-prompt/run-6/model-test-before.ts.txt	2026-10-19 15:11:20
++++ src/server/model.test.ts	2026-10-19 15:11:47
+@@ -32,7 +32,7 @@
+     expect(sdk.create).toHaveBeenCalledWith(
+       expect.objectContaining({
+         model: "gpt-5.6-terra",
+-        reasoning: { effort: "none" },
++        reasoning: { effort: "low" },
+         store: false,
+         text: { format: expect.objectContaining({ type: "json_schema", strict: true }) },
+         instructions: expect.any(String),

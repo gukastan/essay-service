@@ -1,0 +1,9 @@
+HTTP/1.1 500 Internal Server Error
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 04:48:32 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"error","code":"CONFIG_ERROR","message":"모델 설정이 필요합니다. 서버의 API 키와 모델명을 확인해 주세요."}

@@ -1,0 +1,16 @@
+{
+  "revision": "run-4",
+  "modelFileSha256": "e63a37c0689491e1532e36177ac7bfe5b50d239fc8ff59663529e17c8fbfcf25",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "liveCommand": "QA_BASE_URL=http://127.0.0.1:3000 QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/run-4 node tests/run-live-samples.mjs --confirm-live-model",
+  "checks": [
+    {
+      "command": "pnpm test && pnpm lint && pnpm typecheck",
+      "exitCode": 0,
+      "output": "$ vitest run\n\n RUN  v5.0.5 /Users/jay/Projects/essay-service\n\n\n Test Files  4 passed (4)\n      Tests  75 passed (75)\n   Start at  15:05:08\n   Duration  169ms (import 79%, tests 10%, transform 8%, worker 3%)\n\n$ biome check src tests *.json *.ts\nChecked 27 files in 13ms. No fixes applied.\n$ tsc --noEmit\n",
+      "completionChunk": "abd601"
+    }
+  ],
+  "decision": "REVISE: both normal inputs returned 422 LENGTH_RETRY_EXHAUSTED. Sparse attack returned807 with unsupported historical learning and excessive generic expansion; independent review saved separately. Run4 diagnostic uses direct adapter, documented separately.",
+  "source": "actual leader tool results"
+}

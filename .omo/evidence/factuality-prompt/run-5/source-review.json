@@ -1,0 +1,12 @@
+[
+  {
+    "path": "src/server/model.ts",
+    "sha256": "e5993a3e3eab627bebf0b09aaf56e6e4072fd159b1a99468e76d16c6bcbfdd6c",
+    "pureLines": 83
+  },
+  {
+    "path": "src/server/model.test.ts",
+    "sha256": "508bfb5e88355469ad168cc2790554ae1a7ef632747c55a05e554127206cdd36",
+    "pureLines": 115
+  }
+]

@@ -1,0 +1,27 @@
+$ vitest run src/server --reporter=verbose
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > disables SDK retries and passes cancellable 30-second structured request 1ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > preserves nonempty instructions and original context across generation and rewrite 2ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects incomplete responses without another SDK call 0ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects malformed JSON without another SDK call 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > accepts 801 code points after one call 2ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > accepts 1000 code points after one call 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rewrites 800 once using normalized original and actual count 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rewrites 1001 once using normalized original and actual count 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > fails after two invalid drafts without leaking the draft 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > returns needs_input on call 1 without length retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > returns needs_input on call 2 without length retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output null without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {"status":"draft","draft":" "} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {"status":"needs_input","message":3} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > aborts at 30 seconds and stops even when provider ignores cancellation 1ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > redacts provider failures and clears its deadline 0ms
+
+ Test Files  2 passed (2)
+      Tests  17 passed (17)
+   Start at  14:54:16
+   Duration  160ms (import 78%, transform 13%, tests 6%, worker 3%)
+

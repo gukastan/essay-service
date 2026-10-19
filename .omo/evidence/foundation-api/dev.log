@@ -1,0 +1,83 @@
+$ next dev --hostname 127.0.0.1
+▲ Next.js 16.4.2 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+✓ Ready in 191ms
+✓ Running next.config.ts took 49ms
+
+ POST /api/drafts 500 in 138ms (next.js: 119ms, application-code: 19ms)
+ POST /api/drafts 400 in 2ms (next.js: 0.5ms, application-code: 1.8ms)
+ GET / 200 in 142ms (next.js: 37ms, application-code: 105ms)
+ POST /api/drafts 500 in 2ms (next.js: 0.4ms, application-code: 1.9ms)
+✓ Compiled in 6ms
+ GET / 200 in 12ms (next.js: 1.3ms, application-code: 10ms)
+ POST /api/drafts 400 in 3ms (next.js: 0.7ms, application-code: 2ms)
+⨯ ./src/app/globals.css:3:1
+Error: Module not found: Can't resolve '../components/essay/fields.css'
+  [90m1 |[0m @[36mimport[0m [32m"../components/essay/chrome.css"[0m;
+  [90m2 |[0m @[36mimport[0m [32m"../components/essay/panels.css"[0m;
+[31m[1m>[0m [90m3 |[0m @[36mimport[0m [32m"../components/essay/fields.css"[0m;
+  [90m  |[0m [31m[1m^[0m
+  [90m4 |[0m
+  [90m5 |[0m :root {
+  [90m6 |[0m   color-scheme: light dark;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/globals.css:2:1
+Error: Module not found: Can't resolve '../components/essay/panels.css'
+  [90m1 |[0m @[36mimport[0m [32m"../components/essay/chrome.css"[0m;
+[31m[1m>[0m [90m2 |[0m @[36mimport[0m [32m"../components/essay/panels.css"[0m;
+  [90m  |[0m [31m[1m^[0m
+  [90m3 |[0m @[36mimport[0m [32m"../components/essay/fields.css"[0m;
+  [90m4 |[0m
+  [90m5 |[0m :root {
+
+
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/globals.css:3:1
+Error: Module not found: Can't resolve '../components/essay/fields.css'
+  [90m1 |[0m @[36mimport[0m [32m"../components/essay/chrome.css"[0m;
+  [90m2 |[0m @[36mimport[0m [32m"../components/essay/panels.css"[0m;
+[31m[1m>[0m [90m3 |[0m @[36mimport[0m [32m"../components/essay/fields.css"[0m;
+  [90m  |[0m [31m[1m^[0m
+  [90m4 |[0m
+  [90m5 |[0m :root {
+  [90m6 |[0m   color-scheme: light dark;
+
+
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+✓ Compiled in 32ms
+ GET / 200 in 23ms (next.js: 0.9ms, application-code: 22ms)
+ POST /api/drafts 500 in 3ms (next.js: 0.5ms, application-code: 2ms)
+ GET / 200 in 16ms (next.js: 0.6ms, application-code: 15ms)
+ GET / 200 in 19ms (next.js: 1.0ms, application-code: 18ms)
+ POST /api/drafts 500 in 2ms (next.js: 0.4ms, application-code: 1.7ms)
+ GET / 200 in 17ms (next.js: 0.7ms, application-code: 16ms)
+ POST /api/drafts 500 in 3ms (next.js: 0.7ms, application-code: 2ms)
+✓ Compiled in 4ms
+[?25h

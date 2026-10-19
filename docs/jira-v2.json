@@ -1,0 +1,171 @@
+{
+  "date": "2026-10-19",
+  "project": "ESSAY",
+  "site": "https://kmskojb.atlassian.net",
+  "epic": "ESSAY-8",
+  "status": "할 일",
+  "implementation": "not_started",
+  "issues": [
+    {
+      "id": "V2-01",
+      "key": "ESSAY-9",
+      "summary": "공통 계약·LangGraph 실행 기반 구성",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-9"
+    },
+    {
+      "id": "V2-02",
+      "key": "ESSAY-10",
+      "summary": "기업·직무 조사 역할과 출처 검증 구현",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-9"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-10"
+    },
+    {
+      "id": "V2-03",
+      "key": "ESSAY-11",
+      "summary": "경험·문항 분석 역할과 원문 근거 추출 구현",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-9"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-11"
+    },
+    {
+      "id": "V2-04",
+      "key": "ESSAY-12",
+      "summary": "근거 기반 초안 작성 역할 구현",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-10",
+        "ESSAY-11"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-12"
+    },
+    {
+      "id": "V2-05",
+      "key": "ESSAY-13",
+      "summary": "사실성·문항 적합성 검토 역할 구현",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-12"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-13"
+    },
+    {
+      "id": "V2-06",
+      "key": "ESSAY-14",
+      "summary": "네 역할 LangGraph 연결과 v2 API 통합",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-13"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-14"
+    },
+    {
+      "id": "V2-07",
+      "key": "ESSAY-15",
+      "summary": "공고 자료 입력·근거 확인·보완 안내 화면 구현",
+      "type": "스토리",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-9"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-15"
+    },
+    {
+      "id": "V2-08",
+      "key": "ESSAY-16",
+      "summary": "분기·출처·예산·사실성 회귀 자동 검증",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-14",
+        "ESSAY-15"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-16"
+    },
+    {
+      "id": "V2-09",
+      "key": "ESSAY-17",
+      "summary": "실제 모델·공식 출처·브라우저 QA 및 최종 승인",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-16"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-17"
+    }
+  ],
+  "dependencies": [
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-10"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-10",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-11",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-12",
+      "outwardIssue": "ESSAY-13"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-13",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-14",
+      "outwardIssue": "ESSAY-16"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-15",
+      "outwardIssue": "ESSAY-16"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-16",
+      "outwardIssue": "ESSAY-17"
+    }
+  ],
+  "verification": "Re-read all 10 issues: statuses, parent and outward/inward Blocks links matched."
+}

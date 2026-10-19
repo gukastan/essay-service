@@ -1,0 +1,53 @@
+--- .omo/evidence/factuality-prompt/run-5/model-test-before.ts.txt	2026-10-19 15:09:03
++++ src/server/model.test.ts	2026-10-19 15:09:03
+@@ -52,7 +52,16 @@
+     const payloadSchema = z.object({ instructions: z.string().trim().min(1) });
+     const generation = payloadSchema.parse(sdk.create.mock.calls[0]?.[0]);
+     const revision = payloadSchema.parse(sdk.create.mock.calls[1]?.[0]);
+-    expect(revision.instructions).toBe(generation.instructions);
++    expect(revision.instructions.startsWith(generation.instructions)).toBe(true);
++    expect(JSON.parse(revision.instructions.slice(generation.instructions.length))).toEqual({
++      rewriteLength: {
++        currentCharacters: 800,
++        workingTargetCharacters: 900,
++        characterDelta: 100,
++        minimumCharacters: 801,
++        maximumCharacters: 1000,
++      },
++    });
+     expect(sdk.create).toHaveBeenCalledTimes(2);
+     expect(sdk.create).toHaveBeenNthCalledWith(
+       1,
+@@ -70,6 +79,32 @@
+     );
+   });
+ 
++  it("sends a negative trusted adjustment for an oversized draft without extra calls", async () => {
++    sdk.create.mockResolvedValue({
++      status: "completed",
++      output_text: '{"status":"draft","draft":"내용","message":null}',
++    });
++    await generateModelOutput({ input }, new AbortController().signal, config);
++    await generateModelOutput(
++      { input, rewrite: { draft: "가".repeat(1200), characterCount: 1200 } },
++      new AbortController().signal,
++      config,
++    );
++    const payloadSchema = z.object({ instructions: z.string() });
++    const generation = payloadSchema.parse(sdk.create.mock.calls[0]?.[0]);
++    const revision = payloadSchema.parse(sdk.create.mock.calls[1]?.[0]);
++    expect(JSON.parse(revision.instructions.slice(generation.instructions.length))).toEqual({
++      rewriteLength: {
++        currentCharacters: 1200,
++        workingTargetCharacters: 900,
++        characterDelta: -300,
++        minimumCharacters: 801,
++        maximumCharacters: 1000,
++      },
++    });
++    expect(sdk.create).toHaveBeenCalledTimes(2);
++  });
++
+   it("rejects incomplete responses without another SDK call", async () => {
+     sdk.create.mockResolvedValue({ status: "incomplete", output_text: "{}" });
+     await expect(

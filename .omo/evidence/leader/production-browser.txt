@@ -1,0 +1,9 @@
+Browser tab: 2, Title: "경험을 담은 자기소개서", URL: "http://127.0.0.1:3108/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 56-59
+~		55 text 모델 설정이 필요합니다. 서버의 API 키와 모델명을 확인해 주세요.
+~					22 text field (settable) 기업명필수, Value: 가상회사, ID: company
+~					26 text field (settable) 지원 직무필수, Value: 서비스 기획, ID: role
+~					30 text entry area (settable) 자기소개서 문항필수, Value: 협업 경험을 설명해 주세요., ID: question
+~					34 text entry area (settable) 나의 경험필수, Value: 팀 과제에서 사용자 의견을 정리하고 화면 흐름을 합의했습니다., ID: experience
+The focused UI element is 0 AXWebArea 경험을 담은 자기소개서, URL: 127.0.0.1:3108/

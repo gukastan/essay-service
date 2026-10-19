@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 06:05:27 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"needs_input","message":"현재 경험에는 ‘열심히 했다’는 내용만 있어 문제 해결 경험의 상황·문제·본인 행동·결과 또는 배움을 확인할 수 없습니다. 해결하려 했던 구체적 문제, 본인이 맡은 역할과 실제로 한 행동, 그 결과나 배운 점을 알려 주세요.","generationCalls":1}

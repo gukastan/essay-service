@@ -1,0 +1,30 @@
+{
+  "change": "One validation copy string: `${field.label} 항목을 입력해 주세요.`",
+  "commands": [
+    "pnpm exec biome check src/components/essay/EssayWorkspace.tsx",
+    "pnpm exec tsc --noEmit --incremental false"
+  ],
+  "results": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "8578bf",
+        "wall_time_seconds": 0.165095709,
+        "exit_code": 0,
+        "original_token_count": 11,
+        "output": "Checked 1 file in 27ms. No fixes applied.\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "b6ef3b",
+        "wall_time_seconds": 0.84985525,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+    }
+  ],
+  "browser": "Leader owns browser confirmation."
+}

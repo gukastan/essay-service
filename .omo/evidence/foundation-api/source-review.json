@@ -1,0 +1,50 @@
+[
+  {
+    "path": "src/shared/characters.ts",
+    "pureLines": 11
+  },
+  {
+    "path": "src/shared/contracts.ts",
+    "pureLines": 43
+  },
+  {
+    "path": "src/shared/characters.test.ts",
+    "pureLines": 21
+  },
+  {
+    "path": "src/server/config.ts",
+    "pureLines": 16
+  },
+  {
+    "path": "src/server/model.ts",
+    "pureLines": 63
+  },
+  {
+    "path": "src/server/drafts.ts",
+    "pureLines": 93
+  },
+  {
+    "path": "src/server/model.test.ts",
+    "pureLines": 69
+  },
+  {
+    "path": "src/server/drafts.test.ts",
+    "pureLines": 96
+  },
+  {
+    "path": "src/app/api/drafts/route.ts",
+    "pureLines": 53
+  },
+  {
+    "path": "src/app/layout.tsx",
+    "pureLines": 14
+  },
+  {
+    "path": "next.config.ts",
+    "pureLines": 3
+  },
+  {
+    "path": "vitest.config.ts",
+    "pureLines": 6
+  }
+]

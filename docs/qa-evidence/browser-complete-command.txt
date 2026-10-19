@@ -1,0 +1,11 @@
+RUN B01-empty-required-fields: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B02-real-backend-missing-key-inputs-preserved: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B03-route-mock-pending-lock-and-ready-snapshot: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B04-route-mock-edit-count-boundaries-and-unicode: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B05-route-mock-real-clipboard-current-edit-paste: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B06-route-mock-injected-clipboard-rejection: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B07-route-mock-needs-input-then-retry: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B08-route-mock-all-errors-preserve-input-and-result: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B09-route-mock-network-and-shape-failures: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B10-mobile-390-layout: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+[{"id":"B01-empty-required-fields","verdict":"PASS"},{"id":"B02-real-backend-missing-key-inputs-preserved","verdict":"PASS"},{"id":"B03-route-mock-pending-lock-and-ready-snapshot","verdict":"PASS"},{"id":"B04-route-mock-edit-count-boundaries-and-unicode","verdict":"PASS"},{"id":"B05-route-mock-real-clipboard-current-edit-paste","verdict":"PASS"},{"id":"B06-route-mock-injected-clipboard-rejection","verdict":"PASS"},{"id":"B07-route-mock-needs-input-then-retry","verdict":"PASS"},{"id":"B08-route-mock-all-errors-preserve-input-and-result","verdict":"PASS"},{"id":"B09-route-mock-network-and-shape-failures","verdict":"PASS"},{"id":"B10-mobile-390-layout","verdict":"PASS"}]

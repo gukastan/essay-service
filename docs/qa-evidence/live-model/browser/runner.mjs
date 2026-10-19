@@ -1,0 +1,80 @@
+import assert from 'node:assert/strict';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { loadOmowright } from '/Users/jay/.codex/plugins/cache/sisyphuslabs/omo/5.1.35/skills/browser/scripts/omowright.mjs';
+
+const { omowright } = await loadOmowright();
+const output = '/Users/jay/Projects/essay-service/docs/qa-evidence/live-model/browser';
+await mkdir(output, { recursive: true });
+const profile = await mkdtemp('/private/tmp/essay-live-browser-');
+let browser;
+let trace;
+const result = { executedAt: new Date().toISOString(), baseUrl: 'http://127.0.0.1:3000', networkMocking: false, scenarios: [] };
+try {
+  browser = await omowright.connectPipe({ browserPath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', browserArgs: ['--headless', '--no-first-run', `--user-data-dir=${profile}`], storageRoot: profile });
+  const page = await browser.newTab(result.baseUrl);
+  await page.cdp.send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1100, deviceScaleFactor: 1, mobile: false }, await page.resolveSessionId());
+  trace = omowright.createTrace(page, { dir: output });
+  const snapshot = async () => trace.mark('accessibility', omowright.compactSnapshot(await page.snapshot()));
+  const fill = async (selector, value) => { await snapshot(); await page.locator(selector).fill(value); };
+  const click = async (selector) => { await snapshot(); await page.locator(selector).click(); };
+  const value = (selector) => page.evaluate((s) => document.querySelector(s)?.value, selector);
+  const text = (selector) => page.evaluate((s) => document.querySelector(s)?.textContent, selector);
+  const samples = JSON.parse(await readFile('/Users/jay/Projects/essay-service/tests/fixtures/live-samples.json', 'utf8'));
+  const { id, category, ...input } = samples.find((sample) => sample.id === 'long-experience');
+  result.sample = id;
+  await click('button[type="submit"]');
+  await page.locator('#company-error').waitFor({ state: 'attached', timeout: 15000 });
+  await trace.step('LIVE01-input-generate-compare', async () => {
+    for (const [field, content] of Object.entries(input)) await fill(`#${field}`, content);
+    for (const [field, content] of Object.entries(input)) assert.equal(await value(`#${field}`), content);
+    await click('button[type="submit"]');
+    await page.locator('form[aria-busy="true"]').waitFor({ state: 'attached', timeout: 5000 });
+    for (const field of Object.keys(input)) assert.equal(await page.locator(`#${field}`).isDisabled(), true);
+    assert.equal(await page.locator('button[type="submit"]').isDisabled(), true);
+    await page.locator('#draft').waitFor({ state: 'attached', timeout: 65000 });
+    const draft = await value('#draft');
+    const characterCount = Array.from(draft.replace(/\r\n?/g, '\n')).length;
+    assert.ok(characterCount >= 801 && characterCount <= 1000);
+    assert.equal(await text('.count'), `${characterCount.toLocaleString('ko-KR')} / 1,000자`);
+    assert.equal(await text('.original-experience'), input.experience);
+    result.draft = draft;
+    result.characterCount = characterCount;
+    result.notice = await text('.notice');
+    await writeFile(`${output}/generated.png`, await page.screenshot());
+  });
+  result.scenarios.push({ id: 'LIVE01-input-generate-compare', verdict: 'PASS' });
+  await trace.step('LIVE02-edit-copy-paste', async () => {
+    const edited = `${result.draft}\n검토 완료`;
+    await fill('#draft', edited);
+    const count = Array.from(edited).length;
+    assert.equal(await text('.count'), `${count.toLocaleString('ko-KR')} / 1,000자`);
+    await page.cdp.send('Browser.grantPermissions', { origin: result.baseUrl, permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'] });
+    await click('button:has-text("초안 복사")');
+    await page.locator('.copy-feedback:has-text("현재 초안을 복사했어요.")').waitFor({ state: 'attached' });
+    await fill('#question', '');
+    await click('#question');
+    await snapshot();
+    await page.keyboard.press('Meta+V');
+    assert.equal(await value('#question'), edited);
+    result.editedCharacterCount = count;
+    result.clipboardPasteMatched = true;
+    await fill('#question', input.question);
+    await fill('#experience', '다음 요청에 사용할 수정 경험');
+    assert.equal(await text('.original-experience'), input.experience);
+    await writeFile(`${output}/edited-copied.png`, await page.screenshot());
+  });
+  result.scenarios.push({ id: 'LIVE02-edit-copy-paste', verdict: 'PASS' });
+  result.verdict = 'PASS';
+} catch (error) {
+  result.verdict = 'FAIL';
+  result.error = String(error);
+  process.exitCode = 1;
+} finally {
+  if (trace) await trace.stop();
+  if (browser) await browser.close();
+  await rm(profile, { recursive: true, force: true });
+  result.browserClosed = true;
+  result.profileRemoved = true;
+  await writeFile(`${output}/result.json`, `${JSON.stringify(result, null, 2)}\n`);
+  console.log(JSON.stringify({ verdict: result.verdict, characterCount: result.characterCount, clipboardPasteMatched: result.clipboardPasteMatched, error: result.error, output }));
+}

@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 05:55:09 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"needs_input","message":"제공된 경험만으로는 사실을 보존하면서 801~1000자 분량의 경험·성과 문항을 작성하기 어렵습니다. 전국 대회 대상이나 매출 증가 성과는 원본 경험에서 명확히 부정되어 있어 포함할 수 없습니다.\n\n초안 작성을 위해 다음과 같은 실제 정보를 알려 주세요. 독서 모임 게시물 작성 당시의 목적과 대상, 날짜·장소 외에 안내한 범위, 오류를 수정한 과정, 확인 목록에 실제로 포함한 항목, 이후 확인 목록을 사용한 사례나 확인된 변화가 있다면 그 사실을 구체적으로 적어 주세요. 또한 마케팅과 연결할 수 있는 다른 실제 경험이 있다면 본인의 역할·행동·확인 가능한 결과 중심으로 추가해 주세요.","generationCalls":1}

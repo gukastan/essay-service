@@ -1,0 +1,32 @@
+$ vitest run src/shared src/server --reporter=verbose
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+ ✓ src/shared/characters.test.ts > shared Unicode count > boundary 800 1ms
+ ✓ src/shared/characters.test.ts > shared Unicode count > boundary 801 0ms
+ ✓ src/shared/characters.test.ts > shared Unicode count > boundary 1000 0ms
+ ✓ src/shared/characters.test.ts > shared Unicode count > boundary 1001 0ms
+ ✓ src/shared/characters.test.ts > shared Unicode count > counts whitespace, Korean, CRLF, CR, combining marks and emoji code points 0ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > disables SDK retries and passes cancellable 30-second structured request 1ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > keeps original experience and facts-only instructions in rewrite 0ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects incomplete responses without another SDK call 0ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects malformed JSON without another SDK call 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > accepts 801 code points after one call 2ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > accepts 1000 code points after one call 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rewrites 800 once using normalized original and actual count 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rewrites 1001 once using normalized original and actual count 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > fails after two invalid drafts without leaking the draft 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > returns needs_input on call 1 without length retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > returns needs_input on call 2 without length retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output null without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {"status":"draft","draft":" "} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > rejects malformed model output {"status":"needs_input","message":3} without retry 0ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > aborts at 30 seconds and stops even when provider ignores cancellation 1ms
+ ✓ src/server/drafts.test.ts > bounded drafting pipeline > redacts provider failures and clears its deadline 0ms
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  13:50:23
+   Duration  166ms (import 79%, transform 10%, tests 7%, worker 4%)
+

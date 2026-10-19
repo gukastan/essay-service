@@ -1,0 +1,16 @@
+{
+  "revision": "run-5",
+  "modelFileSha256": "e5993a3e3eab627bebf0b09aaf56e6e4072fd159b1a99468e76d16c6bcbfdd6c",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "liveCommand": "QA_BASE_URL=http://127.0.0.1:3000 QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/run-5 node tests/run-live-samples.mjs --confirm-live-model",
+  "checks": [
+    {
+      "command": "pnpm test && pnpm lint && pnpm typecheck",
+      "exitCode": 0,
+      "output": "$ vitest run\n\n RUN  v5.0.5 /Users/jay/Projects/essay-service\n\n\n Test Files  4 passed (4)\n      Tests  76 passed (76)\n   Start at  15:09:37\n   Duration  185ms (import 78%, tests 11%, transform 8%, worker 3%)\n\n$ biome check src tests *.json *.ts\nChecked 27 files in 14ms. No fixes applied.\n$ tsc --noEmit\n",
+      "completionChunk": "2e8fc2"
+    }
+  ],
+  "decision": "REVISE: all5 HTTP200, ready4 and needs_input1, reportedgenerationCalls7; unsupported prior method (collaboration), added temporal ordering (service and attack), and unprovided learning remain. Current prompt/numeric guidance retained for isolated reasoning-effort comparison.",
+  "source": "actual leader tool results"
+}

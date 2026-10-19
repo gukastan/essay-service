@@ -1,0 +1,20 @@
+[
+  {
+    "scenario": "Scoped UI formatting and lint",
+    "invocation": "pnpm exec biome check src/app/page.tsx src/app/globals.css src/components/essay",
+    "chunk_id": "a8c030",
+    "wall_time_seconds": 0.173726416,
+    "exit_code": 0,
+    "original_token_count": 11,
+    "output": "Checked 8 files in 14ms. No fixes applied.\n"
+  },
+  {
+    "scenario": "Application strict typecheck",
+    "invocation": "pnpm exec tsc --noEmit --incremental false",
+    "chunk_id": "0db933",
+    "wall_time_seconds": 0.869191083,
+    "exit_code": 0,
+    "original_token_count": 0,
+    "output": ""
+  }
+]

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "87a90633-1110-4b38-a3a9-c2b5f82af5c6",
+  "teamName": "essay-mvp",
+  "sessionName": "essay-mvp",
+  "sessionId": "team-19d5f6d4",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-19T04:42:32.549Z",
+  "updatedAt": "2026-10-19T04:58:45.698Z",
+  "archivedAt": "2026-10-19T04:58:45.698Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-19d5f6d4/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-19d5f6d4",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-19d5f6d4/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-19d5f6d4/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-19d5f6d4/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "foundation-api",
+      "focus": "ESSAY-1 foundation and shared configuration, then ESSAY-4 and ESSAY-5 API and model pipeline; sole owner of package files, src/shared, README and src/server",
+      "lens": "ownership",
+      "deliverable": "Runnable Next.js TypeScript setup, shared contracts and Unicode count tests, bounded real-model API with deterministic tests and setup documentation",
+      "taskName": "foundation_api",
+      "agentPath": "/root/foundation_api",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "essay-screen",
+      "focus": "ESSAY-2 and ESSAY-3; owns src/app/page.tsx, src/app/globals.css and src/components/essay only",
+      "lens": "ownership",
+      "deliverable": "Accessible responsive Korean input, progress, error and needs-input UI with original snapshot, editable draft, shared character counter and clipboard feedback",
+      "taskName": "essay_screen",
+      "agentPath": "/root/essay_screen",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "C",
+      "name": "contract-qa",
+      "focus": "ESSAY-6 and ESSAY-7; owns tests, samples and docs/qa.md; no product code edits",
+      "lens": "perspective",
+      "deliverable": "Independent route contract and failure tests, five fixed model samples, browser scenario evidence, honest distinction of mocks and unavailable real-model validation",
+      "taskName": "contract_qa",
+      "agentPath": "/root/contract_qa",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-19T04:42:32.549Z",
+      "event": "created",
+      "detail": "team essay-mvp"
+    },
+    {
+      "ts": "2026-10-19T04:42:54.613Z",
+      "event": "add-member",
+      "detail": "member A (ownership): ESSAY-1 foundation and shared configuration, then ESSAY-4 and ESSAY-5 API and model pipeline; sole owner of package files, src/shared, README and src/server"
+    },
+    {
+      "ts": "2026-10-19T04:42:56.741Z",
+      "event": "add-member",
+      "detail": "member B (ownership): ESSAY-2 and ESSAY-3; owns src/app/page.tsx, src/app/globals.css and src/components/essay only"
+    },
+    {
+      "ts": "2026-10-19T04:43:00.210Z",
+      "event": "add-member",
+      "detail": "member C (perspective): ESSAY-6 and ESSAY-7; owns tests, samples and docs/qa.md; no product code edits"
+    },
+    {
+      "ts": "2026-10-19T04:44:17.224Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/foundation_api"
+    },
+    {
+      "ts": "2026-10-19T04:44:20.026Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/essay_screen"
+    },
+    {
+      "ts": "2026-10-19T04:44:22.620Z",
+      "event": "bind-agent",
+      "detail": "member C -> agent /root/contract_qa"
+    },
+    {
+      "ts": "2026-10-19T04:58:38.688Z",
+      "event": "set-status",
+      "detail": "member A -> reported: Assigned independent work and final evidence delivered; live model and author review remain external requirements."
+    },
+    {
+      "ts": "2026-10-19T04:58:40.988Z",
+      "event": "set-status",
+      "detail": "member B -> reported: Assigned independent work and final evidence delivered; live model and author review remain external requirements."
+    },
+    {
+      "ts": "2026-10-19T04:58:43.050Z",
+      "event": "set-status",
+      "detail": "member C -> reported: Assigned independent work and final evidence delivered; live model and author review remain external requirements."
+    },
+    {
+      "ts": "2026-10-19T04:58:45.698Z",
+      "event": "archive",
+      "detail": "All members finished. MultiAgentV2 exposes no runtime archive operation; durable team state records archival. No agents are mid-turn. Source and evidence preserved; live-model credentials and author factual review pending."
+    }
+  ]
+}

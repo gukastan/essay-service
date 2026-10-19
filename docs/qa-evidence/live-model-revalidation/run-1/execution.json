@@ -1,0 +1,20 @@
+{
+  "revision": "run-1",
+  "modelFileSha256": "c2c8bceca117e0d4bb74e6ffffdb3248a5a18d9343b9d5d4d26f44156634f8c6",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "liveCommand": "QA_BASE_URL=http://127.0.0.1:3000 QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/run-1 node tests/run-live-samples.mjs --confirm-live-model",
+  "checks": [
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "output": "$ vitest run\n\n RUN  v5.0.5 /Users/jay/Projects/essay-service\n\n\n Test Files  4 passed (4)\n      Tests  75 passed (75)\n   Start at  14:54:49\n   Duration  169ms (import 79%, tests 11%, transform 7%, worker 3%)\n\n"
+    },
+    {
+      "command": "pnpm lint && pnpm typecheck",
+      "exitCode": 0,
+      "output": "$ biome check src tests *.json *.ts\nChecked 27 files in 23ms. No fixes applied.\n$ tsc --noEmit\nc2c8bceca117e0d4bb74e6ffffdb3248a5a18d9343b9d5d4d26f44156634f8c6  src/server/model.ts\n950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35  tests/fixtures/live-samples.json\n"
+    }
+  ],
+  "decision": "REVISE: four needs_input including both normal samples; only long-experience ready. Factual abstention is not sufficient completion.",
+  "source": "actual leader tool results"
+}

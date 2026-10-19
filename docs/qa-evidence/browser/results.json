@@ -1,0 +1,10 @@
+{
+  "results": [
+    {
+      "id": "B01-empty-required-fields",
+      "verdict": "PASS"
+    }
+  ],
+  "cleanup": "Owned browser closed and temporary profile removed",
+  "completedAt": "2026-10-19T04:51:11.133Z"
+}

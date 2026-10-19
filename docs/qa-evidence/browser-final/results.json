@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "id": "B01-empty-required-fields",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B02-real-backend-missing-key-inputs-preserved",
+      "verdict": "PASS"
+    },
+    {
+      "id": "B03-route-mock-pending-lock-and-ready-snapshot",
+      "verdict": "PASS"
+    }
+  ],
+  "cleanup": "Owned browser closed and temporary profile removed",
+  "completedAt": "2026-10-19T04:52:03.130Z"
+}

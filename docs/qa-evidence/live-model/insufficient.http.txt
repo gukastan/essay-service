@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 05:28:25 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"needs_input","message":"현재 경험 정보가 ‘열심히 했습니다’뿐이라 문제 해결 과정과 결과를 사실에 근거해 801~1000자로 작성하기 어렵습니다. 실제 사례 1가지를 알려 주세요. ① 어떤 프로젝트·과제·업무였는지, ② 발생한 문제와 영향, ③ 본인이 맡은 역할, ④ 원인을 확인하기 위해 한 행동, ⑤ 해결을 위해 시도한 방법과 협업 방식, ⑥ 결과 및 배운 점을 구체적으로 제공해 주세요. 사용한 기술·도구, 기간, 확인 가능한 수치가 있다면 함께 알려 주세요.","generationCalls":1}

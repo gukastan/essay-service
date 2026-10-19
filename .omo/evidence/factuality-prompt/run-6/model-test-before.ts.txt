@@ -1,0 +1,123 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { z } from "zod";
+
+const sdk = vi.hoisted(() => ({ create: vi.fn(), constructor: vi.fn() }));
+vi.mock("openai", () => ({
+  default: class {
+    constructor(options: unknown) {
+      sdk.constructor(options);
+    }
+    responses = { create: sdk.create };
+  },
+}));
+
+import { generateModelOutput, ModelResponseError } from "./model";
+
+const input = { company: "회사", role: "개발", question: "경험", experience: "실제 팀 프로젝트" };
+const config = { apiKey: "unit-test-only", model: "gpt-5.6-terra" };
+afterEach(() => vi.resetAllMocks());
+
+describe("real provider adapter with mocked SDK", () => {
+  it("disables SDK retries and passes cancellable 30-second structured request", async () => {
+    const output = { status: "draft", draft: "가".repeat(801), message: null };
+    sdk.create.mockResolvedValue({ status: "completed", output_text: JSON.stringify(output) });
+    const controller = new AbortController();
+    expect(await generateModelOutput({ input }, controller.signal, config)).toEqual(output);
+    expect(sdk.constructor).toHaveBeenCalledWith({
+      apiKey: "unit-test-only",
+      maxRetries: 0,
+      timeout: 30000,
+    });
+    expect(sdk.create).toHaveBeenCalledTimes(1);
+    expect(sdk.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        model: "gpt-5.6-terra",
+        reasoning: { effort: "none" },
+        store: false,
+        text: { format: expect.objectContaining({ type: "json_schema", strict: true }) },
+        instructions: expect.any(String),
+      }),
+      { signal: controller.signal, maxRetries: 0, timeout: 30000 },
+    );
+  });
+
+  it("preserves nonempty instructions and original context across generation and rewrite", async () => {
+    sdk.create.mockResolvedValue({
+      status: "completed",
+      output_text: '{"status":"needs_input","message":"행동을 설명해주세요","draft":null}',
+    });
+    const rewrite = { draft: "가".repeat(800), characterCount: 800 };
+    await generateModelOutput({ input }, new AbortController().signal, config);
+    await generateModelOutput({ input, rewrite }, new AbortController().signal, config);
+    const payloadSchema = z.object({ instructions: z.string().trim().min(1) });
+    const generation = payloadSchema.parse(sdk.create.mock.calls[0]?.[0]);
+    const revision = payloadSchema.parse(sdk.create.mock.calls[1]?.[0]);
+    expect(revision.instructions.startsWith(generation.instructions)).toBe(true);
+    expect(JSON.parse(revision.instructions.slice(generation.instructions.length))).toEqual({
+      rewriteLength: {
+        currentCharacters: 800,
+        workingTargetCharacters: 900,
+        characterDelta: 100,
+        minimumCharacters: 801,
+        maximumCharacters: 1000,
+      },
+    });
+    expect(sdk.create).toHaveBeenCalledTimes(2);
+    expect(sdk.create).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        input: JSON.stringify({ input, targetRange: { minimum: 801, maximum: 1000 } }),
+      }),
+      expect.any(Object),
+    );
+    expect(sdk.create).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        input: JSON.stringify({ input, rewrite, targetRange: { minimum: 801, maximum: 1000 } }),
+      }),
+      expect.any(Object),
+    );
+  });
+
+  it("sends a negative trusted adjustment for an oversized draft without extra calls", async () => {
+    sdk.create.mockResolvedValue({
+      status: "completed",
+      output_text: '{"status":"draft","draft":"내용","message":null}',
+    });
+    await generateModelOutput({ input }, new AbortController().signal, config);
+    await generateModelOutput(
+      { input, rewrite: { draft: "가".repeat(1200), characterCount: 1200 } },
+      new AbortController().signal,
+      config,
+    );
+    const payloadSchema = z.object({ instructions: z.string() });
+    const generation = payloadSchema.parse(sdk.create.mock.calls[0]?.[0]);
+    const revision = payloadSchema.parse(sdk.create.mock.calls[1]?.[0]);
+    expect(JSON.parse(revision.instructions.slice(generation.instructions.length))).toEqual({
+      rewriteLength: {
+        currentCharacters: 1200,
+        workingTargetCharacters: 900,
+        characterDelta: -300,
+        minimumCharacters: 801,
+        maximumCharacters: 1000,
+      },
+    });
+    expect(sdk.create).toHaveBeenCalledTimes(2);
+  });
+
+  it("rejects incomplete responses without another SDK call", async () => {
+    sdk.create.mockResolvedValue({ status: "incomplete", output_text: "{}" });
+    await expect(
+      generateModelOutput({ input }, new AbortController().signal, config),
+    ).rejects.toBeInstanceOf(ModelResponseError);
+    expect(sdk.create).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects malformed JSON without another SDK call", async () => {
+    sdk.create.mockResolvedValue({ status: "completed", output_text: "bad" });
+    await expect(
+      generateModelOutput({ input }, new AbortController().signal, config),
+    ).rejects.toBeInstanceOf(SyntaxError);
+    expect(sdk.create).toHaveBeenCalledTimes(1);
+  });
+});

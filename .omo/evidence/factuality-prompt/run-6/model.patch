@@ -1,0 +1,11 @@
+--- .omo/evidence/factuality-prompt/run-6/model-before.ts.txt	2026-10-19 15:11:20
++++ src/server/model.ts	2026-10-19 15:11:47
+@@ -50,7 +50,7 @@
+   const response = await client.responses.create(
+     {
+       model: config.model,
+-      reasoning: { effort: "none" },
++      reasoning: { effort: "low" },
+       store: false,
+       max_output_tokens: 4000,
+       instructions: rewriteLength

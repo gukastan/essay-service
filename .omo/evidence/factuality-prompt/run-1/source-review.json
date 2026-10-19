@@ -1,0 +1,10 @@
+{
+  "path": "src/server/model.ts",
+  "sha256": "c2c8bceca117e0d4bb74e6ffffdb3248a5a18d9343b9d5d4d26f44156634f8c6",
+  "pureLines": 78,
+  "scope": "instructions string only",
+  "baseline": ".omo/teams/team-b708141f/artifacts/server-before/model.ts",
+  "modelUnchanged": true,
+  "requestSchemaUnchanged": true,
+  "additionalNetworkCalls": 0
+}

@@ -1,0 +1,47 @@
+src/server/config.ts:15:25 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The computed expression can be simplified without the use of a string literal.
+  
+    13 │ export function readModelConfig() {
+    14 │   return modelConfigSchema.safeParse({
+  > 15 │     apiKey: process.env["OPENAI_API_KEY"],
+       │                         ^^^^^^^^^^^^^^^^
+    16 │     model: process.env["OPENAI_MODEL"],
+    17 │   });
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    13 13 │   export function readModelConfig() {
+    14 14 │     return modelConfigSchema.safeParse({
+    15    │ - ····apiKey:·process.env["OPENAI_API_KEY"],
+       15 │ + ····apiKey:·process.env.OPENAI_API_KEY,
+    16 16 │       model: process.env["OPENAI_MODEL"],
+    17 17 │     });
+  
+
+src/server/config.ts:16:24 lint/complexity/useLiteralKeys  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The computed expression can be simplified without the use of a string literal.
+  
+    14 │   return modelConfigSchema.safeParse({
+    15 │     apiKey: process.env["OPENAI_API_KEY"],
+  > 16 │     model: process.env["OPENAI_MODEL"],
+       │                        ^^^^^^^^^^^^^^
+    17 │   });
+    18 │ }
+  
+  i Unsafe fix: Use a literal key instead.
+  
+    14 14 │     return modelConfigSchema.safeParse({
+    15 15 │       apiKey: process.env["OPENAI_API_KEY"],
+    16    │ - ····model:·process.env["OPENAI_MODEL"],
+       16 │ + ····model:·process.env.OPENAI_MODEL,
+    17 17 │     });
+    18 18 │   }
+  
+
+Skipped 2 suggested fixes.
+If you wish to apply the suggested (unsafe) fixes, use the command biome check --write --unsafe
+
+Checked 5 files in 25ms. Fixed 2 files.
+Found 2 infos.

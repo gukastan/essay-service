@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 05:54:54 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"needs_input","message":"제공된 경험만으로는 사실을 보존하면서 801~1000자 분량의 초안을 작성하기 어렵습니다. 아래 사실을 더 알려주시면 협업 문제 해결 과정이 선명해집니다.\n\n1. 팀원들이 각각 다르게 생각했던 기능 또는 사용자·불편의 범위(기억나는 수준에서)\n2. 사용자와 불편을 문서에 적고 공통 요구를 묶는 과정에서 본인이 실제로 한 역할과 방식\n3. ‘공지 목록’과 ‘일정 확인’을 우선 구현하기로 합의한 뒤 화면 흐름 초안에 반영한 내용\n4. 동료 학생이 제시한 메뉴명 관련 의견의 범위와 실제로 변경한 메뉴명 또는 변경 방향\n5. 프로젝트 진행 중 이 조정이 이후 협업이나 시안 완성에 미친, 확인 가능한 변화\n\n수치나 수상 실적은 필요하지 않으며, 기억나는 사실만 제공해 주세요.","generationCalls":1}

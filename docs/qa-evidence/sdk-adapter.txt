@@ -1,0 +1,13 @@
+
+ RUN  v5.0.5 /Users/jay/Projects/essay-service
+
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > disables SDK retries and passes cancellable 30-second structured request 1ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > preserves nonempty instructions and original context across generation and rewrite 1ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects incomplete responses without another SDK call 0ms
+ ✓ src/server/model.test.ts > real provider adapter with mocked SDK > rejects malformed JSON without another SDK call 0ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  13:55:43
+   Duration  72ms (import 70%, tests 14%, transform 10%, worker 6%)
+

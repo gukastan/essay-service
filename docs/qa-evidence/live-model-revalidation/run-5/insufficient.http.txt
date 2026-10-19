@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+content-type: application/json
+Date: Mon, 19 Oct 2026 06:09:50 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+Transfer-Encoding: chunked
+
+{"status":"needs_input","message":"현재 경험에는 ‘열심히 했다’는 표현만 있어 문제 상황, 맡은 역할, 실제로 수행한 행동, 결과 또는 배움을 확인할 수 없습니다. 사실에 근거해 작성하려면 다음을 알려주세요: ① 어떤 상황에서 어떤 문제가 있었는지 ② 본인이 맡은 역할 ③ 문제 해결을 위해 실제로 한 구체적 행동 2가지 이상 ④ 확인된 결과 또는 그 경험에서 명시적으로 배운 점. 수치가 없다면 정성적 결과만 알려주셔도 됩니다.","generationCalls":1}

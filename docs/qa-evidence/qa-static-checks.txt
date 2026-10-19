@@ -1,0 +1,8 @@
+2026-10-19 QA static checks
+cwd: /Users/jay/Projects/essay-service
+Invocation: pnpm exec tsc --noEmit --incremental false
+Observed exit code: 0
+Compiler emitted no diagnostics (typecheck.txt is empty by design).
+Invocation: pnpm exec biome check tests
+Observed exit code: 0
+QA sources: tests/api-contract.test.ts, tests/browser-qa.mjs, tests/run-live-samples.mjs, tests/fixtures/live-samples.json

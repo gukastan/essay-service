@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-19",
+  "cloudId": "8e85566d-9264-4bac-95c9-79bcb5476972",
+  "issues": [
+    {
+      "key": "ESSAY-4",
+      "commentId": "10011",
+      "status": "완료",
+      "transitionId": "31",
+      "confirmedBy": "transitionjiraissue returned success and statusName 완료"
+    },
+    {
+      "key": "ESSAY-7",
+      "commentId": "10013",
+      "previousCommentId": "10012",
+      "status": "완료",
+      "transitionId": "31",
+      "confirmedBy": "transitionjiraissue returned success and statusName 완료",
+      "decision": "Project author reviewed the full report, confirmed no factuality issues and explicitly requested completion.",
+      "approvalRecord": "run-7/author-approval.json",
+      "previousStatus": "진행 중, awaiting author approval at comment 10012"
+    }
+  ],
+  "evidence": "run-7 observed five-sample validation and76tests/lint/typecheck/build; failed runs1–6 retained.",
+  "source": "Successful Atlassian tool results; user explicitly requested Jira update."
+}

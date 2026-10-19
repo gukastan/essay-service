@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "f1456643-2b40-4b3c-8a4b-02277ac0f162",
+  "teamName": "essay-factuality",
+  "sessionName": "essay-factuality-fix",
+  "sessionId": "team-b708141f",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-19T05:52:25.218Z",
+  "updatedAt": "2026-10-19T06:24:03.965Z",
+  "archivedAt": "2026-10-19T06:24:03.965Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-b708141f/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-b708141f",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-b708141f/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-b708141f/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-b708141f/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "factuality-prompt",
+      "focus": "Server model instructions and source-grounded draft behavior; src/server only",
+      "lens": "ownership",
+      "deliverable": "Minimal prompt fix with targeted checks and preserved API limits",
+      "taskName": "foundation_api",
+      "agentPath": "/root/foundation_api",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "sample-factuality",
+      "focus": "Independent same-five-sample evaluation and docs/qa.md; never product code",
+      "lens": "ownership",
+      "deliverable": "Per-sample evidence and updated QA documentation",
+      "taskName": "contract_qa",
+      "agentPath": "/root/contract_qa",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-19T05:52:25.218Z",
+      "event": "created",
+      "detail": "team essay-factuality"
+    },
+    {
+      "ts": "2026-10-19T05:52:39.597Z",
+      "event": "add-member",
+      "detail": "member A (ownership): Server model instructions and source-grounded draft behavior; src/server only"
+    },
+    {
+      "ts": "2026-10-19T05:52:39.682Z",
+      "event": "add-member",
+      "detail": "member B (ownership): Independent same-five-sample evaluation and docs/qa.md; never product code"
+    },
+    {
+      "ts": "2026-10-19T05:52:39.765Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/foundation_api"
+    },
+    {
+      "ts": "2026-10-19T05:52:39.847Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/contract_qa"
+    },
+    {
+      "ts": "2026-10-19T06:22:11.735Z",
+      "event": "set-status",
+      "detail": "member A -> reported: Revision7 integrated; 76 tests, lint, typecheck, build and observed live samples passed. Product source frozen."
+    },
+    {
+      "ts": "2026-10-19T06:24:03.883Z",
+      "event": "set-status",
+      "detail": "member B -> reported: Independent run7 review and docs/qa.md completed; author approval remains pending; no active work."
+    },
+    {
+      "ts": "2026-10-19T06:24:03.965Z",
+      "event": "archive",
+      "detail": "Members completed and notified. MultiAgentV2 exposes no runtime archive operation; durable state records archival. Preserve artifacts in .omo/evidence/team-b708141f before deleting active state."
+    }
+  ]
+}

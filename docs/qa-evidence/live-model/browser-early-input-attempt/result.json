@@ -1,0 +1,11 @@
+{
+  "executedAt": "2026-10-19T05:31:41.385Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "networkMocking": false,
+  "scenarios": [],
+  "sample": "long-experience",
+  "verdict": "FAIL",
+  "error": "Error: locator.waitFor: timed out after 5000ms waiting for Locator@form[aria-busy=\"true\"] to be attached",
+  "browserClosed": true,
+  "profileRemoved": true
+}

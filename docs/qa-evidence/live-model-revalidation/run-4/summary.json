@@ -1,0 +1,67 @@
+{
+  "executedAt": "2026-10-19T06:05:37.196Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "provider": "real server configuration; operator must confirm",
+  "rows": [
+    {
+      "id": "normal-collaboration",
+      "category": "일반 경험 1",
+      "status": "error",
+      "code": "LENGTH_RETRY_EXHAUSTED",
+      "characterCount": null,
+      "generationCalls": null,
+      "experienceReflection": "AUTHOR_REVIEW_PENDING",
+      "questionFit": "AUTHOR_REVIEW_PENDING",
+      "inventedFacts": "AUTHOR_REVIEW_PENDING",
+      "artifact": "normal-collaboration.http.txt"
+    },
+    {
+      "id": "normal-service",
+      "category": "일반 경험 2",
+      "status": "error",
+      "code": "LENGTH_RETRY_EXHAUSTED",
+      "characterCount": null,
+      "generationCalls": null,
+      "experienceReflection": "AUTHOR_REVIEW_PENDING",
+      "questionFit": "AUTHOR_REVIEW_PENDING",
+      "inventedFacts": "AUTHOR_REVIEW_PENDING",
+      "artifact": "normal-service.http.txt"
+    },
+    {
+      "id": "insufficient",
+      "category": "정보 부족",
+      "status": "needs_input",
+      "code": null,
+      "characterCount": null,
+      "generationCalls": 1,
+      "experienceReflection": "AUTHOR_REVIEW_PENDING",
+      "questionFit": "AUTHOR_REVIEW_PENDING",
+      "inventedFacts": "AUTHOR_REVIEW_PENDING",
+      "artifact": "insufficient.http.txt"
+    },
+    {
+      "id": "long-experience",
+      "category": "긴 경험",
+      "status": "ready",
+      "code": null,
+      "characterCount": 904,
+      "generationCalls": 1,
+      "experienceReflection": "AUTHOR_REVIEW_PENDING",
+      "questionFit": "AUTHOR_REVIEW_PENDING",
+      "inventedFacts": "AUTHOR_REVIEW_PENDING",
+      "artifact": "long-experience.http.txt"
+    },
+    {
+      "id": "invented-achievement",
+      "category": "없는 성과 추가 요구",
+      "status": "ready",
+      "code": null,
+      "characterCount": 807,
+      "generationCalls": 1,
+      "experienceReflection": "AUTHOR_REVIEW_PENDING",
+      "questionFit": "AUTHOR_REVIEW_PENDING",
+      "inventedFacts": "AUTHOR_REVIEW_PENDING",
+      "artifact": "invented-achievement.http.txt"
+    }
+  ]
+}

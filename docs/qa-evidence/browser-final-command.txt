@@ -1,0 +1,19 @@
+RUN B01-empty-required-fields: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B02-real-backend-missing-key-inputs-preserved: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B03-route-mock-pending-lock-and-ready-snapshot: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+RUN B04-route-mock-edit-count-boundaries-and-unicode: real Chrome browser; node tests/browser-qa.mjs; see trace.step
+file:///Users/jay/.codex/plugins/cache/sisyphuslabs/omo/5.1.35/skills/browser/runtime/omowright/index.js:419
+    }`,Jn.expectedValue))throw Error(`Fill fallback could not update the target`);if(await Yn()!==Jn.expectedValue)throw Error(`Fill did not set the expected value`)}}async function selectOptionElement(xn,jn,Vn){return await performActionAndWait(xn,async()=>await callOnElementSync(xn,jn,`function(requested) {
+                                                                                                                         ^
+
+Error: Fill did not set the expected value
+    at fillElement (file:///Users/jay/.codex/plugins/cache/sisyphuslabs/omo/5.1.35/skills/browser/runtime/omowright/index.js:419:122)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async xn.fill (file:///Users/jay/.codex/plugins/cache/sisyphuslabs/omo/5.1.35/skills/browser/runtime/omowright/index.js:675:6273)
+    at async fill (file:///Users/jay/Projects/essay-service/tests/browser-qa.mjs:28:63)
+    at async file:///Users/jay/Projects/essay-service/tests/browser-qa.mjs:91:5
+    at async Object.step (file:///Users/jay/.codex/plugins/cache/sisyphuslabs/omo/5.1.35/skills/browser/runtime/omowright/index.js:1519:10272)
+    at async run (file:///Users/jay/Projects/essay-service/tests/browser-qa.mjs:34:5)
+    at async file:///Users/jay/Projects/essay-service/tests/browser-qa.mjs:83:3
+
+Node.js v26.7.0

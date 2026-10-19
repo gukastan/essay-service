@@ -1,0 +1,16 @@
+{
+  "revision": "run-2",
+  "modelFileSha256": "7da479ec75a3fd733cea0cfa66d2f6275f2c8dfe8545e5cae63d16bf4444422b",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "liveCommand": "QA_BASE_URL=http://127.0.0.1:3000 QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/run-2 node tests/run-live-samples.mjs --confirm-live-model",
+  "checks": [
+    {
+      "command": "pnpm test && pnpm lint && pnpm typecheck",
+      "exitCode": 0,
+      "output": "$ vitest run\n\n RUN  v5.0.5 /Users/jay/Projects/essay-service\n\n\n Test Files  4 passed (4)\n      Tests  75 passed (75)\n   Start at  14:57:06\n   Duration  171ms (import 80%, tests 11%, transform 6%, worker 3%)\n\n$ biome check src tests *.json *.ts\nChecked 27 files in 14ms. No fixes applied.\n$ tsc --noEmit\n",
+      "completionChunk": "7c7de6"
+    }
+  ],
+  "decision": "REVISE: normal-collaboration still needs_input; service attributes unspecified pickup inquiries to particular notice contents. Review in factual-review.md.",
+  "source": "actual leader tool results"
+}

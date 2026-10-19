@@ -1,0 +1,24 @@
+? Verifying lockfile against supply-chain policies (128 entries)...
+Lockfile is up to date, resolution step is skipped
+Already up to date
+✓ Lockfile passes supply-chain policies (128 entries in 689ms)
+
+Done in 880ms using pnpm v11.18.0
+biome.json:4:13 deserialize  DEPRECATED  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The use of the recommended field has been deprecated, and will removed in the next major version of Biome. Use preset instead.
+  
+    2 │   "files": { "includes": ["src/**", "tests/**", "*.json", "*.ts", "!next-env.d.ts"] },
+    3 │   "formatter": { "indentStyle": "space", "indentWidth": 2, "lineWidth": 100 },
+  > 4 │   "linter": { "enabled": true, "rules": { "recommended": true } }
+      │             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    5 │ }
+    6 │ 
+  
+  i Migrate the configuration with the proper command
+  
+  $ biome migrate
+  
+
+Checked 11 files in 12ms. Fixed 7 files.
+Found 1 info.
