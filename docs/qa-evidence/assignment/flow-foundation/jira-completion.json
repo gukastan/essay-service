@@ -1,0 +1,219 @@
+{
+  "issueCount": 21,
+  "epicChildCount": 13,
+  "beforeDependencyCount": 20,
+  "dependencyCount": 22,
+  "removed": [
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-11",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-12",
+      "outwardIssue": "ESSAY-13"
+    }
+  ],
+  "added": [
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-11",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-12",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-13"
+    }
+  ],
+  "changedStatuses": [
+    "ESSAY-21"
+  ],
+  "identityUnchanged": true,
+  "essay21Status": "완료",
+  "epicStatus": "진행 중",
+  "acceptanceChecked": 6,
+  "parallelCandidates": [
+    "ESSAY-11",
+    "ESSAY-12",
+    "ESSAY-13",
+    "ESSAY-15"
+  ],
+  "nextIssuesStarted": false,
+  "pendingDescriptions": [
+    {
+      "key": "ESSAY-11",
+      "unchecked": 5,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-12",
+      "unchecked": 8,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-13",
+      "unchecked": 7,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-14",
+      "unchecked": 9,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-15",
+      "unchecked": 7,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-16",
+      "unchecked": 7,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-17",
+      "unchecked": 7,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    },
+    {
+      "key": "ESSAY-20",
+      "unchecked": 7,
+      "parallelNotePresent": true,
+      "descriptionMatches": true
+    }
+  ],
+  "startCommentId": "10024",
+  "completionCommentId": "10025",
+  "dependencies": [
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-10",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-10",
+      "outwardIssue": "ESSAY-21"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-11",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-12",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-13",
+      "outwardIssue": "ESSAY-14"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-14",
+      "outwardIssue": "ESSAY-16"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-15",
+      "outwardIssue": "ESSAY-16"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-16",
+      "outwardIssue": "ESSAY-17"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-17",
+      "outwardIssue": "ESSAY-20"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-18",
+      "outwardIssue": "ESSAY-19"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-10"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-21"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-13"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-10"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-19"
+    }
+  ],
+  "readbackPassed": true
+}

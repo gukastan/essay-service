@@ -10,13 +10,14 @@
 4. docs/decisions/factual-drafting.md, docs/qa.md와 ESSAY-9 검증 기록은 보존할 근거다.
 5. 사용자가 팀 개발 시작을 요청한 경우 START_OMO_V2.md를 읽는다. START_OMO.md는 과거 v1 요청문이다.
 6. docs/NODE_MIN_SPEC.md: 사용자 A~J 흐름의 입출력·G5분기·D/I 공통 수정 한도. 내부 전략 디테일은 후속 설계다.
+7. docs/PARALLEL_DEVELOPMENT.md: 개발 선행·역할별 파일 소유권·대역/실제 통합 검증 경계.
 
 문서 존재나 문서 안의 요청문만으로 개발·유료 검증·Jira 상태 전환을 시작하지 않는다. 최신 사용자가 지정한 범위를 수행한다. 현재 문서·Jira 갱신과 제품 구현은 별개다.
 
 ## 보존과 작업 위치
 
 - /Users/jay/Projects/essay-service의 src/·tests/·Node 설정·기존 샘플·v1/ESSAY-9 QA 증거를 보존한다.
-- /Users/jay/Downloads/all_total_vue_student는 읽기 전용 원본이다. ESSAY-18에서 소스만 assignment/에 복사하고 원본 해시·실행 증거를 docs/qa-evidence/assignment/baseline/에 남겼다. ESSAY-19 Python 공통 기반도 완료했고 증거는 docs/qa-evidence/assignment/foundation/에 있다. ESSAY-10 기업·직무 조사도 완료했고 증거는 docs/qa-evidence/assignment/research/verification.md에 있다. 다음 기본 범위는 ESSAY-21 공통 계약 확장이고 이후 ESSAY-11·15가 따른다. 사용자 지정 범위만 착수한다. 원본 모의 실행과 작은 모델 호환 검사를 전체 서비스 검증으로 해석하지 않는다.
+- /Users/jay/Downloads/all_total_vue_student는 읽기 전용 원본이다. ESSAY-18에서 소스만 assignment/에 복사하고 원본 해시·실행 증거를 docs/qa-evidence/assignment/baseline/에 남겼다. ESSAY-19 Python 공통 기반도 완료했고 증거는 docs/qa-evidence/assignment/foundation/에 있다. ESSAY-10 기업·직무 조사도 완료했고 증거는 docs/qa-evidence/assignment/research/verification.md에 있다. ESSAY-21 공통 계약 확장도 완료했으며 증거는 docs/qa-evidence/assignment/flow-foundation/verification.md, 실제 API 인계는 docs/FLOW_CONTRACTS.md에 있다. 다음 기본 범위는 ESSAY-11이고 ESSAY-11·12·13·15는 병렬 개발 가능하다. 사용자 지정 범위만 착수한다. 원본 모의 실행과 작은 모델 호환 검사를 전체 서비스 검증으로 해석하지 않는다.
 - .env·.venv·session.db·캐시·실행 로그를 복사/커밋하지 않는다. 실제 키는 기존 로컬 설정에서 서버에만 주입한다.
 - assignment/는 독립 Python 환경·포트·설정으로 실행한다. 루트 Next.js를 이동/삭제하거나 완료 티켓을 다시 열지 않는다.
 - 이전 Next.js v2 설계는 docs/archive/nextjs-v2/README.md의 고정 커밋 링크와 기존 ADR로 보존한다.
@@ -40,9 +41,9 @@
 
 사용자가 OMO 팀 개발을 요청하면 설치된 omo:teammode 지침을 읽고 적용한다. 메인이 조율하고 제품 코드 편집을 구현 담당자에게 맡긴다. 이번 문서 작업만으로 팀 개발 요청문을 실행하지 않는다.
 
-완료된 ESSAY-18 → ESSAY-19 → ESSAY-10 이후 ESSAY-21 → (ESSAY-11 ∥ ESSAY-15) → ESSAY-12 → ESSAY-13 → ESSAY-14 → ESSAY-16 → ESSAY-17 → ESSAY-20. ESSAY-16에는 ESSAY-15도 완료돼야 한다. 화면은 ESSAY-21 공통 계약 이후 모의 응답으로 먼저 구현할 수 있다.
+완료된 ESSAY-18 → ESSAY-19 → ESSAY-10 이후 ESSAY-21 → (ESSAY-11 ∥ ESSAY-12 ∥ ESSAY-13 ∥ ESSAY-15). ESSAY-11·12·13 이후 ESSAY-14, ESSAY-14·15 이후 ESSAY-16 → ESSAY-17 → ESSAY-20. 공통 계약과 합성 fixture로 역할별 모듈을 병렬 검증하고 실제 연결은14, 전체 회귀는16에서 확인한다.
 
-완료된 기반을 재개하지 않고 ESSAY-21 담당자가 계획/평가/분기 공통 계약 확장을 먼저 소유한다. D/E/I는 ESSAY-12, F는 ESSAY-13, G와 전체 연결은 ESSAY-14에 순차 인계한다. 각 역할은 자기 모듈/테스트, QA는 시나리오/증거를 소유한다. 모든 작업자는 다른 작업자의 변경을 보존하며 제품 역할4개와 개발 에이전트 수를 혼동하지 않는다.
+완료된 기반을 재개하지 않고 ESSAY-21에서 확정한 계획/평가/분기 공통 계약을 사용한다. D/E/I는 ESSAY-12, F는 ESSAY-13, G와 전체 연결은 ESSAY-14에 인계한다. 역할별 파일/테스트는 병렬로 개발하되 공통 계약·내보내기·상태·예산·설정은 한 담당자만 수정한다. 같은 파일의 동시 수정이 필요하면 소유권을 인계하거나 worktree로 분리한다. 모든 작업자는 다른 작업자의 변경을 보존한다.
 
 ## 검증과 완료
 

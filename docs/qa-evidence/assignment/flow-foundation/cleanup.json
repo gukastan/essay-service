@@ -1,0 +1,16 @@
+{
+  "team": "team-d5c089ce",
+  "transport": "multi_agent_v2",
+  "nativeMembersCompleted": 3,
+  "archiveExit": 0,
+  "deleteExit": 0,
+  "copiedArtifacts": 46,
+  "copyHashesEqual": true,
+  "durableTeam": "team/team.json",
+  "nativeRuntimeArchiveSupported": false,
+  "runtimeAgentState": "completed; no active member interrupted",
+  "newWorktrees": 0,
+  "newProductServers": 0,
+  "newBrowserTabs": 0,
+  "userJiraTabPreserved": true
+}

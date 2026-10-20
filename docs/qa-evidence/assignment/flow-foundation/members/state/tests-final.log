@@ -1,0 +1,56 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- /Users/jay/Projects/essay-service/assignment/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jay/Projects/essay-service/assignment
+configfile: pyproject.toml
+plugins: langsmith-0.14.11, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 46 items
+
+tests/test_flow_revision.py::test_concurrent_d_and_i_have_exactly_one_winner PASSED [  2%]
+tests/test_flow_revision.py::test_revision_is_not_refunded_after_writer_failure PASSED [  4%]
+tests/test_flow_revision.py::test_revision_survives_actual_cancellation PASSED [  6%]
+tests/test_flow_revision.py::test_requests_reserve_independently_and_state_cannot_reset_budget PASSED [  8%]
+tests/test_flow_revision.py::test_revision_stays_consumed_after_request_deadline PASSED [ 10%]
+tests/test_flow_state.py::test_real_graph_preserves_flow_values_and_bound_evaluation PASSED [ 13%]
+tests/test_flow_state.py::test_ready_rejects_new_version_and_changed_same_version[changed0] PASSED [ 15%]
+tests/test_flow_state.py::test_ready_rejects_new_version_and_changed_same_version[changed1] PASSED [ 17%]
+tests/test_flow_state.py::test_ready_rejects_another_requests_pass_with_identical_versions PASSED [ 19%]
+tests/test_flow_state.py::test_binding_rejects_old_evaluation_version PASSED [ 21%]
+tests/test_flow_state.py::test_ready_accepts_the_exact_evaluated_context PASSED [ 23%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_personal_company_provenance_swap[user_fact-f1] PASSED [ 26%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_personal_company_provenance_swap[company_fact-e1] PASSED [ 28%]
+tests/test_flow_context_boundaries.py::test_company_and_personal_evidence_cannot_share_an_id PASSED [ 30%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_nonexistent_selected_evidence PASSED [ 32%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_omitted_mandatory_requirement PASSED [ 34%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_unknown_requirement_mapping[f1] PASSED [ 36%]
+tests/test_flow_context_boundaries.py::test_plan_rejects_unknown_requirement_mapping[unknown] PASSED [ 39%]
+tests/test_flow_context_boundaries.py::test_fit_reason_rejects_wrong_domain_or_unknown_reference[f1-j1] PASSED [ 41%]
+tests/test_flow_context_boundaries.py::test_fit_reason_rejects_wrong_domain_or_unknown_reference[e1-f1] PASSED [ 43%]
+tests/test_flow_context_boundaries.py::test_fit_reason_rejects_wrong_domain_or_unknown_reference[missing-j1] PASSED [ 45%]
+tests/test_flow_context_boundaries.py::test_evaluation_rejects_unknown_anchor_or_stale_span[missing-p1-5-INVALID_REFERENCE] PASSED [ 47%]
+tests/test_flow_context_boundaries.py::test_evaluation_rejects_unknown_anchor_or_stale_span[c1-missing-5-INVALID_REFERENCE] PASSED [ 50%]
+tests/test_flow_context_boundaries.py::test_evaluation_rejects_unknown_anchor_or_stale_span[c1-p1-901-INVALID_RANGE] PASSED [ 52%]
+tests/test_flow_context_boundaries.py::test_model_pass_cannot_override_failed_code_length_check PASSED [ 54%]
+tests/test_flow_context_boundaries.py::test_issue_claim_anchor_must_overlap_the_named_claim PASSED [ 56%]
+tests/test_state.py::test_real_graph_joins_once_for_either_completion_order[research] PASSED [ 58%]
+tests/test_state.py::test_real_graph_joins_once_for_either_completion_order[analysis] PASSED [ 60%]
+tests/test_state.py::test_graph_rejects_immutable_context_overwrite[request_id] PASSED [ 63%]
+tests/test_state.py::test_graph_rejects_immutable_context_overwrite[input_snapshot] PASSED [ 65%]
+tests/test_state.py::test_graph_rejects_immutable_context_overwrite[deadline] PASSED [ 67%]
+tests/test_state.py::test_revision_rollback_rejected_by_actual_graph PASSED [ 69%]
+tests/test_state.py::test_failed_graph_node_has_no_automatic_retry PASSED [ 71%]
+tests/test_state.py::test_initial_state_containers_are_request_local PASSED [ 73%]
+tests/test_budget.py::test_normal_and_revision_reservations[False-4-12000] PASSED [ 76%]
+tests/test_budget.py::test_normal_and_revision_reservations[True-6-18000] PASSED [ 78%]
+tests/test_budget.py::test_simultaneous_reservations_never_oversubscribe PASSED [ 80%]
+tests/test_budget.py::test_racing_hosted_attempts_reserve_only_once PASSED [ 82%]
+tests/test_budget.py::test_failed_hosted_call_cannot_repeat_or_refund PASSED [ 84%]
+tests/test_budget.py::test_active_cancel_stops_work_and_blocks_next_transmission PASSED [ 86%]
+tests/test_budget.py::test_model_timeout_uses_request_remainder[0.0-30.0] PASSED [ 89%]
+tests/test_budget.py::test_model_timeout_uses_request_remainder[179.0-1.0] PASSED [ 91%]
+tests/test_budget.py::test_late_model_completion_expires_request[30.0] PASSED [ 93%]
+tests/test_budget.py::test_late_model_completion_expires_request[31.0] PASSED [ 95%]
+tests/test_budget.py::test_request_deadline_blocks_initial_transmission PASSED [ 97%]
+tests/test_budget.py::test_separate_requests_have_independent_counters PASSED [100%]
+
+============================== 46 passed in 0.20s ==============================

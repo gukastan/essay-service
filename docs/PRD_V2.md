@@ -1,12 +1,13 @@
 # 자소서 서비스 v2 PRD — 제공 프로젝트 기반 네 역할
 
 - 작성일: 2026-10-19 / 전환 갱신: 2026-10-20
-- 상태: 기존 Next.js v1·TypeScript ESSAY-9 완료 보존. ESSAY-18 원본 실행과 ESSAY-19 Python 공통 기반 검증 완료. ESSAY-10 조사·공식 출처 검증도 완료했다. [조사 검증](qa-evidence/assignment/research/verification.md). 분석·작성·검토·전체 API·Vue 제품 기능은 후속 구현 단계다. [기반 검증](qa-evidence/assignment/foundation/verification.md).
+- 상태: 기존 Next.js v1·TypeScript ESSAY-9 완료 보존. ESSAY-18 원본 실행·ESSAY-19 Python 공통 기반·ESSAY-10 조사/공식 출처 검증·ESSAY-21 A~J 공통 계약 구현/검증을 완료했다. [조사 검증](qa-evidence/assignment/research/verification.md) · [계약 검증](qa-evidence/assignment/flow-foundation/verification.md). 분석·작성·검토·Vue 제품 기능은 병렬 개발할 후속 단계이며 전체 API 연결은 ESSAY-14다. [기반 검증](qa-evidence/assignment/foundation/verification.md).
 - 전환 범위: [전환 계획](ASSIGNMENT_MIGRATION.md). assignment/에서 LangGraph·MCP·LLM·Vue·FastAPI를 활용한다. ESSAY-18·19 이후 ESSAY-10~17, 제출은 ESSAY-20이다.
-- 현재 실행 중인 버전: [v1 PRD](PRD.md), ESSAY-1~7 완료.
+- 완료된 자기소개서 제품: [v1 PRD](PRD.md), ESSAY-1~7. 전환판은 조사/공통 계약까지 완료했으며 자기소개서 생성 API와 새 Vue 제품 화면은 아직 제공하지 않는다.
 - 구현 계약: [v2 기술 설계](TECH_DESIGN_V2.md)
-- 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md). 계획·평가·분기 공통 계약 확장은 ESSAY-21이며 아직 미구현이다. 내부 전략은 후속 설계다.
+- 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md). 계획·평가·분기 공통 계약 확장은 ESSAY-21에서 구현·검증을 완료했다. [계약 인계](FLOW_CONTRACTS.md) · [검증 결과](qa-evidence/assignment/flow-foundation/verification.md). 내부 전략은 후속 설계다.
 - 작업 및 의존관계: [v2 백로그](BACKLOG_V2.md)
+- 개발 병렬화: [공통 계약 이후 네 작업 병렬·실제 통합 검증](PARALLEL_DEVELOPMENT.md). 서비스 실행의 A~J 순서와 개발 작업 순서는 별개다.
 - 결정 근거: [제공 프로젝트 전환](decisions/provided-project-migration.md), [과거 LangGraph 도입 기록](decisions/langgraph-v2.md)
 
 ## 목적

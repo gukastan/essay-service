@@ -1,13 +1,14 @@
 # 제공 프로젝트 기반 전환 계획
 
 - 결정일: 2026-10-20
-- 상태: ESSAY-18 원본 실행·ESSAY-19 Python 공통 기반·ESSAY-10 조사 검증 완료. 분석·작성·검토·전체 API·Vue 제품 기능과 전체 서비스 QA는 후속 작업.
+- 상태: ESSAY-18 원본 실행·ESSAY-19 Python 공통 기반·ESSAY-10 조사·ESSAY-21 A~J 공통 계약 구현/검증 완료. 분석·작성·검토·Vue는 병렬 개발 가능하며 전체 API·서비스 QA는 후속 작업.
 - 원본: `/Users/jay/Downloads/all_total_vue_student/`
 - 저장소: `/Users/jay/Projects/essay-service/`
 - 전환 코드 위치: `assignment/` (ESSAY-18 복사 기준선에 ESSAY-19 공통 기반 구현. Downloads 원본은 불변)
 - 보존 기준 커밋: `c5299e954d0ff1b0848dad238e7b731ef078bb51`
 - [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [백로그](BACKLOG_V2.md) · [QA](qa-v2.md) · [결정](decisions/provided-project-migration.md)
-- 2026-10-20 후속 사용자 흐름: [A~J 노드별 최소 명세](NODE_MIN_SPEC.md). 이번에는 문서·Jira를 갱신하며 내부 전략 상세·제품 구현은 후속 작업이다.
+- 2026-10-20 후속 사용자 흐름: [A~J 노드별 최소 명세](NODE_MIN_SPEC.md). 공통 계약을 먼저 구현했고 내부 전략 상세·업무 노드는 후속 작업이다.
+- 후속 사용자 요청으로 [병렬 개발](PARALLEL_DEVELOPMENT.md) 선행을 반영하고 ESSAY-21 공통 계약 확장 구현·검증을 완료했다. [검증 보고서](qa-evidence/assignment/flow-foundation/verification.md)와 [계약 인계](FLOW_CONTRACTS.md)를 따른다. 이번 구현 범위를 다른 역할로 확대하지 않는다.
 
 ## 과제와 사용자 결정
 
@@ -58,12 +59,12 @@
 
 1. [ESSAY-18](https://kmskojb.atlassian.net/browse/ESSAY-18) 완료: 원본 소스 확보·기준선 기록·Mac 실행 관찰. [검증 보고서](qa-evidence/assignment/baseline/verification.md).
 2. [ESSAY-19](https://kmskojb.atlassian.net/browse/ESSAY-19) 완료: Python 계약·예산·MCP/모델 연결·실행 진입점 이식. [기반 검증 보고서](qa-evidence/assignment/foundation/verification.md).
-3. [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) 조사 완료: [검증 보고서](qa-evidence/assignment/research/verification.md). 다음은 [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획/평가/분기 공통 계약 확장이고, 이후 ESSAY-11 B/C 분석·ESSAY-15 Vue를 착수할 수 있다.
-4. ESSAY-12 D/E/I 계획·작성·부분 수정 → ESSAY-13 F 평가 → ESSAY-14 A/G/H/J 그래프·FastAPI 통합.
+3. [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) 조사 완료: [검증 보고서](qa-evidence/assignment/research/verification.md). [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 공통 계약 확장도 완료했다. 이후 ESSAY-11 B/C 분석·12 D/E/I 작성·13 F 평가·15 Vue를 병렬 개발한다.
+4. ESSAY-11·12·13의 실제 모듈 완료 후 ESSAY-14 A/G/H/J 그래프·FastAPI 통합.
 5. ESSAY-14·15 이후 ESSAY-16 전체 회귀 → ESSAY-17 실제 모델·MCP·브라우저 QA와 작성자 사실성 승인.
 6. [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20): 제출 소스·README·변경 설명·검증 증거 완성. 모든 필수 작업과 승인 후 ESSAY-8 완료.
 
-기존 ESSAY-9/19 관련 선행 연결은 보존한다. 새 Blocks는 ESSAY-19·10→21, ESSAY-21→11·15다. 완료된 기반을 다시 열지 않고 확장 작업을 추가한다. 공통 계약/server.py/MCP 연결 수정은 소유권을 순차 인계한다. G의5분기·정보 부족/품질 미충족 구분은 최소 명세를 따르고 상세 전략은 후속으로 남긴다.
+기존 ESSAY-9/19 관련 선행 연결과 ESSAY-19·10→21, 21→11·15는 보존한다. 병렬 개발을 위해11→12·12→13을 해제하고21→12·13 및11·12→14를 추가한다. 완료된 기반을 다시 열지 않는다. 역할 파일은 병렬로 개발하되 공통 계약/server.py/MCP 연결은 단일 소유권으로 순차 반영한다. G의5분기·상세 전략 유예는 최소 명세를 따른다.
 
 ## 제출물과 검증
 

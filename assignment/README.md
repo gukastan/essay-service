@@ -1,8 +1,8 @@
 # Python 실행 기반과 기업·직무 조사
 
-후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. 다음 작업은 [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획·평가·분기 공통 계약 확장이며 아직 미착수다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
+후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획·평가·분기 공통 계약 확장을 완료했다. [실제 계약·인계](../docs/FLOW_CONTRACTS.md)와 [검증 보고서](../docs/qa-evidence/assignment/flow-foundation/verification.md)를 따른다. 다음 기본 작업은 ESSAY-11이며 분석11·작성12·평가13·화면15를 [병렬 개발](../docs/PARALLEL_DEVELOPMENT.md)할 수 있다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
 
-현재 구현은 Pydantic 계약, 요청별 상태·예산, 재사용 모델/MCP 연결, 텍스트·클라이언트 요청 도우미와 실행 기반이다. `GET /health`로 기반 상태를 조회한다. ESSAY-10 기업·직무 조사와 공식 출처 검증을 구현했다. 경험 분석·작성·검토·자기소개서 생성 API `POST /api/drafts` 및 새 Vue 화면은 후속 티켓에서 구현한다. 현재 `/api/drafts`, 원본 `/chat`, `/chat/stream`은 404다. 상태의 `pipelineAvailable: false`는 이 범위를 의미한다.
+현재 구현은 Pydantic 계약(요구사항·계획·초안·평가·종료 사유 포함), 근거/버전 참조 검사, 공통 D/I 수정 예약, 요청별 상태·예산, 재사용 모델/MCP 연결, 텍스트·클라이언트 요청 도우미와 실행 기반이다. `GET /health`로 기반 상태를 조회한다. ESSAY-10 기업·직무 조사와 공식 출처 검증을 구현했다. 경험 분석·작성·검토·자기소개서 생성 API `POST /api/drafts` 및 새 Vue 화면은 후속 티켓에서 구현한다. 현재 `/api/drafts`, 원본 `/chat`, `/chat/stream`은 404다. 상태의 `pipelineAvailable: false`는 이 범위를 의미한다.
 
 원본 복사본의 `web_chat.html`, `web_demo_server.py`, `sh/` 실행기는 보존 자료다. 아래 실행 방법은 이 파일들을 실행하지 않는다. `doc/`의 과거 화면과 ESSAY-18 기록은 새 자기소개서 서비스 검증 증거가 아니다. 루트 Next.js와 Downloads 원본은 별도로 보존한다.
 

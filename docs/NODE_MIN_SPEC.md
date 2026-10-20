@@ -1,8 +1,8 @@
 # 자기소개서 흐름의 노드별 최소 명세
 
-- 결정일: 2026-10-20 / 상태: 후속 구현 기준. 이번 작업은 문서·Jira 갱신이며 제품 구현·실행 검증은 하지 않는다.
+- 결정일: 2026-10-20 / 상태: ESSAY-21 공통 계약 구현·검증 완료. 업무 노드와 전체 흐름은 후속 구현 기준.
 - 기준: 사용자가 제공한 A~J 흐름. [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [작업·소유권](BACKLOG_V2.md) · [QA 계획](qa-v2.md)
-- 완료된 ESSAY-19 공통 기반과 ESSAY-10 조사 기능을 확장한다. 아래의 계획·평가·분기 계약은 아직 제품 코드에 구현되지 않았다.
+- 완료된 ESSAY-19 공통 기반과 ESSAY-10 조사 기능을 확장한다. 계획·평가·분기 공통 계약은 ESSAY-21에서 구현했다. [실제 API·인계](FLOW_CONTRACTS.md)와 [검증 결과](qa-evidence/assignment/flow-foundation/verification.md)를 따른다. 아래 노드의 업무 알고리즘은 후속 단계다.
 
 ## 1. 이번에 정하는 것
 
@@ -33,7 +33,7 @@ flowchart TD
 
 ## 2. 공통 자료와 경계
 
-아래 명칭은 의미를 설명하는 계약명이다. 실제 Python 필드·스키마는 공통 계약 작업에서 확정하며 기존 ESSAY-10 반환 계약과 호환한다.
+아래 명칭은 의미를 설명하는 계약명이다. 실제 Python 필드·스키마는 [ESSAY-21 인계](FLOW_CONTRACTS.md)에서 확정했고 기존 ESSAY-10 반환 계약과 호환한다.
 
 | 자료 | 최소 내용 | 변경 규칙 |
 | --- | --- | --- |
@@ -137,9 +137,11 @@ J는 화면상의 종료 지점이다. 정보가 충분한데 수정 한도를 �
 
 ## 9. 작업 연결과 현재 상태
 
+후속 사용자 요청으로 [개발 병렬화](PARALLEL_DEVELOPMENT.md)를 적용한다. ESSAY-21 공통 계약 확정 후11·12·13·15는 병렬 개발하고, 실제 연결은14·전체 회귀는16에서 검증한다. 위 A~J 도표는 서비스 실행의 순서이며 개발 티켓이 전부 순차여야 한다는 뜻은 아니다.
+
 | 범위 | Jira | 상태 |
 | --- | --- | --- |
-| 계획·평가·분기 공통 계약/상태 | [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) | 할 일. 다음 기본 개발 범위 |
+| 계획·평가·분기 공통 계약/상태 | [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) | 완료. 공통 계약·참조/버전 검사·원자 수정 예약 검증 |
 | C의 기업·직무 조사 | [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) | 완료된 결과 재사용 |
 | B와 C의 개인 근거·합류 자료 | [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) | ESSAY-21 이후 |
 | D/E/I 계획·작성·부분 수정 | [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) | 할 일 |
@@ -149,4 +151,4 @@ J는 화면상의 종료 지점이다. 정보가 충분한데 수정 한도를 �
 | NF-01~10 자동 검증 | [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) | 할 일 |
 | 실모델·화면·작성자 검증 / 제출 | [ESSAY-17](https://kmskojb.atlassian.net/browse/ESSAY-17) / [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20) | 할 일 |
 
-ESSAY-19·10의 완료 기록을 다시 열지 않는다. 이번에는 최소 명세와 작업 계약을 정리했으며 후속 제품 구현은 시작하지 않았다. 새 명세가 필요한 공통 계약을 ESSAY-21에서 먼저 확장하고 각 역할에 인계한다.
+ESSAY-19·10의 완료 기록을 다시 열지 않는다. ESSAY-21의 공통 계약을 구현·검증하고 각 역할에 인계했다. 다음 기본 범위는 ESSAY-11이며11·12·13·15는 병렬 개발할 수 있다. 각 노드의 경험 선택·작성·의미 평가 디테일은 후속 설계다.

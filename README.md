@@ -4,27 +4,28 @@
 
 현재 루트의 완료된 Next.js v1과 TypeScript ESSAY-9 공통 기반을 보존한다. 2026-10-20 제공된 LangGraph·MCP·LLM·Vue·FastAPI 프로젝트의 소스를 assignment/에 복사하고 ESSAY-18 원본 실행 검증을 완료했다. 모의 LLM·JSON 자료와 실제 API·MCP·Vue 화면을 구분한 [기준선 검증 보고서](docs/qa-evidence/assignment/baseline/verification.md)가 있다. ESSAY-19 Python 공통 기반 구현·검증도 완료했다. [기반 보고서](docs/qa-evidence/assignment/foundation/verification.md)를 참고한다. ESSAY-10 기업·직무 조사와 공식 출처 검증도 구현·검증했다. 네이버·카카오·OpenAI·Anthropic의 정확한 출처 목록과 실제 공고/사용자 자료 대조를 제공한다. [조사 보고서](docs/qa-evidence/assignment/research/verification.md)에 실제 네이버 공고와 합성 사용자 공고 결과·실패 이력·지원 한계가 있다. 분석·작성·검토·전체 API·새 Vue 화면은 후속 작업이다.
 
-ESSAY-18·19·10 완료 후 [노드별 최소 명세](docs/NODE_MIN_SPEC.md)에 따라 ESSAY-21 공통 계약 확장 → ESSAY-11~17 기능·QA → ESSAY-20 제출 자료 순서로 진행한다. A~J 흐름·G의5분기·수정 한도를 문서화했고 내부 전략 디테일은 후속 설계로 남겼다. 이번 갱신은 구현 착수가 아니다. [전환 계획](docs/ASSIGNMENT_MIGRATION.md)에 재사용/변경 대응과 여섯 제출물이 있다.
+ESSAY-18·19·10에 이어 [노드별 최소 명세](docs/NODE_MIN_SPEC.md)의 ESSAY-21 공통 계약 확장도 구현·검증했다. [검증 보고서](docs/qa-evidence/assignment/flow-foundation/verification.md)와 [계약 인계](docs/FLOW_CONTRACTS.md)에 계획·평가·참조/버전 검사·공통 수정 예약의 실제 API가 있다. Python 355개·JavaScript 12개가 통과했고 이번 유료 호출은 0회다. 이후 분석11·작성12·평가13·화면15를 [병렬 개발](docs/PARALLEL_DEVELOPMENT.md)하고 실제 연결14 → 전체 회귀16 → 실제 QA17 → 제출20을 진행한다. 내부 전략 디테일은 후속 설계다. [전환 계획](docs/ASSIGNMENT_MIGRATION.md)에 재사용/변경 대응과 여섯 제출물이 있다.
 
 ## 문서
 
 - [제공 프로젝트 전환 계획](docs/ASSIGNMENT_MIGRATION.md) · [전환 결정](docs/decisions/provided-project-migration.md) · [이전 기준선](docs/archive/nextjs-v2/README.md)
 
-- [기획서 및 PRD](docs/PRD.md)
-- [기술 설계서](docs/TECH_DESIGN.md)
-- [v2 PRD](docs/PRD_V2.md) · [v2 기술 설계](docs/TECH_DESIGN_V2.md) · [v2 백로그](docs/BACKLOG_V2.md) · [v2 QA 계획](docs/qa-v2.md)
+- [현재 기획서 및 PRD](docs/PRD_V2.md) · [현재 기술 설계서](docs/TECH_DESIGN_V2.md)
+- [보존된 v1 기획서 및 PRD](docs/PRD.md) · [보존된 v1 기술 설계서](docs/TECH_DESIGN.md)
+- [v2 백로그](docs/BACKLOG_V2.md) · [v2 QA 계획](docs/qa-v2.md) · [ESSAY-21 공통 계약 인계](docs/FLOW_CONTRACTS.md)
 - [A~J 노드별 최소 명세](docs/NODE_MIN_SPEC.md) · [ESSAY-10 조사 검증 결과](docs/qa-evidence/assignment/research/verification.md)
+- [병렬 개발과 파일 소유권](docs/PARALLEL_DEVELOPMENT.md)
 - [개발 에이전트 지침](AGENTS.md)
 - [v2 OMO 개발 시작 요청문](START_OMO_V2.md) · [완료된 v1 요청문](START_OMO.md)
 - [Jira 프로젝트 작업 목록](https://kmskojb.atlassian.net/jira/software/projects/ESSAY/list)
 
 ## OMO로 시작하기
 
-후속 전환 개발은 이 폴더를 열고 원하는 티켓 범위를 명시한다. 범위 없는 다음 개발 요청은 ESSAY-21 공통 계약 확장까지만 진행한다. 이후 ESSAY-11 분석·ESSAY-15 Vue 화면이 따른다. [assignment 실행 안내](assignment/README.md)에 Python 설치·환경설정·bash run.sh·검사가 있다. 현재 Python 서버는 /health에서 pipelineAvailable:false를 반환하고 자기소개서 API는 아직 404다.
+후속 전환 개발은 이 폴더를 열고 원하는 티켓 범위를 명시한다. 범위 없는 다음 개발 요청은 ESSAY-11 분석 구현·검증까지만 진행한다. ESSAY-11·12·13·15는 공통 계약과 합성 fixture를 기준으로 병렬 개발할 수 있다. [assignment 실행 안내](assignment/README.md)에 Python 설치·환경설정·bash run.sh·검사가 있다. 현재 Python 서버는 /health에서 pipelineAvailable:false를 반환하고 자기소개서 API는 아직 404다.
 
 ```text
 $omo:teammode
-AGENTS.md, docs/NODE_MIN_SPEC.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md에 따라 ESSAY-21 구현·검증까지만 진행하고 Jira도 갱신해줘.
+AGENTS.md, docs/NODE_MIN_SPEC.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md에 따라 ESSAY-11 구현·검증까지만 진행하고 Jira도 갱신해줘.
 ```
 
 ## 보존된 Next.js v1 설치와 실행

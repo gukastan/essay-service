@@ -4,7 +4,7 @@
 - 현재 검증 완료: 기존 Next.js v1, TypeScript ESSAY-9, ESSAY-18 원본 실행 기준선, ESSAY-19 Python 공통 기반과 작은 실제 모델/MCP 검색 호환 검사, ESSAY-10 조사·공식 출처 검증 및 실제 네이버/합성 공고 검사. 전체 자기소개서 업무 흐름과 품질 검증은 후속 작업.
 - [백로그](BACKLOG_V2.md) · [전환 계획](ASSIGNMENT_MIGRATION.md) · [v1 최종 QA](qa.md)
 - 기존 실행 증거·원본5개·run-7 승인 기록은 보존하며 새 통과 증거로 재사용하지 않는다.
-- 2026-10-20 [노드별 최소 명세](NODE_MIN_SPEC.md)·작업 문서·Jira를 갱신했다. [문서/Jira 정합성 확인](qa-evidence/planning/node-flow/verification.md)은 제품 동작 QA와 구분한다. 공통 확장은 ESSAY-21 할 일이며 아래 새 시나리오는 실행 계획이다. 이번 문서 작업으로 제품 테스트/실모델 호출을 수행하지 않았다.
+- 2026-10-20 [노드별 최소 명세](NODE_MIN_SPEC.md)·작업 문서·Jira를 갱신했다. [문서/Jira 정합성 확인](qa-evidence/planning/node-flow/verification.md)은 제품 동작 QA와 구분한다. 이 문서 작업 당시에는 공통 확장이 미착수였고 제품 테스트/실모델 호출은 없었다. 이후 ESSAY-21 공통 계약 구현·검증 결과를 아래에 별도로 기록했다.
 
 ## ESSAY-9 완료 기록 — 2026-10-19
 
@@ -21,6 +21,17 @@
 
 이 기록은 2026-10-19 TypeScript 기준선에 한정한다. 새 전환판의 패키지·그래프·MCP·실제 모델 지원을 검증한 기록이 아니다.
 
+## ESSAY-21 완료 기록 — 2026-10-20
+
+OMO 계약·상태/수정 예약·독립 반례 검증 세 담당자가 병렬 구현하고 리더가 전체 회귀와 실제 공개 API 호출을 확인했다. 요구사항·계획·초안·7개 필수 평가·종료 사유 계약, 근거/범위/버전 검사와 공통 D/I 수정 예약을 제공한다.
+
+- Python355개·JavaScript12개 통과. 유료 검사2개는 기본 제외, 이번 외부 모델 호출0회. 타입·lint·format 통과.
+- 다른 요청·새 버전·동일 버전 내용 변경의 평가 재사용을 차단하고 D/I 동시 예약에서 한 경로만 허용했다. 범위가 다른 주장 지적과 분량의 거짓 통과 반례를 보완했다.
+- 초기4개 테스트 파일의 format 실패와 기존 조사 오류 매퍼 호환성 문제를 수정했다. 실패/수정/최종 증거를 보존한다.
+- 합성 fixture는 계약 인계용이다. 업무 노드·전체 API·실제 모델의 글 품질 통과를 뜻하지 않는다. 11·12·13·15는 병렬 개발하고 실제 연결14·전체 회귀16·실제 QA17에서 별도로 검증한다.
+
+[상세 검증 보고서](qa-evidence/assignment/flow-foundation/verification.md) · [계약 인계](FLOW_CONTRACTS.md) · [병렬 개발 기준](PARALLEL_DEVELOPMENT.md).
+
 ## 전환 검증 현황
 
 | 단계 | 담당 | 상태 | 증거 위치(계획) |
@@ -28,7 +39,7 @@
 | 원본 Mac 실행·MCP·처리 흐름 | ESSAY-18 | 완료(모의 LLM·실제 MCP·Vue) | [기준선 보고서](qa-evidence/assignment/baseline/verification.md) |
 | Python 계약·예산·모델/MCP 호환 | ESSAY-19 | 완료(실제 모델2회 포함) | [기반 보고서](qa-evidence/assignment/foundation/verification.md) |
 | 기업·직무 조사와 공식 출처 검증 | ESSAY-10 | 완료(실제 MCP·모델·원문 대조) | [조사 보고서](qa-evidence/assignment/research/verification.md) |
-| A~J 계획·평가·분기 공통 계약 확장 | ESSAY-21 | 미실행 | 노드 최소 명세 및 후속 계약 검증 증거 |
+| A~J 계획·평가·분기 공통 계약 확장 | ESSAY-21 | 완료(합성 입력·실제 계약/상태/예약) | [공통 흐름 검증](qa-evidence/assignment/flow-foundation/verification.md) |
 | 나머지 역할/전체 그래프·예외 자동 검사 | ESSAY-11~16 | 미실행 | docs/qa-evidence/assignment/automated/ |
 | 실제 모델·공식 자료·기존5개 재실행 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/live/ |
 | 실제 Vue 화면·편집·복사·오류 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/browser/ |
@@ -65,6 +76,8 @@ Pydantic 계약·실제 LangGraph 상태·원자 예산·구조화 모델/MCP �
 인용을 다듬어 통과시키는 대신 번역/공고 전체 인용을 거부한 원인을 기록하고, 실제 공고 구역·원문 줄의 근거 연결과 조사 지시를 수정했다. 최종 소스 해시·코드/타입 검사·신뢰 검토·Jira 판정과 원본46개/보호600개 보존은 [조사 보고서](qa-evidence/assignment/research/verification.md)를 따른다. 전체 그래프/API·Vue·기존5개 전환판 QA·기업2곳 전체 서비스 검증·작성자 새 사실성 승인은 후속 범위다.
 
 ## 자동 검증 시나리오
+
+역할별 모듈은 ESSAY-21 계약과 합성 fixture로 병렬 검증한다. ESSAY-14에서 실제11·12·13 모듈과 기존 조사를 연결하고 ESSAY-16에서 Vue까지 전체 회귀한다. 모듈 fixture 통과를 전체 서비스 통과로 처리하지 않는다. [개발/검증 경계](PARALLEL_DEVELOPMENT.md)를 따른다.
 
 | 영역 | 입력/오류 조건 | 기대 결과 |
 | --- | --- | --- |

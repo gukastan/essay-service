@@ -1,0 +1,236 @@
+{
+  "copiedCount": 46,
+  "allEqual": true,
+  "files": [
+    {
+      "source": ".omo/evidence/essay21/contracts/discipline.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/discipline.txt",
+      "sha256": "d5287db9b197b57208bd1f76cfc66d24cff6ccc4d64abd13c244052ff35bf33b"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/format.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/format.txt",
+      "sha256": "9d91b0d72606237c1a6a6035a1f5a40ee3597f118f15d442305f56a4e36c589f"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/hashes.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/hashes.txt",
+      "sha256": "430d3ac1ffb1e84d52a60685fcd9bd0e670f89f8a8c9ab6636a2cdb8496a4b97"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/lint.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/lint.txt",
+      "sha256": "eb3c426ea965b322c51825a1129704102d698b76850f0a3b66a0d2f764ca1a2c"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/report.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/report.md",
+      "sha256": "87ec105b11b205d10cdd550cbe48bfca097923b56b95b6760730e8b0bd1c3ef7"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/tests.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/tests.txt",
+      "sha256": "e2852f93e81aaf4e35746d7e0c0ac417ad09047352b9c9342291bc31fa0780fb"
+    },
+    {
+      "source": ".omo/evidence/essay21/contracts/types.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/contracts/types.txt",
+      "sha256": "0144dbb7143079c3ec5120e41e597b4e9c5ba9e896cf36e4d98baf43663cfba1"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/audit-compatibility.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/audit-compatibility.log",
+      "sha256": "3a1f8eb7ab37d3a1fbbc3eead8b2e1b3f14a4f2c791a5aeeb2b3535dd4747a3e"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/audit.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/audit.log",
+      "sha256": "3a1f8eb7ab37d3a1fbbc3eead8b2e1b3f14a4f2c791a5aeeb2b3535dd4747a3e"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/basedpyright-compatibility.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/basedpyright-compatibility.log",
+      "sha256": "56882e01cb80173ef053c4096e4ee43e3123a15f5c0a06715f96988d48fbd91c"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/basedpyright-owned.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/basedpyright-owned.log",
+      "sha256": "56882e01cb80173ef053c4096e4ee43e3123a15f5c0a06715f96988d48fbd91c"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/basedpyright.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/basedpyright.log",
+      "sha256": "56882e01cb80173ef053c4096e4ee43e3123a15f5c0a06715f96988d48fbd91c"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/hashes-compatibility.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/hashes-compatibility.txt",
+      "sha256": "bf386e002dbd70f3ef4b5d5d4d9113af233d5f28caa6321989646917f67e6589"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/hashes.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/hashes.txt",
+      "sha256": "4ef24a6cef5bb3c670ce0dc275150b106b507eee3fbca296167eaf695e254dd0"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/report.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/report.md",
+      "sha256": "58182e4b7c3341393991eb672fb2119bf1fd799900b9d66a6a9875bd1df29220"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/ruff-compatibility.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/ruff-compatibility.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/ruff.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/ruff.log",
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/tests-compatibility.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/tests-compatibility.log",
+      "sha256": "e5a230aa48b80c05c10e26d2c0dc282ec92af0333b9a180b9efe8c1905ee4df1"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/tests-final.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/tests-final.log",
+      "sha256": "8cd7ef57d726df7e14ccfbaae5386df19e43e9442e178eb7c7b09ef0f568cdf9"
+    },
+    {
+      "source": ".omo/evidence/essay21/member-b/tests-first.log",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/state/tests-first.log",
+      "sha256": "143c4c10fee570085b594c2aa38c862dc5fae684c35694b1b6fc2db860748a78"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/discipline.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/discipline.txt",
+      "sha256": "b23d7c9d480167821db6cb6f5462ea0c3c0e417ee461f3e1967178ae1ea0c15c"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-discipline.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-discipline.txt",
+      "sha256": "c89c879efd5c3998e3b08c565700ebad73398ada09befe1e88c53bfd839b59ac"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-format.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-format.txt",
+      "sha256": "b124e42eef9753365a964df1f316e87de7bc71389e5c6bfb499b267d1cbcbd87"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-hashes.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-hashes.txt",
+      "sha256": "1df672794a591bbe9e4b13d50ca33d2b104f959ab5a804595c4da75f771c58b9"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-integration.xml",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-integration.xml",
+      "sha256": "7d9492570f69d8b2da21c1c1d7de2d85f3857ca2a46ab9d3f9be958f0195ed33"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-lint.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-lint.txt",
+      "sha256": "7dffb7771c67aec4d8eee97eb5cebef264f63696d877c555b3813d8f37d27cec"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-tests.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-tests.txt",
+      "sha256": "c3672c5df2d7451f2092c5cfb93188c7b651d7d804612c34677cddd225a1f321"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/final-types.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/final-types.txt",
+      "sha256": "508aaf2ce537c16750818a392f64cbddf1113b75523d42ee0cb17cadf8a404f5"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/focused.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/focused.txt",
+      "sha256": "fa915d1fc9271ceee4b024949eb3386fb93d1403569c1b4cdc693bc0f1a5c0a8"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/initial-failure.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/initial-failure.txt",
+      "sha256": "f5dcafe9dad7a4a9ecc4c6fce6d73d1685efe560c1d12eb2c91bbfe1c7ca0e67"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/integration.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/integration.txt",
+      "sha256": "f7d9406b76c496e8072a97fc02b32882d915855a2c2fff1e33c909da24076543"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/integration.xml",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/integration.xml",
+      "sha256": "228148945245275b089b523246d42fe16c11e625a9d5b8da179973c37492fb2c"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/lint.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/lint.txt",
+      "sha256": "2d5234182c1276495cc81627788a1c0aa5e19186c2b287ebb9e411408ed3fbc9"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-discipline.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-discipline.txt",
+      "sha256": "c89c879efd5c3998e3b08c565700ebad73398ada09befe1e88c53bfd839b59ac"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-format.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-format.txt",
+      "sha256": "b124e42eef9753365a964df1f316e87de7bc71389e5c6bfb499b267d1cbcbd87"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-hashes.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-hashes.txt",
+      "sha256": "2d09e3a6ece875c24cfc872aab8b940e13fb75340368348c5d44d1be71e63c1f"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-integration.xml",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-integration.xml",
+      "sha256": "c8e8b2f077a11f723cccf4fd3524f03ee6a69347d21a0cf0b65d7647f8f56b8b"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-lint.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-lint.txt",
+      "sha256": "7dffb7771c67aec4d8eee97eb5cebef264f63696d877c555b3813d8f37d27cec"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-tests.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-tests.txt",
+      "sha256": "9a121b9143db153dd9f43db02630c80dafabccb3acd18dcf49e7f4a0c12ff82f"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/repair-types.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/repair-types.txt",
+      "sha256": "508aaf2ce537c16750818a392f64cbddf1113b75523d42ee0cb17cadf8a404f5"
+    },
+    {
+      "source": ".omo/evidence/essay21-checks/types.txt",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/members/checks/types.txt",
+      "sha256": "dd8a70bfc56498dbecc63765b03a03fa3e0ffd0412838aa14c2c93f0e3506856"
+    },
+    {
+      "source": ".omo/teams/team-d5c089ce/artifacts/api-contract.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/team/artifacts/api-contract.md",
+      "sha256": "698f7200b081c0bcde3b9cecad0e1eda3541a67e29e9099bec5c868250f5dafd"
+    },
+    {
+      "source": ".omo/teams/team-d5c089ce/artifacts/checks-report.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/team/artifacts/checks-report.md",
+      "sha256": "f62ee0693c5edb5b0b7117a9c244892cf0e38edaf55861fa7742ff28c64af22b"
+    },
+    {
+      "source": ".omo/teams/team-d5c089ce/artifacts/state-revision-handoff.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/team/artifacts/state-revision-handoff.md",
+      "sha256": "eaf073cd7152dd99e57dca818d673e519abb3151dab072dca4a4c30b9bc2f638"
+    },
+    {
+      "source": ".omo/teams/team-d5c089ce/guide.md",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/team/guide.md",
+      "sha256": "4b9eff5f87a26adee4314497348d4c347fd2013194158f552aabff3c16ae7b75"
+    },
+    {
+      "source": ".omo/teams/team-d5c089ce/team.json",
+      "destination": "docs/qa-evidence/assignment/flow-foundation/team/team.json",
+      "sha256": "45b56f942d631866e1cd03a1348e88db5e0915b6c56dac2a01fd10a41c43d05f"
+    }
+  ]
+}

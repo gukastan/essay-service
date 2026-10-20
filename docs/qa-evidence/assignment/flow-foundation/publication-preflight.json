@@ -1,0 +1,39 @@
+{
+  "scope": "Publication preflight after user approval; document navigation/current status corrections only after ESSAY-21 final validation",
+  "baseline": "86ea5a765fbc19e6e53f1dd15af70d5895734cf1",
+  "branch": "main",
+  "upstream": "origin/main",
+  "preflight": {
+    "codeUnchangedSince355PassingTests": true,
+    "verifiedCodeHashes": 18,
+    "jsonParsed": 11,
+    "credentialMatches": [],
+    "brokenMarkdownLinks": [],
+    "pendingFiles": 140,
+    "runtimeArtifactsExcluded": true
+  },
+  "retainedValidation": {
+    "pythonPassed": 355,
+    "paidSkipped": 2,
+    "javascriptPassed": 12,
+    "typesLintFormatPassed": true,
+    "sourceHashesUnchanged": true
+  },
+  "actualModelRequestsThisPublication": 0,
+  "docRefresh": [
+    "README.md",
+    "assignment/README.md",
+    "docs/PRD.md (v1 navigation only)",
+    "docs/TECH_DESIGN.md (v1 navigation only)",
+    "docs/PRD_V2.md",
+    "docs/TECH_DESIGN_V2.md",
+    "docs/ASSIGNMENT_MIGRATION.md",
+    "docs/BACKLOG_V2.md",
+    "docs/NODE_MIN_SPEC.md",
+    "docs/FLOW_CONTRACTS.md",
+    "docs/PARALLEL_DEVELOPMENT.md",
+    "docs/qa-v2.md"
+  ],
+  "priorPreservationRecord": "preservation.json describes the completed implementation snapshot; this publication adds approved document corrections",
+  "note": "The saved scanner command contains a private-key header literal as code; no private-key block or API token was found."
+}

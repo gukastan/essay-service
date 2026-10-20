@@ -1,0 +1,22 @@
+$ node --test tests/test_foundation.mjs
+exit_code=0
+✔ code-point fixture "한글 문장" (0.7905ms)
+✔ code-point fixture "가😀\r\n나" (0.056084ms)
+✔ code-point fixture "가é🧑‍💻\r끝" (0.036583ms)
+✔ invalid offset -1:1 (0.165875ms)
+✔ invalid offset 0.5:2 (0.04ms)
+✔ invalid offset 0:9 (0.032542ms)
+✔ invalid offset 2:1 (0.0285ms)
+✔ invalid offset 0:NaN (0.030042ms)
+✔ deadline aborts after 195 seconds while reading body without retry (0.859833ms)
+✔ pre-aborted request never transmits (0.156ms)
+✔ HTTP failure exposes status without provider body or retry (8.863459ms)
+✔ successful JSON cleans timer and abort listener (0.60675ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.964208

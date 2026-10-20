@@ -1,0 +1,146 @@
+$ .venv/bin/ruff format --check --no-cache .
+exit_code=1
+Warning: truncated output (original token count: 2980)
+Total output lines: 277
+
+unformatted: File would be reformatted
+  --> tests/test_flow_boundaries.py:29:26
+   |
+28 |     payload = {
+   -         "requirements": [{
+   -             "id": "r1",
+   -             "text": "Describe an action.",
+   -             "mandatory": True,
+   -             "checkCondition": "The action is present.",
+   -             "candidateEvidenceIds": candidate_ids,
+   -         }],
+   -         "experienceEvidence": [{
+   -             "id": "e1", "quote": "I tested it.", "start": 0, "end": 12, "category": "action",
+   -         }],
+29 +         "requirements": [
+30 +             {
+31 +                 "id": "r1",
+32 +                 "text": "Describe an action.",
+33 +                 "mandatory": True,
+34 +                 "checkCondition": "The action is present.",
+35 +                 "candidateEvidenceIds": candidate_ids,
+36 +             }
+37 +         ],
+38 +         "experienceEvidence": [
+39 +             {
+40 +                 "id": "e1",
+41 +                 "quote": "I tested it.",
+42 +                 "start": 0,
+43 +                 "end": 12,
+44 +                 "category": "action",
+45 +             }
+46 +         ],
+47 |         "gaps": [],
+   |
+
+unformatted: File would be reformatted
+   --> tests/test_flow_context_boundaries.py:24:42
+    |
+23  | def company_research() -> ResearchResult:
+    -     return ResearchResult.model_validate({
+    -         "resolvedCompany": "Fixture company",
+    -         "sources": [{
+    -             "id": "s1", "kind": "user_provided", "title": "Synthetic posting",
+    -             "checkedAt": "2026-10-20T00:00:00Z", "excerpt": "Testing is required.",
+    -         }],
+    -         "companyFacts": [{"id": "f1", "text": "Company fact.", "sourceIds": ["s1"]}],
+    -         "jobRequirements": [{"id": "j1", "text": "Testing.", "sourceIds": ["s1"]}],
+    -         "gaps": [],
+    -     })
+24  +     return ResearchResult.model_validate(
+25  +         {
+26  +             "resolvedCompany": "Fixture company",
+27  +             "sources": [
+28  +                 {
+29  +                     "id": "s1",
+30  +                     "kind": "user_provided",
+31  +                     "title": "Synthetic posting",
+32  +                     "checkedAt": "2026-10-20T00:00:00Z",
+33  +                     "excerpt": "Testing is required.",
+34  +                 }
+35  +             ],
+36  +             "companyFacts": [{"id": "f1", "text": "Company fact.", "sourceIds": ["s1"]}],
+37  +             "jobRequirements": [{"id": "j1", "text": "Testing.", "sourceIds": ["s1"]}],
+38  +             "gaps": [],
+39  +         }
+40  +     )
+41  |
+42  |
+    - @pytest.mark.parametrize(
+    -     ("kind", "evidence_id"), [("user_fact", "f1"), ("company_fact", "e1")]
+    - )
+43  + @pytest.mark.parametrize(("kind", "evidence_id"), [("user_fact", "f1"), ("company_fact", "e1")])
+44  | def test_plan_rejects_personal_company_provenance_swap(kind: str, evidence_id: str) -> None:
+---------------------------------------------------------…1480 tokens truncated… "length",
+90  +                 "claimIds": [],
+91  +                 "paragraphIds": ["p1"],
+92  +                 "start": start,
+93  +                 "end": end,
+94  +                 "reason": "Length needs work.",
+95  +                 "scope": scope,
+96  +                 "instruction": "Use existing evidence.",
+97  +                 "missingFields": missing_fields,
+98  +             }
+99  +         )
+100 |
+--------------------------------------------------------------------------------
+122 |                 StructuredModelRequest(
+    -                     role="review", instructions="Fixture.", input="Fixture.", schema=Evaluation,
+123 +                     role="review",
+124 +                     instructions="Fixture.",
+125 +                     input="Fixture.",
+126 +                     schema=Evaluation,
+127 |                 ),
+    |
+
+unformatted: File would be reformatted
+   --> tests/test_flow_handoff.py:48:30
+    |
+47  |         evidence=Evidence(
+    -             company_facts=(), job_requirements=(),
+48  +             company_facts=(),
+49  +             job_requirements=(),
+50  |             experience_evidence=example.analysis.experience_evidence,
+--------------------------------------------------------------------------------
+63  |     return NeedsInputResponse(
+    -         status="needs_input", request_id=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d"),
+64  +         status="needs_input",
+65  +         request_id=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d"),
+66  |         message="Describe a concrete action.",
+--------------------------------------------------------------------------------
+76  |     return ErrorResponse(
+    -         status="error", request_id=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d"),
+    -         message="The generation did not meet the required checks.", code=code,
+77  +         status="error",
+78  +         request_id=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d"),
+79  +         message="The generation did not meet the required checks.",
+80  +         code=code,
+81  |     )
+--------------------------------------------------------------------------------
+88  |     binding = bind_evaluation(
+    -         response.request_id, example.evaluation, example.draft, example.plan,
+89  +         response.request_id,
+90  +         example.evaluation,
+91  +         example.draft,
+92  +         example.plan,
+93  |     )
+--------------------------------------------------------------------------------
+105 |     revised = DraftEnvelope.model_validate({**example.draft.model_dump(), "version": 2})
+    -     reviewed = Evaluation.model_validate({
+    -         **example.evaluation.model_dump(), "draft_version": 2,
+    -     })
+106 +     reviewed = Evaluation.model_validate(
+107 +         {
+108 +             **example.evaluation.model_dump(),
+109 +             "draft_version": 2,
+110 +         }
+111 +     )
+112 |     request_id = ready_fixture().request_id
+    |
+
+4 files would be reformatted, 69 files already formatted

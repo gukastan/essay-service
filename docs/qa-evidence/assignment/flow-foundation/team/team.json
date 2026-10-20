@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "6df650b5-4a71-4945-8c4a-98ee8a08729f",
+  "teamName": "essay21-flow-foundation",
+  "sessionName": "essay21",
+  "sessionId": "team-d5c089ce",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-20T10:38:53.701Z",
+  "updatedAt": "2026-10-20T11:05:17.834Z",
+  "archivedAt": "2026-10-20T11:05:17.834Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-d5c089ce/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-d5c089ce",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-d5c089ce/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-d5c089ce/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-d5c089ce/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "flow-contracts",
+      "focus": "Own new flow contract models, contract exports, provider-schema compatibility, contract tests and pyproject include paths. No state or budget edits.",
+      "lens": "ownership",
+      "deliverable": "Strict bounded A-J contracts and public API handoff with targeted tests; preserve ResearchResult and existing responses.",
+      "taskName": "essay21_flow_contracts",
+      "agentPath": "/root/essay21_flow_contracts",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "flow-state-revision",
+      "focus": "Own workflow state extensions and request-local atomic revision reservation/version guards; files state.py budget.py and new flow-state/control helpers plus owned tests. No contract-model edits.",
+      "lens": "ownership",
+      "deliverable": "Monotonic shared D/I reservation, stale-evaluation protection and real state/concurrency tests; preserve all existing limits.",
+      "taskName": "essay21_flow_state",
+      "agentPath": "/root/essay21_flow_state",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "C",
+      "name": "flow-boundary-checks",
+      "focus": "Own independent adversarial contract/state integration tests, downstream typed handoff examples and verification artifacts. Test-only code; never edit A/B product modules.",
+      "lens": "ownership",
+      "deliverable": "Independent rejection/concurrency/strict-schema checks and handoff for ESSAY-11/12/13/15; report concrete failures to owners.",
+      "taskName": "essay21_flow_checks",
+      "agentPath": "/root/essay21_flow_checks",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-20T10:38:53.701Z",
+      "event": "created",
+      "detail": "team essay21-flow-foundation"
+    },
+    {
+      "ts": "2026-10-20T10:39:27.892Z",
+      "event": "add-member",
+      "detail": "member A (ownership): Own new flow contract models, contract exports, provider-schema compatibility, contract tests and pyproject include paths. No state or budget edits."
+    },
+    {
+      "ts": "2026-10-20T10:39:30.592Z",
+      "event": "add-member",
+      "detail": "member B (ownership): Own workflow state extensions and request-local atomic revision reservation/version guards; files state.py budget.py and new flow-state/control helpers plus owned tests. No contract-model edits."
+    },
+    {
+      "ts": "2026-10-20T10:39:33.135Z",
+      "event": "add-member",
+      "detail": "member C (ownership): Own independent adversarial contract/state integration tests, downstream typed handoff examples and verification artifacts. Test-only code; never edit A/B product modules."
+    },
+    {
+      "ts": "2026-10-20T10:43:17.811Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/essay21_flow_contracts"
+    },
+    {
+      "ts": "2026-10-20T10:43:21.979Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/essay21_flow_state"
+    },
+    {
+      "ts": "2026-10-20T10:43:24.425Z",
+      "event": "bind-agent",
+      "detail": "member C -> agent /root/essay21_flow_checks"
+    },
+    {
+      "ts": "2026-10-20T11:05:09.526Z",
+      "event": "set-status",
+      "detail": "member A -> reported: Final member evidence received; leader full regression and manual API QA passed."
+    },
+    {
+      "ts": "2026-10-20T11:05:12.083Z",
+      "event": "set-status",
+      "detail": "member B -> reported: Final member evidence received; leader full regression and manual API QA passed."
+    },
+    {
+      "ts": "2026-10-20T11:05:15.557Z",
+      "event": "set-status",
+      "detail": "member C -> reported: Final member evidence received; leader full regression and manual API QA passed."
+    },
+    {
+      "ts": "2026-10-20T11:05:17.834Z",
+      "event": "archive",
+      "detail": "All three native agents completed. Leader verified 355 Python, 12 JavaScript and manual contract surface. No V2 runtime archive operation; durable archive preserved in QA evidence before cleanup."
+    }
+  ]
+}

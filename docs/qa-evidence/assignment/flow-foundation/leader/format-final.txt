@@ -1,0 +1,3 @@
+$ .venv/bin/ruff format --check --no-cache .
+exit_code=0
+73 files already formatted

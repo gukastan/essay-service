@@ -1,0 +1,56 @@
+.venv/bin/python -c 'import asyncio,json
+from uuid import UUID,uuid4
+from pydantic import ValidationError
+from agent.contracts import DraftRequest,DraftEnvelope,Evaluation,DraftResponse
+from agent.flow_state import validate_analysis_context,validate_plan_context,validate_draft_context,bind_evaluation,require_ready_evaluation,FlowStateError
+from agent.budget import ExecutionBudget,RevisionReservationError,ExecutionBudgetError
+from agent.nodes.research import error_response
+from tests.flow_fixture import analysis,research,plan,draft,evaluation
+from tests.test_flow_handoff import ready_fixture,needs_input_fixture,quality_failure_fixture
+results={}
+a,r,p,d,e=analysis(),research(),plan(),draft(),evaluation()
+request=DraftRequest(company="회사",role="직무",question="경험",experience="실행했다.")
+validate_analysis_context(a,request)
+validate_plan_context(p,a,r)
+validate_draft_context(d,p,a,r)
+rid=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d")
+binding=bind_evaluation(rid,e,d,p)
+require_ready_evaluation(binding,rid,d,p)
+results["valid_handoff"]={"status":"passed","characters":len(d.draft),"criteria":len(e.criteria),"camelCase":list(d.model_dump(by_alias=True))}
+for key,request_id,current in [("foreign_request",uuid4(),d),("new_version",rid,DraftEnvelope.model_validate({**d.model_dump(),"version":2})),("same_version_mutation",rid,DraftEnvelope.model_validate({**d.model_dump(),"draft":d.draft[:-1]+"나"}))]:
+    try:
+        require_ready_evaluation(binding,request_id,current,p)
+        raise AssertionError(key+" was accepted")
+    except FlowStateError as error:
+        results[key]=error.code
+for key,criteria in [("missing_criterion",e.criteria[:-1]),("duplicate_criterion",e.criteria[:-1]+e.criteria[:1])]:
+    try:
+        Evaluation.model_validate({**e.model_dump(),"criteria":criteria})
+        raise AssertionError(key+" was accepted")
+    except ValidationError:
+        results[key]="rejected"
+results["wire_responses"]=[]
+for response in [ready_fixture(),needs_input_fixture(),quality_failure_fixture(),quality_failure_fixture("LENGTH_VALIDATION_FAILED")]:
+    parsed=DraftResponse.validate_json(response.model_dump_json(by_alias=True))
+    results["wire_responses"].append({"status":parsed.status,"fields":list(parsed.model_dump(by_alias=True))})
+results["legacy_research_errors"]={code:error_response(ExecutionBudgetError(code),rid).code for code in ("LIMIT_EXCEEDED","DEADLINE_EXCEEDED","CANCELLED")}
+async def reserve():
+    budget=ExecutionBudget()
+    async def one(route):
+        try:
+            return (await budget.reserve_revision(route)).route
+        except RevisionReservationError as error:
+            return error.code
+    outcome=await asyncio.gather(one("D"),one("I"))
+    assert sum(x in ("D","I") for x in outcome)==1 and "REVISION_EXHAUSTED" in outcome
+    assert budget.snapshot().model_calls==0
+    fresh=ExecutionBudget()
+    try:
+        await fresh.reserve_revision("H")
+    except RevisionReservationError as error:
+        results["invalid_route"]={"code":error.code,"consumed":fresh.snapshot().revision_count}
+    result=await fresh.reserve_revision("I")
+    results["atomic_revision"]={"outcomes":outcome,"revisionCount":budget.snapshot().revision_count,"modelCalls":budget.snapshot().model_calls,"newRequest":result.route}
+asyncio.run(reserve())
+print(json.dumps(results,ensure_ascii=False,indent=2))
+'

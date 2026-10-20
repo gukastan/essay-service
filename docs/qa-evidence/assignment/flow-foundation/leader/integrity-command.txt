@@ -1,0 +1,41 @@
+python3 -c 'import pathlib,json,re,hashlib,subprocess
+root=pathlib.Path(".")
+folder=root/"docs/qa-evidence/assignment/flow-foundation"
+start=json.loads((folder/"start-hashes.json").read_text())
+receipt=json.loads((folder/"preservation.json").read_text())
+changed=[n for n,h in start["files"].items() if not (root/n).is_file() or hashlib.sha256((root/n).read_bytes()).hexdigest()!=h]
+assert sorted(changed)==receipt["allowedChanges"]
+assert len(start["files"])-len(changed)==receipt["protectedUnchanged"]
+manifest=json.loads((folder/"source-manifest.json").read_text())
+assert all(hashlib.sha256((root/n).read_bytes()).hexdigest()==h for n,h in manifest["files"].items())
+source=json.loads((root/"docs/qa-evidence/assignment/baseline/source-runtime/source-provenance.json").read_text())
+assert all(hashlib.sha256((pathlib.Path(source["source"])/n["path"]).read_bytes()).hexdigest()==n["source_sha256"] for n in source["files"])
+assert not (root/".omo/teams/team-d5c089ce").exists()
+archived=json.loads((folder/"team/team.json").read_text())
+assert archived["status"]=="archived" and all(m["status"]=="archived" for m in archived["members"])
+tracked=subprocess.check_output(["git","diff","--name-only"],text=True).splitlines()
+untracked=subprocess.check_output(["git","ls-files","--others","--exclude-standard"],text=True).splitlines()
+files=[root/n for n in tracked+untracked if (root/n).is_file()]
+bad=[];json_count=0
+for p in files:
+ if p.suffix==".json":
+  json.loads(p.read_text());json_count+=1
+ if p.stat().st_size<2000000 and p.suffix not in (".png",".jpg"):
+  body=p.read_text(errors="replace")
+  if re.search(r"sk-[A-Za-z0-9_-]{24,}",body) or "-----BEGIN PRIVATE KEY-----" in body:bad.append(str(p))
+assert not bad,bad
+markdown=["AGENTS.md","README.md","START_OMO_V2.md","assignment/README.md","docs/ASSIGNMENT_MIGRATION.md","docs/BACKLOG_V2.md","docs/NODE_MIN_SPEC.md","docs/PRD_V2.md","docs/TECH_DESIGN_V2.md","docs/qa-v2.md","docs/PARALLEL_DEVELOPMENT.md","docs/FLOW_CONTRACTS.md","docs/qa-evidence/assignment/flow-foundation/verification.md"]
+missing=[]
+for n in markdown:
+ p=root/n
+ for target in re.findall(r"\]\(([^)]+)\)",p.read_text()):
+  if "://" in target or target.startswith("#"):continue
+  target=target.split("#")[0]
+  if target and not (p.parent/target).exists():missing.append({"file":n,"target":target})
+assert not missing,missing
+snapshot=json.loads((root/"docs/jira-v2.json").read_text())
+assert len(snapshot["dependencies"])==22
+assert next(i for i in snapshot["issues"] if i["key"]=="ESSAY-21")["status"]=="완료"
+assert snapshot["flowFoundationVerification"]["checks"]["python"]==355
+print(json.dumps({"passed":True,"protectedFiles":receipt["protectedUnchanged"],"originalFiles":len(source["files"]),"verifiedCodeHashes":len(manifest["files"]),"jsonFilesParsed":json_count,"markdownFilesChecked":len(markdown),"brokenLinks":missing,"credentialPatternMatches":bad,"temporaryTeamAbsent":True,"durableTeamArchived":True,"jiraDependencyCount":22,"newSourceFiles":len([n for n in untracked if n.startswith("assignment/")])},indent=2))
+'

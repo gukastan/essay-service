@@ -1,0 +1,82 @@
+{
+  "valid_handoff": {
+    "status": "passed",
+    "characters": 900,
+    "criteria": 7,
+    "camelCase": [
+      "version",
+      "planVersion",
+      "draft",
+      "paragraphs",
+      "claimMap",
+      "fitReasons"
+    ]
+  },
+  "foreign_request": "FOREIGN_EVALUATION",
+  "new_version": "STALE_EVALUATION",
+  "same_version_mutation": "STALE_EVALUATION",
+  "missing_criterion": "rejected",
+  "duplicate_criterion": "rejected",
+  "wire_responses": [
+    {
+      "status": "ready",
+      "fields": [
+        "status",
+        "requestId",
+        "draft",
+        "characterCount",
+        "sources",
+        "evidence",
+        "reviewSummary",
+        "usage"
+      ]
+    },
+    {
+      "status": "needs_input",
+      "fields": [
+        "status",
+        "requestId",
+        "message",
+        "missingFields",
+        "questions",
+        "reasonCode"
+      ]
+    },
+    {
+      "status": "error",
+      "fields": [
+        "status",
+        "requestId",
+        "message",
+        "code"
+      ]
+    },
+    {
+      "status": "error",
+      "fields": [
+        "status",
+        "requestId",
+        "message",
+        "code"
+      ]
+    }
+  ],
+  "legacy_research_errors": {
+    "LIMIT_EXCEEDED": "BUDGET_EXCEEDED",
+    "DEADLINE_EXCEEDED": "TIMEOUT",
+    "CANCELLED": "CANCELLED"
+  },
+  "invalid_route": {
+    "code": "INVALID_REVISION_ROUTE",
+    "consumed": 0
+  },
+  "atomic_revision": {
+    "outcomes": [
+      "D",
+      "REVISION_EXHAUSTED"
+    ],
+    "revisionCount": 1,
+    "modelCalls": 0,
+    "newRequest": "I"
+  }
+}

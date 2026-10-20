@@ -1,0 +1,30 @@
+{
+  "baseline": "86ea5a765fbc19e6e53f1dd15af70d5895734cf1",
+  "trackedAtStart": 766,
+  "allowedChanges": [
+    "AGENTS.md",
+    "README.md",
+    "START_OMO_V2.md",
+    "assignment/README.md",
+    "assignment/agent/budget.py",
+    "assignment/agent/contracts.py",
+    "assignment/agent/state.py",
+    "assignment/pyproject.toml",
+    "docs/ASSIGNMENT_MIGRATION.md",
+    "docs/BACKLOG_V2.md",
+    "docs/NODE_MIN_SPEC.md",
+    "docs/PRD_V2.md",
+    "docs/TECH_DESIGN_V2.md",
+    "docs/jira-v2.json",
+    "docs/qa-v2.md"
+  ],
+  "protectedUnchanged": 751,
+  "unexpectedChanges": [],
+  "missing": [],
+  "originalFiles": 46,
+  "originalChanged": [],
+  "passed": true,
+  "verifiedAt": "2026-10-20 11:08:04 UTC",
+  "qaSectionsPreserved": "ESSAY-9/18/19/10 historical sections unchanged; new ESSAY-21 section added",
+  "researchSourceAndEvidenceUnchanged": true
+}

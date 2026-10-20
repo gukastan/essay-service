@@ -1,0 +1,3 @@
+$ check-no-excuse-rules.py [17 changed Python files; see source-manifest.json]
+exit_code=0
+no violations in 17 file(s)

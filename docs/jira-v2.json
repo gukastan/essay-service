@@ -4,10 +4,10 @@
   "site": "https://kmskojb.atlassian.net",
   "epic": "ESSAY-8",
   "status": "진행 중",
-  "implementation": "python_research_complete",
+  "implementation": "python_flow_contracts_complete",
   "activeIssue": null,
   "activeScope": null,
-  "updatedAt": "2026-10-20 09:44:09 UTC",
+  "updatedAt": "2026-10-20 11:08:04 UTC",
   "baseline": {
     "commit": "c5299e954d0ff1b0848dad238e7b731ef078bb51",
     "completedIssues": [
@@ -36,7 +36,9 @@
     "foundationEvidence": "docs/qa-evidence/assignment/foundation/verification.md",
     "researchRoleImplemented": true,
     "researchEvidence": "docs/qa-evidence/assignment/research/verification.md",
-    "targetCodeImplementedMeans": "complete four-role API/Vue service"
+    "targetCodeImplementedMeans": "complete four-role API/Vue service",
+    "flowFoundationImplemented": true,
+    "flowFoundationEvidence": "docs/qa-evidence/assignment/flow-foundation/verification.md"
   },
   "researchStrategy": {
     "provider": "OpenAI Responses web_search via MCP research_company_role",
@@ -107,11 +109,11 @@
       "key": "ESSAY-21",
       "summary": "[V2-10] A~J 흐름의 공통 계약·계획·평가 상태 확장",
       "type": "작업",
-      "status": "할 일",
+      "status": "완료",
       "parent": "ESSAY-8",
       "blockedBy": [
-        "ESSAY-19",
-        "ESSAY-10"
+        "ESSAY-10",
+        "ESSAY-19"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-21"
     },
@@ -138,7 +140,7 @@
       "parent": "ESSAY-8",
       "blockedBy": [
         "ESSAY-10",
-        "ESSAY-11"
+        "ESSAY-21"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-12"
     },
@@ -150,7 +152,7 @@
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
-        "ESSAY-12"
+        "ESSAY-21"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-13"
     },
@@ -162,6 +164,8 @@
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
+        "ESSAY-11",
+        "ESSAY-12",
         "ESSAY-13"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-14"
@@ -221,38 +225,23 @@
   "dependencies": [
     {
       "linkType": "Blocks",
-      "inwardIssue": "ESSAY-9",
-      "outwardIssue": "ESSAY-10"
-    },
-    {
-      "linkType": "Blocks",
-      "inwardIssue": "ESSAY-9",
-      "outwardIssue": "ESSAY-11"
-    },
-    {
-      "linkType": "Blocks",
-      "inwardIssue": "ESSAY-9",
-      "outwardIssue": "ESSAY-15"
-    },
-    {
-      "linkType": "Blocks",
-      "inwardIssue": "ESSAY-9",
-      "outwardIssue": "ESSAY-19"
-    },
-    {
-      "linkType": "Blocks",
       "inwardIssue": "ESSAY-10",
       "outwardIssue": "ESSAY-12"
     },
     {
       "linkType": "Blocks",
+      "inwardIssue": "ESSAY-10",
+      "outwardIssue": "ESSAY-21"
+    },
+    {
+      "linkType": "Blocks",
       "inwardIssue": "ESSAY-11",
-      "outwardIssue": "ESSAY-12"
+      "outwardIssue": "ESSAY-14"
     },
     {
       "linkType": "Blocks",
       "inwardIssue": "ESSAY-12",
-      "outwardIssue": "ESSAY-13"
+      "outwardIssue": "ESSAY-14"
     },
     {
       "linkType": "Blocks",
@@ -306,18 +295,43 @@
     },
     {
       "linkType": "Blocks",
-      "inwardIssue": "ESSAY-10",
-      "outwardIssue": "ESSAY-21"
-    },
-    {
-      "linkType": "Blocks",
       "inwardIssue": "ESSAY-21",
       "outwardIssue": "ESSAY-11"
     },
     {
       "linkType": "Blocks",
       "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-12"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-13"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
       "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-10"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-19"
     }
   ],
   "verification": {
@@ -467,11 +481,11 @@
     "protectedFilesPreserved": 441,
     "evidence": "docs/qa-evidence/assignment/foundation/verification.md"
   },
-  "lastCompletedIssue": "ESSAY-10",
-  "nextIssue": "ESSAY-21",
+  "lastCompletedIssue": "ESSAY-21",
+  "nextIssue": "ESSAY-11",
   "nodeFlow": {
     "specification": "docs/NODE_MIN_SPEC.md",
-    "status": "minimum_spec_defined_implementation_not_started",
+    "status": "common_contracts_implemented_business_nodes_pending",
     "approvedFlow": "user A-J flow, 2026-10-20",
     "modelRoleCount": 4,
     "logicalNodeCount": 10,
@@ -495,8 +509,12 @@
       "semantic_evaluation_details",
       "scores_and_weights"
     ],
-    "nextIssue": "ESSAY-21",
-    "implementationStarted": false
+    "nextIssue": "ESSAY-11",
+    "implementationStarted": true,
+    "commonContractsComplete": true,
+    "businessNodesImplemented": false,
+    "contractHandoff": "docs/FLOW_CONTRACTS.md",
+    "parallelPlan": "docs/PARALLEL_DEVELOPMENT.md"
   },
   "nodeFlowPlanningVerification": {
     "scope": "Planning and Jira only; no implementation, product tests or model requests",
@@ -647,5 +665,101 @@
     "readbackPassed": true,
     "verifiedAt": "2026-10-20 09:44:09 UTC",
     "evidence": "docs/qa-evidence/planning/node-flow/verification.json"
+  },
+  "parallelReadyIssues": [
+    "ESSAY-11",
+    "ESSAY-12",
+    "ESSAY-13",
+    "ESSAY-15"
+  ],
+  "parallelPlanningVerification": {
+    "scope": "Approved dependency/ownership updates for independent module development",
+    "issueCount": 21,
+    "epicChildCount": 13,
+    "beforeDependencyCount": 20,
+    "dependencyCount": 22,
+    "removed": [
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-11",
+        "outwardIssue": "ESSAY-12"
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-12",
+        "outwardIssue": "ESSAY-13"
+      }
+    ],
+    "added": [
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-11",
+        "outwardIssue": "ESSAY-14"
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-12",
+        "outwardIssue": "ESSAY-14"
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-12"
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-13"
+      }
+    ],
+    "parallelCandidates": [
+      "ESSAY-11",
+      "ESSAY-12",
+      "ESSAY-13",
+      "ESSAY-15"
+    ],
+    "roleCompletionUsesFixtures": true,
+    "realModuleIntegration": "ESSAY-14",
+    "fullIntegrationVerification": "ESSAY-16",
+    "nextIssuesStarted": false,
+    "readbackPassed": true
+  },
+  "flowFoundationVerification": {
+    "scope": "ESSAY-21 common contracts/state/revision only; synthetic inputs with real Pydantic/AnyIO/LangGraph",
+    "issueCount": 21,
+    "epicChildCount": 13,
+    "dependencyCount": 22,
+    "changedStatuses": [
+      "ESSAY-21"
+    ],
+    "allOtherStatusesUnchanged": true,
+    "acceptanceChecked": 6,
+    "essay21Status": "완료",
+    "epicStatus": "진행 중",
+    "statusTransitions": 2,
+    "startCommentId": "10024",
+    "completionCommentId": "10025",
+    "nextIssue": "ESSAY-11",
+    "nextIssues": [
+      "ESSAY-11",
+      "ESSAY-12",
+      "ESSAY-13",
+      "ESSAY-15"
+    ],
+    "nextIssuesStarted": false,
+    "readbackPassed": true,
+    "checks": {
+      "python": 355,
+      "defaultPaidSkipped": 2,
+      "javascript": 12,
+      "typeErrors": 0,
+      "lintPassed": true,
+      "formatPassed": true,
+      "disciplineFiles": 17,
+      "paidModelRequests": 0
+    },
+    "originalFilesPreserved": 46,
+    "protectedFilesPreserved": 751,
+    "evidence": "docs/qa-evidence/assignment/flow-foundation/verification.md"
   }
 }

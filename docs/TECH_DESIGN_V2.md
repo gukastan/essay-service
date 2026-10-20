@@ -1,11 +1,11 @@
 # 자소서 서비스 v2 기술 설계 — Python·MCP·Vue 전환
 
-- 작성일: 2026-10-19 / 갱신: 2026-10-20 / 상태: ESSAY-18·19·10 완료. Python 공통 기반·조사 역할 검증 완료, 분석·작성·검토·전체 API·Vue 제품 화면은 후속 구현
+- 작성일: 2026-10-19 / 갱신: 2026-10-20 / 상태: ESSAY-18·19·10·21 완료. Python 공통 기반·조사 역할 검증 완료, 분석·작성·검토·전체 API·Vue 제품 화면은 후속 구현
 - [v2 PRD](PRD_V2.md) · [백로그](BACKLOG_V2.md) · [전환 결정](decisions/provided-project-migration.md) · [보존·원본 대응](ASSIGNMENT_MIGRATION.md)
-- 현재 런타임과 `POST /api/drafts`는 [v1 설계](TECH_DESIGN.md)를 따른다.
+- 완료된 루트 Next.js의 `POST /api/drafts`는 [v1 설계](TECH_DESIGN.md)를 따른다. 별도 assignment 서버의 동명 업무 API는 ESSAY-14 후속 범위이며 현재404다.
 - 구현된 공통 기반: `src/shared/contracts-v2.ts`, `src/server/workflow/state.ts`, `budget.ts`, `providers.ts`, `native-provider.ts`, `provider-schemas.ts`. LangGraph 1.5.1, LangChain core 1.2.18, Zod 4.6.7을 고정했다.
 - 위 TypeScript 기반은 보존본이다. Python 공통 기반은 ESSAY-19에서 별도로 구현·검증했다. 아래 전체 서비스 흐름은 후속 구현 계약이며 네 역할 완성 증거가 아니다.
-- 2026-10-20 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md)를 적용한다. 공통 계약 확장은 ESSAY-21이며 내부 전략·평가 점수·세부 프롬프트는 후속 설계다.
+- 2026-10-20 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md)를 적용한다. 공통 계약 확장은 ESSAY-21에서 완료했고 [실제 계약 인계](FLOW_CONTRACTS.md)를 따른다. 내부 전략·평가 점수·세부 프롬프트는 후속 설계다.
 
 ### 구현된 Python 공통 기반
 
@@ -46,12 +46,12 @@ flowchart TD
 | --- | --- | --- |
 | 기업·직무 조사 | 기업·직무, 선택 공고 URL/본문 | resolvedCompany, sources, companyFacts, jobRequirements, gaps |
 | 경험·문항 분석(B/C의 개인 근거) | 문항·직무·경험 | 요구사항 ID/필수 조건, experienceEvidence, 연결 후보, gaps |
-| 작성(E/I) | 원래 네 입력, 검증된 근거, D의 작성 계획, 수정 시 지적·허용 범위·버전 | draft, claimMap, fitReasons, 초안/문단 버전 |
-| 검토(F) | 최신 초안/계획, claimMap, 원문, 회사 근거, 문항 요구, 코드 검사 | 기준별 결과, verdict, issues(부족 정보/구성·주장/문장 범위), revisionInstructions, 평가 버전 |
+| 작성(E/I) | 원래 네 입력, 검증된 근거, D의 작성 계획, 수정 시 지적·허용 범위·버전 | DraftEnvelope: version, planVersion, draft, paragraphs(문단 ID/범위), claimMap, fitReasons |
+| 검토(F) | 최신 초안/계획, claimMap, 원문, 회사 근거, 문항 요구, 코드 검사 | Evaluation: draftVersion, planVersion, criteria(7개 필수 기준), issues(기준/주장/문단·위치·scope·instruction·missingFields) |
 
 조사 결과와 경험 분석 결과는 서로 다른 상태 필드에 기록한다. 합류는 두 결과가 모두 도착했을 때 한 번만 진행한다. 한 분기가 실패하거나 보완이 확정되면 다른 분기에서 새 작업을 시작하지 않으며 가능한 진행 작업을 취소한다.
 
-현재 공통 상태는 requestId, inputSnapshot, research, analysis, draft, claimMap, deterministicChecks, review, revisionCount(0|1), usage, deadline, outcome을 가진다. ESSAY-21에서 요구사항 ID/필수 조건·writingPlan·planVersion·draftVersion·문단 범위·evaluation·route/종료 사유를 확장할 계획이다. D는 유효 근거·주장·요구사항 대응·문단 목적/순서/분량을 짧은 구조화 계획으로 조립하며 숨은 추론을 저장하지 않는다. 위 확장 필드는 아직 구현되지 않았다.
+현재 공통 상태는 requestId, inputSnapshot, research, analysis, draft, claimMap, deterministicChecks, review, revisionCount(0|1), usage, deadline, outcome을 가진다. ESSAY-21은 flow_analysis(요구사항·개인 근거), plan(WritingPlan), draft_envelope(DraftEnvelope), evaluation(EvaluationBinding), route, terminal_reason을 추가했다. 요구사항은 flow_analysis.requirements, 계획/초안 버전은 각 envelope가 단독 소유한다. D는 유효 근거·주장·요구사항 대응·문단 목적/순서/분량을 짧은 구조화 계획으로 조립하며 숨은 추론을 저장하지 않는다. flow_state.py가 원문·근거 종류/ID·문단/주장 범위와 버전을 대조한다. F 호출 직전 포착한 요청/계획/초안을 EvaluationBinding에 묶고 ready 직전에 require_ready_evaluation으로 다른 요청·버전·동일 버전 내용 변경·분량 실패를 차단한다. budget.reserve_revision은 D/I 공통 수정 기회를 한 번만 예약하며 RevisionReservationError를 기존 운영 예산 오류와 분리한다. 실제 분기/HTTP 응답 조립은 ESSAY-14다.
 
 상태는 요청 메모리에 한정하고 DB/checkpointer로 경험을 영구 저장하지 않는다. 병렬 노드가 동일한 입력/예산을 임의로 덮어쓸 수 없게 reducer와 예산 예약을 분리한다. 최신 초안/계획 버전과 다른 평가 결과로 ready를 만들 수 없다. 필드별 계약·노드 소유권은 [최소 명세](NODE_MIN_SPEC.md)를 따른다.
 
@@ -61,7 +61,7 @@ flowchart TD
 - `CompanyFact/JobRequirement`: id, text, sourceIds. 회사의 가치와 직무 요구를 별도로 분류한다. 회사 식별·공식 채용 플랫폼 연결도 출처로 남긴다.
 - `ExperienceEvidence`: id, quote, start, end, category(action|result|learning|context). start/end는 LF 정규화한 experience의 Unicode 코드 포인트 위치다. Python 문자열 슬라이스와 Vue의 Array.from(text).slice(start,end).join("")가 quote와 같은지 검증한다. 기존 ESSAY-9 UTF-16 위치는 이식하지 않으며 한글·CRLF·이모지 fixture로 일치성을 확인한다.
 - `Claim`: id, text(초안 내 실제 구절), kind(user_fact|company_fact|interpretation|future_plan), evidenceIds. 사실은 근거가 필수이고 해석/계획은 이미 한 일로 표현할 수 없다.
-- `ReviewIssue`: 기존 code, claimIds, reason, action(revise|needs_input)에 기준 ID·문단/주장 범위·수정 범위(missing_info|plan_or_claim|wording)를 확장한다(ESSAY-21). 없는 ID·변조 인용·원문에 없는 과거 사실 문장을 코드로 거부하고 의미적 과장은 검토 모델과 최종 사람이 대조한다.
+- `EvaluationIssue`: criterionId, claimIds, paragraphIds, start/end, reason, scope(missing_info|plan_or_claim|wording), instruction, missingFields를 사용한다. 기존 ReviewIssue는 호환성을 위해 보존한다. 없는 ID·변조 인용·원문에 없는 과거 사실 문장을 코드로 거부하고 의미적 과장은 검토 모델과 최종 사람이 대조한다.
 - `fitReasons`: experienceEvidenceIds + jobRequirementIds + 연결 이유. 인재상 키워드를 끼워 넣는 것만으로 적합성을 인정하지 않는다.
 
 과거 사실 문단은 원문의 완전한 문장을 선택해 표현과 순서를 보존한다. 새로운 문장은 별도 현재 해석·미래 계획 문단에서만 허용한다. 검토 모델 통과가 모든 사실을 증명하지는 않는다.
@@ -162,6 +162,8 @@ D를 별도 모델로 만드는 정책은 이번 범위에 없다. 별도 호출
 운영 진단은 requestId, 단계, 소요 시간, 호출/검색 횟수, 토큰, 종료 코드 중심으로 기록한다. API 키·원문 경험·초안·전체 웹본문을 로그에 남기지 않는다. QA 원문은 사용자가 승인한 시험 자료에 한해 별도 증거 폴더에 저장한다.
 
 ## 9. 소유권과 검증
+
+[병렬 개발 기준](PARALLEL_DEVELOPMENT.md)에 따라 공통 계약 확정 후 ESSAY-11·12·13·15는 합성 fixture와 실제 각 모듈로 병렬 검증한다. ESSAY-14는11·12·13 완료 후 실제 모듈을 연결하고 ESSAY-16은14·15 완료 후 전체를 검증한다. 같은 공통 파일을 여러 담당자가 동시에 수정하지 않는다.
 
 원본 실행은 ESSAY-18, Python 공통 계약/설정은 ESSAY-19(V2-01은 보존된 TypeScript 기준선), 새 계획·평가·분기 계약 확장은 ESSAY-21이다. 기존 조사는 ESSAY-10(C 기업 근거), 분석은 ESSAY-11(B/C), 계획·작성·부분 수정은 ESSAY-12(D/E/I), 평가는 ESSAY-13(F), 그래프/API는 ESSAY-14(A/G/H/J), 화면은 ESSAY-15, 회귀는 ESSAY-16, 실제 연결·작성자 확인은 ESSAY-17, 제출물은 ESSAY-20이다. 각 파일은 한 구현 담당자가 수정하고 공통 계약 소유권을 순차 인계한다.
 

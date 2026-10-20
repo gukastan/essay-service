@@ -1,0 +1,3 @@
+$ .venv/bin/ruff check --no-cache .
+exit_code=0
+All checks passed!

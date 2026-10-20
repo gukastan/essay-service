@@ -1,0 +1,28 @@
+Invocation:
+cd /Users/jay/Projects/essay-service/assignment
+uv run --frozen pytest tests/test_flow_boundaries.py tests/test_flow_evaluation_boundaries.py tests/test_flow_context_boundaries.py -q
+
+Exit code: 1
+.....................................................F                   [100%]
+=================================== FAILURES ===================================
+_____________ test_issue_claim_anchor_must_overlap_the_named_claim _____________
+
+    def test_issue_claim_anchor_must_overlap_the_named_claim() -> None:
+        # Given
+        payload = evaluation().model_dump()
+        payload["criteria"][0]["passed"] = False
+        payload["issues"] = [{
+            "id": "i1", "criterion_id": "contract_evidence", "claim_ids": ["c1"],
+            "paragraph_ids": ["p1"], "start": 100, "end": 110, "reason": "Wrong claim range.",
+            "scope": "wording", "instruction": "Repair this claim.", "missing_fields": [],
+        }]
+        candidate = Evaluation.model_validate(payload)
+        # When / Then
+>       with pytest.raises(FlowStateError) as raised:
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE FlowStateError
+
+tests/test_flow_context_boundaries.py:162: Failed
+=========================== short test summary info ============================
+FAILED tests/test_flow_context_boundaries.py::test_issue_claim_anchor_must_overlap_the_named_claim
+1 failed, 53 passed in 0.23s

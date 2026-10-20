@@ -1,6 +1,6 @@
 # 자소서 서비스 MVP 기술 설계서
 
-> 현재 구현된 v1과 기존 `/api/drafts`의 계약이다. LangGraph 네 역할은 [v2 기술 설계](TECH_DESIGN_V2.md)의 신규 개발 목표다. 아래의 최대 2회 호출 및 오케스트레이션 제외 규칙은 v1에만 적용한다.
+> 이 문서는 완료된 Next.js v1과 해당 `/api/drafts`의 계약을 보존한다. 현재 개발 기준은 Python·Vue·FastAPI·LangGraph·MCP를 활용하는 [v2 기술 설계](TECH_DESIGN_V2.md)다. 2026-10-20 ESSAY-19 공통 기반·ESSAY-10 조사·ESSAY-21 계획/평가/분기 계약을 완료했다. 실제 네 역할 연결과 새 업무 API는 ESSAY-14에서 구현한다. 아래 최대 2회 호출 및 오케스트레이션 제외 규칙은 v1에만 적용한다.
 
 - 기준일: 2026-10-19
 - 제품 요구사항: [PRD.md](PRD.md), R1~R5

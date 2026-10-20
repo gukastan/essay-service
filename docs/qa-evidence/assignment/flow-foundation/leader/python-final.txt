@@ -1,0 +1,11 @@
+$ ESSAY_LIVE_RESEARCH=0 ESSAY_LIVE_COMPATIBILITY=0 .venv/bin/python -m pytest -q
+exit_code=0
+........................................................................ [ 20%]
+........................................................................ [ 40%]
+.............................................................s.......... [ 60%]
+..................s..................................................... [ 80%]
+.....................................................................    [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_live_compatibility.py:66: explicit paid opt-in required
+SKIPPED [1] tests/test_research_live.py:82: explicit paid node opt-in required
+355 passed, 2 skipped in 21.27s
