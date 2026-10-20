@@ -1,0 +1,115 @@
+{
+  "checkedAt": "2026-10-20 06:58:45 UTC",
+  "scope": "Only ESSAY-19 status changed; ESSAY-8 description refreshed; no issue links, assignees, sprints or dates mutated.",
+  "issueCount": 20,
+  "epicChildCount": 12,
+  "dependencyCount": 16,
+  "dependenciesUnchanged": true,
+  "changedStatuses": [
+    "ESSAY-19"
+  ],
+  "allOtherStatusesUnchanged": true,
+  "acceptanceChecked": 8,
+  "essay19Status": "완료",
+  "epicStatus": "진행 중",
+  "updated": [
+    "ESSAY-19",
+    "ESSAY-8"
+  ],
+  "statusTransitions": 2,
+  "transitionedIssues": [
+    "ESSAY-19"
+  ],
+  "startCommentId": "10020",
+  "completionCommentId": "10021",
+  "nextIssues": [
+    "ESSAY-10",
+    "ESSAY-11",
+    "ESSAY-15"
+  ],
+  "nextIssuesStarted": false,
+  "readbackPassed": true,
+  "statuses": [
+    {
+      "key": "ESSAY-1",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-2",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-3",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-4",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-5",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-6",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-7",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-8",
+      "status": "진행 중"
+    },
+    {
+      "key": "ESSAY-9",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-10",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-11",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-12",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-13",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-14",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-15",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-16",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-17",
+      "status": "할 일"
+    },
+    {
+      "key": "ESSAY-18",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-19",
+      "status": "완료"
+    },
+    {
+      "key": "ESSAY-20",
+      "status": "할 일"
+    }
+  ],
+  "descriptionReadbackChecked": true
+}

@@ -1,0 +1,65 @@
+warning: Invalid `# noqa` directive on tests/test_budget.py:12: expected a comma-separated list of codes (e.g., `# noqa: F401, F841`).
+ASYNC240 Async functions should not perform blocking pathlib.Path operations
+  --> tests/test_live_compatibility.py:70:12
+   |
+68 | async def test_paid_structured_model_and_real_mcp_search(monkeypatch: pytest.MonkeyPatch) -> None:
+69 |     # Given: public inputs only, server-local settings, no shell source.
+70 |     root = Path(__file__).resolve().parents[2]
+   |            ^^^^^^^^^^^^^^^^^^^^^^
+71 |     allowed = {"OPENAI_API_KEY", "OPENAI_MODEL"}
+72 |     selected = "\n".join(
+   |
+
+E501 Line too long (165 > 100)
+  --> tests/test_provider.py:43:101
+   |
+41 | …r":"ok","note":null}'))
+42 | …
+43 | …espond)) as transport, AsyncOpenAI(api_key="fixture", http_client=transport, max_retries=2) as sdk:
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+44 | …
+45 | …enerate(
+   |
+
+E501 Line too long (150 > 100)
+  --> tests/test_provider.py:96:101
+   |
+95 | …
+96 | …sport(respond)) as transport, AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+   |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+97 | …
+98 | …
+   |
+
+E501 Line too long (165 > 100)
+   --> tests/test_provider.py:115:101
+    |
+113 | …vate-provider-error"}})
+114 | …
+115 | …spond)) as transport, AsyncOpenAI(api_key="fixture", http_client=transport, max_retries=3) as sdk:
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+116 | …
+117 | …
+    |
+
+E501 Line too long (150 > 100)
+   --> tests/test_provider.py:136:101
+    |
+135 | …
+136 | …sport(timeout)) as transport, AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+137 | …)
+138 | …
+    |
+
+E501 Line too long (150 > 100)
+   --> tests/test_provider.py:163:101
+    |
+162 | …
+163 | …sport(respond)) as transport, AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+164 | …
+165 | …-model").research(
+    |
+
+Found 7 errors (1 fixed, 6 remaining).

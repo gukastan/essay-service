@@ -1,0 +1,821 @@
+warning: Invalid `# noqa` directive on tests/test_budget.py:12: expected a comma-separated list of codes (e.g., `# noqa: F401, F841`).
+warning: Invalid `# noqa` directive on tests/test_budget.py:12: expected a comma-separated list of codes (e.g., `# noqa: F401, F841`).
+E501 Line too long (102 > 100)
+  --> tests/mcp_adversary.py:45:101
+   |
+43 |         case "tracing":
+44 |             return ToolResult(structured_content={key: os.environ.get(key) for key in (
+45 |                 "LANGCHAIN_TRACING", "LANGCHAIN_TRACING_V2", "LANGSMITH_TRACING", "OTEL_SDK_DISABLED",
+   |                                                                                                     ^^
+46 |             )})
+47 |         case unreachable:
+   |
+
+E501 Line too long (106 > 100)
+  --> tests/mcp_wire_server.py:18:101
+   |
+17 | if __name__ == "__main__":
+18 |     sdk = AsyncOpenAI(api_key="fixture-not-a-key", base_url=os.environ["FIXTURE_BASE_URL"], max_retries=0)
+   |                                                                                                     ^^^^^^
+19 |     if pid_path := os.environ.get("FIXTURE_PID_PATH"):
+20 |         _ = Path(pid_path).write_text(str(os.getpid()))
+   |
+
+E501 Line too long (114 > 100)
+  --> tests/test_budget.py:27:101
+   |
+26 | @pytest.mark.anyio
+27 | @pytest.mark.parametrize(("revision", "expected_calls", "expected_tokens"), [(False, 4, 12000), (True, 6, 18000)])
+   |                                                                                                     ^^^^^^^^^^^^^^
+28 | async def test_normal_and_revision_reservations(revision: bool, expected_calls: int, expected_tokens: int) -> None:
+29 |     # Given
+   |
+
+FBT001 Boolean-typed positional argument in function definition
+  --> tests/test_budget.py:28:49
+   |
+26 | @pytest.mark.anyio
+27 | @pytest.mark.parametrize(("revision", "expected_calls", "expected_tokens"), [(False, 4, 12000), (True, 6, 18000)])
+28 | async def test_normal_and_revision_reservations(revision: bool, expected_calls: int, expected_tokens: int) -> None:
+   |                                                 ^^^^^^^^
+29 |     # Given
+30 |     budget = ExecutionBudget()
+   |
+
+E501 Line too long (115 > 100)
+  --> tests/test_budget.py:28:101
+   |
+26 | @pytest.mark.anyio
+27 | @pytest.mark.parametrize(("revision", "expected_calls", "expected_tokens"), [(False, 4, 12000), (True, 6, 18000)])
+28 | async def test_normal_and_revision_reservations(revision: bool, expected_calls: int, expected_tokens: int) -> None:
+   |                                                                                                     ^^^^^^^^^^^^^^^
+29 |     # Given
+30 |     budget = ExecutionBudget()
+   |
+
+E501 Line too long (134 > 100)
+  --> tests/test_budget.py:40:101
+   |
+38 |     # Then
+39 |     usage = budget.snapshot()
+40 |     assert (usage.model_calls, usage.output_tokens_reserved, usage.native_tool_calls_reserved) == (expected_calls, expected_tokens, 2)
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+41 |     assert (native.max_tool_calls, native.max_output_tokens) == (2, 3000)
+   |
+
+TRY003 Avoid specifying long messages outside the exception class
+   --> tests/test_budget.py:107:15
+    |
+105 |         nonlocal calls
+106 |         calls += 1
+107 |         raise OSError("fixture provider failure")
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+108 |
+109 |     # When
+    |
+
+PT011 `pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception
+   --> tests/test_budget.py:110:24
+    |
+109 |     # When
+110 |     with pytest.raises(OSError):
+    |                        ^^^^^^^
+111 |         _ = await budget.run_native_research(fail)
+112 |     with pytest.raises(ExecutionBudgetError) as raised:
+    |
+
+E501 Line too long (107 > 100)
+   --> tests/test_budget.py:210:101
+    |
+208 |     assert first.snapshot().model_calls == 2
+209 |     assert second.snapshot().model_calls == 1
+210 |     assert first.snapshot().native_tool_calls_reserved == second.snapshot().native_tool_calls_reserved == 2
+    |                                                                                                     ^^^^^^^
+
+E501 Line too long (120 > 100)
+  --> tests/test_budget_timing.py:12:101
+   |
+10 | @pytest.mark.anyio
+11 | @pytest.mark.parametrize(("scope", "elapsed"), [("request", 180.0), ("research", 45.0)])
+12 | async def test_scope_deadline_rejects_late_orchestration(scope: Literal["request", "research"], elapsed: float) -> None:
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^
+13 |     # Given
+14 |     clock = Clock()
+   |
+
+E501 Line too long (104 > 100)
+  --> tests/test_contracts.py:20:91
+   |
+18 | )
+19 |
+20 | INPUT: Final = {"company": "회사", "role": "직무", "question": "문항", "experience": " 원문\r\n😀경험 "}
+   |                                                                                                      ^^^
+21 | REQUEST_ID: Final = "60b490f2-3536-4b19-a89e-80808cd7cdb9"
+   |
+
+E501 Line too long (149 > 100)
+  --> tests/test_contracts.py:32:101
+   |
+32 | …120), ("role", 160), ("question", 3000), ("experience", 12000), ("jobPostingText", 16000)])
+   |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+33 | …
+34 | …nt, extra: int) -> None:
+   |
+
+E501 Line too long (127 > 100)
+  --> tests/test_contracts.py:55:101
+   |
+55 | @pytest.mark.parametrize("url", ["file:///etc/passwd", "javascript:alert(1)", "https://", "https://example.com/" + "a" * 2048])
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+56 | def test_url_rejects_invalid_or_oversized_values(url: str) -> None:
+57 |     # Given / When / Then
+   |
+
+E501 Line too long (126 > 100)
+  --> tests/test_contracts.py:97:99
+   |
+95 |     # Given / When / Then
+96 |     with pytest.raises(ValidationError):
+97 |         _ = ExperienceEvidence.model_validate({"id": "e1", "quote": "경험", "start": start, "end": end, "category": "action"})
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+E501 Line too long (127 > 100)
+   --> tests/test_contracts.py:103:98
+    |
+101 |     # Given
+102 |     source = "가\r\n😀나👩💻끝"
+103 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": "😀나👩💻", "start": 2, "end": 7, "category": "action"})
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+104 |     # When / Then
+105 |     assert normalize_text(source) == "가\n😀나👩💻끝"
+    |
+
+E501 Line too long (103 > 100)
+   --> tests/test_contracts.py:114:98
+    |
+112 | def test_nonready_response_rejects_draft_leakage(status: str) -> None:
+113 |     # Given
+114 |     payload: dict[str, JsonValue] = {"status": status, "requestId": REQUEST_ID, "message": "보완 필요"}
+    |                                                                                                      ^^
+115 |     if status == "needs_input":
+116 |         _ = payload.update({"missingFields": ["experience"], "questions": ["어떤 경험?"], "reasonCode": "EXPERIENCE_INSUFFICIENT"})
+    |
+
+E501 Line too long (131 > 100)
+   --> tests/test_contracts.py:116:97
+    |
+114 |     payload: dict[str, JsonValue] = {"status": status, "requestId": REQUEST_ID, "message": "보완 필요"}
+115 |     if status == "needs_input":
+116 |         _ = payload.update({"missingFields": ["experience"], "questions": ["어떤 경험?"], "reasonCode": "EXPERIENCE_INSUFFICIENT"})
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+117 |     else:
+118 |         _ = payload.update({"code": "MODEL_ERROR"})
+    |
+
+E501 Line too long (124 > 100)
+   --> tests/test_contracts.py:133:101
+    |
+131 |         "status": "ready", "requestId": REQUEST_ID, "draft": "😀" * length,
+132 |         "characterCount": length + count_delta, "sources": [],
+133 |         "evidence": {"companyFacts": [], "jobRequirements": [], "experienceEvidence": [], "claimMap": [], "fitReasons": []},
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+134 |         "reviewSummary": "생성 당시 검토 통과", "usage": {"modelCalls": 4, "revisionCount": 0},
+135 |     }
+    |
+
+E501 Line too long (114 > 100)
+   --> tests/test_contracts.py:146:101
+    |
+144 | @pytest.mark.parametrize("field", ["jobPostingUrl", "jobPostingText"])
+145 | @pytest.mark.parametrize("value", [42, True, ["text"], {"text": "value"}])
+146 | def test_optional_text_nonstring_is_validation_error(field: str, value: int | list[str] | dict[str, str]) -> None:
+    |                                                                                                     ^^^^^^^^^^^^^^
+147 |     # Given / When / Then
+148 |     with pytest.raises(ValidationError):
+    |
+
+E501 Line too long (124 > 100)
+   --> tests/test_contracts.py:161:99
+    |
+159 | def test_evidence_rejects_slice_clamping_past_source_end() -> None:
+160 |     # Given
+161 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": "가😀", "start": 0, "end": 99, "category": "action"})
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+162 |     # When / Then
+163 |     assert not evidence_matches("가😀", evidence)
+    |
+
+E501 Line too long (133 > 100)
+  --> tests/test_lifecycle.py:22:101
+   |
+21 | @pytest.mark.anyio
+22 | async def test_real_lifespan_reuses_dependencies_and_never_creates_database(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+23 |     # Given
+24 |     _ = monkeypatch.chdir(tmp_path)
+   |
+
+E501 Line too long (116 > 100)
+  --> tests/test_lifecycle.py:35:101
+   |
+33 |         deps = state.deps
+34 |         first, second = deps.new_request(draft), deps.new_request(draft)
+35 |         async with httpx2.AsyncClient(transport=httpx2.ASGITransport(app=app), base_url="http://fixture") as client:
+   |                                                                                                     ^^^^^^^^^^^^^^^^
+36 |             health1, health2 = await client.get("/health"), await client.get("/health")
+37 |             for method, path in (("GET", "/chat/stream"), ("POST", "/chat"), ("POST", "/api/drafts")):
+   |
+
+E501 Line too long (102 > 100)
+  --> tests/test_lifecycle.py:37:101
+   |
+35 |         async with httpx2.AsyncClient(transport=httpx2.ASGITransport(app=app), base_url="http://fixture") as client:
+36 |             health1, health2 = await client.get("/health"), await client.get("/health")
+37 |             for method, path in (("GET", "/chat/stream"), ("POST", "/chat"), ("POST", "/api/drafts")):
+   |                                                                                                     ^^
+38 |                 response = await client.request(method, path)
+39 |                 assert response.status_code == 404
+   |
+
+E501 Line too long (126 > 100)
+  --> tests/test_lifecycle.py:50:101
+   |
+48 |         assert health1.json()["pipelineAvailable"] is False
+49 |         assert health1.json()["creationCount"] == 1
+50 |         assert all(os.environ[name] == "false" for name in ("LANGCHAIN_TRACING", "LANGCHAIN_TRACING_V2", "LANGSMITH_TRACING"))
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+51 |     # Then
+52 |     assert not deps.mcp.connected
+   |
+
+ASYNC240 Async functions should not perform blocking pathlib.Path operations
+  --> tests/test_lifecycle.py:53:21
+   |
+51 |     # Then
+52 |     assert not deps.mcp.connected
+53 |     assert not list(tmp_path.glob("**/*.db"))
+   |                     ^^^^^^^^^^^^^
+54 |     assert not hasattr(app.state, "deps")
+   |
+
+E501 Line too long (110 > 100)
+  --> tests/test_lifecycle.py:57:101
+   |
+56 | @pytest.mark.anyio
+57 | async def test_server_settings_ignore_inherited_provider_destination(monkeypatch: pytest.MonkeyPatch) -> None:
+   |                                                                                                     ^^^^^^^^^^
+58 |     # Given
+59 |     _ = monkeypatch.setenv("OPENAI_BASE_URL", "http://invalid.example/sentinel")
+   |
+
+E501 Line too long (105 > 100)
+ --> tests/test_live_compatibility.py:1:101
+  |
+1 | """Paid opt-in: ESSAY_LIVE_COMPATIBILITY=1 uv run --frozen pytest tests/test_live_compatibility.py -q -s.
+  |                                                                                                     ^^^^^
+2 |
+3 | Only two allowed settings are read from root .env.local inside the process.
+  |
+
+E501 Line too long (110 > 100)
+  --> tests/test_live_compatibility.py:60:101
+   |
+59 | @pytest.mark.anyio
+60 | @pytest.mark.skipif(os.environ.get("ESSAY_LIVE_COMPATIBILITY") != "1", reason="explicit paid opt-in required")
+   |                                                                                                     ^^^^^^^^^^
+61 | async def test_paid_structured_model_and_real_mcp_search(monkeypatch: pytest.MonkeyPatch) -> None:
+62 |     # Given: public inputs only, server-local settings, no shell source.
+   |
+
+ASYNC240 Async functions should not perform blocking pathlib.Path operations
+  --> tests/test_live_compatibility.py:63:12
+   |
+61 | async def test_paid_structured_model_and_real_mcp_search(monkeypatch: pytest.MonkeyPatch) -> None:
+62 |     # Given: public inputs only, server-local settings, no shell source.
+63 |     root = Path(__file__).resolve().parents[2]
+   |            ^^^^^^^^^^^^^^^^^^^^^^
+64 |     allowed = {"OPENAI_API_KEY", "OPENAI_MODEL"}
+65 |     selected = "\n".join(line for line in (root / ".env.local").read_text().splitlines() if line.partition("=")[0].strip() in allowed)
+   |
+
+E501 Line too long (134 > 100)
+  --> tests/test_live_compatibility.py:65:101
+   |
+63 |     root = Path(__file__).resolve().parents[2]
+64 |     allowed = {"OPENAI_API_KEY", "OPENAI_MODEL"}
+65 |     selected = "\n".join(line for line in (root / ".env.local").read_text().splitlines() if line.partition("=")[0].strip() in allowed)
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+66 |     settings = dotenv_values(stream=io.StringIO(selected), interpolate=False)
+67 |     for name in sorted(allowed):
+   |
+
+PT018 Assertion should be broken down into multiple parts
+  --> tests/test_live_compatibility.py:69:9
+   |
+67 |     for name in sorted(allowed):
+68 |         value = settings.get(name)
+69 |         assert value and value.strip(), f"Required server configuration {name} is absent"
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+70 |         monkeypatch.setenv(name, value)
+71 |     disable_tracing()
+   |
+help: Break down assertion into multiple parts
+
+E501 Line too long (117 > 100)
+  --> tests/test_live_compatibility.py:78:101
+   |
+76 |     started = time.monotonic()
+77 |     # When: exactly one plain model plus one actual MCP hosted research call; no retry.
+78 |     async with AsyncOpenAI(api_key=key, base_url="https://api.openai.com/v1", max_retries=0, timeout=30.0) as client:
+   |                                                                                                     ^^^^^^^^^^^^^^^^^
+79 |         try:
+80 |             result = await OpenAIModelProvider(client, model).generate(StructuredModelRequest(
+   |
+
+E501 Line too long (116 > 100)
+  --> tests/test_live_compatibility.py:81:101
+   |
+79 |         try:
+80 |             result = await OpenAIModelProvider(client, model).generate(StructuredModelRequest(
+81 |                 role="analysis", instructions="Return the supplied company and role in the schema, with note null.",
+   |                                                                                                     ^^^^^^^^^^^^^^^^
+82 |                 input='{"company":"OpenAI","role":"Software Engineer"}', schema=CompatibilityOutput,
+83 |             ), plain_budget)
+   |
+
+E501 Line too long (114 > 100)
+  --> tests/test_live_compatibility.py:84:101
+   |
+82 |                 input='{"company":"OpenAI","role":"Software Engineer"}', schema=CompatibilityOutput,
+83 |             ), plain_budget)
+84 |             plain.schema_success = result.value == CompatibilityOutput(company="OpenAI", role="Software Engineer")
+   |                                                                                                     ^^^^^^^^^^^^^^
+85 |             plain.input_tokens = result.usage.input_tokens if result.usage else None
+86 |             plain.output_tokens = result.usage.output_tokens if result.usage else None
+   |
+
+E501 Line too long (124 > 100)
+  --> tests/test_live_compatibility.py:94:101
+   |
+92 |     async with MCPClient() as mcp:
+93 |         try:
+94 |             report = await mcp.research(ResearchInput(company="OpenAI", role="Software Engineer"), research_budget, uuid4())
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+95 |             research.schema_success = True
+96 |             research.tool_calls_reported = report.tool_calls_reported
+   |
+
+E501 Line too long (133 > 100)
+   --> tests/test_live_compatibility.py:105:101
+    |
+103 |     research.native_tool_calls_reserved = research_budget.snapshot().native_tool_calls_reserved
+104 |     # Then: preserve every run, including typed failures, using unique artifact names.
+105 |     summary = CompatibilitySummary(model=model, started_at=started_at, finished_at=datetime.now(UTC), plain=plain, research=research)
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+106 |     artifact = root / f"docs/qa-evidence/assignment/foundation/checks/live-{uuid4()}.json"
+107 |     _ = artifact.write_text(summary.model_dump_json(indent=2) + "\n")
+    |
+
+E501 Line too long (197 > 100)
+  --> tests/test_mcp.py:21:101
+   |
+20 | …
+21 | …r(ROOT / "tests/mcp_wire_server.py")], cwd=str(ROOT), env={"PYTHONPATH": str(ROOT), "FIXTURE_BASE_URL": base_url}))
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+E501 Line too long (187 > 100)
+  --> tests/test_mcp.py:25:101
+   |
+24 | …
+25 | …s=[str(ROOT / "tests/mcp_adversary.py")], cwd=str(ROOT), env={"PYTHONPATH": str(ROOT), "FIXTURE_MODE": mode}))
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+E501 Line too long (115 > 100)
+  --> tests/test_mcp.py:37:97
+   |
+35 |         _ = observed.append((usage.model_calls, usage.native_tool_calls_reserved))
+36 |         return HttpReply(research_body())
+37 |     draft = DraftRequest(company="회사", role="직무", question="PRIVATE_QUESTION", experience="PRIVATE_EXPERIENCE")
+   |                                                                                                     ^^^^^^^^^^^^^^^
+38 |     request_id = uuid4()
+39 |     with serve_wire(respond) as wire:
+   |
+
+E501 Line too long (194 > 100)
+  --> tests/test_mcp.py:85:101
+   |
+84 | …
+85 | …, ("wrong-correlation", "INVALID_RESPONSE"), ("tool-error", "PROTOCOL_ERROR"), ("disconnect", "PROTOCOL_ERROR")])
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+86 | …str) -> None:
+87 | …
+   |
+
+E501 Line too long (108 > 100)
+   --> tests/test_mcp.py:116:99
+    |
+114 |                 budget = ExecutionBudget()
+115 |                 request_id = uuid4()
+116 |                 report = await mcp.research(ResearchInput(company=company, role="직무"), budget, request_id)
+    |                                                                                                     ^^^^^^^^
+117 |                 assert report.request_id == request_id
+118 |                 _ = reports.append((company, report.result.resolved_company or "", budget.snapshot().model_calls))
+    |
+
+E501 Line too long (114 > 100)
+   --> tests/test_mcp.py:118:101
+    |
+116 |                 report = await mcp.research(ResearchInput(company=company, role="직무"), budget, request_id)
+117 |                 assert report.request_id == request_id
+118 |                 _ = reports.append((company, report.result.resolved_company or "", budget.snapshot().model_calls))
+    |                                                                                                     ^^^^^^^^^^^^^^
+119 |             # When
+120 |             async with anyio.create_task_group() as tasks:
+    |
+
+E501 Line too long (124 > 100)
+   --> tests/test_mcp.py:148:101
+    |
+147 | @pytest.mark.anyio
+148 | async def test_actual_mcp_child_suppresses_inherited_tracing_flags(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^
+149 |     # Given
+150 |     trace_path = tmp_path / "tracing-sentinels.json"
+    |
+
+E501 Line too long (148 > 100)
+   --> tests/test_mcp.py:157:101
+    |
+155 | …: wire.base_url,
+156 | …ct.fromkeys(names, "true")}
+157 | …nd=sys.executable, args=[str(ROOT / "tests/mcp_wire_server.py")], cwd=str(ROOT), env=env))
+    |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+158 | …
+159 | …
+    |
+
+E501 Line too long (116 > 100)
+  --> tests/test_mcp_control.py:25:101
+   |
+23 | @pytest.mark.anyio
+24 | @pytest.mark.parametrize("location", ["metadata", "domain", "timeout"])
+25 | async def test_untrusted_overrides_never_reach_provider(location: Literal["metadata", "domain", "timeout"]) -> None:
+   |                                                                                                     ^^^^^^^^^^^^^^^^
+26 |     # Given
+27 |     domain = {"company": "회사", "role": "직무"}
+   |
+
+E501 Line too long (121 > 100)
+  --> tests/test_mcp_control.py:41:101
+   |
+39 |         async with wire_client(wire.base_url) as raw:
+40 |             # When
+41 |             result = await raw.call_tool("research_company_role", {"input": domain}, meta=metadata, raise_on_error=False)
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^
+42 |         # Then
+43 |         assert result.is_error
+   |
+
+E501 Line too long (103 > 100)
+  --> tests/test_mcp_control.py:60:97
+   |
+58 |             async def dispatch() -> None:
+59 |                 try:
+60 |                     _ = await mcp.research(ResearchInput(company="회사", role="직무"), budget, uuid4())
+   |                                                                                                     ^^^
+61 |                 except ExecutionBudgetError as error:
+62 |                     _ = errors.append(error.code)
+   |
+
+E501 Line too long (107 > 100)
+  --> tests/test_mcp_control.py:70:95
+   |
+68 |                     _ = budget.cancel()
+69 |                 with pytest.raises(ExecutionBudgetError):
+70 |                     _ = await mcp.research(ResearchInput(company="다른회사", role="직무"), budget, uuid4())
+   |                                                                                                     ^^^^^^^
+71 |             finally:
+72 |                 _ = release.set()
+   |
+
+E501 Line too long (240 > 100)
+  --> tests/test_mcp_control.py:84:101
+   |
+82 | …
+83 | …
+84 | …tests/mcp_wire_server.py")], cwd=str(ROOT), env={"PYTHONPATH": str(ROOT), "FIXTURE_BASE_URL": wire.base_url, "FIXTURE_PID_PATH": str(pid_path)}))
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+85 | …
+86 | …
+   |
+
+E501 Line too long (140 > 100)
+  --> tests/test_provider.py:24:101
+   |
+23 | …
+24 | …tructions="Return a structured response.", input="public fixture", schema=ProbeOutput)
+   |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+25 | …
+26 | …
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_provider.py:33:5
+   |
+31 |           _ = requests.append(request)
+32 |           return httpx2.Response(200, content=response_body('{"answer":"ok","note":null}'))
+33 | /     async with httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport:
+34 | |         async with AsyncOpenAI(api_key="fixture", http_client=transport, max_retries=2) as sdk:
+   | |_______________________________________________________________________________________________^
+35 |               # When
+36 |               result = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), ExecutionBudget())
+   |
+help: Combine `with` statements
+
+E501 Line too long (105 > 100)
+  --> tests/test_provider.py:36:101
+   |
+34 |         async with AsyncOpenAI(api_key="fixture", http_client=transport, max_retries=2) as sdk:
+35 |             # When
+36 |             result = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), ExecutionBudget())
+   |                                                                                                     ^^^^^
+37 |     # Then
+38 |     assert result.value == ProbeOutput(answer="ok")
+   |
+
+E501 Line too long (102 > 100)
+  --> tests/test_provider.py:70:101
+   |
+68 |     (response_body('{"answer":42}'), "INVALID_RESPONSE"),
+69 | ])
+70 | async def test_provider_failures_are_typed_sanitized_and_not_repaired(body: bytes, code: str) -> None:
+   |                                                                                                     ^^
+71 |     # Given
+72 |     calls: list[int] = []
+   |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_provider.py:77:5
+   |
+75 |           return httpx2.Response(200, content=body)
+76 |       budget = ExecutionBudget()
+77 | /     async with httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport:
+78 | |         async with AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+   | |________________________________________________________________________________^
+79 |               # When / Then
+80 |               with pytest.raises(ProviderError) as raised:
+   |
+help: Combine `with` statements
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+  --> tests/test_provider.py:94:5
+   |
+92 |           _ = calls.append(1)
+93 |           return httpx2.Response(500, json={"error": {"message": "private-provider-error"}})
+94 | /     async with httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport:
+95 | |         async with AsyncOpenAI(api_key="fixture", http_client=transport, max_retries=3) as sdk:
+   | |_______________________________________________________________________________________________^
+96 |               # When / Then
+97 |               with pytest.raises(ProviderError) as raised:
+   |
+help: Combine `with` statements
+
+E501 Line too long (104 > 100)
+   --> tests/test_provider.py:98:101
+    |
+ 96 |             # When / Then
+ 97 |             with pytest.raises(ProviderError) as raised:
+ 98 |                 _ = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), ExecutionBudget())
+    |                                                                                                     ^^^^
+ 99 |     assert raised.value.code == "MODEL_ERROR"
+100 |     assert str(raised.value) == "MODEL_ERROR"
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_provider.py:111:5
+    |
+109 |           raise httpx2.ReadTimeout("private-provider-error", request=request)
+110 |       budget = ExecutionBudget()
+111 | /     async with httpx2.AsyncClient(transport=httpx2.MockTransport(timeout)) as transport:
+112 | |         async with AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+    | |________________________________________________________________________________^
+113 |               provider = OpenAIModelProvider(sdk, "fixture-model")
+114 |               # When / Then
+    |
+help: Combine `with` statements
+
+E501 Line too long (143 > 100)
+   --> tests/test_provider.py:118:101
+    |
+116 | …get)
+117 | …
+118 | …delRequest(role="writer", instructions="", input="public", schema=ProbeOutput), budget)
+    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+119 | …
+120 | …
+    |
+
+SIM117 Use a single `with` statement with multiple contexts instead of nested `with` statements
+   --> tests/test_provider.py:131:5
+    |
+129 |           return httpx2.Response(200, content=research_body())
+130 |       request_id = uuid4()
+131 | /     async with httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport:
+132 | |         async with AsyncOpenAI(api_key="fixture", http_client=transport) as sdk:
+    | |________________________________________________________________________________^
+133 |               # When
+134 |               result = await OpenAIResearchProvider(sdk, "fixture-model").research(ResearchInput(company="회사", role="직무"), Resear…
+    |
+help: Combine `with` statements
+
+E501 Line too long (186 > 100)
+   --> tests/test_provider.py:134:101
+    |
+132 | …dk:
+133 | …
+134 | …rch(ResearchInput(company="회사", role="직무"), ResearchMetadata(request_id=request_id, timeout_seconds=4.0))
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+135 | …
+136 | …
+    |
+
+E501 Line too long (119 > 100)
+  --> tests/test_state.py:27:101
+   |
+25 |     ready = anyio.Event()
+26 |     joins: list[str] = []
+27 |     research = ResearchResult(resolved_company=None, sources=(), company_facts=(), job_requirements=(), gaps=("공고",))
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^
+28 |     analysis = AnalysisResult(question_requirements=(), experience_evidence=(), gaps=("경험",))
+   |
+
+E501 Line too long (125 > 100)
+  --> tests/test_state.py:72:101
+   |
+70 | @pytest.mark.anyio
+71 | @pytest.mark.parametrize("field", ["request_id", "input_snapshot", "deadline"])
+72 | async def test_graph_rejects_immutable_context_overwrite(field: Literal["request_id", "input_snapshot", "deadline"]) -> None:
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+73 |     # Given
+74 |     initial = initial_state(request(), ExecutionBudget())
+   |
+
+TRY003 Avoid specifying long messages outside the exception class
+   --> tests/test_state.py:128:15
+    |
+126 |         _ = state
+127 |         _ = attempts.append(1)
+128 |         raise OSError("fixture failure")
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+129 |
+130 |     graph = StateGraph(WorkflowState)
+    |
+
+PT011 `pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception
+   --> tests/test_state.py:135:24
+    |
+133 |     _ = graph.add_edge("failure", END)
+134 |     # When / Then
+135 |     with pytest.raises(OSError):
+    |                        ^^^^^^^
+136 |         _ = await graph.compile().ainvoke(initial_state(request(), ExecutionBudget()))
+137 |     assert attempts == [1]
+    |
+
+PLR0913 Too many arguments in function definition (6 > 5)
+  --> tests/test_text_parity.py:17:5
+   |
+15 |     ("가é🧑💻\r끝", "가é🧑💻\n끝", 8, 3, 6, "🧑💻"),
+16 | ])
+17 | def test_python_matches_javascript_codepoint_boundary(source: str, normalized: str, count: int, start: int, end: int, quote: str) -> N…
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 |     # Given
+19 |     helper = Path(__file__).resolve().parents[1] / "web" / "foundation.mjs"
+   |
+
+PLR0917 Too many positional arguments (6 > 5)
+  --> tests/test_text_parity.py:17:5
+   |
+15 |     ("가é🧑💻\r끝", "가é🧑💻\n끝", 8, 3, 6, "🧑💻"),
+16 | ])
+17 | def test_python_matches_javascript_codepoint_boundary(source: str, normalized: str, count: int, start: int, end: int, quote: str) -> N…
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 |     # Given
+19 |     helper = Path(__file__).resolve().parents[1] / "web" / "foundation.mjs"
+   |
+
+E501 Line too long (138 > 100)
+  --> tests/test_text_parity.py:17:101
+   |
+15 | …
+16 | …
+17 | …(source: str, normalized: str, count: int, start: int, end: int, quote: str) -> None:
+   |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+18 | …
+19 | …eb" / "foundation.mjs"
+   |
+
+E501 Line too long (125 > 100)
+  --> tests/test_text_parity.py:23:101
+   |
+21 |       import { normalizeLf, codePointLength, codePointSlice } from './web/foundation.mjs';
+22 |       const [source, start, end] = JSON.parse(process.argv[1]);
+23 |       process.stdout.write(JSON.stringify([normalizeLf(source), codePointLength(source), codePointSlice(source,start,end)]));
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^
+24 |     """
+25 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": quote, "start": start, "end": end, "category": "action"})
+   |
+
+E501 Line too long (128 > 100)
+  --> tests/test_text_parity.py:25:101
+   |
+23 |       process.stdout.write(JSON.stringify([normalizeLf(source), codePointLength(source), codePointSlice(source,start,end)]));
+24 |     """
+25 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": quote, "start": start, "end": end, "category": "action"})
+   |                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+26 |     # When
+27 |     result = subprocess.run(["node", "--input-type=module", "-e", script, json.dumps([source, start, end])], cwd=helper.parent.parent,…
+   |
+
+S603 `subprocess` call: check for execution of untrusted input
+  --> tests/test_text_parity.py:27:14
+   |
+25 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": quote, "start": start, "end": end, "category": "action"})
+26 |     # When
+27 |     result = subprocess.run(["node", "--input-type=module", "-e", script, json.dumps([source, start, end])], cwd=helper.parent.parent,…
+   |              ^^^^^^^^^^^^^^
+28 |     # Then
+29 |     assert json.loads(result.stdout) == [normalized, count, quote]
+   |
+
+S607 Starting a process with a partial executable path
+  --> tests/test_text_parity.py:27:29
+   |
+25 |     evidence = ExperienceEvidence.model_validate({"id": "e1", "quote": quote, "start": start, "end": end, "category": "action"})
+26 |     # When
+27 |     result = subprocess.run(["node", "--input-type=module", "-e", script, json.dumps([source, start, end])], cwd=helper.parent.parent,…
+   |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28 |     # Then
+29 |     assert json.loads(result.stdout) == [normalized, count, quote]
+   |
+
+E501 Line too long (190 > 100)
+  --> tests/test_text_parity.py:27:101
+   |
+25 | …start": start, "end": end, "category": "action"})
+26 | …
+27 | …dumps([source, start, end])], cwd=helper.parent.parent, capture_output=True, text=True, check=True, timeout=10)
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+28 | …
+29 | …
+   |
+
+E501 Line too long (113 > 100)
+  --> tests/wire_fixture.py:17:101
+   |
+17 | def response_body(text: str, *, status: str = "completed", refusal: bool = False, search: bool = False) -> bytes:
+   |                                                                                                     ^^^^^^^^^^^^^
+18 |     content: dict[str, JsonValue] = {"type": "refusal", "refusal": text} if refusal else {"type": "output_text", "text": text, "annota…
+19 |     output: list[JsonValue] = [{"type": "message", "id": "msg_fixture", "role": "assistant", "status": "completed", "content": [conten…
+   |
+
+E501 Line too long (145 > 100)
+  --> tests/wire_fixture.py:18:101
+   |
+17 | …", refusal: bool = False, search: bool = False) -> bytes:
+18 | …"refusal": text} if refusal else {"type": "output_text", "text": text, "annotations": []}
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+19 | … "msg_fixture", "role": "assistant", "status": "completed", "content": [content]}]
+20 | …
+   |
+
+E501 Line too long (138 > 100)
+  --> tests/wire_fixture.py:19:101
+   |
+17 | …ted", refusal: bool = False, search: bool = False) -> bytes:
+18 | …", "refusal": text} if refusal else {"type": "output_text", "text": text, "annotations": []}
+19 | …d": "msg_fixture", "role": "assistant", "status": "completed", "content": [content]}]
+   |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+20 | …
+21 | …l", "id": "ws_fixture", "status": "completed", "action": {"type": "search", "query": "public company role"}})
+   |
+
+E501 Line too long (162 > 100)
+  --> tests/wire_fixture.py:21:101
+   |
+19 | …ture", "role": "assistant", "status": "completed", "content": [content]}]
+20 | …
+21 | …s_fixture", "status": "completed", "action": {"type": "search", "query": "public company role"}})
+   |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+22 | …
+23 | … 1,
+   |
+
+E501 Line too long (149 > 100)
+  --> tests/wire_fixture.py:31:101
+   |
+30 | …
+31 | …mpany, "sources": [], "companyFacts": [], "jobRequirements": [], "gaps": []}), search=True)
+   |                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Found 103 errors (26 fixed, 77 remaining).

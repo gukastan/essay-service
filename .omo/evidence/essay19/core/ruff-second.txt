@@ -1,0 +1,134 @@
+PLR2004 Magic value used in comparison, consider replacing `6` with a constant variable
+   --> agent/budget.py:99:42
+    |
+ 97 |     def _reserve_model(self, role: ModelRole, tokens: int) -> None:
+ 98 |         if (
+ 99 |             sum(self._roles.values()) >= 6
+    |                                          ^
+100 |             or self._roles[role] >= ROLE_CALL_LIMITS[role]
+101 |             or self._tokens_reserved + tokens > 18000
+    |
+
+PLR2004 Magic value used in comparison, consider replacing `18000` with a constant variable
+   --> agent/budget.py:101:49
+    |
+ 99 |             sum(self._roles.values()) >= 6
+100 |             or self._roles[role] >= ROLE_CALL_LIMITS[role]
+101 |             or self._tokens_reserved + tokens > 18000
+    |                                                 ^^^^^
+102 |         ):
+103 |             raise ExecutionBudgetError("LIMIT_EXCEEDED")
+    |
+
+PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+   --> agent/budget.py:114:44
+    |
+112 |             end = min(self._research_end(), self._now() + 30.0)
+113 |             self._check(end)
+114 |             if self._native_reserved + 2 > 2:
+    |                                            ^
+115 |                 raise ExecutionBudgetError("LIMIT_EXCEEDED")
+116 |             self._reserve_model("research", 3000)
+    |
+
+C901 `research` is too complex (12 > 10)
+  --> agent/mcp_client.py:74:15
+   |
+72 |         await self._stack.aclose()
+73 |
+74 |     async def research(
+   |               ^^^^^^^^
+75 |         self,
+76 |         input: ResearchInput | DraftRequest,
+   |
+
+C901 `invoke` is too complex (11 > 10)
+  --> agent/mcp_client.py:87:19
+   |
+85 |         )
+86 |
+87 |         async def invoke(context: OperationContext) -> ResearchReport:
+   |                   ^^^^^^
+88 |             remaining = min(
+89 |                 context.timeout_seconds, anyio.current_effective_deadline() - anyio.current_time()
+   |
+
+E501 Line too long (120 > 100)
+   --> agent/mcp_client.py:123:101
+    |
+121 |                                 budget.cancel()
+122 |                                 raise MCPError("TIMEOUT")
+123 |                             case "CONFIG_ERROR" | "MODEL_ERROR" | "REFUSAL" | "INCOMPLETE" | "INVALID_RESPONSE" as code:
+    |                                                                                                     ^^^^^^^^^^^^^^^^^^^^
+124 |                                 raise MCPError(code)
+125 |                 raise MCPError("PROTOCOL_ERROR")
+    |
+
+C416 Unnecessary dict comprehension (rewrite using `dict()`)
+  --> agent/provider_schema.py:46:23
+   |
+44 |     """Bridge the SDK invariant dictionary type without widening domain values."""
+45 |     return {"type": "json_schema", "name": name, "strict": True,
+46 |             "schema": {key: value for key, value in strict_schema(schema).items()}}
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: Rewrite using `dict()`
+   |
+45 |     return {"type": "json_schema", "name": name, "strict": True,
+   -             "schema": {key: value for key, value in strict_schema(schema).items()}}
+46 +             "schema": dict(strict_schema(schema).items())}
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+TC001 Move application import `agent.limits.ModelRole` into a type-checking block
+  --> agent/providers.py:13:39
+   |
+11 |     from agent.budget import ExecutionBudget
+12 | from agent.limits import ROLE_OUTPUT_TOKENS as ROLE_OUTPUT_TOKENS
+13 | from agent.limits import ModelRole as ModelRole
+   |                                       ^^^^^^^^^
+help: Move into type-checking block
+   |
+10 | if TYPE_CHECKING:
+11 +     from agent.limits import ModelRole as ModelRole
+12 |     from agent.budget import ExecutionBudget
+13 | from agent.limits import ROLE_OUTPUT_TOKENS as ROLE_OUTPUT_TOKENS
+   - from agent.limits import ModelRole as ModelRole
+14 |
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+  --> agent/research.py:92:27
+   |
+90 |                         urls = (action.url,) if action.url else ()
+91 |                 actions.append(ResearchAction(type=action.type, urls=urls))
+92 |         if len(actions) > 2:
+   |                           ^
+93 |             raise ProviderError("INVALID_RESPONSE")
+94 |         return ResearchReport(
+   |
+
+E501 Line too long (103 > 100)
+  --> mcp_server.py:57:101
+   |
+55 |                 raw = {key: value for key, value in raw.items() if key not in {
+56 |                     "progressToken", "io.modelcontextprotocol/protocolVersion",
+57 |                     "io.modelcontextprotocol/clientInfo", "io.modelcontextprotocol/clientCapabilities",
+   |                                                                                                     ^^^
+58 |                     "io.modelcontextprotocol/logLevel",
+59 |                 }}
+   |
+
+TRY003 Avoid specifying long messages outside the exception class
+  --> server.py:58:19
+   |
+56 |     async def health() -> Health:
+57 |         if runtime is None:
+58 |             raise RuntimeError("Server lifespan is not running")
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+59 |         return Health(
+60 |             model_configured=runtime.settings.model_configured,
+   |
+
+Found 18 errors (7 fixed, 11 remaining).
+2 unsafe fixes available with `--fix --unsafe-fixes`.

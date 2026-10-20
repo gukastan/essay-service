@@ -1,0 +1,478 @@
+
+{
+    "version": "1.40.2",
+    "time": "1792478203386",
+    "generalDiagnostics": [
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/agent/research.py",
+            "severity": "error",
+            "message": "Pattern will never be matched for subject type \"Never\"",
+            "range": {
+                "start": {
+                    "line": 91,
+                    "character": 25
+                },
+                "end": {
+                    "line": 91,
+                    "character": 36
+                }
+            },
+            "rule": "reportUnnecessaryComparison"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+            "severity": "error",
+            "message": "\"ctx\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 19,
+                    "character": 54
+                },
+                "end": {
+                    "line": 19,
+                    "character": 57
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+            "severity": "error",
+            "message": "Pattern will never be matched for subject type \"Never\"",
+            "range": {
+                "start": {
+                    "line": 42,
+                    "character": 13
+                },
+                "end": {
+                    "line": 42,
+                    "character": 24
+                }
+            },
+            "rule": "reportUnnecessaryComparison"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+            "severity": "error",
+            "message": "Code is unreachable",
+            "range": {
+                "start": {
+                    "line": 43,
+                    "character": 12
+                },
+                "end": {
+                    "line": 43,
+                    "character": 41
+                }
+            },
+            "rule": "reportUnreachable"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+            "severity": "error",
+            "message": "\"context\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 103,
+                    "character": 19
+                },
+                "end": {
+                    "line": 103,
+                    "character": 26
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+            "severity": "error",
+            "message": "\"context\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 127,
+                    "character": 22
+                },
+                "end": {
+                    "line": 127,
+                    "character": 29
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+            "severity": "error",
+            "message": "\"context\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 171,
+                    "character": 19
+                },
+                "end": {
+                    "line": 171,
+                    "character": 26
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_budget_timing.py",
+            "severity": "error",
+            "message": "\"context\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 32,
+                    "character": 23
+                },
+                "end": {
+                    "line": 32,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_budget_timing.py",
+            "severity": "error",
+            "message": "\"context\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 45,
+                    "character": 23
+                },
+                "end": {
+                    "line": 45,
+                    "character": 30
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+            "severity": "error",
+            "message": "Type of \"deps\" is Any",
+            "range": {
+                "start": {
+                    "line": 21,
+                    "character": 8
+                },
+                "end": {
+                    "line": 21,
+                    "character": 12
+                }
+            },
+            "rule": "reportAny"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+            "severity": "error",
+            "message": "Type of \"deps\" is Any",
+            "range": {
+                "start": {
+                    "line": 21,
+                    "character": 29
+                },
+                "end": {
+                    "line": 21,
+                    "character": 43
+                }
+            },
+            "rule": "reportAny"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+            "severity": "error",
+            "message": "Type of \"deps\" is Any",
+            "range": {
+                "start": {
+                    "line": 29,
+                    "character": 23
+                },
+                "end": {
+                    "line": 29,
+                    "character": 37
+                }
+            },
+            "rule": "reportAny"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+            "severity": "error",
+            "message": "Instance variable \"model_config\" overrides class variable of same name in class \"BaseModel\"",
+            "range": {
+                "start": {
+                    "line": 27,
+                    "character": 4
+                },
+                "end": {
+                    "line": 27,
+                    "character": 16
+                }
+            },
+            "rule": "reportIncompatibleVariableOverride"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+            "severity": "error",
+            "message": "Type of \"summary\" is partially unknown\n  Type of \"summary\" is \"dict[str, str | int | dict[Unknown, Unknown]]\"",
+            "range": {
+                "start": {
+                    "line": 48,
+                    "character": 4
+                },
+                "end": {
+                    "line": 48,
+                    "character": 11
+                }
+            },
+            "rule": "reportUnknownVariableType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+            "severity": "error",
+            "message": "Type of \"update\" is partially unknown\n  Type of \"update\" is \"Overload[(m: SupportsKeysAndGetItem[Unknown, Unknown], /) -> None, (m: SupportsKeysAndGetItem[str, Unknown], /, **kwargs: Unknown) -> None, (m: Iterable[tuple[Unknown, Unknown]], /) -> None, (m: Iterable[tuple[str, Unknown]], /, **kwargs: Unknown) -> None, (**kwargs: Unknown) -> None]\"",
+            "range": {
+                "start": {
+                    "line": 60,
+                    "character": 8
+                },
+                "end": {
+                    "line": 60,
+                    "character": 31
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+            "severity": "error",
+            "message": "Type of \"update\" is partially unknown\n  Type of \"update\" is \"Overload[(m: SupportsKeysAndGetItem[Unknown, Unknown], /) -> None, (m: SupportsKeysAndGetItem[str, Unknown], /, **kwargs: Unknown) -> None, (m: Iterable[tuple[Unknown, Unknown]], /) -> None, (m: Iterable[tuple[str, Unknown]], /, **kwargs: Unknown) -> None, (**kwargs: Unknown) -> None]\"",
+            "range": {
+                "start": {
+                    "line": 68,
+                    "character": 8
+                },
+                "end": {
+                    "line": 68,
+                    "character": 34
+                }
+            },
+            "rule": "reportUnknownMemberType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+            "severity": "error",
+            "message": "\"payload\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 30,
+                    "character": 16
+                },
+                "end": {
+                    "line": 30,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+            "severity": "error",
+            "message": "Import \"OperationContext\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 10,
+                    "character": 64
+                },
+                "end": {
+                    "line": 10,
+                    "character": 80
+                }
+            },
+            "rule": "reportUnusedImport"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+            "severity": "error",
+            "message": "Cases within match statement do not exhaustively handle all values\n  Unhandled type: \"str\"\n  If exhaustive handling is not intended, add \"case _: pass\"",
+            "range": {
+                "start": {
+                    "line": 22,
+                    "character": 10
+                },
+                "end": {
+                    "line": 22,
+                    "character": 18
+                }
+            },
+            "rule": "reportMatchNotExhaustive"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+            "severity": "error",
+            "message": "\"payload\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 43,
+                    "character": 16
+                },
+                "end": {
+                    "line": 43,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+            "severity": "error",
+            "message": "Instance variable \"model_config\" overrides class variable of same name in class \"BaseModel\"",
+            "range": {
+                "start": {
+                    "line": 14,
+                    "character": 4
+                },
+                "end": {
+                    "line": 14,
+                    "character": 16
+                }
+            },
+            "rule": "reportIncompatibleVariableOverride"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+            "severity": "error",
+            "message": "\"request\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 66,
+                    "character": 16
+                },
+                "end": {
+                    "line": 66,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+            "severity": "error",
+            "message": "\"request\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 84,
+                    "character": 16
+                },
+                "end": {
+                    "line": 84,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Argument of type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" cannot be assigned to parameter \"action\" of type \"StateNode[NodeInputT@add_node, None]\" in function \"add_node\"\n  Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"StateNode[NodeInputT@add_node, None]\"\n    \"FunctionType\" is not assignable to \"Runnable[NodeInputT@add_node, Any]\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node) -> Any\"\n      Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node, config: RunnableConfig) -> Any\"\n      Function accepts too few positional parameters; expected 2 but received 1\n        Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node, *, config: RunnableConfig, store: BaseStore) -> Any\"\n  ...",
+            "range": {
+                "start": {
+                    "line": 49,
+                    "character": 43
+                },
+                "end": {
+                    "line": 49,
+                    "character": 56
+                }
+            },
+            "rule": "reportArgumentType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Argument of type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" cannot be assigned to parameter \"action\" of type \"StateNode[NodeInputT@add_node, None]\" in function \"add_node\"\n  Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"StateNode[NodeInputT@add_node, None]\"\n    \"FunctionType\" is not assignable to \"Runnable[NodeInputT@add_node, Any]\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node) -> Any\"\n      Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node, config: RunnableConfig) -> Any\"\n      Function accepts too few positional parameters; expected 2 but received 1\n        Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> CoroutineType[Any, Any, WorkflowState]\" is not assignable to type \"(state: NodeInputT@add_node, *, config: RunnableConfig, store: BaseStore) -> Any\"\n  ...",
+            "range": {
+                "start": {
+                    "line": 50,
+                    "character": 43
+                },
+                "end": {
+                    "line": 50,
+                    "character": 56
+                }
+            },
+            "rule": "reportArgumentType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Pattern will never be matched for subject type \"Never\"",
+            "range": {
+                "start": {
+                    "line": 80,
+                    "character": 17
+                },
+                "end": {
+                    "line": 80,
+                    "character": 28
+                }
+            },
+            "rule": "reportUnnecessaryComparison"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Argument of type \"(_state: WorkflowState) -> WorkflowState\" cannot be assigned to parameter \"action\" of type \"StateNode[NodeInputT@add_node, None]\" in function \"add_node\"\n  Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"StateNode[NodeInputT@add_node, None]\"\n    \"FunctionType\" is not assignable to \"Runnable[NodeInputT@add_node, Any]\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node) -> Any\"\n      Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, config: RunnableConfig) -> Any\"\n      Function accepts too few positional parameters; expected 2 but received 1\n        Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, *, config: RunnableConfig, store: BaseStore) -> Any\"\n  ...",
+            "range": {
+                "start": {
+                    "line": 103,
+                    "character": 33
+                },
+                "end": {
+                    "line": 103,
+                    "character": 39
+                }
+            },
+            "rule": "reportArgumentType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Argument of type \"(_state: WorkflowState) -> WorkflowState\" cannot be assigned to parameter \"action\" of type \"StateNode[NodeInputT@add_node, None]\" in function \"add_node\"\n  Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"StateNode[NodeInputT@add_node, None]\"\n    \"FunctionType\" is not assignable to \"Runnable[NodeInputT@add_node, Any]\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node) -> Any\"\n      Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, config: RunnableConfig) -> Any\"\n      Function accepts too few positional parameters; expected 2 but received 1\n        Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, *, config: RunnableConfig, store: BaseStore) -> Any\"\n  ...",
+            "range": {
+                "start": {
+                    "line": 104,
+                    "character": 35
+                },
+                "end": {
+                    "line": 104,
+                    "character": 43
+                }
+            },
+            "rule": "reportArgumentType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "Argument of type \"(_state: WorkflowState) -> WorkflowState\" cannot be assigned to parameter \"action\" of type \"StateNode[NodeInputT@add_node, None]\" in function \"add_node\"\n  Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"StateNode[NodeInputT@add_node, None]\"\n    \"FunctionType\" is not assignable to \"Runnable[NodeInputT@add_node, Any]\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node) -> Any\"\n      Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, config: RunnableConfig) -> Any\"\n      Function accepts too few positional parameters; expected 2 but received 1\n        Parameter name mismatch: \"state\" versus \"_state\"\n    Type \"(_state: WorkflowState) -> WorkflowState\" is not assignable to type \"(state: NodeInputT@add_node, *, config: RunnableConfig, store: BaseStore) -> Any\"\n  ...",
+            "range": {
+                "start": {
+                    "line": 124,
+                    "character": 34
+                },
+                "end": {
+                    "line": 124,
+                    "character": 41
+                }
+            },
+            "rule": "reportArgumentType"
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 31,
+        "errorCount": 29,
+        "warningCount": 0,
+        "informationCount": 0,
+        "timeInSec": 1.346
+    }
+}

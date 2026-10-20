@@ -1,0 +1,4 @@
+d296aa9ad55a1b5148863a0330da36771850783a8b25cf70ac144cfb50c09617  assignment/run.sh
+416f3ab598424f7ba2eac75e086d77d0e867f733a55c03b572ce46e8783d368f  assignment/.env.example
+adef21f0743ada51fca35009d5338247a88862bebc6851195624428f0f3b20b4  assignment/README.md
+d8a97acb8f4f7ca0e999c9512c97fb43b543a3cecef36cc004c7069d6534f9af  assignment/web/foundation.mjs

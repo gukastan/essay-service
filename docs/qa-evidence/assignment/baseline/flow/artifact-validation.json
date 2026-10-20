@@ -1,0 +1,11 @@
+{
+  "checked_at": "2026-10-20T05:34:59.318Z",
+  "api_checks": 25,
+  "mcp_checks": 8,
+  "all_checks_pass": true,
+  "forbidden_persisted_keys": [],
+  "node_syntax_check_exit": 0,
+  "python_audit": "python-audit.log",
+  "source_audit_files": 6,
+  "scope": "owned flow files only; no source changes"
+}

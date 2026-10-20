@@ -1,0 +1,382 @@
+[
+  {
+    "cell": null,
+    "code": "FBT001",
+    "end_location": {
+      "column": 13,
+      "row": 31
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 31
+    },
+    "message": "Boolean-typed positional argument in function definition",
+    "name": "boolean-type-hint-positional-argument",
+    "noqa_row": 31,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/boolean-type-hint-positional-argument"
+  },
+  {
+    "cell": null,
+    "code": "TRY003",
+    "end_location": {
+      "column": 50,
+      "row": 115
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 15,
+      "row": 115
+    },
+    "message": "Avoid specifying long messages outside the exception class",
+    "name": "raise-vanilla-args",
+    "noqa_row": 115,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/raise-vanilla-args"
+  },
+  {
+    "cell": null,
+    "code": "PT011",
+    "end_location": {
+      "column": 31,
+      "row": 118
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 118
+    },
+    "message": "`pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception",
+    "name": "pytest-raises-too-broad",
+    "noqa_row": 118,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-raises-too-broad"
+  },
+  {
+    "cell": null,
+    "code": "ASYNC240",
+    "end_location": {
+      "column": 34,
+      "row": 65
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 65
+    },
+    "message": "Async functions should not perform blocking pathlib.Path operations",
+    "name": "blocking-path-method-in-async-function",
+    "noqa_row": 65,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blocking-path-method-in-async-function"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 1
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 1
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 5,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "ASYNC240",
+    "end_location": {
+      "column": 34,
+      "row": 68
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 68
+    },
+    "message": "Async functions should not perform blocking pathlib.Path operations",
+    "name": "blocking-path-method-in-async-function",
+    "noqa_row": 68,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blocking-path-method-in-async-function"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 90,
+      "row": 78
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 78
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 78,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 104,
+      "row": 94
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 94
+    },
+    "message": "Line too long (103 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 94,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 96,
+      "row": 44
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 43
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 43,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 98
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 97
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 97,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 96,
+      "row": 118
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 117
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 117,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 140
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 139
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 139,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 168
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 167
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 167,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "TRY003",
+    "end_location": {
+      "column": 41,
+      "row": 131
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 15,
+      "row": 131
+    },
+    "message": "Avoid specifying long messages outside the exception class",
+    "name": "raise-vanilla-args",
+    "noqa_row": 131,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/raise-vanilla-args"
+  },
+  {
+    "cell": null,
+    "code": "PT011",
+    "end_location": {
+      "column": 31,
+      "row": 138
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 138
+    },
+    "message": "`pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception",
+    "name": "pytest-raises-too-broad",
+    "noqa_row": 138,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-raises-too-broad"
+  },
+  {
+    "cell": null,
+    "code": "PLR0913",
+    "end_location": {
+      "column": 54,
+      "row": 20
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 20
+    },
+    "message": "Too many arguments in function definition (6 > 5)",
+    "name": "too-many-arguments",
+    "noqa_row": 20,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/too-many-arguments"
+  },
+  {
+    "cell": null,
+    "code": "PLR0917",
+    "end_location": {
+      "column": 54,
+      "row": 20
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 20
+    },
+    "message": "Too many positional arguments (6 > 5)",
+    "name": "too-many-positional-arguments",
+    "noqa_row": 20,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/too-many-positional-arguments"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 126,
+      "row": 28
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 28
+    },
+    "message": "Line too long (125 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 29,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "S603",
+    "end_location": {
+      "column": 28,
+      "row": 34
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 14,
+      "row": 34
+    },
+    "message": "`subprocess` call: check for execution of untrusted input",
+    "name": "subprocess-without-shell-equals-true",
+    "noqa_row": 34,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/subprocess-without-shell-equals-true"
+  },
+  {
+    "cell": null,
+    "code": "S607",
+    "end_location": {
+      "column": 88,
+      "row": 35
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 35
+    },
+    "message": "Starting a process with a partial executable path",
+    "name": "start-process-with-partial-path",
+    "noqa_row": 35,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/start-process-with-partial-path"
+  }
+]

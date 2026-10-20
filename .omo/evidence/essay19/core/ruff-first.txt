@@ -1,0 +1,178 @@
+agent/budget.py:1:1: CPY001 Missing copyright notice at top of file
+agent/budget.py:12:7: D101 Missing docstring in public class
+agent/budget.py:13:9: D107 Missing docstring in `__init__`
+agent/budget.py:19:7: D101 Missing docstring in public class
+agent/budget.py:24:7: D101 Missing docstring in public class
+agent/budget.py:34:9: D107 Missing docstring in `__init__`
+agent/budget.py:45:9: D102 Missing docstring in public method
+agent/budget.py:55:40: EM101 Exception must not use a string literal, assign to variable first
+agent/budget.py:62:15: D102 Missing docstring in public method
+agent/budget.py:73:42: PLR2004 Magic value used in comparison, consider replacing `6` with a constant variable
+agent/budget.py:74:53: PLR2004 Magic value used in comparison, consider replacing `18000` with a constant variable
+agent/budget.py:75:40: EM101 Exception must not use a string literal, assign to variable first
+agent/budget.py:78:15: D102 Missing docstring in public method
+agent/budget.py:84:44: PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+agent/budget.py:85:44: EM101 Exception must not use a string literal, assign to variable first
+agent/budget.py:89:15: D102 Missing docstring in public method
+agent/budget.py:96:44: EM101 Exception must not use a string literal, assign to variable first
+agent/budget.py:99:15: D102 Missing docstring in public method
+agent/budget.py:105:15: D102 Missing docstring in public method
+agent/budget.py:114:9: D102 Missing docstring in public method
+agent/budget.py:135:13: TRY300 Consider moving this statement to an `else` block
+agent/contract_evidence.py:1:1: CPY001 Missing copyright notice at top of file
+agent/contract_evidence.py:11:7: D101 Missing docstring in public class
+agent/contract_evidence.py:20:7: D101 Missing docstring in public class
+agent/contract_evidence.py:25:7: D101 Missing docstring in public class
+agent/contract_evidence.py:34:7: D101 Missing docstring in public class
+agent/contract_evidence.py:40:7: D101 Missing docstring in public class
+agent/contract_evidence.py:46:7: D101 Missing docstring in public class
+agent/contract_evidence.py:54:9: D102 Missing docstring in public method
+agent/contract_evidence.py:56:39: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_evidence.py:68:7: D101 Missing docstring in public class
+agent/contract_evidence.py:75:9: D102 Missing docstring in public method
+agent/contract_evidence.py:77:39: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_evidence.py:81:7: D101 Missing docstring in public class
+agent/contract_evidence.py:87:7: D101 Missing docstring in public class
+agent/contract_input.py:1:1: CPY001 Missing copyright notice at top of file
+agent/contract_input.py:16:5: D103 Missing docstring in public function
+agent/contract_input.py:20:5: D103 Missing docstring in public function
+agent/contract_input.py:22:35: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_input.py:26:5: D103 Missing docstring in public function
+agent/contract_input.py:35:35: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_input.py:39:5: D103 Missing docstring in public function
+agent/contract_input.py:50:5: D103 Missing docstring in public function
+agent/contract_input.py:52:35: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_input.py:64:7: D101 Missing docstring in public class
+agent/contract_input.py:74:7: D101 Missing docstring in public class
+agent/contract_results.py:1:1: CPY001 Missing copyright notice at top of file
+agent/contract_results.py:21:7: D101 Missing docstring in public class
+agent/contract_results.py:29:7: D101 Missing docstring in public class
+agent/contract_results.py:34:7: D101 Missing docstring in public class
+agent/contract_results.py:40:7: D101 Missing docstring in public class
+agent/contract_results.py:46:7: D101 Missing docstring in public class
+agent/contract_results.py:52:9: D102 Missing docstring in public method
+agent/contract_results.py:54:39: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_results.py:58:7: D101 Missing docstring in public class
+agent/contract_results.py:63:7: D101 Missing docstring in public class
+agent/contract_results.py:71:7: D101 Missing docstring in public class
+agent/contract_results.py:82:9: D102 Missing docstring in public method
+agent/contract_results.py:84:39: EM101 Exception must not use a string literal, assign to variable first
+agent/contract_results.py:88:7: D101 Missing docstring in public class
+agent/contract_results.py:102:7: D101 Missing docstring in public class
+agent/contracts.py:1:1: CPY001 Missing copyright notice at top of file
+agent/contracts.py:4:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:7:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:10:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:13:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:16:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:19:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:22:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:25:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:28:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:31:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:34:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:37:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:40:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:43:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:46:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:49:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:52:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:55:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:58:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:61:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:64:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:67:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:70:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:73:5: PLC0414 Import alias does not rename original package
+agent/contracts.py:76:5: PLC0414 Import alias does not rename original package
+agent/deps.py:1:1: CPY001 Missing copyright notice at top of file
+agent/deps.py:13:7: D101 Missing docstring in public class
+agent/deps.py:19:7: D101 Missing docstring in public class
+agent/deps.py:22:9: D102 Missing docstring in public method
+agent/deps.py:22:27: A002 Function argument `input` is shadowing a Python builtin
+agent/deps.py:24:5: D103 Missing docstring in public function
+agent/deps.py:24:17: A002 Function argument `input` is shadowing a Python builtin
+agent/mcp_client.py:1:1: CPY001 Missing copyright notice at top of file
+agent/mcp_client.py:22:7: D101 Missing docstring in public class
+agent/mcp_client.py:23:9: D107 Missing docstring in `__init__`
+agent/mcp_client.py:32:9: D107 Missing docstring in `__init__`
+agent/mcp_client.py:35:101: E501 Line too long (102 > 100)
+agent/mcp_client.py:40:9: D102 Missing docstring in public method
+agent/mcp_client.py:42:15: D105 Missing docstring in magic method
+agent/mcp_client.py:45:15: D105 Missing docstring in magic method
+agent/mcp_client.py:50:15: D102 Missing docstring in public method
+agent/mcp_client.py:51:15: A002 Function argument `input` is shadowing a Python builtin
+agent/mcp_client.py:63:101: E501 Line too long (102 > 100)
+agent/mcp_client.py:69:32: EM101 Exception must not use a string literal, assign to variable first
+agent/mcp_client.py:72:32: EM101 Exception must not use a string literal, assign to variable first
+agent/mcp_client.py:77:40: EM101 Exception must not use a string literal, assign to variable first
+agent/mcp_client.py:78:32: EM101 Exception must not use a string literal, assign to variable first
+agent/mcp_client.py:82:32: EM101 Exception must not use a string literal, assign to variable first
+agent/mcp_client.py:84:32: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:1:1: CPY001 Missing copyright notice at top of file
+agent/openai_llm.py:20:41: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:22:29: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:26:29: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:28:101: E501 Line too long (101 > 100)
+agent/openai_llm.py:31:7: D101 Missing docstring in public class
+agent/openai_llm.py:35:15: D102 Missing docstring in public method
+agent/openai_llm.py:39:33: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:55:37: EM101 Exception must not use a string literal, assign to variable first
+agent/openai_llm.py:57:37: EM101 Exception must not use a string literal, assign to variable first
+agent/provider_schema.py:1:1: CPY001 Missing copyright notice at top of file
+agent/provider_schema.py:13:15: TRY003 Avoid specifying long messages outside the exception class
+agent/provider_schema.py:13:25: EM101 Exception must not use a string literal, assign to variable first
+agent/providers.py:1:1: CPY001 Missing copyright notice at top of file
+agent/providers.py:19:7: D101 Missing docstring in public class
+agent/providers.py:25:7: D101 Missing docstring in public class
+agent/providers.py:29:7: D101 Missing docstring in public class
+agent/providers.py:32:7: D101 Missing docstring in public class
+agent/providers.py:33:15: D102 Missing docstring in public method
+agent/providers.py:39:9: D107 Missing docstring in `__init__`
+agent/research.py:1:1: CPY001 Missing copyright notice at top of file
+agent/research.py:18:7: D101 Missing docstring in public class
+agent/research.py:22:7: D101 Missing docstring in public class
+agent/research.py:26:7: D101 Missing docstring in public class
+agent/research.py:35:7: D101 Missing docstring in public class
+agent/research.py:36:15: D102 Missing docstring in public method
+agent/research.py:36:30: A002 Function argument `input` is shadowing a Python builtin
+agent/research.py:36:101: E501 Line too long (101 > 100)
+agent/research.py:39:7: D101 Missing docstring in public class
+agent/research.py:43:15: D102 Missing docstring in public method
+agent/research.py:43:30: A002 Function argument `input` is shadowing a Python builtin
+agent/research.py:45:33: EM101 Exception must not use a string literal, assign to variable first
+agent/research.py:66:33: EM101 Exception must not use a string literal, assign to variable first
+agent/research.py:68:33: EM101 Exception must not use a string literal, assign to variable first
+agent/research.py:81:27: PLR2004 Magic value used in comparison, consider replacing `2` with a constant variable
+agent/research.py:82:33: EM101 Exception must not use a string literal, assign to variable first
+agent/settings.py:1:1: CPY001 Missing copyright notice at top of file
+agent/settings.py:13:7: D101 Missing docstring in public class
+agent/settings.py:21:9: D102 Missing docstring in public method
+agent/state.py:1:1: CPY001 Missing copyright notice at top of file
+agent/state.py:20:7: D101 Missing docstring in public class
+agent/state.py:21:9: D107 Missing docstring in `__init__`
+agent/state.py:21:101: E501 Line too long (108 > 100)
+agent/state.py:24:5: D103 Missing docstring in public function
+agent/state.py:26:34: EM101 Exception must not use a string literal, assign to variable first
+agent/state.py:28:5: D103 Missing docstring in public function
+agent/state.py:30:34: EM101 Exception must not use a string literal, assign to variable first
+agent/state.py:32:34: EM101 Exception must not use a string literal, assign to variable first
+agent/state.py:34:7: D101 Missing docstring in public class
+agent/state.py:39:7: D101 Missing docstring in public class
+agent/state.py:53:5: D103 Missing docstring in public function
+agent/state.py:54:5: A002 Function argument `input` is shadowing a Python builtin
+mcp_server.py:1:1: CPY001 Missing copyright notice at top of file
+mcp_server.py:40:37: A002 Function argument `input` is shadowing a Python builtin
+mcp_server.py:46:29: EM101 Exception must not use a string literal, assign to variable first
+mcp_server.py:48:29: EM101 Exception must not use a string literal, assign to variable first
+server.py:1:1: CPY001 Missing copyright notice at top of file
+server.py:14:1: E402 Module level import not at top of file
+server.py:15:1: E402 Module level import not at top of file
+server.py:16:1: E402 Module level import not at top of file
+server.py:19:7: D101 Missing docstring in public class
+server.py:27:7: D101 Missing docstring in public class
+server.py:50:25: FAST001 FastAPI route with redundant `response_model` argument
+server.py:53:19: TRY003 Avoid specifying long messages outside the exception class
+server.py:53:32: EM101 Exception must not use a string literal, assign to variable first
+Found 193 errors (17 fixed, 176 remaining).
+60 unsafe fixes available with `--fix --unsafe-fixes`.

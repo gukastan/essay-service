@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "9cb7c2b8-9c60-41c1-9fb3-f3e03a975758",
+  "teamName": "essay19-foundation",
+  "sessionName": "essay19-python-mcp",
+  "sessionId": "team-995fcbc8",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-20T06:05:33.543Z",
+  "updatedAt": "2026-10-20T06:59:48.102Z",
+  "archivedAt": "2026-10-20T06:59:48.102Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-995fcbc8/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-995fcbc8",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-995fcbc8/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-995fcbc8/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-995fcbc8/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "foundation-core",
+      "focus": "assignment Python common contracts/state/budget/providers, MCP client/server, deps/lifespan and dependency config; sole owner of shared product foundation files",
+      "lens": "ownership",
+      "deliverable": "ESSAY-19 foundation implementation, published typed API for test/runtime peers, pinned dependencies and implementation evidence",
+      "taskName": "essay19_foundation_core",
+      "agentPath": "/root/essay19_foundation_core",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "C",
+      "name": "launch-text-boundary",
+      "focus": "assignment/run.sh, assignment/.env.example, assignment/README.md, assignment/web/foundation.mjs and docs/qa-evidence/assignment/foundation/runtime only",
+      "lens": "ownership",
+      "deliverable": "Safe owned-process launcher/config docs, code-point/browser timeout helpers and clean-install startup/shutdown evidence coordinated with core",
+      "taskName": "essay19_launch_text",
+      "agentPath": "/root/essay19_launch_text",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "foundation-checks",
+      "focus": "assignment/tests and docs/qa-evidence/assignment/foundation/checks only; independent contract/budget/MCP/lifecycle and provider wire verification",
+      "lens": "ownership",
+      "deliverable": "Meaningful automated regressions incl real MCP boundary and verification evidence; no product code or dependency edits",
+      "taskName": "essay19_foundation_checks",
+      "agentPath": "/root/essay19_foundation_checks",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-20T06:05:33.543Z",
+      "event": "created",
+      "detail": "team essay19-foundation"
+    },
+    {
+      "ts": "2026-10-20T06:06:01.480Z",
+      "event": "add-member",
+      "detail": "member A (ownership): assignment Python common contracts/state/budget/providers, MCP client/server, deps/lifespan and dependency config; sole owner of shared product foundation files"
+    },
+    {
+      "ts": "2026-10-20T06:06:01.498Z",
+      "event": "add-member",
+      "detail": "member C (ownership): assignment/run.sh, assignment/.env.example, assignment/README.md, assignment/web/foundation.mjs and docs/qa-evidence/assignment/foundation/runtime only"
+    },
+    {
+      "ts": "2026-10-20T06:06:01.524Z",
+      "event": "add-member",
+      "detail": "member B (ownership): assignment/tests and docs/qa-evidence/assignment/foundation/checks only; independent contract/budget/MCP/lifecycle and provider wire verification"
+    },
+    {
+      "ts": "2026-10-20T06:07:30.285Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/essay19_foundation_core"
+    },
+    {
+      "ts": "2026-10-20T06:07:30.373Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/essay19_foundation_checks"
+    },
+    {
+      "ts": "2026-10-20T06:07:30.460Z",
+      "event": "bind-agent",
+      "detail": "member C -> agent /root/essay19_launch_text"
+    },
+    {
+      "ts": "2026-10-20T06:59:39.797Z",
+      "event": "set-status",
+      "detail": "member A -> reported: Accepted core-handoff artifact; final product stable,131 tests and live compatibility passed; closing turn capacity error did not affect delivered evidence."
+    },
+    {
+      "ts": "2026-10-20T06:59:42.358Z",
+      "event": "set-status",
+      "detail": "member B -> reported: Accepted131 Python/12JS, strict0, final report and exact live-command correction; delivered before final capacity error."
+    },
+    {
+      "ts": "2026-10-20T06:59:45.117Z",
+      "event": "set-status",
+      "detail": "member C -> reported: Accepted final launcher/helper/readme and clean install/runtime5/installer3 evidence; owned resources removed."
+    },
+    {
+      "ts": "2026-10-20T06:59:48.102Z",
+      "event": "archive",
+      "detail": "ESSAY-19 Done.131 Python+12JS, strict0, real Vue5/runtime5/installer3, actual model2 passed. No worktrees or commits. Owned servers/children/browser/temp roots closed. A/B artifacts accepted; closing capacity errors recorded. MultiAgentV2 exposes no runtime archive operation; this durable state is archival evidence."
+    }
+  ]
+}

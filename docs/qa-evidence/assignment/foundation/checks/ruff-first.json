@@ -1,0 +1,2375 @@
+[
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 42,
+      "row": 16
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import os\nfrom typing import Literal, assert_never\nfrom uuid import uuid4\n\nimport anyio\nfrom fastmcp import Context, FastMCP\nfrom fastmcp.tools import ToolResult\nfrom pydantic import TypeAdapter\n\nfrom agent.contracts import ResearchInput\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 18
+          },
+          "location": {
+            "column": 1,
+            "row": 9
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 9
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "RET503",
+    "end_location": {
+      "column": 42,
+      "row": 46
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "\n    return None",
+          "end_location": {
+            "column": 42,
+            "row": 46
+          },
+          "location": {
+            "column": 42,
+            "row": 46
+          }
+        }
+      ],
+      "message": "Add explicit `return` statement"
+    },
+    "location": {
+      "column": 1,
+      "row": 21
+    },
+    "message": "Missing explicit `return` at the end of function able to return non-`None` value",
+    "name": "implicit-return",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/implicit-return"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 43
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/mcp_adversary.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 43
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 43,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 34,
+      "row": 15
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/mcp_wire_server.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import json\nimport os\nfrom pathlib import Path\n\nfrom openai import AsyncOpenAI\n\nfrom agent.research import OpenAIResearchProvider\nfrom mcp_server import create_mcp\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 17
+          },
+          "location": {
+            "column": 1,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 8
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 107,
+      "row": 18
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/mcp_wire_server.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 18
+    },
+    "message": "Line too long (106 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 18,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 67,
+      "row": 27
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"revision\", \"expected_calls\", \"expected_tokens\")",
+          "end_location": {
+            "column": 67,
+            "row": 27
+          },
+          "location": {
+            "column": 26,
+            "row": 27
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 27
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 27,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 107,
+      "row": 27
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 27
+    },
+    "message": "Line too long (106 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 27,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "FBT001",
+    "end_location": {
+      "column": 57,
+      "row": 28
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 49,
+      "row": 28
+    },
+    "message": "Boolean-typed positional argument in function definition",
+    "name": "boolean-type-hint-positional-argument",
+    "noqa_row": 28,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/boolean-type-hint-positional-argument"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 116,
+      "row": 28
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 28
+    },
+    "message": "Line too long (115 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 28,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 135,
+      "row": 40
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 40
+    },
+    "message": "Line too long (134 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 40,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "TRY003",
+    "end_location": {
+      "column": 50,
+      "row": 107
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 15,
+      "row": 107
+    },
+    "message": "Avoid specifying long messages outside the exception class",
+    "name": "raise-vanilla-args",
+    "noqa_row": 107,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/raise-vanilla-args"
+  },
+  {
+    "cell": null,
+    "code": "PT011",
+    "end_location": {
+      "column": 31,
+      "row": 110
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 110
+    },
+    "message": "`pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception",
+    "name": "pytest-raises-too-broad",
+    "noqa_row": 110,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-raises-too-broad"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 44,
+      "row": 153
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"elapsed\", \"expected\")",
+          "end_location": {
+            "column": 44,
+            "row": 153
+          },
+          "location": {
+            "column": 26,
+            "row": 153
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 153
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 153,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 108,
+      "row": 210
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 210
+    },
+    "message": "Line too long (107 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 210,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 46,
+      "row": 5
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget_timing.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Literal\n\nimport pytest\n\nfrom agent.budget import ExecutionBudget, ExecutionBudgetError, OperationContext\nfrom tests.test_budget import Clock, complete\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 7
+          },
+          "location": {
+            "column": 1,
+            "row": 2
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 2
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 2,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 41,
+      "row": 8
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget_timing.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"scope\", \"elapsed\")",
+          "end_location": {
+            "column": 41,
+            "row": 8
+          },
+          "location": {
+            "column": 26,
+            "row": 8
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 8
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 8,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 121,
+      "row": 9
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_budget_timing.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 9
+    },
+    "message": "Line too long (120 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 9,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 94,
+      "row": 20
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 91,
+      "row": 20
+    },
+    "message": "Line too long (104 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 20,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 39,
+      "row": 32
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"field\", \"limit\")",
+          "end_location": {
+            "column": 39,
+            "row": 32
+          },
+          "location": {
+            "column": 26,
+            "row": 32
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 32
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 32,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 145,
+      "row": 32
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 32
+    },
+    "message": "Line too long (144 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 32,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 128,
+      "row": 55
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 55
+    },
+    "message": "Line too long (127 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 55,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 37,
+      "row": 93
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"start\", \"end\")",
+          "end_location": {
+            "column": 37,
+            "row": 93
+          },
+          "location": {
+            "column": 26,
+            "row": 93
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 93
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 93,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 97
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 99,
+      "row": 97
+    },
+    "message": "Line too long (126 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 97,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 103
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 98,
+      "row": 103
+    },
+    "message": "Line too long (127 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 103,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 100,
+      "row": 114
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 98,
+      "row": 114
+    },
+    "message": "Line too long (103 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 114,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 128,
+      "row": 116
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 97,
+      "row": 116
+    },
+    "message": "Line too long (131 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 116,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 133
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 133
+    },
+    "message": "Line too long (124 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 133,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 146
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 146
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 146,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 123,
+      "row": 161
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_contracts.py",
+    "fix": null,
+    "location": {
+      "column": 99,
+      "row": 161
+    },
+    "message": "Line too long (124 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 161,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 30,
+      "row": 11
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import os\nfrom pathlib import Path\nfrom typing import Protocol, runtime_checkable\n\nimport httpx2\nimport pytest\nfrom pydantic import SecretStr\n\nfrom agent.contracts import DraftRequest\nfrom agent.deps import WorkflowDeps\nfrom agent.settings import Settings, model_client\nfrom server import create_app\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 13
+          },
+          "location": {
+            "column": 1,
+            "row": 2
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 2
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 2,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 134,
+      "row": 19
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 19
+    },
+    "message": "Line too long (133 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 19,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 117,
+      "row": 32
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 32
+    },
+    "message": "Line too long (116 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 32,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 34
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 34
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 34,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 85,
+      "row": 41
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert first.budget is not second.budget\n        assert first.state is not second.state\n",
+          "end_location": {
+            "column": 1,
+            "row": 42
+          },
+          "location": {
+            "column": 1,
+            "row": 41
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 41
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 41,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 127,
+      "row": 46
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 46
+    },
+    "message": "Line too long (126 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 46,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "ASYNC240",
+    "end_location": {
+      "column": 34,
+      "row": 49
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 21,
+      "row": 49
+    },
+    "message": "Async functions should not perform blocking pathlib.Path operations",
+    "name": "blocking-path-method-in-async-function",
+    "noqa_row": 49,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blocking-path-method-in-async-function"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 53
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 53
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 53,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 1
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 1
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 5,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 111,
+      "row": 60
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 60
+    },
+    "message": "Line too long (110 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 60,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "ASYNC240",
+    "end_location": {
+      "column": 34,
+      "row": 63
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 12,
+      "row": 63
+    },
+    "message": "Async functions should not perform blocking pathlib.Path operations",
+    "name": "blocking-path-method-in-async-function",
+    "noqa_row": 63,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/blocking-path-method-in-async-function"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 135,
+      "row": 65
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 65
+    },
+    "message": "Line too long (134 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 65,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 90,
+      "row": 69
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 9,
+      "row": 69
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 69,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 118,
+      "row": 78
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 78
+    },
+    "message": "Line too long (117 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 78,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 117,
+      "row": 81
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 81
+    },
+    "message": "Line too long (116 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 81,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 84
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 84
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 84,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 94
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 94
+    },
+    "message": "Line too long (124 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 94,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 134,
+      "row": 105
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_live_compatibility.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 105
+    },
+    "message": "Line too long (133 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 105,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 74,
+      "row": 13
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import os\nimport sys\nfrom pathlib import Path\nfrom uuid import uuid4\n\nimport anyio\nimport pytest\nfrom fastmcp import Client\nfrom fastmcp.client.transports import ClientTransport, StdioTransport\n\nfrom agent.budget import ExecutionBudget, ExecutionBudgetError\nfrom agent.contracts import DraftRequest, ResearchInput\nfrom agent.mcp_client import MCPClient, MCPError\nfrom tests.wire_fixture import JSON, HttpReply, research_body, serve_wire\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 2
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 2
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 2,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 198,
+      "row": 19
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 19
+    },
+    "message": "Line too long (197 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 19,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 188,
+      "row": 23
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 23
+    },
+    "message": "Line too long (187 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 23,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 112,
+      "row": 35
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 97,
+      "row": 35
+    },
+    "message": "Line too long (115 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 35,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 91,
+      "row": 51
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert b\"PRIVATE_QUESTION\" not in payload\n        assert b\"PRIVATE_EXPERIENCE\" not in payload\n",
+          "end_location": {
+            "column": 1,
+            "row": 52
+          },
+          "location": {
+            "column": 1,
+            "row": 51
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 51
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 51,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 73,
+      "row": 53
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert isinstance(body, dict)\n        assert isinstance(body[\"input\"], str)\n",
+          "end_location": {
+            "column": 1,
+            "row": 54
+          },
+          "location": {
+            "column": 1,
+            "row": 53
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 53
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 53,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 70,
+      "row": 57
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert body[\"max_tool_calls\"] == 2\n        assert body[\"store\"] is False\n",
+          "end_location": {
+            "column": 1,
+            "row": 58
+          },
+          "location": {
+            "column": 1,
+            "row": 57
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 57
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 57,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 41,
+      "row": 80
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"mode\", \"expected\")",
+          "end_location": {
+            "column": 41,
+            "row": 80
+          },
+          "location": {
+            "column": 26,
+            "row": 80
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 80
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 80,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 190,
+      "row": 80
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 80
+    },
+    "message": "Line too long (189 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 80,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 73,
+      "row": 100
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert isinstance(wire, dict)\n        assert isinstance(wire[\"input\"], str)\n",
+          "end_location": {
+            "column": 1,
+            "row": 101
+          },
+          "location": {
+            "column": 1,
+            "row": 100
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 100
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 100,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 79,
+      "row": 102
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "        assert isinstance(domain, dict)\n        assert isinstance(domain[\"company\"], str)\n",
+          "end_location": {
+            "column": 1,
+            "row": 103
+          },
+          "location": {
+            "column": 1,
+            "row": 102
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 9,
+      "row": 102
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 102,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 107,
+      "row": 109
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 99,
+      "row": 109
+    },
+    "message": "Line too long (108 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 109,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 115,
+      "row": 111
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 111
+    },
+    "message": "Line too long (114 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 111,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 125,
+      "row": 141
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 141
+    },
+    "message": "Line too long (124 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 141,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 149,
+      "row": 150
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 150
+    },
+    "message": "Line too long (148 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 150,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 68,
+      "row": 18
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "import os\nimport sys\nfrom pathlib import Path\nfrom threading import Event\nfrom typing import Literal, assert_never\nfrom uuid import uuid4\n\nimport anyio\nimport pytest\nfrom fastmcp import Client\nfrom fastmcp.client.transports import ClientTransport, StdioTransport\n\nfrom agent.budget import ExecutionBudget, ExecutionBudgetError\nfrom agent.contracts import ResearchInput\nfrom agent.mcp_client import MCPClient\nfrom tests.test_mcp import ROOT, wire_client\nfrom tests.wire_fixture import HttpReply, research_body, serve_wire\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 20
+          },
+          "location": {
+            "column": 1,
+            "row": 4
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 4
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 4,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 117,
+      "row": 22
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 22
+    },
+    "message": "Line too long (116 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 22,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 122,
+      "row": 38
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 38
+    },
+    "message": "Line too long (121 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 38,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 100,
+      "row": 57
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": null,
+    "location": {
+      "column": 97,
+      "row": 57
+    },
+    "message": "Line too long (103 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 57,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 102,
+      "row": 67
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": null,
+    "location": {
+      "column": 95,
+      "row": 67
+    },
+    "message": "Line too long (107 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 67,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 241,
+      "row": 81
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_mcp_control.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 81
+    },
+    "message": "Line too long (240 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 81,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 88,
+      "row": 13
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import ClassVar\nfrom uuid import uuid4\n\nimport httpx2\nimport pytest\nfrom openai import AsyncOpenAI\nfrom pydantic import BaseModel, ConfigDict\n\nfrom agent.budget import ExecutionBudget, ExecutionBudgetError\nfrom agent.contracts import ResearchInput\nfrom agent.openai_llm import OpenAIModelProvider\nfrom agent.providers import ProviderError, StructuredModelRequest\nfrom agent.research import OpenAIResearchProvider, ResearchMetadata\nfrom tests.wire_fixture import JSON, assert_strict_schema, research_body, response_body\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 15
+          },
+          "location": {
+            "column": 1,
+            "row": 2
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 2
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 2,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 141,
+      "row": 21
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 21
+    },
+    "message": "Line too long (140 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 96,
+      "row": 31
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 30
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 30,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 106,
+      "row": 33
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 33
+    },
+    "message": "Line too long (105 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 33,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 72,
+      "row": 36
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "    assert result.usage is not None\n    assert result.usage.output_tokens == 7\n",
+          "end_location": {
+            "column": 1,
+            "row": 37
+          },
+          "location": {
+            "column": 1,
+            "row": 36
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 5,
+      "row": 36
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 36,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT018",
+    "end_location": {
+      "column": 80,
+      "row": 48
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "    assert formatting[\"type\"] == \"json_schema\"\n    assert formatting[\"strict\"] is True\n",
+          "end_location": {
+            "column": 1,
+            "row": 49
+          },
+          "location": {
+            "column": 1,
+            "row": 48
+          }
+        }
+      ],
+      "message": "Break down assertion into multiple parts"
+    },
+    "location": {
+      "column": 5,
+      "row": 48
+    },
+    "message": "Assertion should be broken down into multiple parts",
+    "name": "pytest-composite-assertion",
+    "noqa_row": 48,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-composite-assertion"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 37,
+      "row": 59
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"body\", \"code\")",
+          "end_location": {
+            "column": 37,
+            "row": 59
+          },
+          "location": {
+            "column": 26,
+            "row": 59
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 59
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 59,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 103,
+      "row": 65
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 65
+    },
+    "message": "Line too long (102 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 65,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 73
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 72
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 72,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 96,
+      "row": 90
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 89
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 89,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 105,
+      "row": 93
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 93
+    },
+    "message": "Line too long (104 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 93,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 107
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 106
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 106,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 144,
+      "row": 113
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 113
+    },
+    "message": "Line too long (143 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 113,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "SIM117",
+    "end_location": {
+      "column": 81,
+      "row": 127
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 126
+    },
+    "message": "Use a single `with` statement with multiple contexts instead of nested `with` statements",
+    "name": "multiple-with-statements",
+    "noqa_row": 126,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/multiple-with-statements"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 183,
+      "row": 129
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 129
+    },
+    "message": "Line too long (186 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 129,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "I001",
+    "end_location": {
+      "column": 73,
+      "row": 13
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "from typing import Literal, assert_never\n\nimport anyio\nimport pytest\nfrom langgraph.graph import END, START, StateGraph\n\nfrom agent.budget import ExecutionBudget\nfrom agent.contracts import AnalysisResult, DraftRequest, ResearchResult\nfrom agent.state import WorkflowState, WorkflowStateError, initial_state\n\n\n",
+          "end_location": {
+            "column": 1,
+            "row": 16
+          },
+          "location": {
+            "column": 1,
+            "row": 6
+          }
+        }
+      ],
+      "message": "Organize imports"
+    },
+    "location": {
+      "column": 1,
+      "row": 6
+    },
+    "message": "Import block is un-sorted or un-formatted",
+    "name": "unsorted-imports",
+    "noqa_row": 6,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 118,
+      "row": 26
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 26
+    },
+    "message": "Line too long (119 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 26,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 126,
+      "row": 71
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 71
+    },
+    "message": "Line too long (125 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 71,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "TRY003",
+    "end_location": {
+      "column": 41,
+      "row": 127
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 15,
+      "row": 127
+    },
+    "message": "Avoid specifying long messages outside the exception class",
+    "name": "raise-vanilla-args",
+    "noqa_row": 127,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/raise-vanilla-args"
+  },
+  {
+    "cell": null,
+    "code": "PT011",
+    "end_location": {
+      "column": 31,
+      "row": 134
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+    "fix": null,
+    "location": {
+      "column": 24,
+      "row": 134
+    },
+    "message": "`pytest.raises(OSError)` is too broad, set the `match` parameter or use a more specific exception",
+    "name": "pytest-raises-too-broad",
+    "noqa_row": 134,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-raises-too-broad"
+  },
+  {
+    "cell": null,
+    "code": "PT006",
+    "end_location": {
+      "column": 67,
+      "row": 12
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": {
+      "applicability": "unsafe",
+      "edits": [
+        {
+          "content": "(\"source\", \"normalized\", \"count\", \"start\", \"end\", \"quote\")",
+          "end_location": {
+            "column": 67,
+            "row": 12
+          },
+          "location": {
+            "column": 26,
+            "row": 12
+          }
+        }
+      ],
+      "message": "Use a `tuple` for the first argument"
+    },
+    "location": {
+      "column": 26,
+      "row": 12
+    },
+    "message": "Wrong type passed to first argument of `pytest.mark.parametrize`; expected `tuple`",
+    "name": "pytest-parametrize-names-wrong-type",
+    "noqa_row": 12,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/pytest-parametrize-names-wrong-type"
+  },
+  {
+    "cell": null,
+    "code": "PLR0913",
+    "end_location": {
+      "column": 54,
+      "row": 17
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 17
+    },
+    "message": "Too many arguments in function definition (6 > 5)",
+    "name": "too-many-arguments",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/too-many-arguments"
+  },
+  {
+    "cell": null,
+    "code": "PLR0917",
+    "end_location": {
+      "column": 54,
+      "row": 17
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 5,
+      "row": 17
+    },
+    "message": "Too many positional arguments (6 > 5)",
+    "name": "too-many-positional-arguments",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/too-many-positional-arguments"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 139,
+      "row": 17
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 17
+    },
+    "message": "Line too long (138 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 126,
+      "row": 23
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 23
+    },
+    "message": "Line too long (125 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 24,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 129,
+      "row": 25
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 25
+    },
+    "message": "Line too long (128 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 25,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "S603",
+    "end_location": {
+      "column": 28,
+      "row": 27
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 14,
+      "row": 27
+    },
+    "message": "`subprocess` call: check for execution of untrusted input",
+    "name": "subprocess-without-shell-equals-true",
+    "noqa_row": 27,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/subprocess-without-shell-equals-true"
+  },
+  {
+    "cell": null,
+    "code": "S607",
+    "end_location": {
+      "column": 108,
+      "row": 27
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 29,
+      "row": 27
+    },
+    "message": "Starting a process with a partial executable path",
+    "name": "start-process-with-partial-path",
+    "noqa_row": 27,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/start-process-with-partial-path"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 191,
+      "row": 27
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/test_text_parity.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 27
+    },
+    "message": "Line too long (190 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 27,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 114,
+      "row": 17
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 17
+    },
+    "message": "Line too long (113 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 17,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 146,
+      "row": 18
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 18
+    },
+    "message": "Line too long (145 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 18,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 139,
+      "row": 19
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 19
+    },
+    "message": "Line too long (138 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 19,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 163,
+      "row": 21
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 21
+    },
+    "message": "Line too long (162 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 21,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "E501",
+    "end_location": {
+      "column": 150,
+      "row": 31
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": null,
+    "location": {
+      "column": 101,
+      "row": 31
+    },
+    "message": "Line too long (149 > 100)",
+    "name": "line-too-long",
+    "noqa_row": 31,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/line-too-long"
+  },
+  {
+    "cell": null,
+    "code": "RUF100",
+    "end_location": {
+      "column": 49,
+      "row": 52
+    },
+    "filename": "/Users/jay/Projects/essay-service/assignment/tests/wire_fixture.py",
+    "fix": {
+      "applicability": "safe",
+      "edits": [
+        {
+          "content": "",
+          "end_location": {
+            "column": 49,
+            "row": 52
+          },
+          "location": {
+            "column": 35,
+            "row": 52
+          }
+        }
+      ],
+      "message": "Remove unused `noqa` directive"
+    },
+    "location": {
+      "column": 37,
+      "row": 52
+    },
+    "message": "Unused `noqa` directive (unused: `N802`)",
+    "name": "unused-noqa",
+    "noqa_row": 52,
+    "severity": "error",
+    "url": "https://docs.astral.sh/ruff/rules/unused-noqa"
+  }
+]

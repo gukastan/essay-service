@@ -1,0 +1,40 @@
+{
+  "captured_at": "2026-10-20T05:40:46.626637+00:00",
+  "shutdown_command": "kill -TERM 50794 50640",
+  "shutdown_exit_code": 0,
+  "target_pids": [
+    50794,
+    50640
+  ],
+  "mcp_child_pids": [
+    50715,
+    50731
+  ],
+  "ps_command": "ps -p 50640,50715,50731,50794 -o pid,ppid,command",
+  "ps_exit_code": 1,
+  "ps_stdout": "  PID  PPID COMMAND\n",
+  "ps_stderr": "",
+  "all_four_processes_absent": true,
+  "ports": [
+    {
+      "port": 8100,
+      "bind_succeeded": true
+    },
+    {
+      "port": 8600,
+      "bind_succeeded": true
+    }
+  ],
+  "both_ports_released": true,
+  "unrelated_processes_signalled": false,
+  "exec_sessions": [
+    {
+      "id": 20735,
+      "exit_code": 143
+    },
+    {
+      "id": 44139,
+      "exit_code": 143
+    }
+  ]
+}

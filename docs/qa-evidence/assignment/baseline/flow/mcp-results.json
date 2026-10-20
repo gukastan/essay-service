@@ -1,0 +1,86 @@
+{
+  "started_at": "2026-10-20T05:33:33.597409+00:00",
+  "completed_at": "2026-10-20T05:33:35.837438+00:00",
+  "invocation": [
+    "docs/qa-evidence/assignment/baseline/flow/probe-mcp.py",
+    "/Users/jay/Projects/essay-service/assignment",
+    "/Users/jay/Projects/essay-service/docs/qa-evidence/assignment/baseline/flow/mcp-results.json"
+  ],
+  "python": "3.11.15 (main, Mar  3 2026, 00:52:57) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "source": "/Users/jay/Projects/essay-service/assignment",
+  "environment": {
+    "LLM_BACKEND": "fake",
+    "LANGCHAIN_TRACING_V2": "false",
+    "LANGSMITH_TRACING": "false"
+  },
+  "protocol": "real stdio MCP",
+  "telemetry": "mock JSON fixture with random jitter",
+  "full_prompts_persisted": false,
+  "checks": {
+    "two_live_mcp_sessions": true,
+    "prompt_discovered_and_returned": true,
+    "tool_retry_then_valid_result": true,
+    "resource_matches_public_fixture": true,
+    "unknown_system_control": true,
+    "missing_resource_control": true,
+    "decoy_templates_listed": true,
+    "client_sessions_closed": true
+  },
+  "observations": [
+    {
+      "operation": "find_prompt/get_prompt",
+      "server": "ops",
+      "name": "incident_analysis_prompt",
+      "characters": 242,
+      "sha256": "d529aa20e81394a6ff18288bf5f4112c3a370e93d097ece176d206c182f1beb1"
+    },
+    {
+      "operation": "call_tool",
+      "name": "get_monitoring_status",
+      "retries": 1,
+      "result": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 83.1,
+        "memory_percent": 63.5,
+        "last_checked": "2026-10-20T14:33:35.417763",
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool 92% used"
+        ]
+      }
+    },
+    {
+      "operation": "find_resource_template/read_resource",
+      "server": "ops",
+      "uri": "runbook://incident-response/high-latency",
+      "characters": 318,
+      "sha256": "0df4846e66993b0b9312327a3f51fe6de663d701c64c2c7c10a9e2c35e9e63a3"
+    },
+    {
+      "operation": "call_tool",
+      "name": "get_monitoring_status",
+      "retries": 0,
+      "result": {
+        "system_name": "unknown-service",
+        "status": "unknown",
+        "cpu_percent": 0.0,
+        "memory_percent": 0.0,
+        "last_checked": "2026-10-20T14:33:35.486995",
+        "alerts": [
+          "System 'unknown-service' not found in monitoring"
+        ]
+      }
+    },
+    {
+      "operation": "read_resource",
+      "uri": "runbook://incident-response/essay18-missing",
+      "result": "# Runbook Not Found\n\nNo runbook for incident type: essay18-missing"
+    },
+    {
+      "operation": "list_resource_templates",
+      "server": "docs",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "scenario": "shell-syntax",
+      "invocation": "bash -n run.sh",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "scenario": "browser-module-syntax",
+      "invocation": "node --check web/foundation.mjs",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "scenario": "missing-uv",
+      "invocation": "bash run.sh",
+      "exit": 127,
+      "stdout": "",
+      "stderr": "uv is required. Follow the installation steps in assignment/README.md.\n"
+    },
+    {
+      "scenario": "invalid-port",
+      "invocation": "bash run.sh",
+      "exit": 64,
+      "stdout": "",
+      "stderr": "ESSAY_PORT must be an integer from 0 to 65535 (0 selects a free port).\n"
+    },
+    {
+      "scenario": "browser-regressions",
+      "invocation": "node --test tests/test_foundation.mjs",
+      "exit": 0,
+      "stdout": "✔ code-point fixture \"한글 문장\" (0.729708ms)\n✔ code-point fixture \"가😀\\r\\n나\" (0.041417ms)\n✔ code-point fixture \"가é🧑‍💻\\r끝\" (0.030833ms)\n✔ invalid offset -1:1 (0.137917ms)\n✔ invalid offset 0.5:2 (0.037334ms)\n✔ invalid offset 0:9 (0.027833ms)\n✔ invalid offset 2:1 (0.029125ms)\n✔ invalid offset 0:NaN (0.027042ms)\n✔ deadline aborts after 195 seconds while reading body without retry (0.611458ms)\n✔ pre-aborted request never transmits (0.129541ms)\n✔ HTTP failure exposes status without provider body or retry (7.55975ms)\n✔ successful JSON cleans timer and abort listener (0.551125ms)\nℹ tests 12\nℹ suites 0\nℹ pass 12\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 45.452291\n",
+      "stderr": ""
+    }
+  ],
+  "credentialsBlank": true,
+  "pureLoc": {
+    "assignment/run.sh": 33,
+    "assignment/web/foundation.mjs": 57
+  }
+}

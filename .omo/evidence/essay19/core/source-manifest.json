@@ -1,0 +1,107 @@
+{
+  "assignment/agent/contract_input.py": {
+    "sha256": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760",
+    "bytes": 3171,
+    "pure_loc": 68
+  },
+  "assignment/agent/contract_evidence.py": {
+    "sha256": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880",
+    "bytes": 2524,
+    "pure_loc": 64
+  },
+  "assignment/agent/contract_results.py": {
+    "sha256": "8a36950b97ebb1c90778dab358d25c68f7abb8ee6b98bedc6efcfdcdbdf185d2",
+    "bytes": 3901,
+    "pure_loc": 116
+  },
+  "assignment/agent/contracts.py": {
+    "sha256": "5027280064aeed390e073f7db3d9942c15fd626c57b5fc12b03e7128062cf5d2",
+    "bytes": 1933,
+    "pure_loc": 76
+  },
+  "assignment/agent/budget.py": {
+    "sha256": "9547a1ad4f6f7929f20ad7d2321657341f389947836fe135e906ef28f7ef229e",
+    "bytes": 6619,
+    "pure_loc": 173
+  },
+  "assignment/agent/state.py": {
+    "sha256": "f7840d3b6c64e8b200aff45515aeaa040d21b55c843d79c6f8cec4dd8286d12c",
+    "bytes": 2449,
+    "pure_loc": 72
+  },
+  "assignment/agent/providers.py": {
+    "sha256": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219",
+    "bytes": 1398,
+    "pure_loc": 45
+  },
+  "assignment/agent/provider_schema.py": {
+    "sha256": "e1e7c28705cb1ba1c56cce6a9ab787885070b5ae936eb2aa4de606a92e406c84",
+    "bytes": 1889,
+    "pure_loc": 40
+  },
+  "assignment/agent/limits.py": {
+    "sha256": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c",
+    "bytes": 497,
+    "pure_loc": 18
+  },
+  "assignment/agent/openai_llm.py": {
+    "sha256": "508ce35d892400531f0f397d7ec9e85d19ff6b1453c83951d2bf2278a36986a6",
+    "bytes": 2964,
+    "pure_loc": 62
+  },
+  "assignment/agent/research.py": {
+    "sha256": "4b5dc946cebe39be3ee2e7d4c0202f56d80bf0e4275e44e777d113e0dc690707",
+    "bytes": 4569,
+    "pure_loc": 91
+  },
+  "assignment/agent/response_wire.py": {
+    "sha256": "d852fb4af61ab2bc718034470b4024e1a7e2f946d2df7e7f1f7b033d0754c982",
+    "bytes": 1249,
+    "pure_loc": 21
+  },
+  "assignment/agent/mcp_client.py": {
+    "sha256": "2dfb31062d7d257eb7cb4c0460374f7f5e2432ba47427e9875a701a549d3c1b5",
+    "bytes": 5120,
+    "pure_loc": 133
+  },
+  "assignment/agent/settings.py": {
+    "sha256": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925",
+    "bytes": 1999,
+    "pure_loc": 52
+  },
+  "assignment/agent/deps.py": {
+    "sha256": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa",
+    "bytes": 938,
+    "pure_loc": 24
+  },
+  "assignment/server.py": {
+    "sha256": "8617a1a7e8fca168919448d419ceb7e585d08095a6bd89747d61ee4275ae65e5",
+    "bytes": 2043,
+    "pure_loc": 54
+  },
+  "assignment/mcp_server.py": {
+    "sha256": "b8961d3625d8ddbb9fb3ee83e43d0ced77c1fb39154a257db76f12f17ef405a9",
+    "bytes": 2831,
+    "pure_loc": 71
+  },
+  "assignment/pyproject.toml": {
+    "sha256": "afdebe1e51489b3205b2c36a1e4275213112a3d32ba63f3d59e86a83620e42c9",
+    "bytes": 2022,
+    "pure_loc": 32
+  },
+  "assignment/uv.lock": {
+    "sha256": "fa98a81e5c782279308596f58d303a01b717a2c3d85456fcd8cc4e91324f0904",
+    "bytes": 177002,
+    "pure_loc": 1500
+  },
+  "assignment/requirements.txt": {
+    "sha256": "03f27ec5f8b17e3cb63b46bb1cf85d253bb0f8e7b952849e5bf89f3e350eb92f",
+    "bytes": 45713,
+    "pure_loc": 559
+  },
+  "assignment/.python-version": {
+    "sha256": "7b55f8e67b5623c4bef3fa691288da9437d79d3aba156de48d481db32ac7d16d",
+    "bytes": 5,
+    "pure_loc": 1
+  }
+}

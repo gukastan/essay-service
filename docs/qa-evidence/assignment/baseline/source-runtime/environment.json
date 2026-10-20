@@ -1,0 +1,11 @@
+{
+  "captured_at": "2026-10-20T05:32:00.842962+00:00",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "python": "3.11.15 (main, Mar  3 2026, 00:52:57) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "executable": "/Users/jay/Projects/essay-service/.omo/runtime/essay18/venv/bin/python",
+  "prefix": "/Users/jay/Projects/essay-service/.omo/runtime/essay18/venv",
+  "base_prefix": "/opt/homebrew/opt/python@3.11/Frameworks/Python.framework/Versions/3.11",
+  "isolated": true,
+  "environment_policy": "env -i; explicit PATH/LANG; PYTHONDONTWRITEBYTECODE=1; PYTHON_DOTENV_DISABLED=1; LANGCHAIN_TRACING=false; LANGCHAIN_TRACING_V2=false; LANGSMITH_TRACING=false; LLM_BACKEND=fake; SUPERVISOR_VERSION=v2"
+}

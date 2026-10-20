@@ -1,0 +1,29 @@
+[
+  {
+    "id": "hangul",
+    "input": "한글 문장",
+    "normalized": "한글 문장",
+    "count": 5,
+    "quote": "문장",
+    "start": 3,
+    "end": 5
+  },
+  {
+    "id": "emoji-crlf",
+    "input": "가😀\r\n나",
+    "normalized": "가😀\n나",
+    "count": 4,
+    "quote": "😀\n",
+    "start": 1,
+    "end": 3
+  },
+  {
+    "id": "combining-zwj-cr",
+    "input": "가é🧑‍💻\r끝",
+    "normalized": "가é🧑‍💻\n끝",
+    "count": 8,
+    "quote": "🧑‍💻",
+    "start": 3,
+    "end": 6
+  }
+]

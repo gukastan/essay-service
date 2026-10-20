@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "signal": "SIGTERM",
+      "invocation": "bash run.sh (controlled uv installer stub)",
+      "launcherPid": 73173,
+      "installerPid": 73175,
+      "exit": {
+        "code": 143,
+        "signal": null
+      },
+      "installerGone": true
+    },
+    {
+      "signal": "SIGINT",
+      "invocation": "bash run.sh (controlled uv installer stub)",
+      "launcherPid": 73178,
+      "installerPid": 73194,
+      "exit": {
+        "code": 130,
+        "signal": null
+      },
+      "installerGone": true
+    },
+    {
+      "scenario": "installer-error-propagation",
+      "exit": {
+        "code": 37,
+        "signal": null
+      }
+    }
+  ]
+}

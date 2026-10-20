@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "183b4630-9243-4ebf-b1d6-471c8d84d0d4",
+  "teamName": "essay18-baseline",
+  "sessionName": "essay18-original-runtime",
+  "sessionId": "team-522c4869",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-20T05:24:18.438Z",
+  "updatedAt": "2026-10-20T05:55:16.308Z",
+  "archivedAt": "2026-10-20T05:55:16.308Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-522c4869/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-522c4869",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-522c4869/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-522c4869/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-522c4869/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "source-runtime",
+      "focus": "Own assignment/ source copy, provenance manifest, isolated Python install and original fake-backend server lifecycle. Preserve original and existing code.",
+      "lens": "ownership",
+      "deliverable": "Byte-matched source manifest, clean isolated install, listening original API/UI, exact launch/version evidence; no migration implementation.",
+      "taskName": "essay18_source_runtime",
+      "agentPath": "/root/essay18_source_runtime",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "flow-evidence",
+      "focus": "Own docs/qa-evidence/assignment/baseline/flow/ only: read-only source flow audit and API/MCP/SSE scenario evidence against peer runtime.",
+      "lens": "ownership",
+      "deliverable": "Executable QA evidence for chat/incident/gate/replan/retry/rewrite, JSON results and report; no product edits, no Jira writes.",
+      "taskName": "essay18_flow_evidence",
+      "agentPath": "/root/essay18_flow_evidence",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-20T05:24:18.438Z",
+      "event": "created",
+      "detail": "team essay18-baseline"
+    },
+    {
+      "ts": "2026-10-20T05:24:46.474Z",
+      "event": "add-member",
+      "detail": "member A (ownership): Own assignment/ source copy, provenance manifest, isolated Python install and original fake-backend server lifecycle. Preserve original and existing code."
+    },
+    {
+      "ts": "2026-10-20T05:24:46.567Z",
+      "event": "add-member",
+      "detail": "member B (ownership): Own docs/qa-evidence/assignment/baseline/flow/ only: read-only source flow audit and API/MCP/SSE scenario evidence against peer runtime."
+    },
+    {
+      "ts": "2026-10-20T05:25:34.527Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/essay18_source_runtime"
+    },
+    {
+      "ts": "2026-10-20T05:25:34.613Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/essay18_flow_evidence"
+    },
+    {
+      "ts": "2026-10-20T05:55:16.308Z",
+      "event": "archive",
+      "detail": "Both member final reports accepted. Leader browser QA 5/5; API 25/25; MCP 8/8; runtime 13/13; protected repository hashes 341/341. Owned servers and MCP children stopped. Shared checkout; no commits requested. MultiAgentV2 has no runtime archive operation; this archives durable team state only. Preserve state and memos before delete."
+    }
+  ]
+}

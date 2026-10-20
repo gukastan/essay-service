@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-10-20T06:10:45.720Z",
+  "key": "ESSAY-19",
+  "status": "할 일",
+  "description": "## 목적\n\nESSAY-9의 TypeScript 계약과 제한 정책을 제공된 Python/FastAPI/LangGraph/MCP 구조에 이식한다. 완료된 ESSAY-9를 다시 열거나 Python 구현 완료로 재해석하지 않는다.\n\n## 구현 범위\n\n* 작업 ID: MIG-02\n* 소유 파일: assignment/agent/{contracts,state,budget,providers}.py, agent/deps.py, agent/mcp_client.py, agent/openai_llm.py, server.py의 lifespan, requirements.txt·잠금 파일·.env.example·run.sh, 기반 테스트\n* 선행: [ESSAY-18](https://kmskojb.atlassian.net/browse/ESSAY-18), [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9)\n* 에픽: ESSAY-8\n\n## 완료 조건\n\n- [ ] Pydantic 입력·출력/근거 계약, 요청별 LangGraph 상태와 예산을 구현하고 Python 의존성 버전을 실제 호환 검사 후 고정한다. 네 필수 입력·선택 공고 자료·ready/needs_input/error를 검증한다.\n- [ ] 서버 lifespan에서 재사용 가능한 모델/MCP 연결을 생성·정리하고 노드에는 타입 있는 의존성을 주입한다. 입력·deadline·호출 예산은 요청마다 새로 만들며 SQLite 경험/초안 저장과 외부 추적 전송은 기본 비활성화한다.\n- [ ] 정상 4회·최대 6회, 회당 30초·조사 45초·전체 180초·클라이언트 195초·자동 재시도 0을 검사한다. 병렬 요청 및 취소 후에도 추가 호출을 차단하며 원본의 의도적 첫 실패·재시도는 제품 경로에서 비활성화한다.\n- [ ] 조사 노드가 MCP research_company_role을 호출하기 전에 모델1/내장 도구 용량2를 원자 예약하고 trusted timeout 한도를 전달한다. MCP 서버는 OpenAI Responses 1회에 max_tool_calls=2·store:false·재시도0을 적용한다. 조사 후 별도 요약 LLM을 호출하지 않으며 예약은 오류·취소 후에도 환급하지 않는다.\n- [ ] MCP 입력은 기업·직무·선택 공고 자료만 허용하고 경험·문항을 제거한다. 실제 도구 보고량과 예약량을 구분하며 내부 검색어·페이지 수 통제를 주장하지 않는다. 프로토콜 오류·단절·취소·동시성 격리를 검증한다.\n- [ ] 글자 수와 근거 offset은 LF 정규화 후 Unicode 코드 포인트로 통일한다. Python과 Vue가 한글·CRLF·이모지 fixture에서 일치하고 UTF-16 기반 ESSAY-9 offset을 그대로 해석하지 않는다.\n- [ ] OpenAI 키는 로컬 서버 설정으로만 주입한다. 기존 키/모델의 Python 구조화 출력·내장 검색 호환성은 별도 opt-in 작은 실연결로 확인하고 결과를 기록한다. 모의 검사만 수행한 경우 실연결을 통과로 보고하지 않는다.\n- [ ] assignment/에서 bash run.sh로 실행·종료할 수 있는 진입점과 빈 값의 .env.example을 제공한다. README 명령은 깨끗한 설치 환경에서 확인한다.\n\n## 기준과 보존\n\n2026-10-20 사용자 승인: 기존 작업을 보존하고 제공된 프로젝트의 LangGraph·MCP·LLM·Vue·FastAPI 구조로 전환한다. 이번 요청은 문서·Jira 갱신이며 이 티켓 구현/실행은 아직 시작하지 않았다.\n\n* 원본: /Users/jay/Downloads/all_total_vue_student (읽기 전용 기준)\n* 개발 저장소: /Users/jay/Projects/essay-service\n* 전환 코드: assignment/ (후속 구현 시 생성)\n* 현재 기준: docs/ASSIGNMENT_MIGRATION.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md, docs/BACKLOG_V2.md, docs/qa-v2.md\n* 과거 기준: c5299e954d0ff1b0848dad238e7b731ef078bb51, docs/decisions/langgraph-v2.md\n\nESSAY-1\\~7 및 ESSAY-9 완료·코드·원본5개 샘플·QA 승인 기록을 보존한다. 모의/실제 MCP/실제 모델/브라우저 결과를 구분하고 수행하지 않은 검증을 완료로 보고하지 않는다. 담당자·스프린트·기한은 변경하지 않는다.",
+  "dependencies": [
+    {
+      "id": "10019",
+      "type": "Blocks",
+      "blockedBy": "ESSAY-18"
+    },
+    {
+      "id": "10020",
+      "type": "Blocks",
+      "blockedBy": "ESSAY-9"
+    },
+    {
+      "id": "10021",
+      "type": "Blocks",
+      "blocks": "ESSAY-10"
+    },
+    {
+      "id": "10022",
+      "type": "Blocks",
+      "blocks": "ESSAY-11"
+    },
+    {
+      "id": "10023",
+      "type": "Blocks",
+      "blocks": "ESSAY-15"
+    }
+  ]
+}

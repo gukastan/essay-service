@@ -1,0 +1,47 @@
+
+==================================== ERRORS ====================================
+____________________ ERROR collecting tests/test_budget.py _____________________
+tests/test_budget.py:9: in <module>
+    from agent.budget import ExecutionBudget, ExecutionBudgetError, OperationContext
+agent/budget.py:7: in <module>
+    from agent.providers import ROLE_CALL_LIMITS, ROLE_OUTPUT_TOKENS, ModelRole
+agent/providers.py:28: in <module>
+    class ModelProvider(Protocol):
+agent/providers.py:29: in ModelProvider
+    async def generate[T: BaseModel](
+agent/providers.py:30: in <generic parameters of generate>
+    self, request: StructuredModelRequest[T], budget: ExecutionBudget,
+                                                      ^^^^^^^^^^^^^^^
+E   NameError: name 'ExecutionBudget' is not defined
+_____________________ ERROR collecting tests/test_state.py _____________________
+tests/test_state.py:9: in <module>
+    from agent.budget import ExecutionBudget
+agent/budget.py:7: in <module>
+    from agent.providers import ROLE_CALL_LIMITS, ROLE_OUTPUT_TOKENS, ModelRole
+agent/providers.py:28: in <module>
+    class ModelProvider(Protocol):
+agent/providers.py:29: in ModelProvider
+    async def generate[T: BaseModel](
+agent/providers.py:30: in <generic parameters of generate>
+    self, request: StructuredModelRequest[T], budget: ExecutionBudget,
+                                                      ^^^^^^^^^^^^^^^
+E   NameError: name 'ExecutionBudget' is not defined
+___________________ ERROR collecting tests/test_provider.py ____________________
+tests/test_provider.py:7: in <module>
+    from agent.budget import ExecutionBudget, ExecutionBudgetError
+agent/budget.py:7: in <module>
+    from agent.providers import ROLE_CALL_LIMITS, ROLE_OUTPUT_TOKENS, ModelRole
+agent/providers.py:28: in <module>
+    class ModelProvider(Protocol):
+agent/providers.py:29: in ModelProvider
+    async def generate[T: BaseModel](
+agent/providers.py:30: in <generic parameters of generate>
+    self, request: StructuredModelRequest[T], budget: ExecutionBudget,
+                                                      ^^^^^^^^^^^^^^^
+E   NameError: name 'ExecutionBudget' is not defined
+=========================== short test summary info ============================
+ERROR tests/test_budget.py - NameError: name 'ExecutionBudget' is not defined
+ERROR tests/test_state.py - NameError: name 'ExecutionBudget' is not defined
+ERROR tests/test_provider.py - NameError: name 'ExecutionBudget' is not defined
+!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!!
+3 errors in 0.39s

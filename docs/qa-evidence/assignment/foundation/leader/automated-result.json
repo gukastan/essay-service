@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-20T06:51:02.799047+00:00",
+  "results": [
+    {
+      "name": "pytest",
+      "command": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "js",
+      "command": [
+        "node",
+        "--test",
+        "tests/test_foundation.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "types",
+      "command": [
+        ".venv/bin/basedpyright",
+        "--outputjson"
+      ],
+      "exit": 0
+    },
+    {
+      "name": "lint",
+      "command": [
+        ".venv/bin/ruff",
+        "check",
+        "."
+      ],
+      "exit": 0
+    },
+    {
+      "name": "format",
+      "command": [
+        ".venv/bin/ruff",
+        "format",
+        "--check",
+        "."
+      ],
+      "exit": 0
+    }
+  ],
+  "passed": true
+}

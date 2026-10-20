@@ -1,0 +1,134 @@
+FF....F..                                                                [100%]
+=================================== FAILURES ===================================
+_ test_actual_mcp_discovery_reserved_before_sdk_wire_and_private_fields_removed _
+
+    @pytest.mark.anyio
+    async def test_actual_mcp_discovery_reserved_before_sdk_wire_and_private_fields_removed() -> None:
+        # Given
+        budget = ExecutionBudget()
+        observed: list[tuple[int, int]] = []
+        def respond(payload: bytes) -> HttpReply:
+            usage = budget.snapshot()
+            observed.append((usage.model_calls, usage.native_tool_calls_reserved))
+            return HttpReply(research_body())
+        draft = DraftRequest(company="회사", role="직무", question="PRIVATE_QUESTION", experience="PRIVATE_EXPERIENCE")
+        request_id = uuid4()
+        with serve_wire(respond) as wire:
+            raw = wire_client(wire.base_url)
+            async with MCPClient(raw) as mcp:
+                tools = await raw.list_tools()
+                assert [tool.name for tool in tools] == ["research_company_role"]
+                # When
+>               report = await mcp.research(draft, budget, request_id)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_mcp.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent/mcp_client.py:81: in research
+    return await budget.run_native_research(invoke)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:83: in run_native_research
+    return await self._execute(end, operation, OperationContext(end - self._now(), 3000, 2))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:123: in _execute
+    result = await operation(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+context = OperationContext(timeout_seconds=29.99999412498437, max_output_tokens=3000, max_tool_calls=2)
+
+    async def invoke(context: OperationContext) -> ResearchReport:
+        remaining = min(context.timeout_seconds,
+                        anyio.current_effective_deadline() - anyio.current_time())
+        metadata = ResearchMetadata(request_id=request_id, timeout_seconds=remaining)
+        try:
+            result = await self.client.call_tool(
+                "research_company_role", {"input": public.model_dump(by_alias=True, mode="json")},
+                meta=metadata.model_dump(by_alias=True, mode="json"),
+                timeout=remaining, raise_on_error=False,
+            )
+        except TimeoutError:
+            budget.cancel()
+            raise MCPError("TIMEOUT") from None
+        except (ProtocolMCPError, ToolError, RuntimeError, OSError, anyio.BrokenResourceError,
+                anyio.ClosedResourceError, anyio.EndOfStream):
+            raise MCPError("PROTOCOL_ERROR") from None
+        if result.is_error:
+            for content in result.content:
+                if content.type == "text" and content.text == "TIMEOUT":
+                    budget.cancel()
+                    raise MCPError("TIMEOUT")
+>           raise MCPError("PROTOCOL_ERROR")
+E           agent.mcp_client.MCPError: PROTOCOL_ERROR
+
+agent/mcp_client.py:73: MCPError
+----------------------------- Captured stderr call -----------------------------
+[10/20/26 15:28:57] INFO     Starting MCP server                transport.py:241
+                             'essay-research-foundation' with                   
+                             transport 'stdio'                                  
+[10/20/26 15:28:58] Error calling tool 'research_company_role'                  
+________ test_actual_mcp_failure_is_not_retried_and_reservations_remain ________
+
+    @pytest.mark.anyio
+    async def test_actual_mcp_failure_is_not_retried_and_reservations_remain() -> None:
+        # Given
+        budget = ExecutionBudget()
+        with serve_wire(lambda _: HttpReply(b'{"error":{"message":"PRIVATE_ERROR"}}', 500)) as wire:
+            async with MCPClient(wire_client(wire.base_url)) as mcp:
+                # When / Then
+                with pytest.raises(MCPError) as raised:
+                    await mcp.research(ResearchInput(company="회사", role="직무"), budget, uuid4())
+                with pytest.raises(ExecutionBudgetError) as repeated:
+                    await mcp.research(ResearchInput(company="회사", role="직무"), budget, uuid4())
+>           assert wire.requests.qsize() == 1
+E           AssertionError: assert 0 == 1
+E            +  where 0 = qsize()
+E            +    where qsize = <queue.Queue object at 0x10d5a7f80>.qsize
+E            +      where <queue.Queue object at 0x10d5a7f80> = WireServer(base_url='http://127.0.0.1:55214/v1', requests=<queue.Queue object at 0x10d5a7f80>).requests
+
+tests/test_mcp.py:70: AssertionError
+----------------------------- Captured stderr call -----------------------------
+[10/20/26 15:28:59] INFO     Starting MCP server                transport.py:241
+                             'essay-research-foundation' with                   
+                             transport 'stdio'                                  
+[10/20/26 15:28:59] Error calling tool 'research_company_role'                  
+_______ test_shared_mcp_connection_keeps_concurrent_requests_correlated ________
+  + Exception Group Traceback (most recent call last):
+  |   File "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py", line 112, in test_shared_mcp_connection_keeps_concurrent_requests_correlated
+  |     async with anyio.create_task_group() as tasks:
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/Users/jay/Projects/essay-service/assignment/.venv/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/Users/jay/Projects/essay-service/assignment/.venv/lib/python3.12/site-packages/anyio/_core/_tasks.py", line 327, in _run_coro
+    |     retval = await self._coro
+    |              ^^^^^^^^^^^^^^^^
+    |   File "/Users/jay/Projects/essay-service/assignment/tests/test_mcp.py", line 108, in dispatch
+    |     report = await mcp.research(ResearchInput(company=company, role="직무"), budget, request_id)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/jay/Projects/essay-service/assignment/agent/mcp_client.py", line 81, in research
+    |     return await budget.run_native_research(invoke)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/jay/Projects/essay-service/assignment/agent/budget.py", line 83, in run_native_research
+    |     return await self._execute(end, operation, OperationContext(end - self._now(), 3000, 2))
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/jay/Projects/essay-service/assignment/agent/budget.py", line 123, in _execute
+    |     result = await operation(context)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/Users/jay/Projects/essay-service/assignment/agent/mcp_client.py", line 73, in invoke
+    |     raise MCPError("PROTOCOL_ERROR")
+    | agent.mcp_client.MCPError: PROTOCOL_ERROR
+    +------------------------------------
+----------------------------- Captured stderr call -----------------------------
+[10/20/26 15:29:01] INFO     Starting MCP server                transport.py:241
+                             'essay-research-foundation' with                   
+                             transport 'stdio'                                  
+[10/20/26 15:29:01] Error calling tool 'research_company_role'                  
+                    Error calling tool 'research_company_role'                  
+=========================== short test summary info ============================
+FAILED tests/test_mcp.py::test_actual_mcp_discovery_reserved_before_sdk_wire_and_private_fields_removed
+FAILED tests/test_mcp.py::test_actual_mcp_failure_is_not_retried_and_reservations_remain
+FAILED tests/test_mcp.py::test_shared_mcp_connection_keeps_concurrent_requests_correlated
+3 failed, 6 passed in 5.72s

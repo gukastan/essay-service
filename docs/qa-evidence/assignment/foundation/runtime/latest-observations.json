@@ -1,0 +1,138 @@
+[
+  {
+    "scenario": "foundation-start-and-control-input",
+    "invocation": "ESSAY_PORT=0 bash run.sh",
+    "port": 55475,
+    "health": {
+      "status": "ok",
+      "modelConfigured": false,
+      "mcpConnected": true,
+      "pipelineAvailable": false,
+      "instanceId": "80d1e73c-9427-48f4-9244-c43859e1061b",
+      "creationCount": 1
+    },
+    "again": {
+      "status": "ok",
+      "modelConfigured": false,
+      "mcpConnected": true,
+      "pipelineAvailable": false,
+      "instanceId": "80d1e73c-9427-48f4-9244-c43859e1061b",
+      "creationCount": 1
+    },
+    "responses": [
+      {
+        "path": "/api/drafts",
+        "status": 404,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      {
+        "path": "/chat",
+        "status": 404,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      {
+        "path": "/chat/stream",
+        "status": 404,
+        "body": "{\"detail\":\"Not Found\"}"
+      }
+    ],
+    "family": [
+      {
+        "pid": 77213,
+        "ppid": 77196,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+      },
+      {
+        "pid": 77229,
+        "ppid": 77213,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+      }
+    ],
+    "sqliteOpen": false,
+    "requestLeak": false
+  },
+  {
+    "scenario": "graceful-sigterm",
+    "signal": "SIGTERM",
+    "exit": {
+      "code": null,
+      "signal": "SIGTERM"
+    },
+    "family": [
+      {
+        "pid": 77213,
+        "ppid": 77196,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+      },
+      {
+        "pid": 77229,
+        "ppid": 77213,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+      }
+    ],
+    "observations": [
+      {
+        "attempt": 0,
+        "remaining": []
+      }
+    ],
+    "allGone": true
+  },
+  {
+    "scenario": "graceful-sigint",
+    "signal": "SIGINT",
+    "exit": {
+      "code": 0,
+      "signal": null
+    },
+    "family": [
+      {
+        "pid": 77294,
+        "ppid": 77196,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+      },
+      {
+        "pid": 77297,
+        "ppid": 77294,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+      }
+    ],
+    "observations": [
+      {
+        "attempt": 0,
+        "remaining": []
+      }
+    ],
+    "allGone": true
+  },
+  {
+    "scenario": "occupied-port",
+    "invocation": "ESSAY_PORT=55480 bash run.sh",
+    "exit": {
+      "code": 3,
+      "signal": null
+    },
+    "sentinelStillListening": true,
+    "observedFamily": [
+      {
+        "pid": 77323,
+        "ppid": 77196,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 55480 --no-access-log"
+      },
+      {
+        "pid": 77402,
+        "ppid": 77323,
+        "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+      }
+    ],
+    "allGone": true
+  },
+  {
+    "scenario": "invalid-port",
+    "invocation": "ESSAY_PORT=65536 bash run.sh",
+    "exit": {
+      "code": 64,
+      "signal": null
+    }
+  }
+]

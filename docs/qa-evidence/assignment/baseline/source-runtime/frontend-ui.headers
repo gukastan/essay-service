@@ -1,0 +1,9 @@
+HTTP/1.1 200 OK
+date: Tue, 20 Oct 2026 05:29:47 GMT
+server: uvicorn
+content-type: text/html; charset=utf-8
+accept-ranges: bytes
+content-length: 8366
+last-modified: Tue, 20 Oct 2026 05:27:57 GMT
+etag: "fcdb6982b790cfc69736341beb7242c0"
+

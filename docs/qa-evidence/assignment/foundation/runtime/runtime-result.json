@@ -1,0 +1,192 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-20T06:36:47.053Z",
+  "env": {
+    "HOME": "<user-home>",
+    "PATH": "<inherited-path>",
+    "UV_CACHE_DIR": "/tmp/essay19-final-runtime.oZKITC/cache",
+    "UV_PYTHON_INSTALL_DIR": "/tmp/essay19-final-runtime.oZKITC/python",
+    "UV_PROJECT_ENVIRONMENT": "/tmp/essay19-final-runtime.oZKITC/venv",
+    "LANGCHAIN_TRACING": "true",
+    "LANGCHAIN_TRACING_V2": "true",
+    "LANGSMITH_TRACING": "true"
+  },
+  "python": "Python 3.12.15",
+  "uv": "uv 0.13.1 (62faed335 2026-10-13 aarch64-apple-darwin)",
+  "lockHash": "fa98a81e5c782279308596f58d303a01b717a2c3d85456fcd8cc4e91324f0904",
+  "sourceHashes": {
+    "mcp_server.py": "b8961d3625d8ddbb9fb3ee83e43d0ced77c1fb39154a257db76f12f17ef405a9",
+    "mcp_server_docs.py": "cdf5211f4273c035f4143e8d32b27498f7932528c987358ec30a2e26185514bc",
+    "run.sh": "d296aa9ad55a1b5148863a0330da36771850783a8b25cf70ac144cfb50c09617",
+    "server.py": "17cf8f18518618533ae209ba91f145199408ec45a069da9e8be3866706573b3f",
+    "web_demo_server.py": "6b002df3cd1ba0b7cb6ae6d0a34d3ea5b173654755c9e9c8626f40463ce28b91",
+    "agent/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agent/budget.py": "a3eb110281568dca70842edef4ec15cc658233f8622743878baba82c0b68965e",
+    "agent/contract_evidence.py": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880",
+    "agent/contract_input.py": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760",
+    "agent/contract_results.py": "b1c9603bd5261ece28b118b7c0025319eb589ee75e1ff1e9eb77c3dc666777d1",
+    "agent/contracts.py": "5027280064aeed390e073f7db3d9942c15fd626c57b5fc12b03e7128062cf5d2",
+    "agent/deps.py": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa",
+    "agent/fake_llm.py": "8af6ae5c4c804053c6365ff1e54a7e549077a393e4803325cb3021fc2fe977c7",
+    "agent/graph.py": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd",
+    "agent/limits.py": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c",
+    "agent/mcp_client.py": "e2f89d5585ee588441fd3fbdbd73ec54eb97f6def292df45c771e0bb7bdc0c94",
+    "agent/ollama_llm.py": "5358994cde09c7f337bc11c1713995ab701f91175437238103b86dd1b5de46bb",
+    "agent/openai_llm.py": "01ea201724bca3057e2372dfcbc0981c31125dfe9f7b063b55dcdd947d4eaaf2",
+    "agent/provider_schema.py": "e7f7b9f3fd7a5c7ee047d303ddfff2c84b04c0e8ff8915142cd151c1d8ce936b",
+    "agent/providers.py": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219",
+    "agent/research.py": "fb5c78b5464e66b5390b576adfd1a7f6b3e5be0583219ba882a8b296185d3cea",
+    "agent/retry.py": "d2524552348c9faa08b5ce446434bf593677c7028fb38c9e11b03de8839d2a3a",
+    "agent/session_store.py": "cd1f61396ccd815d940be5a3d8929199648273c360c82fbd722163644b7356a6",
+    "agent/settings.py": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925",
+    "agent/state.py": "f7840d3b6c64e8b200aff45515aeaa040d21b55c843d79c6f8cec4dd8286d12c",
+    "agent/supervisor_v1.py": "6080b4b8c3a6bd56c617a560a64d644d5f1e5e2721ad65324a09886a2df6cab8",
+    "sh/make_student_zip.sh": "b03144ed801a5534851cdf3a85a7f1a053f1d6711c89ea2224b09ded5df1e45c",
+    "sh/run_agent_ollma.sh": "8e9233c5ee814de8c36e88d12b0c95dc6f9d63cb1901689ea886699ec667b10b",
+    "sh/run_agent_openai.sh": "15d8fecb75c94251a4864a7e9d5b70a9b6774a2e4924dba22b0420d8fbe6734f",
+    "sh/run_frontend.sh": "7d9c748c4f7747fb6cdb852e274bfd45b6235a6deaa3162d39e9e6b1a4a6d9b0",
+    "sh/setup_ollama.sh": "80ca5807a75217f4e4adccc2052b53b99b05f3a877ed66028053937f31cebc67",
+    "sh/setup_venv.sh": "63237827de7b0b29f43b43d108878abb006d73d15677f9328c8211f7d593387e",
+    "web/foundation.mjs": "d8a97acb8f4f7ca0e999c9512c97fb43b543a3cecef36cc004c7069d6534f9af"
+  },
+  "databaseHash": "76715ba27db6f96041db723892d480ab76b3aa26134447ccb6f5937f99952c80",
+  "databaseUnchanged": true,
+  "results": [
+    {
+      "scenario": "foundation-start-and-control-input",
+      "invocation": "ESSAY_PORT=0 bash run.sh",
+      "port": 55475,
+      "health": {
+        "status": "ok",
+        "modelConfigured": false,
+        "mcpConnected": true,
+        "pipelineAvailable": false,
+        "instanceId": "80d1e73c-9427-48f4-9244-c43859e1061b",
+        "creationCount": 1
+      },
+      "again": {
+        "status": "ok",
+        "modelConfigured": false,
+        "mcpConnected": true,
+        "pipelineAvailable": false,
+        "instanceId": "80d1e73c-9427-48f4-9244-c43859e1061b",
+        "creationCount": 1
+      },
+      "responses": [
+        {
+          "path": "/api/drafts",
+          "status": 404,
+          "body": "{\"detail\":\"Not Found\"}"
+        },
+        {
+          "path": "/chat",
+          "status": 404,
+          "body": "{\"detail\":\"Not Found\"}"
+        },
+        {
+          "path": "/chat/stream",
+          "status": 404,
+          "body": "{\"detail\":\"Not Found\"}"
+        }
+      ],
+      "family": [
+        {
+          "pid": 77213,
+          "ppid": 77196,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+        },
+        {
+          "pid": 77229,
+          "ppid": 77213,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+        }
+      ],
+      "sqliteOpen": false,
+      "requestLeak": false
+    },
+    {
+      "scenario": "graceful-sigterm",
+      "signal": "SIGTERM",
+      "exit": {
+        "code": null,
+        "signal": "SIGTERM"
+      },
+      "family": [
+        {
+          "pid": 77213,
+          "ppid": 77196,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+        },
+        {
+          "pid": 77229,
+          "ppid": 77213,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+        }
+      ],
+      "observations": [
+        {
+          "attempt": 0,
+          "remaining": []
+        }
+      ],
+      "allGone": true
+    },
+    {
+      "scenario": "graceful-sigint",
+      "signal": "SIGINT",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "family": [
+        {
+          "pid": 77294,
+          "ppid": 77196,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+        },
+        {
+          "pid": 77297,
+          "ppid": 77294,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+        }
+      ],
+      "observations": [
+        {
+          "attempt": 0,
+          "remaining": []
+        }
+      ],
+      "allGone": true
+    },
+    {
+      "scenario": "occupied-port",
+      "invocation": "ESSAY_PORT=55480 bash run.sh",
+      "exit": {
+        "code": 3,
+        "signal": null
+      },
+      "sentinelStillListening": true,
+      "observedFamily": [
+        {
+          "pid": 77323,
+          "ppid": 77196,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 55480 --no-access-log"
+        },
+        {
+          "pid": 77402,
+          "ppid": 77323,
+          "command": "/tmp/essay19-final-runtime.oZKITC/venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+        }
+      ],
+      "allGone": true
+    },
+    {
+      "scenario": "invalid-port",
+      "invocation": "ESSAY_PORT=65536 bash run.sh",
+      "exit": {
+        "code": 64,
+        "signal": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+COMMAND     PID USER   FD     TYPE             DEVICE SIZE/OFF                NODE NAME
+python3.1 75662  jay  cwd      DIR               1,18      832             8786824 /Users/jay/Projects/essay-service/assignment
+python3.1 75662  jay  txt      REG               1,18 18134688             8854607 /private/tmp/essay19-runtime.8Cn69B/python/cpython-3.12.15-macos-aarch64-none/bin/python3.12
+python3.1 75662  jay  txt      REG               1,18    51392             8922594 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/websockets/speedups.cpython-312-darwin.so
+python3.1 75662  jay  txt      REG               1,18  2562000 1152921500312573255 /usr/lib/dyld
+python3.1 75662  jay  txt      REG               1,18   253904             8922551 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/orjson/orjson.cpython-312-darwin.so
+python3.1 75662  jay  txt      REG               1,18   229552             8922751 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/_cffi_backend.cpython-312-darwin.so
+python3.1 75662  jay  txt      REG               1,18   975856             8922529 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/watchfiles/_rust_notify.abi3.so
+python3.1 75662  jay  txt      REG               1,18  4351728             8919727 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/pydantic_core/_pydantic_core.cpython-312-darwin.so
+python3.1 75662  jay  txt      REG               1,18 10445664             8922812 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/cryptography/hazmat/bindings/_rust.abi3.so
+python3.1 75662  jay    0u    unix 0xc3d6b648a763ba40      0t0                     ->0x71317fae3805a8e7
+python3.1 75662  jay    1u    unix 0x143fb9ebc250484d      0t0                     ->0x23162b153acade00
+python3.1 75662  jay    2u    unix 0x557699e18b931153      0t0                     ->0xa96f96ddd8b9ec10
+python3.1 75662  jay    3u  KQUEUE                                                 count=0, state=0xa
+python3.1 75662  jay    4u    unix 0xfa8797c8a9a9903d      0t0                     ->0x75c3bf7bf5f4ccbf
+python3.1 75662  jay    5u    unix 0x75c3bf7bf5f4ccbf      0t0                     ->0xfa8797c8a9a9903d
+python3.1 75662  jay    6u    IPv4 0x8e2599ecfea9764b      0t0                 TCP localhost:55395 (LISTEN)
+python3.1 75662  jay    7     PIPE 0x3558a94db08aea3d    16384                     ->0x76050b268561a37b
+python3.1 75662  jay    8     PIPE 0x6e874bcf2d81349b    16384                     ->0x3792dab205edf051
+python3.1 75662  jay    9u    IPv4 0xdc90e9ff66680420      0t0                 TCP localhost:55395->localhost:55396 (ESTABLISHED)
+python3.1 75662  jay   10u    IPv4 0x341920accc983359      0t0                 TCP localhost:55395->localhost:55397 (ESTABLISHED)
+python3.1 75676  jay  cwd      DIR               1,18      832             8786824 /Users/jay/Projects/essay-service/assignment
+python3.1 75676  jay  txt      REG               1,18 18134688             8854607 /private/tmp/essay19-runtime.8Cn69B/python/cpython-3.12.15-macos-aarch64-none/bin/python3.12
+python3.1 75676  jay  txt      REG               1,18   229552             8922751 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/_cffi_backend.cpython-312-darwin.so
+python3.1 75676  jay  txt      REG               1,18  2562000 1152921500312573255 /usr/lib/dyld
+python3.1 75676  jay  txt      REG               1,18  4351728             8919727 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/pydantic_core/_pydantic_core.cpython-312-darwin.so
+python3.1 75676  jay  txt      REG               1,18   381768             8922492 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/yaml/_yaml.cpython-312-darwin.so
+python3.1 75676  jay  txt      REG               1,18   975856             8922529 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/watchfiles/_rust_notify.abi3.so
+python3.1 75676  jay  txt      REG               1,18 10445664             8922812 /private/tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/cryptography/hazmat/bindings/_rust.abi3.so
+python3.1 75676  jay    0r     CHR                3,2      0t0                 336 /dev/null
+python3.1 75676  jay    1u    unix 0x557699e18b931153      0t0                     ->0xa96f96ddd8b9ec10
+python3.1 75676  jay    2u    unix 0x557699e18b931153      0t0                     ->0xa96f96ddd8b9ec10
+python3.1 75676  jay    3u  KQUEUE                                                 count=0, state=0xa
+python3.1 75676  jay    4u    unix 0xabaafa528c7461e6      0t0                     ->0x1dfdad10cf60b552
+python3.1 75676  jay    5u    unix 0x1dfdad10cf60b552      0t0                     ->0xabaafa528c7461e6
+python3.1 75676  jay    6     PIPE 0x76050b268561a37b    16384                     ->0x3558a94db08aea3d
+python3.1 75676  jay    7     PIPE 0x3792dab205edf051    16384                     ->0x6e874bcf2d81349b

@@ -1,0 +1,14 @@
+{
+  "protected441Unchanged": true,
+  "original46Unchanged": true,
+  "checkedMarkdownFiles": 9,
+  "missingLinks": [],
+  "jsonAndJiraReadback": true,
+  "acceptanceChecks": 8,
+  "teamArchivedAndActiveStateRemoved": true,
+  "gitDiffCheckPassed": true,
+  "checkedAt": "2026-10-20 07:01:44 UTC",
+  "passed": true,
+  "jira": "ESSAY-19 완료; ESSAY-8 진행 중; 후속 티켓 할 일",
+  "commitAndPushPerformed": false
+}

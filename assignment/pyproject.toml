@@ -1,0 +1,41 @@
+[project]
+name = "essay-assignment"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "anyio==4.15.1", "fastapi==0.150.0", "fastmcp==4.1.1", "langgraph==1.2.16",
+  "mcp==2.3.0", "openai==3.35.1", "pydantic==2.14.1", "pydantic-settings==2.16.0",
+  "uvicorn==0.54.0", "httpx==0.28.1",
+]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "basedpyright==1.40.2", "ruff==0.17.1"]
+
+[tool.basedpyright]
+typeCheckingMode = "all"
+pythonVersion = "3.12"
+venvPath = "."
+venv = ".venv"
+include = ["agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+include = ["agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+# Named contracts/self-describing fields do not need boilerplate docstrings.
+# Error literals below are stable machine codes, not user/provider messages.
+ignore = ["COM812", "D203", "D213", "CPY001", "D101", "D102", "D103", "D105", "D107", "EM101", "A002"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["-ra", "--strict-config", "--strict-markers"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "PLR2004", "SLF001", "D", "ARG"]
+
+"agent/contracts.py" = ["PLC0414"] # Explicit reexports are required by strict type checking.
+"agent/providers.py" = ["PLC0414", "TC001"] # Public runtime reexports.

@@ -1,0 +1,4 @@
+/Users/jay/Projects/essay-service/assignment/agent/provider_schema.py:23:5: [missing-assert-never] match without `case _: assert_never(x)` default
+/Users/jay/Projects/essay-service/assignment/server.py:58:13: [generic-exception] `raise RuntimeError("...")` - define a typed error class instead
+
+2 violation(s) in 16 file(s)

@@ -1,0 +1,28 @@
+Working directory: /Users/jay/Projects/essay-service
+
+# Source copy: Python pathlib/shutil.copyfile; exhaustive per-file SHA-256 verification.
+# Source: /Users/jay/Downloads/all_total_vue_student (read only)
+# Destination: /Users/jay/Projects/essay-service/assignment
+# Exclusions and every included/excluded path: source-provenance.json
+# Only subsequent copy edit: append expanded ignore patterns to assignment/.gitignore.
+
+UV_CACHE_DIR=/private/tmp/essay18-uv-cache uv venv --python /opt/homebrew/bin/python3.11 .omo/runtime/essay18/venv
+UV_CACHE_DIR=/private/tmp/essay18-uv-cache uv pip install --python .omo/runtime/essay18/venv/bin/python -r assignment/requirements.txt
+UV_CACHE_DIR=/private/tmp/essay18-uv-cache uv pip freeze --python .omo/runtime/essay18/venv/bin/python
+UV_CACHE_DIR=/private/tmp/essay18-uv-cache uv pip check --python .omo/runtime/essay18/venv/bin/python
+
+# Both server commands run with cwd=/Users/jay/Projects/essay-service/assignment.
+# Backend exec session 20735; observed PID 50640.
+env -i PATH=/Users/jay/Projects/essay-service/.omo/runtime/essay18/venv/bin:/usr/bin:/bin LANG=en_US.UTF-8 PYTHONDONTWRITEBYTECODE=1 PYTHON_DOTENV_DISABLED=1 LANGCHAIN_TRACING=false LANGCHAIN_TRACING_V2=false LANGSMITH_TRACING=false LLM_BACKEND=fake SUPERVISOR_VERSION=v2 /Users/jay/Projects/essay-service/.omo/runtime/essay18/venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 8100 --log-level warning
+# Frontend exec session 44139; observed PID 50794.
+env -i PATH=/Users/jay/Projects/essay-service/.omo/runtime/essay18/venv/bin:/usr/bin:/bin LANG=en_US.UTF-8 PYTHONDONTWRITEBYTECODE=1 PYTHON_DOTENV_DISABLED=1 LANGCHAIN_TRACING=false LANGCHAIN_TRACING_V2=false LANGSMITH_TRACING=false LLM_BACKEND=fake SUPERVISOR_VERSION=v2 /Users/jay/Projects/essay-service/.omo/runtime/essay18/venv/bin/python -m uvicorn web_demo_server:app --host 127.0.0.1 --port 8600 --log-level warning
+
+# Log redirects: .omo/runtime/essay18/backend.log and frontend.log, ignored by local .gitignore.
+# SQLite: assignment/session.db generated fresh by unmodified SqliteSessionStore (ignored).
+# Stop only owned parent PIDs: kill -TERM 50794 50640; Uvicorn lifespan closes MCP children.
+
+curl -fsS -D docs/qa-evidence/assignment/baseline/source-runtime/backend-health.headers http://127.0.0.1:8100/health -o docs/qa-evidence/assignment/baseline/source-runtime/backend-health.json
+curl -fsS -D docs/qa-evidence/assignment/baseline/source-runtime/frontend-health.headers http://127.0.0.1:8600/health -o docs/qa-evidence/assignment/baseline/source-runtime/frontend-health.json
+curl -fsS -D docs/qa-evidence/assignment/baseline/source-runtime/frontend-ui.headers http://127.0.0.1:8600/ -o docs/qa-evidence/assignment/baseline/source-runtime/frontend-ui.html
+lsof -nP -iTCP:8100 -iTCP:8600 -sTCP:LISTEN
+ps -p 50640,50715,50731,50794 -o pid,ppid,command

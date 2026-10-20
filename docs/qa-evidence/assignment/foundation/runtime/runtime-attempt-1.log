@@ -1,0 +1,26 @@
+node:internal/child_process:1144
+    result.error = new ErrnoException(result.error, 'spawnSync ' + options.file);
+                   ^
+
+<ref *1> Error: spawnSync ps EPERM
+    at Object.spawnSync (node:internal/child_process:1144:20)
+    at spawnSync (node:child_process:928:24)
+    at execFileSync (node:child_process:971:15)
+    at descendants (file:///Users/jay/Projects/essay-service/docs/qa-evidence/assignment/foundation/runtime/check-runtime.mjs:56:16)
+    at file:///Users/jay/Projects/essay-service/docs/qa-evidence/assignment/foundation/runtime/check-runtime.mjs:101:18
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawnSync ps',
+  path: 'ps',
+  spawnargs: [ '-axo', 'pid=,ppid=,command=' ],
+  error: [Circular *1],
+  status: null,
+  signal: null,
+  output: null,
+  pid: 0,
+  stdout: undefined,
+  stderr: undefined
+}
+
+Node.js v26.7.0

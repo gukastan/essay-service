@@ -1,0 +1,20 @@
+{"output":"/Users/jay/Projects/essay-service/docs/qa-evidence/assignment/baseline/flow/api-results.json","passed":0,"failed":[]}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[TypeError: fetch failed] {
+  [cause]: Error: connect EPERM 127.0.0.1:8100 - Local (0.0.0.0:0)
+      at internalConnect (node:net:1402:16)
+      at defaultTriggerAsyncIdScope (node:internal/async_hooks:474:12)
+      at node:net:1725:9
+      at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+    errno: -1,
+    code: 'EPERM',
+    syscall: 'connect',
+    address: '127.0.0.1',
+    port: 8100
+  }
+}
+
+Node.js v26.7.0

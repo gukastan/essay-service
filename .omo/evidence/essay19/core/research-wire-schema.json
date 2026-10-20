@@ -1,0 +1,257 @@
+{
+  "$defs": {
+    "CompanyFact": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "sourceIds": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Sourceids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "sourceIds"
+      ],
+      "title": "CompanyFact",
+      "type": "object"
+    },
+    "JobRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "sourceIds": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Sourceids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "text",
+        "sourceIds"
+      ],
+      "title": "JobRequirement",
+      "type": "object"
+    },
+    "OfficialSource": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "checkedAt": {
+          "format": "date-time",
+          "title": "Checkedat",
+          "type": "string"
+        },
+        "publishedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Publishedat"
+        },
+        "closingAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Closingat"
+        },
+        "excerpt": {
+          "title": "Excerpt",
+          "type": "string"
+        },
+        "kind": {
+          "const": "official",
+          "title": "Kind",
+          "type": "string"
+        },
+        "url": {
+          "maxLength": 2048,
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "checkedAt",
+        "publishedAt",
+        "closingAt",
+        "excerpt",
+        "kind",
+        "url"
+      ],
+      "title": "OfficialSource",
+      "type": "object"
+    },
+    "UserProvidedSource": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "checkedAt": {
+          "format": "date-time",
+          "title": "Checkedat",
+          "type": "string"
+        },
+        "publishedAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Publishedat"
+        },
+        "closingAt": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Closingat"
+        },
+        "excerpt": {
+          "title": "Excerpt",
+          "type": "string"
+        },
+        "kind": {
+          "const": "user_provided",
+          "title": "Kind",
+          "type": "string"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "maxLength": 2048,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Url"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "checkedAt",
+        "publishedAt",
+        "closingAt",
+        "excerpt",
+        "kind",
+        "url"
+      ],
+      "title": "UserProvidedSource",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "resolvedCompany": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Resolvedcompany"
+    },
+    "sources": {
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/OfficialSource"
+          },
+          {
+            "$ref": "#/$defs/UserProvidedSource"
+          }
+        ]
+      },
+      "title": "Sources",
+      "type": "array"
+    },
+    "companyFacts": {
+      "items": {
+        "$ref": "#/$defs/CompanyFact"
+      },
+      "title": "Companyfacts",
+      "type": "array"
+    },
+    "jobRequirements": {
+      "items": {
+        "$ref": "#/$defs/JobRequirement"
+      },
+      "title": "Jobrequirements",
+      "type": "array"
+    },
+    "gaps": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Gaps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "resolvedCompany",
+    "sources",
+    "companyFacts",
+    "jobRequirements",
+    "gaps"
+  ],
+  "title": "ResearchResult",
+  "type": "object"
+}

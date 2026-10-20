@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0
+rootdir: /Users/jay/Projects/essay-service/assignment
+configfile: pyproject.toml
+testpaths: tests
+plugins: langsmith-0.14.11, anyio-4.15.1, platformdirs-4.13.5
+collected 122 items
+
+tests/test_budget.py ............                                        [  9%]
+tests/test_budget_timing.py ....                                         [ 13%]
+tests/test_contracts.py ................................................ [ 52%]
+.....................                                                    [ 69%]
+tests/test_lifecycle.py ..                                               [ 71%]
+tests/test_live_compatibility.py s                                       [ 72%]
+tests/test_mcp.py ..........                                             [ 80%]
+tests/test_mcp_control.py .....                                          [ 84%]
+tests/test_provider.py ........                                          [ 90%]
+tests/test_state.py ........                                             [ 97%]
+tests/test_text_parity.py ...                                            [100%]
+
+=============================== warnings summary ===============================
+../../../../../tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/_pytest/cacheprovider.py:469
+  /tmp/essay19-final-runtime.oZKITC/venv/lib/python3.12/site-packages/_pytest/cacheprovider.py:469: PytestCacheWarning: cache could not write path /Users/jay/Projects/essay-service/assignment/.pytest_cache/v/cache/nodeids: [Errno 1] Operation not permitted: '/Users/jay/Projects/essay-service/assignment/.pytest_cache/v/cache/nodeids'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_live_compatibility.py:34: explicit paid opt-in required
+================== 121 passed, 1 skipped, 1 warning in 10.98s ==================

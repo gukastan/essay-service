@@ -1,0 +1,78 @@
+
+{
+    "version": "1.40.2",
+    "time": "1792478331377",
+    "generalDiagnostics": [
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py",
+            "severity": "error",
+            "message": "Type \"State\" is not assignable to declared type \"RuntimeState\"\n  \"State\" is incompatible with protocol \"RuntimeState\"\n    \"deps\" is not present",
+            "range": {
+                "start": {
+                    "line": 26,
+                    "character": 30
+                },
+                "end": {
+                    "line": 26,
+                    "character": 39
+                }
+            },
+            "rule": "reportAssignmentType"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+            "severity": "error",
+            "message": "\"request\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 67,
+                    "character": 16
+                },
+                "end": {
+                    "line": 67,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_provider.py",
+            "severity": "error",
+            "message": "\"request\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 85,
+                    "character": 16
+                },
+                "end": {
+                    "line": 85,
+                    "character": 23
+                }
+            },
+            "rule": "reportUnusedParameter"
+        },
+        {
+            "file": "/Users/jay/Projects/essay-service/assignment/tests/test_state.py",
+            "severity": "error",
+            "message": "\"state\" is not accessed",
+            "range": {
+                "start": {
+                    "line": 123,
+                    "character": 16
+                },
+                "end": {
+                    "line": 123,
+                    "character": 21
+                }
+            },
+            "rule": "reportUnusedParameter"
+        }
+    ],
+    "summary": {
+        "filesAnalyzed": 31,
+        "errorCount": 4,
+        "warningCount": 0,
+        "informationCount": 0,
+        "timeInSec": 1.171
+    }
+}

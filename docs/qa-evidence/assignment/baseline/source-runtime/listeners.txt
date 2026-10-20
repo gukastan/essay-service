@@ -1,0 +1,3 @@
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  50640  jay   11u  IPv4 0xe6c98c72ecf9e8ae      0t0  TCP 127.0.0.1:8100 (LISTEN)
+Python  50794  jay    6u  IPv4 0x781741ac679a37cb      0t0  TCP 127.0.0.1:8600 (LISTEN)

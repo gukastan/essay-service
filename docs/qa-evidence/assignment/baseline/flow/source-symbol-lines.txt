@@ -1,0 +1,35 @@
+/Users/jay/Downloads/all_total_vue_student/agent/retry.py:11:async def with_retry(fn, *args, retries: int = 3, base_delay: float = 0.3, **kwargs):
+/Users/jay/Downloads/all_total_vue_student/server.py:3:- Wave 1  : lifespan에서 Agent 번들(MCP 연결·LLM·그래프)을 프로세스당 정확히 1회 생성,
+/Users/jay/Downloads/all_total_vue_student/server.py:63:async def lifespan(app: FastAPI):
+/Users/jay/Downloads/all_total_vue_student/server.py:90:app = FastAPI(lifespan=lifespan)
+/Users/jay/Downloads/all_total_vue_student/server.py:94:async def health():
+/Users/jay/Downloads/all_total_vue_student/server.py:126:async def _handle_chat(message: str, thread_id: str) -> tuple[dict, str | None]:
+/Users/jay/Downloads/all_total_vue_student/server.py:142:async def chat(req: ChatRequest):
+/Users/jay/Downloads/all_total_vue_student/server.py:149:async def chat_stream(message: str, thread_id: str = "default"):
+/Users/jay/Downloads/all_total_vue_student/server.py:163:            yield f"data: {json.dumps({'type': 'FinalAnswer', 'reply': result['final']}, ensure_ascii=False)}\n\n"
+/Users/jay/Downloads/all_total_vue_student/server.py:167:            last_prompt = None   # finalize까지 살아남은 최종 write/chat 호출의 실제 프롬프트
+/Users/jay/Downloads/all_total_vue_student/server.py:185:                    if delta.get("last_prompt"):
+/Users/jay/Downloads/all_total_vue_student/server.py:186:                        last_prompt = delta["last_prompt"]
+/Users/jay/Downloads/all_total_vue_student/server.py:187:            yield f"data: {json.dumps({'type': 'FinalAnswer', 'reply': final, 'prompt': last_prompt}, ensure_ascii=False)}\n\n"
+/Users/jay/Downloads/all_total_vue_student/agent/fake_llm.py:27:    def route(self, query: str) -> tuple[dict, dict]:
+/Users/jay/Downloads/all_total_vue_student/agent/fake_llm.py:68:    async def chat(self, query: str, history: list[dict], on_token=None) -> tuple[str, dict]:
+/Users/jay/Downloads/all_total_vue_student/agent/fake_llm.py:94:    async def write(self, query: str, collected: list[dict], attempt: int,
+/Users/jay/Downloads/all_total_vue_student/agent/mcp_client.py:3:Wave 1의 교훈대로 서버(lifespan)에서 한 번만 연결을 만들고 모든 요청이 공유한다.
+/Users/jay/Downloads/all_total_vue_student/agent/mcp_client.py:71:    async def call_tool(self, name: str, arguments: dict, server: str = "ops") -> dict:
+/Users/jay/Downloads/all_total_vue_student/mcp_server.py:4:FastAPI 백엔드(server.py)가 lifespan에서 이 파일을 subprocess(stdio)로 1회 기동해
+/Users/jay/Downloads/all_total_vue_student/mcp_server.py:34:def get_monitoring_status(system_name: str) -> SystemStatus:
+/Users/jay/Downloads/all_total_vue_student/mcp_server.py:57:def get_incident_runbook(incident_type: str) -> str:
+/Users/jay/Downloads/all_total_vue_student/mcp_server.py:66:def incident_analysis_prompt(system_name: str, symptom: str) -> str:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:66:    last_prompt: str
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:76:async def route_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:86:async def chat_answer_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:96:    return {"final": reply, "last_prompt": usage.get("prompt"),
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:102:async def plan_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:123:async def gate_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:138:async def research_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:172:    results = await asyncio.gather(*(run_one(i) for i in research_indices))
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:217:async def replan_check_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:234:async def analysis_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:255:async def write_node(state: AgentState, deps: SupervisorDeps) -> dict:
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:268:    return {"draft": draft, "last_prompt": usage.get("prompt"),
+/Users/jay/Downloads/all_total_vue_student/agent/graph.py:275:async def validate_node(state: AgentState, deps: SupervisorDeps) -> dict:

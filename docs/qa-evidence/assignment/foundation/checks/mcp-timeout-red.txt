@@ -1,0 +1,28 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+____________ test_actual_mcp_transport_timeout_retains_reservation _____________
+
+    @pytest.mark.anyio
+    async def test_actual_mcp_transport_timeout_retains_reservation() -> None:
+        # Given
+    
+        now = [0.0]
+        budget = ExecutionBudget(now=lambda: now[0])
+        async with MCPClient(adversarial_client("timeout")) as mcp:
+            now[0] = 179.98
+            # When / Then: a pending tool is interrupted by the actual remaining 20ms scope.
+            with pytest.raises((ExecutionBudgetError, MCPError)) as raised:
+                _ = await mcp.research(ResearchInput(company="회사", role="직무"), budget, uuid4())
+>           assert raised.value.code in {"DEADLINE_EXCEEDED", "TIMEOUT"}
+E           AssertionError: assert 'PROTOCOL_ERROR' in {'DEADLINE_EXCEEDED', 'TIMEOUT'}
+E            +  where 'PROTOCOL_ERROR' = MCPError('PROTOCOL_ERROR').code
+E            +    where MCPError('PROTOCOL_ERROR') = <ExceptionInfo MCPError('PROTOCOL_ERROR') tblen=5>.value
+
+tests/test_mcp_control.py:151: AssertionError
+----------------------------- Captured stderr call -----------------------------
+[10/20/26 15:43:56] INFO     Starting MCP server                transport.py:241
+                             'adversarial-fixture' with                         
+                             transport 'stdio'                                  
+=========================== short test summary info ============================
+FAILED tests/test_mcp_control.py::test_actual_mcp_transport_timeout_retains_reservation
+1 failed in 0.96s

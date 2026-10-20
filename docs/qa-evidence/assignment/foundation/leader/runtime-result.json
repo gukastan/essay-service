@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "startedAt": "2026-10-20T06:49:50.858Z",
+  "finishedAt": "2026-10-20T06:49:52.317Z",
+  "invocation": "ESSAY_PORT=0 bash run.sh; empty key/model; tracing sentinels true",
+  "health": {
+    "status": "ok",
+    "modelConfigured": false,
+    "mcpConnected": true,
+    "pipelineAvailable": false,
+    "instanceId": "7f9a7610-6a9a-4c72-afc1-01dabd363989",
+    "creationCount": 1
+  },
+  "again": {
+    "status": "ok",
+    "modelConfigured": false,
+    "mcpConnected": true,
+    "pipelineAvailable": false,
+    "instanceId": "7f9a7610-6a9a-4c72-afc1-01dabd363989",
+    "creationCount": 1
+  },
+  "controls": [
+    {
+      "path": "/api/drafts",
+      "status": 404
+    },
+    {
+      "path": "/chat",
+      "status": 404
+    },
+    {
+      "path": "/chat/stream",
+      "status": 404
+    }
+  ],
+  "family": [
+    {
+      "pid": 82725,
+      "ppid": 82707,
+      "command": ".venv/bin/python -m uvicorn server:app --host 127.0.0.1 --port 0 --no-access-log"
+    },
+    {
+      "pid": 82741,
+      "ppid": 82725,
+      "command": "/Users/jay/Projects/essay-service/assignment/.venv/bin/python /Users/jay/Projects/essay-service/assignment/mcp_server.py"
+    }
+  ],
+  "exit": {
+    "code": null,
+    "signal": "SIGTERM"
+  },
+  "allOwnedPidsGone": true,
+  "sourceHashes": {
+    "mcp_server.py": "b8961d3625d8ddbb9fb3ee83e43d0ced77c1fb39154a257db76f12f17ef405a9",
+    "mcp_server_docs.py": "cdf5211f4273c035f4143e8d32b27498f7932528c987358ec30a2e26185514bc",
+    "run.sh": "d296aa9ad55a1b5148863a0330da36771850783a8b25cf70ac144cfb50c09617",
+    "server.py": "8617a1a7e8fca168919448d419ceb7e585d08095a6bd89747d61ee4275ae65e5",
+    "web_demo_server.py": "6b002df3cd1ba0b7cb6ae6d0a34d3ea5b173654755c9e9c8626f40463ce28b91",
+    "agent/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "agent/budget.py": "9547a1ad4f6f7929f20ad7d2321657341f389947836fe135e906ef28f7ef229e",
+    "agent/contract_evidence.py": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880",
+    "agent/contract_input.py": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760",
+    "agent/contract_results.py": "8a36950b97ebb1c90778dab358d25c68f7abb8ee6b98bedc6efcfdcdbdf185d2",
+    "agent/contracts.py": "5027280064aeed390e073f7db3d9942c15fd626c57b5fc12b03e7128062cf5d2",
+    "agent/deps.py": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa",
+    "agent/fake_llm.py": "8af6ae5c4c804053c6365ff1e54a7e549077a393e4803325cb3021fc2fe977c7",
+    "agent/graph.py": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd",
+    "agent/limits.py": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c",
+    "agent/mcp_client.py": "2dfb31062d7d257eb7cb4c0460374f7f5e2432ba47427e9875a701a549d3c1b5",
+    "agent/ollama_llm.py": "5358994cde09c7f337bc11c1713995ab701f91175437238103b86dd1b5de46bb",
+    "agent/openai_llm.py": "508ce35d892400531f0f397d7ec9e85d19ff6b1453c83951d2bf2278a36986a6",
+    "agent/provider_schema.py": "e1e7c28705cb1ba1c56cce6a9ab787885070b5ae936eb2aa4de606a92e406c84",
+    "agent/providers.py": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219",
+    "agent/research.py": "4b5dc946cebe39be3ee2e7d4c0202f56d80bf0e4275e44e777d113e0dc690707",
+    "agent/response_wire.py": "d852fb4af61ab2bc718034470b4024e1a7e2f946d2df7e7f1f7b033d0754c982",
+    "agent/retry.py": "d2524552348c9faa08b5ce446434bf593677c7028fb38c9e11b03de8839d2a3a",
+    "agent/session_store.py": "cd1f61396ccd815d940be5a3d8929199648273c360c82fbd722163644b7356a6",
+    "agent/settings.py": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925",
+    "agent/state.py": "f7840d3b6c64e8b200aff45515aeaa040d21b55c843d79c6f8cec4dd8286d12c",
+    "agent/supervisor_v1.py": "6080b4b8c3a6bd56c617a560a64d644d5f1e5e2721ad65324a09886a2df6cab8",
+    "sh/make_student_zip.sh": "b03144ed801a5534851cdf3a85a7f1a053f1d6711c89ea2224b09ded5df1e45c",
+    "sh/run_agent_ollma.sh": "8e9233c5ee814de8c36e88d12b0c95dc6f9d63cb1901689ea886699ec667b10b",
+    "sh/run_agent_openai.sh": "15d8fecb75c94251a4864a7e9d5b70a9b6774a2e4924dba22b0420d8fbe6734f",
+    "sh/run_frontend.sh": "7d9c748c4f7747fb6cdb852e274bfd45b6235a6deaa3162d39e9e6b1a4a6d9b0",
+    "sh/setup_ollama.sh": "80ca5807a75217f4e4adccc2052b53b99b05f3a877ed66028053937f31cebc67",
+    "sh/setup_venv.sh": "63237827de7b0b29f43b43d108878abb006d73d15677f9328c8211f7d593387e",
+    "tests/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "tests/conftest.py": "68e4bca5cee4298a54eaf634c1aff069c6d9a19a5168db9925c6eaebcb7ddb29",
+    "tests/mcp_adversary.py": "8108695225326b071822e78c437e5a6e63416cee81754b3091a5c9f96d66f6a1",
+    "tests/mcp_wire_server.py": "dba833540572b75453cf649ee539770448ed13dca478c11ce5c23d708a9ec068",
+    "tests/test_budget.py": "9bb4ad0cdc561a1afb0ed2ba1d86128dc3fdf23b7300754f2f9259579ffb76aa",
+    "tests/test_budget_timing.py": "78b945c81c2eb3ea32c1d23502965737a26b271deb7a0482366b898e562fffa2",
+    "tests/test_contracts.py": "d18ed00393d6224b4e94e717f7d052e6a40dd521aa7ba1ae06551888d09a5606",
+    "tests/test_foundation.mjs": "a5fe8156d8f5a0b6c304769052cd9145cd7905eeaf172c9c505698bbe6c30ea3",
+    "tests/test_lifecycle.py": "f9cbf2b532053aabebc1d29876d23c31534daa2d1ac8e210829169fe001a4082",
+    "tests/test_live_compatibility.py": "5e03f24be1328382aae2089399e84a97c1a7991f070cf0c4ee297d4c3f628544",
+    "tests/test_mcp.py": "15bc03c7d2ac86e490552e354086bd9f09cfe767a09ce0516019a9d5c9d2ff5a",
+    "tests/test_mcp_control.py": "be3001b60c660a8a59831abbdde9d968266caed16fb95ec2a731262d22b98024",
+    "tests/test_provider.py": "ef5adaaab4fa7853baf44678a2da880c5df5b2dfa78da7b97519fc79f8b64646",
+    "tests/test_state.py": "fda0c0605d06057cc11b195ea54f62cc4f04e0705ddd9be70cf0738a48ea702f",
+    "tests/test_text_parity.py": "b9519886100ce181f45389d48c4149398f0642174cf5d6533b5799c315130939",
+    "tests/wire_fixture.py": "de3b23cad4e4d59271b2ffb16e939c57c74b7b3dd7f18fbcb744f7f469624cde",
+    "web/foundation.mjs": "d8a97acb8f4f7ca0e999c9512c97fb43b543a3cecef36cc004c7069d6534f9af",
+    "pyproject.toml": "afdebe1e51489b3205b2c36a1e4275213112a3d32ba63f3d59e86a83620e42c9",
+    "uv.lock": "fa98a81e5c782279308596f58d303a01b717a2c3d85456fcd8cc4e91324f0904"
+  },
+  "scope": "Final-source localhost foundation smoke, no model call or essay business pipeline"
+}

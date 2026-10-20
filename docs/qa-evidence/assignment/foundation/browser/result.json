@@ -1,0 +1,77 @@
+{
+  "startedAt": "2026-10-20T06:12:46.611Z",
+  "finishedAt": "2026-10-20T06:12:47.893Z",
+  "outcome": "passed",
+  "scope": "actual Vue foundation utility harness, not essay UI",
+  "checks": [
+    {
+      "name": "actual Vue LF/codepoint/evidence fixtures",
+      "passed": true,
+      "rows": [
+        {
+          "id": "hangul",
+          "normalized": "한글 문장",
+          "count": 5,
+          "quote": "문장",
+          "evidence": true,
+          "passed": true
+        },
+        {
+          "id": "emoji-crlf",
+          "normalized": "가😀\n나",
+          "count": 4,
+          "quote": "😀\n",
+          "evidence": true,
+          "passed": true
+        },
+        {
+          "id": "combining-zwj-cr",
+          "normalized": "가é🧑‍💻\n끝",
+          "count": 8,
+          "quote": "🧑‍💻",
+          "evidence": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "Vue reactive input uses codepoints",
+      "passed": true,
+      "observed": {
+        "normalized": "가😀\n나",
+        "count": 4
+      }
+    },
+    {
+      "name": "external abort stops one actual request without retry",
+      "passed": true,
+      "requests": 1,
+      "observed": {
+        "state": "cancelled",
+        "name": "AbortError"
+      }
+    },
+    {
+      "name": "HTTP error status with sanitized message",
+      "passed": true,
+      "observed": {
+        "success": false,
+        "name": "RequestError",
+        "status": 422,
+        "message": "The server returned an unsuccessful response."
+      }
+    },
+    {
+      "name": "client/request deadline configuration",
+      "passed": true,
+      "observed": {
+        "clientTimeoutMs": 195000,
+        "requestTimeoutMs": 180000,
+        "vueVersion": "3.5.44"
+      }
+    }
+  ],
+  "ownedBrowserClosed": true,
+  "temporaryProfileRemoved": true,
+  "localServerClosed": true
+}

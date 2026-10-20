@@ -1,0 +1,20 @@
+{
+  "started_at": "2026-10-20T05:30:38.215Z",
+  "completed_at": "2026-10-20T05:30:38.226Z",
+  "invocation": [
+    "/opt/homebrew/Cellar/node/26.7.0/bin/node",
+    "/Users/jay/Projects/essay-service/docs/qa-evidence/assignment/baseline/flow/run-api.mjs",
+    "http://127.0.0.1:8100",
+    "fresh",
+    "docs/qa-evidence/assignment/baseline/flow/api-results.json"
+  ],
+  "runtime": "v26.7.0",
+  "base_url": "http://127.0.0.1:8100",
+  "mode": "fresh",
+  "model_mode": "fake (mock)",
+  "monitoring_mode": "JSON fixture with random jitter (mock)",
+  "protocol": "real FastAPI/LangGraph/MCP; SSE callbacks do not prove upstream model token streaming",
+  "full_prompts_persisted": false,
+  "checks": [],
+  "records": []
+}

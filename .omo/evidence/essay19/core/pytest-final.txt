@@ -1,0 +1,30 @@
+........................................................................ [ 54%]
+..................F.s.......................................             [100%]
+=================================== FAILURES ===================================
+______ test_real_lifespan_reuses_dependencies_and_never_creates_database _______
+
+tmp_path = PosixPath('/private/var/folders/yg/tq435kln5kqgv4hd5glsf7fc0000gn/T/pytest-of-jay/pytest-6/test_real_lifespan_reuses_depe0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10e33e0c0>
+
+    @pytest.mark.anyio
+    async def test_real_lifespan_reuses_dependencies_and_never_creates_database(
+        tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        # Given
+        _ = monkeypatch.chdir(tmp_path)
+        for name in ("LANGCHAIN_TRACING", "LANGCHAIN_TRACING_V2", "LANGSMITH_TRACING"):
+            _ = monkeypatch.setenv(name, "true")
+        app = create_app(Settings(openai_api_key=None, openai_model=None))
+        draft = DraftRequest(company="회사", role="직무", question="문항", experience="경험")
+        # When
+        async with app.router.lifespan_context(app):
+            state = app.state
+>           assert isinstance(state, RuntimeState)
+E           assert False
+E            +  where False = isinstance(<starlette.datastructures.State object at 0x10e0f30b0>, RuntimeState)
+
+/Users/jay/Projects/essay-service/assignment/tests/test_lifecycle.py:36: AssertionError
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_live_compatibility.py:66: explicit paid opt-in required
+FAILED tests/test_lifecycle.py::test_real_lifespan_reuses_dependencies_and_never_creates_database
+1 failed, 130 passed, 1 skipped in 11.56s

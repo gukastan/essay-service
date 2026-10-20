@@ -1,0 +1,20 @@
+✔ code-point fixture "한글 문장" (0.742084ms)
+✔ code-point fixture "가😀\r\n나" (0.046625ms)
+✔ code-point fixture "가é🧑‍💻\r끝" (0.032375ms)
+✔ invalid offset -1:1 (0.143834ms)
+✔ invalid offset 0.5:2 (0.035208ms)
+✔ invalid offset 0:9 (0.030209ms)
+✔ invalid offset 2:1 (0.0295ms)
+✔ invalid offset 0:NaN (0.027625ms)
+✔ deadline aborts after 195 seconds while reading body without retry (0.619416ms)
+✔ pre-aborted request never transmits (0.139542ms)
+✔ HTTP failure exposes status without provider body or retry (7.95975ms)
+✔ successful JSON cleans timer and abort listener (0.57025ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.359167

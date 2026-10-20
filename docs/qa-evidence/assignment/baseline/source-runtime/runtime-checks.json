@@ -1,0 +1,18 @@
+{
+  "all_pass": true,
+  "checks": {
+    "root_run_sh_absent": true,
+    "sh_run_sh_absent": true,
+    "three_provided_launchers_present": true,
+    "served_ui_byte_matches_original": true,
+    "backend_health_http_200": true,
+    "frontend_health_http_200": true,
+    "frontend_ui_http_200": true,
+    "assignment_env_absent": true,
+    "assignment_venv_absent": true,
+    "assignment_cache_absent": true,
+    "backend_health_fake": true,
+    "backend_health_v2": true,
+    "backend_bundle_created_once": true
+  }
+}

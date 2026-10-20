@@ -1,0 +1,138 @@
+{
+  "verifiedAt": "2026-10-20T05:59:01.355Z",
+  "cloudId": "8e85566d-9264-4bac-95c9-79bcb5476972",
+  "scope": "ESSAY-18 original baseline only; FakeLLM/JSON fixtures with real API, LangGraph, MCP and Vue; no paid model calls",
+  "issueCount": 20,
+  "epicChildCount": 12,
+  "completedIssuesUnchanged": true,
+  "dependenciesUnchanged": true,
+  "dependencyCount": 16,
+  "updated": [
+    "ESSAY-18",
+    "ESSAY-8"
+  ],
+  "statusTransitions": 2,
+  "transitionedIssues": [
+    "ESSAY-18"
+  ],
+  "readbackPassed": true,
+  "checks": {
+    "runtime": 13,
+    "apiSse": 25,
+    "mcp": 8,
+    "browser": 5
+  },
+  "originalFilesPreserved": 46,
+  "protectedRepositoryFilesPreserved": 341,
+  "startCommentId": "10018",
+  "completionCommentId": "10019",
+  "nextIssue": "ESSAY-19",
+  "nextIssueStarted": false,
+  "issueStates": [
+    {
+      "key": "ESSAY-1",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-2",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-3",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-4",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-5",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-6",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-7",
+      "status": "완료",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-8",
+      "status": "진행 중",
+      "parent": null
+    },
+    {
+      "key": "ESSAY-9",
+      "status": "완료",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-10",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-11",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-12",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-13",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-14",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-15",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-16",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-17",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-18",
+      "status": "완료",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-19",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    },
+    {
+      "key": "ESSAY-20",
+      "status": "할 일",
+      "parent": "ESSAY-8"
+    }
+  ],
+  "doneTransition": {
+    "message": "Issue ESSAY-18 transitioned successfully",
+    "transitionId": 31,
+    "statusName": "완료"
+  }
+}

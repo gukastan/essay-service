@@ -1,0 +1,9 @@
+assignment/.gitignore:9:session.db*	assignment/session.db
+assignment/.gitignore:9:session.db*	assignment/session.db-wal
+assignment/.gitignore:9:session.db*	assignment/session.db-shm
+assignment/.gitignore:7:.venv*/	assignment/.venv/lib/test.py
+assignment/.gitignore:6:.env*	assignment/.env.local
+assignment/.gitignore:4:__pycache__/	assignment/agent/__pycache__/test.pyc
+assignment/.gitignore:5:*.log	assignment/error.log
+.omo/runtime/essay18/.gitignore:1:*	.omo/runtime/essay18/venv/bin/python
+.omo/runtime/essay18/.gitignore:1:*	.omo/runtime/essay18/backend.log

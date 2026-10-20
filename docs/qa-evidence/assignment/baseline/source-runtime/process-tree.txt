@@ -1,0 +1,5 @@
+  PID  PPID COMMAND
+50640  6779 /opt/homebrew/Cellar/python@3.11/3.11.15_4/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn server:app --host 127.0.0.1 --port 8100 --log-level warning
+50715 50640 /opt/homebrew/Cellar/python@3.11/3.11.15_4/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/jay/Projects/essay-service/assignment/mcp_server.py
+50731 50640 /opt/homebrew/Cellar/python@3.11/3.11.15_4/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python /Users/jay/Projects/essay-service/assignment/mcp_server_docs.py
+50794  6779 /opt/homebrew/Cellar/python@3.11/3.11.15_4/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn web_demo_server:app --host 127.0.0.1 --port 8600 --log-level warning

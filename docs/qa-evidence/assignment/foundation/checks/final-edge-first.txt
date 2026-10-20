@@ -1,0 +1,232 @@
+.....FFF.........F                                                       [100%]
+=================================== FAILURES ===================================
+_ test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed"}-INVALID_RESPONSE] _
+
+body = b'{"status":"completed"}', code = 'INVALID_RESPONSE'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        ("body", "code"),
+        [
+            (response_body("private-refusal-body", refusal=True), "REFUSAL"),
+            (response_body("private-incomplete-body", status="incomplete"), "INCOMPLETE"),
+            (response_body("private-invalid-json"), "INVALID_RESPONSE"),
+            (response_body('{"answer":42}'), "INVALID_RESPONSE"),
+            (b'{"status":"completed"}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":null}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":"wrong"}', "INVALID_RESPONSE"),
+        ],
+    )
+    async def test_provider_failures_are_typed_sanitized_and_not_repaired(
+        body: bytes, code: str
+    ) -> None:
+        # Given
+        calls: list[int] = []
+    
+        def respond(_request: httpx2.Request) -> httpx2.Response:
+            _ = calls.append(1)
+            return httpx2.Response(200, content=body)
+    
+        budget = ExecutionBudget()
+        async with (
+            httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport,
+            AsyncOpenAI(api_key="fixture", http_client=transport) as sdk,
+        ):
+            # When / Then
+            with pytest.raises(ProviderError) as raised:
+>               _ = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), budget)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_provider.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent/openai_llm.py:69: in generate
+    return await budget.run_model(request.role, invoke)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:112: in run_model
+    return await self._execute(end, operation, OperationContext(end - self._now(), tokens))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:188: in _execute
+    completed.append(await operation(context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+agent/openai_llm.py:67: in invoke
+    return parse_response(response, request.schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+response = Response(id=None, access_programs=None, created_at=None, error=None, incomplete_details=None, instructions=None, metad...fier=None, service_tier=None, status='completed', text=None, top_logprobs=None, truncation=None, usage=None, user=None)
+schema = <class 'tests.test_provider.ProbeOutput'>
+
+    def parse_response[T: BaseModel](response: Response, schema: type[T]) -> ModelResult[T]:
+        """Reject refusal/incomplete/invalid outputs without retaining provider text."""
+>       for item in response.output:
+                    ^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not iterable
+
+agent/openai_llm.py:17: TypeError
+_ test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed","output":null}-INVALID_RESPONSE] _
+
+body = b'{"status":"completed","output":null}', code = 'INVALID_RESPONSE'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        ("body", "code"),
+        [
+            (response_body("private-refusal-body", refusal=True), "REFUSAL"),
+            (response_body("private-incomplete-body", status="incomplete"), "INCOMPLETE"),
+            (response_body("private-invalid-json"), "INVALID_RESPONSE"),
+            (response_body('{"answer":42}'), "INVALID_RESPONSE"),
+            (b'{"status":"completed"}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":null}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":"wrong"}', "INVALID_RESPONSE"),
+        ],
+    )
+    async def test_provider_failures_are_typed_sanitized_and_not_repaired(
+        body: bytes, code: str
+    ) -> None:
+        # Given
+        calls: list[int] = []
+    
+        def respond(_request: httpx2.Request) -> httpx2.Response:
+            _ = calls.append(1)
+            return httpx2.Response(200, content=body)
+    
+        budget = ExecutionBudget()
+        async with (
+            httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport,
+            AsyncOpenAI(api_key="fixture", http_client=transport) as sdk,
+        ):
+            # When / Then
+            with pytest.raises(ProviderError) as raised:
+>               _ = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), budget)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_provider.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent/openai_llm.py:69: in generate
+    return await budget.run_model(request.role, invoke)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:112: in run_model
+    return await self._execute(end, operation, OperationContext(end - self._now(), tokens))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:188: in _execute
+    completed.append(await operation(context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+agent/openai_llm.py:67: in invoke
+    return parse_response(response, request.schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+response = Response(id=None, access_programs=None, created_at=None, error=None, incomplete_details=None, instructions=None, metad...fier=None, service_tier=None, status='completed', text=None, top_logprobs=None, truncation=None, usage=None, user=None)
+schema = <class 'tests.test_provider.ProbeOutput'>
+
+    def parse_response[T: BaseModel](response: Response, schema: type[T]) -> ModelResult[T]:
+        """Reject refusal/incomplete/invalid outputs without retaining provider text."""
+>       for item in response.output:
+                    ^^^^^^^^^^^^^^^
+E       TypeError: 'NoneType' object is not iterable
+
+agent/openai_llm.py:17: TypeError
+_ test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed","output":"wrong"}-INVALID_RESPONSE] _
+
+body = b'{"status":"completed","output":"wrong"}', code = 'INVALID_RESPONSE'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        ("body", "code"),
+        [
+            (response_body("private-refusal-body", refusal=True), "REFUSAL"),
+            (response_body("private-incomplete-body", status="incomplete"), "INCOMPLETE"),
+            (response_body("private-invalid-json"), "INVALID_RESPONSE"),
+            (response_body('{"answer":42}'), "INVALID_RESPONSE"),
+            (b'{"status":"completed"}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":null}', "INVALID_RESPONSE"),
+            (b'{"status":"completed","output":"wrong"}', "INVALID_RESPONSE"),
+        ],
+    )
+    async def test_provider_failures_are_typed_sanitized_and_not_repaired(
+        body: bytes, code: str
+    ) -> None:
+        # Given
+        calls: list[int] = []
+    
+        def respond(_request: httpx2.Request) -> httpx2.Response:
+            _ = calls.append(1)
+            return httpx2.Response(200, content=body)
+    
+        budget = ExecutionBudget()
+        async with (
+            httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport,
+            AsyncOpenAI(api_key="fixture", http_client=transport) as sdk,
+        ):
+            # When / Then
+            with pytest.raises(ProviderError) as raised:
+>               _ = await OpenAIModelProvider(sdk, "fixture-model").generate(probe(), budget)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_provider.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+agent/openai_llm.py:69: in generate
+    return await budget.run_model(request.role, invoke)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:112: in run_model
+    return await self._execute(end, operation, OperationContext(end - self._now(), tokens))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/budget.py:188: in _execute
+    completed.append(await operation(context))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+agent/openai_llm.py:67: in invoke
+    return parse_response(response, request.schema)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+agent/openai_llm.py:25: in parse_response
+    value = schema.model_validate_json(response.output_text)
+                                       ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/pydantic/main.py:1102: in __getattr__
+    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Response(id=None, access_programs=None, created_at=None, error=None, incomplete_details=None, instructions=None, metad...fier=None, service_tier=None, status='completed', text=None, top_logprobs=None, truncation=None, usage=None, user=None)
+
+    @property
+    def output_text(self) -> str:
+        """Convenience property that aggregates all `output_text` items from the `output` list.
+    
+        If no `output_text` content blocks exist, then an empty string is returned.
+        """
+        texts: list[str] = []
+        for output in self.output:
+>           if output.type == "message":
+               ^^^^^^^^^^^
+E           AttributeError: 'str' object has no attribute 'type'
+
+.venv/lib/python3.12/site-packages/openai/types/responses/response.py:563: AttributeError
+____________ test_actual_mcp_transport_timeout_retains_reservation _____________
+
+    @pytest.mark.anyio
+    async def test_actual_mcp_transport_timeout_retains_reservation() -> None:
+        # Given
+        from tests.test_mcp import adversarial_client
+        from tests.test_budget import complete
+        from agent.mcp_client import MCPError
+        now = [0.0]
+        budget = ExecutionBudget(now=lambda: now[0])
+        async with MCPClient(adversarial_client("timeout")) as mcp:
+            now[0] = 179.98
+            # When / Then: a pending tool is interrupted by the actual remaining 20ms scope.
+            with pytest.raises((ExecutionBudgetError, MCPError)) as raised:
+                _ = await mcp.research(ResearchInput(company="회사", role="직무"), budget, uuid4())
+>           with pytest.raises(ExecutionBudgetError):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ExecutionBudgetError
+
+tests/test_mcp_control.py:154: Failed
+----------------------------- Captured stderr call -----------------------------
+[10/20/26 15:42:56] INFO     Starting MCP server                transport.py:241
+                             'adversarial-fixture' with                         
+                             transport 'stdio'                                  
+=========================== short test summary info ============================
+FAILED tests/test_provider.py::test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed"}-INVALID_RESPONSE]
+FAILED tests/test_provider.py::test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed","output":null}-INVALID_RESPONSE]
+FAILED tests/test_provider.py::test_provider_failures_are_typed_sanitized_and_not_repaired[{"status":"completed","output":"wrong"}-INVALID_RESPONSE]
+FAILED tests/test_mcp_control.py::test_actual_mcp_transport_timeout_retains_reservation
+4 failed, 14 passed in 4.51s

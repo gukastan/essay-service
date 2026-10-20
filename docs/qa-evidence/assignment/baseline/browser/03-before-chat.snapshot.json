@@ -1,0 +1,1 @@
+"- banner: \"운영 인시던트 대응 에이전트  fake 실모델(fast-model-stub/quality-model-stub) · all_total_vue\"\n- form:\n  - textbox \"예: auth-service 로그인 응답이 느려졌어요. 원인 확인해주세요\" [ref=e1] [placeholder=\"예: auth-service 로그인 응답이 느려졌어요. 원인 확인해주세요\"]\n  - button \"보내기\" [ref=e2] [focused]"

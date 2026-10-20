@@ -1,0 +1,120 @@
+{
+  "pythonPassed": 131,
+  "paidSkipped": 1,
+  "javascriptPassed": 12,
+  "typeErrors": 0,
+  "artifacts": {
+    "pytest.txt": {
+      "bytes": 352,
+      "sha256": "8210a6a079a27f3c4490ecf5f5a4bd08abde1282b004df9c17d1d2ef5132d3ec"
+    },
+    "pytest.xml": {
+      "bytes": 21819,
+      "sha256": "1cff3d16af07fb25b8fa41207909f93766ceda68f75bf30b81e08e4e608dfa61"
+    },
+    "js-tests.txt": {
+      "bytes": 745,
+      "sha256": "f386a55d9880e0185d739a590d8447582c449d05935692c1e90d6d968b44e8b3"
+    },
+    "typecheck-final.json": {
+      "bytes": 250,
+      "sha256": "48b7107d117ceda82c9ad0ab7cde2edb4022d52f30537e16fd50926c48ce6930"
+    },
+    "ruff-final.txt": {
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    "format-final.txt": {
+      "bytes": 27,
+      "sha256": "d41ae50829b47e318b0787bc39d2a2ea2d52b518cfc7900d2efd569e6d26ab88"
+    },
+    "test-discipline.txt": {
+      "bytes": 28,
+      "sha256": "b6de8819bafc9c8b78b3d191a424e9900ebec73be3db80e6088476f734d3715c"
+    },
+    "verification.md": {
+      "bytes": 10972,
+      "sha256": "b9dd36435811e90d915c182457a29991e15932091517909cdeccde17e1627f74"
+    },
+    "final-edge-pass.txt": {
+      "bytes": 179,
+      "sha256": "8bdb8019be3f63a0288bad1971e93c7817dc9fb655e4a436eae0259318d5dde1"
+    },
+    "live-84299595-7260-43ce-8596-7a6276699470.json": {
+      "bytes": 708,
+      "sha256": "dd1f026ba9fb97c02ec06ed83b98edf064f93e0420472828dc85cc0eda8a01cf"
+    }
+  },
+  "testFiles": {
+    "assignment/tests/test_contracts.py": {
+      "sha256": "d18ed00393d6224b4e94e717f7d052e6a40dd521aa7ba1ae06551888d09a5606",
+      "pureLoc": 157
+    },
+    "assignment/tests/mcp_wire_server.py": {
+      "sha256": "dba833540572b75453cf649ee539770448ed13dca478c11ce5c23d708a9ec068",
+      "pureLoc": 29
+    },
+    "assignment/tests/test_mcp_control.py": {
+      "sha256": "be3001b60c660a8a59831abbdde9d968266caed16fb95ec2a731262d22b98024",
+      "pureLoc": 122
+    },
+    "assignment/tests/test_lifecycle.py": {
+      "sha256": "390b3c4ad15425af61776d78b9b77caa0ea5308937945addefb0bf1a048a79e8",
+      "pureLoc": 66
+    },
+    "assignment/tests/conftest.py": {
+      "sha256": "68e4bca5cee4298a54eaf634c1aff069c6d9a19a5168db9925c6eaebcb7ddb29",
+      "pureLoc": 5
+    },
+    "assignment/tests/test_live_compatibility.py": {
+      "sha256": "5e03f24be1328382aae2089399e84a97c1a7991f070cf0c4ee297d4c3f628544",
+      "pureLoc": 124
+    },
+    "assignment/tests/test_text_parity.py": {
+      "sha256": "b9519886100ce181f45389d48c4149398f0642174cf5d6533b5799c315130939",
+      "pureLoc": 62
+    },
+    "assignment/tests/__init__.py": {
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "pureLoc": 0
+    },
+    "assignment/tests/test_state.py": {
+      "sha256": "fda0c0605d06057cc11b195ea54f62cc4f04e0705ddd9be70cf0738a48ea702f",
+      "pureLoc": 117
+    },
+    "assignment/tests/test_provider.py": {
+      "sha256": "ef5adaaab4fa7853baf44678a2da880c5df5b2dfa78da7b97519fc79f8b64646",
+      "pureLoc": 165
+    },
+    "assignment/tests/wire_fixture.py": {
+      "sha256": "de3b23cad4e4d59271b2ffb16e939c57c74b7b3dd7f18fbcb744f7f469624cde",
+      "pureLoc": 126
+    },
+    "assignment/tests/test_budget.py": {
+      "sha256": "9bb4ad0cdc561a1afb0ed2ba1d86128dc3fdf23b7300754f2f9259579ffb76aa",
+      "pureLoc": 158
+    },
+    "assignment/tests/test_mcp.py": {
+      "sha256": "15bc03c7d2ac86e490552e354086bd9f09cfe767a09ce0516019a9d5c9d2ff5a",
+      "pureLoc": 171
+    },
+    "assignment/tests/mcp_adversary.py": {
+      "sha256": "8108695225326b071822e78c437e5a6e63416cee81754b3091a5c9f96d66f6a1",
+      "pureLoc": 69
+    },
+    "assignment/tests/test_budget_timing.py": {
+      "sha256": "78b945c81c2eb3ea32c1d23502965737a26b271deb7a0482366b898e562fffa2",
+      "pureLoc": 46
+    },
+    "assignment/tests/test_foundation.mjs": {
+      "sha256": "a5fe8156d8f5a0b6c304769052cd9145cd7905eeaf172c9c505698bbe6c30ea3",
+      "pureLoc": 82
+    }
+  },
+  "liveCompatibility": {
+    "artifact": "live-84299595-7260-43ce-8596-7a6276699470.json",
+    "plainSchemaSuccess": true,
+    "researchSchemaSuccess": true,
+    "executedBy": "leader"
+  }
+}
