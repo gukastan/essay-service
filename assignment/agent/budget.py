@@ -32,6 +32,13 @@ class ExecutionBudgetError(Exception):
         super().__init__(code)
 
 
+@final
+class RevisionReservationError(Exception):
+    def __init__(self, code: Literal["REVISION_EXHAUSTED", "INVALID_REVISION_ROUTE"]) -> None:
+        self.code = code
+        super().__init__(code)
+
+
 @dataclass(frozen=True, slots=True)
 class OperationContext:
     timeout_seconds: float
@@ -47,6 +54,14 @@ class BudgetSnapshot:
     native_tool_calls_reserved: int
     output_tokens_reserved: int
     deadline: float
+    revision_count: Literal[0, 1] = 0
+    revision_route: Literal["D", "I"] | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class RevisionReservation:
+    route: Literal["D", "I"]
+    revision_count: Literal[1] = 1
 
 
 @final
@@ -64,6 +79,7 @@ class ExecutionBudget:
         self._tokens_reserved = 0
         self._stopped: ExecutionBudgetError | None = None
         self._active: set[anyio.CancelScope] = set()
+        self._revision: RevisionReservation | None = None
 
     @asynccontextmanager
     async def _reservation(self) -> AsyncGenerator[None]:
@@ -82,7 +98,20 @@ class ExecutionBudget:
             self._native_reserved,
             self._tokens_reserved,
             self.deadline,
+            0 if self._revision is None else self._revision.revision_count,
+            None if self._revision is None else self._revision.route,
         )
+
+    async def reserve_revision(self, route: str) -> RevisionReservation:
+        """Consume the shared D/I opportunity before work; never refund it."""
+        async with self._reservation():
+            self._check(self.deadline)
+            if route not in ("D", "I"):
+                raise RevisionReservationError("INVALID_REVISION_ROUTE")
+            if self._revision is not None:
+                raise RevisionReservationError("REVISION_EXHAUSTED")
+            self._revision = RevisionReservation(route)
+            return self._revision
 
     def _check(self, deadline: float) -> None:
         if self._stopped is not None:

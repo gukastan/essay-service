@@ -16,12 +16,12 @@ typeCheckingMode = "all"
 pythonVersion = "3.12"
 venvPath = "."
 venv = ".venv"
-include = ["agent/source_*.py", "agent/nodes/**/*.py", "agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests"]
+include = ["agent/contract_flow*.py", "agent/flow_*.py", "agent/source_*.py", "agent/nodes/**/*.py", "agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests"]
 
 [tool.ruff]
 target-version = "py312"
 line-length = 100
-include = ["agent/source_*.py", "agent/nodes/**/*.py", "agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests/**/*.py"]
+include = ["agent/contract_flow*.py", "agent/flow_*.py", "agent/source_*.py", "agent/nodes/**/*.py", "agent/contracts.py", "agent/contract_input.py", "agent/contract_evidence.py", "agent/contract_results.py", "agent/budget.py", "agent/providers.py", "agent/openai_llm.py", "agent/research.py", "agent/state.py", "agent/deps.py", "agent/mcp_client.py", "agent/settings.py", "agent/provider_schema.py", "agent/limits.py", "agent/response_wire.py", "server.py", "mcp_server.py", "tests/**/*.py"]
 
 [tool.ruff.lint]
 select = ["ALL"]

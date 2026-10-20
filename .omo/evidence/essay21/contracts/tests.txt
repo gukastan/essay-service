@@ -1,0 +1,5 @@
+COMMAND: ./.venv/bin/pytest tests/test_flow_contracts.py tests/test_flow_provider.py tests/test_contracts.py tests/test_provider.py -q -p no:cacheprovider
+EXIT: 0
+........................................................................ [ 64%]
+.......................................                                  [100%]
+111 passed in 0.25s

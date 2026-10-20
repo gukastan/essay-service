@@ -8,14 +8,20 @@ from agent.contract_input import Contract
 from agent.contracts import (
     AnalysisResult,
     Claim,
+    DraftEnvelope,
     DraftRequest,
     ErrorResponse,
     FitReason,
+    FlowAnalysisResult,
+    FlowRoute,
     NeedsInputResponse,
     ReadyResponse,
     ResearchResult,
     ReviewResult,
+    TerminalReason,
+    WritingPlan,
 )
+from agent.flow_state import EvaluationBinding
 
 
 @final
@@ -54,6 +60,12 @@ class WorkflowState(TypedDict, total=False):
     deadline: Annotated[float | None, write_once]
     research: ResearchResult | None
     analysis: AnalysisResult | None
+    flow_analysis: FlowAnalysisResult | None
+    plan: WritingPlan | None
+    draft_envelope: DraftEnvelope | None
+    evaluation: EvaluationBinding | None
+    route: FlowRoute | None
+    terminal_reason: TerminalReason | None
     draft: str | None
     claim_map: tuple[Claim, ...]
     fit_reasons: tuple[FitReason, ...]
@@ -75,12 +87,18 @@ def initial_state(
         deadline=budget.deadline,
         research=None,
         analysis=None,
+        flow_analysis=None,
+        plan=None,
+        draft_envelope=None,
+        evaluation=None,
+        route=None,
+        terminal_reason=None,
         draft=None,
         claim_map=(),
         fit_reasons=(),
         deterministic_checks=None,
         review=None,
-        revision_count=0,
+        revision_count=budget.snapshot().revision_count,
         usage=budget.snapshot(),
         outcome=None,
     )
