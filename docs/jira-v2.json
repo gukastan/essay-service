@@ -4,8 +4,10 @@
   "site": "https://kmskojb.atlassian.net",
   "epic": "ESSAY-8",
   "status": "진행 중",
-  "implementation": "python_foundation_complete",
-  "updatedAt": "2026-10-20 06:58:45 UTC",
+  "implementation": "python_research_complete",
+  "activeIssue": null,
+  "activeScope": null,
+  "updatedAt": "2026-10-20 09:44:09 UTC",
   "baseline": {
     "commit": "c5299e954d0ff1b0848dad238e7b731ef078bb51",
     "completedIssues": [
@@ -31,18 +33,27 @@
       "ESSAY-18",
       "ESSAY-19"
     ],
-    "foundationEvidence": "docs/qa-evidence/assignment/foundation/verification.md"
+    "foundationEvidence": "docs/qa-evidence/assignment/foundation/verification.md",
+    "researchRoleImplemented": true,
+    "researchEvidence": "docs/qa-evidence/assignment/research/verification.md",
+    "targetCodeImplementedMeans": "complete four-role API/Vue service"
   },
   "researchStrategy": {
     "provider": "OpenAI Responses web_search via MCP research_company_role",
-    "status": "candidate_adapter_verified_official_validation_pending",
+    "status": "verified_research_role_with_conservative_source_coverage",
     "approvedNativeSearch": "2026-10-19",
     "approvedProjectMigration": "2026-10-20",
     "modelCallsNormal": 4,
     "modelCallsMaximum": 6,
     "nativeToolCallsReserved": 2,
     "max_tool_calls": 2,
-    "internalQueryAndPageCountsControlled": false
+    "internalQueryAndPageCountsControlled": false,
+    "initialCompanies": [
+      "NAVER",
+      "Kakao",
+      "OpenAI",
+      "Anthropic"
+    ]
   },
   "issues": [
     {
@@ -83,7 +94,7 @@
       "key": "ESSAY-10",
       "summary": "[V2-02] MCP 기업·직무 조사와 공식 출처 검증 구현",
       "type": "작업",
-      "status": "할 일",
+      "status": "완료",
       "parent": "ESSAY-8",
       "blockedBy": [
         "ESSAY-9",
@@ -92,22 +103,36 @@
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-10"
     },
     {
+      "id": "V2-10",
+      "key": "ESSAY-21",
+      "summary": "[V2-10] A~J 흐름의 공통 계약·계획·평가 상태 확장",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-19",
+        "ESSAY-10"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-21"
+    },
+    {
       "id": "V2-03",
       "key": "ESSAY-11",
-      "summary": "[V2-03] Python 경험·문항 분석과 원문 근거 추출 구현",
+      "summary": "[V2-03] B/C 요구사항 해석·개인 근거 추출 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
         "ESSAY-9",
-        "ESSAY-19"
+        "ESSAY-19",
+        "ESSAY-21"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-11"
     },
     {
       "id": "V2-04",
       "key": "ESSAY-12",
-      "summary": "[V2-04] Python 근거 기반 초안 작성 역할 구현",
+      "summary": "[V2-04] D/E/I 작성 계획·초안·부분 수정 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -120,7 +145,7 @@
     {
       "id": "V2-05",
       "key": "ESSAY-13",
-      "summary": "[V2-05] Python 근거 검사·사실성 검토와 제한된 수정 구현",
+      "summary": "[V2-05] F 필수 기준 평가·수정 범위 판정 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -132,7 +157,7 @@
     {
       "id": "V2-06",
       "key": "ESSAY-14",
-      "summary": "[V2-06] Python LangGraph 네 역할과 FastAPI 통합",
+      "summary": "[V2-06] A/G/H/J LangGraph 분기·FastAPI 통합",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -150,7 +175,8 @@
       "parent": "ESSAY-8",
       "blockedBy": [
         "ESSAY-9",
-        "ESSAY-19"
+        "ESSAY-19",
+        "ESSAY-21"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-15"
     },
@@ -272,54 +298,72 @@
       "linkType": "Blocks",
       "inwardIssue": "ESSAY-19",
       "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-21"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-10",
+      "outwardIssue": "ESSAY-21"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-21",
+      "outwardIssue": "ESSAY-15"
     }
   ],
   "verification": {
-    "scope": "ESSAY-19 Python foundation only",
+    "scope": "ESSAY-10 company/job research role only",
+    "verifiedAt": "2026-10-20 08:35:47 UTC",
     "issueCount": 20,
     "epicChildCount": 12,
     "dependencyCount": 16,
     "dependenciesUnchanged": true,
     "changedStatuses": [
-      "ESSAY-19"
+      "ESSAY-10"
     ],
     "allOtherStatusesUnchanged": true,
-    "acceptanceChecked": 8,
-    "essay19Status": "완료",
+    "acceptanceChecked": 6,
+    "essay10Status": "완료",
     "epicStatus": "진행 중",
     "updated": [
-      "ESSAY-19",
+      "ESSAY-10",
       "ESSAY-8"
     ],
     "statusTransitions": 2,
     "transitionedIssues": [
-      "ESSAY-19"
+      "ESSAY-10"
     ],
-    "startCommentId": "10020",
-    "completionCommentId": "10021",
-    "nextIssues": [
-      "ESSAY-10",
-      "ESSAY-11",
-      "ESSAY-15"
-    ],
+    "startCommentId": "10022",
+    "completionCommentId": "10023",
+    "nextIssue": "ESSAY-11",
     "nextIssuesStarted": false,
     "readbackPassed": true,
     "checks": {
-      "python": 131,
-      "defaultPaidSkipped": 1,
+      "python": 242,
+      "defaultPaidSkipped": 2,
       "javascript": 12,
-      "vueFoundationBrowser": 5,
-      "runtime": 5,
-      "installerSignals": 3,
-      "paidStructuredModel": 1,
-      "paidMcpHostedSearch": 1,
       "typeErrors": 0,
       "lintPassed": true,
-      "formatPassed": true
+      "formatPassed": true,
+      "paidResearchNodeRequests": 8,
+      "successfulPaidResearchNodeRequests": 3,
+      "retainedPositiveAssertionFailures": 5,
+      "codeQualityStatus": "WATCH",
+      "codeReviewRecommendation": "APPROVE",
+      "codeReviewBlockers": []
     },
     "originalFilesPreserved": 46,
-    "protectedFilesPreserved": 441,
-    "evidence": "docs/qa-evidence/assignment/foundation/verification.md"
+    "protectedFilesPreserved": 600,
+    "evidence": "docs/qa-evidence/assignment/research/verification.md"
   },
   "migrationPlanningVerification": {
     "completedIssuesUnchanged": true,
@@ -375,5 +419,233 @@
     "completionCommentId": "10019",
     "nextIssue": "ESSAY-19",
     "nextIssueStarted": false
+  },
+  "foundationVerification": {
+    "scope": "ESSAY-19 Python foundation only",
+    "issueCount": 20,
+    "epicChildCount": 12,
+    "dependencyCount": 16,
+    "dependenciesUnchanged": true,
+    "changedStatuses": [
+      "ESSAY-19"
+    ],
+    "allOtherStatusesUnchanged": true,
+    "acceptanceChecked": 8,
+    "essay19Status": "완료",
+    "epicStatus": "진행 중",
+    "updated": [
+      "ESSAY-19",
+      "ESSAY-8"
+    ],
+    "statusTransitions": 2,
+    "transitionedIssues": [
+      "ESSAY-19"
+    ],
+    "startCommentId": "10020",
+    "completionCommentId": "10021",
+    "nextIssues": [
+      "ESSAY-10",
+      "ESSAY-11",
+      "ESSAY-15"
+    ],
+    "nextIssuesStarted": false,
+    "readbackPassed": true,
+    "checks": {
+      "python": 131,
+      "defaultPaidSkipped": 1,
+      "javascript": 12,
+      "vueFoundationBrowser": 5,
+      "runtime": 5,
+      "installerSignals": 3,
+      "paidStructuredModel": 1,
+      "paidMcpHostedSearch": 1,
+      "typeErrors": 0,
+      "lintPassed": true,
+      "formatPassed": true
+    },
+    "originalFilesPreserved": 46,
+    "protectedFilesPreserved": 441,
+    "evidence": "docs/qa-evidence/assignment/foundation/verification.md"
+  },
+  "lastCompletedIssue": "ESSAY-10",
+  "nextIssue": "ESSAY-21",
+  "nodeFlow": {
+    "specification": "docs/NODE_MIN_SPEC.md",
+    "status": "minimum_spec_defined_implementation_not_started",
+    "approvedFlow": "user A-J flow, 2026-10-20",
+    "modelRoleCount": 4,
+    "logicalNodeCount": 10,
+    "planningModelCalls": 0,
+    "sharedRevisionMaximum": 1,
+    "modelCallsNormal": 4,
+    "modelCallsMaximum": 6,
+    "mandatoryCriteria": [
+      "contract_and_evidence_links",
+      "personal_facts",
+      "company_facts",
+      "question_coverage",
+      "role_fit",
+      "801_to_1000_codepoints",
+      "interpretation_future_plan_separation"
+    ],
+    "deferred": [
+      "experience_ranking",
+      "composition_strategy",
+      "prompt_details",
+      "semantic_evaluation_details",
+      "scores_and_weights"
+    ],
+    "nextIssue": "ESSAY-21",
+    "implementationStarted": false
+  },
+  "nodeFlowPlanningVerification": {
+    "scope": "Planning and Jira only; no implementation, product tests or model requests",
+    "issueCount": 21,
+    "epicChildCount": 13,
+    "dependencyCount": 20,
+    "newDependencyCount": 4,
+    "created": [
+      "ESSAY-21"
+    ],
+    "updated": [
+      "ESSAY-8",
+      "ESSAY-11",
+      "ESSAY-12",
+      "ESSAY-13",
+      "ESSAY-14",
+      "ESSAY-15",
+      "ESSAY-16",
+      "ESSAY-17",
+      "ESSAY-20",
+      "ESSAY-21"
+    ],
+    "statusTransitions": 0,
+    "existingStatusesUnchanged": true,
+    "completedIssuesUnchanged": true,
+    "oldDependenciesPreserved": true,
+    "dependencyReadback": [
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-19",
+        "outwardIssue": "ESSAY-21",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-10",
+        "outwardIssue": "ESSAY-21",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-11",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-15",
+        "verified": true
+      }
+    ],
+    "acceptanceReadback": [
+      {
+        "key": "ESSAY-11",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 5,
+        "acceptanceExpected": 5,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-12",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-13",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 6,
+        "acceptanceExpected": 6,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-14",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 8,
+        "acceptanceExpected": 8,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-15",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-16",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-17",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-20",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-21",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 6,
+        "acceptanceExpected": 6,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      }
+    ],
+    "nextIssue": "ESSAY-21",
+    "nextIssueStarted": false,
+    "epicStatus": "진행 중",
+    "readbackPassed": true,
+    "verifiedAt": "2026-10-20 09:44:09 UTC",
+    "evidence": "docs/qa-evidence/planning/node-flow/verification.json"
   }
 }

@@ -1,12 +1,13 @@
 # 제공 프로젝트 기반 전환 계획
 
 - 결정일: 2026-10-20
-- 상태: ESSAY-18 원본 실행과 ESSAY-19 Python 공통 기반 검증 완료. 업무 역할·전체 API·Vue 제품 기능과 신규 서비스 QA는 후속 작업.
+- 상태: ESSAY-18 원본 실행·ESSAY-19 Python 공통 기반·ESSAY-10 조사 검증 완료. 분석·작성·검토·전체 API·Vue 제품 기능과 전체 서비스 QA는 후속 작업.
 - 원본: `/Users/jay/Downloads/all_total_vue_student/`
 - 저장소: `/Users/jay/Projects/essay-service/`
 - 전환 코드 위치: `assignment/` (ESSAY-18 복사 기준선에 ESSAY-19 공통 기반 구현. Downloads 원본은 불변)
 - 보존 기준 커밋: `c5299e954d0ff1b0848dad238e7b731ef078bb51`
 - [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [백로그](BACKLOG_V2.md) · [QA](qa-v2.md) · [결정](decisions/provided-project-migration.md)
+- 2026-10-20 후속 사용자 흐름: [A~J 노드별 최소 명세](NODE_MIN_SPEC.md). 이번에는 문서·Jira를 갱신하며 내부 전략 상세·제품 구현은 후속 작업이다.
 
 ## 과제와 사용자 결정
 
@@ -25,16 +26,17 @@
 
 ## 원본 → 전환 대응
 
-원본 파일은 assignment/에 복사됐다. 아래 대응 중 ESSAY-19 공통 계약·모델/MCP·lifespan·실행 진입점은 구현됐다. 업무 역할·전체 그래프/API·Vue 제품 화면은 후속 계획이다. 경로는 assignment/ 기준이다.
+원본 파일은 assignment/에 복사됐다. 아래 대응 중 ESSAY-19 공통 계약·모델/MCP·lifespan·실행 진입점은 구현됐다. 조사 역할과 공식 출처 검증도 ESSAY-10에서 구현됐다. 분석·작성·검토·전체 그래프/API·Vue 제품 화면은 후속 계획이다. 경로는 assignment/ 기준이다.
 
 | 원본 | 유지할 구조 | 목적에 맞는 변경 | 소유 작업 |
 | --- | --- | --- | --- |
 | server.py | FastAPI 요청·lifespan·그래프 실행 | POST /api/drafts, 입력/오류 규격, 요청별 예산 | ESSAY-19, ESSAY-14 순차 |
-| agent/graph.py | StateGraph·조건 분기·작성/검증 루프 | 조사/분석 병렬 합류·4역할·수정1회 | ESSAY-14 |
+| agent/graph.py | StateGraph·조건 분기·작성/검증 루프 | A~J 논리 흐름·G5분기·D/I 공통 수정1회 | ESSAY-14 |
+| agent/state.py·계약 | 타입 있는 상태·요청 격리 | 기존 기반 위 계획/평가/분기 계약 확장 | ESSAY-21 |
 | agent/deps.py | 의존성 주입 | 타입 있는 모델·MCP·설정, 요청 상태 분리 | ESSAY-19 |
 | agent/mcp_client.py, mcp_server.py | 실제 MCP stdio 연결·도구 호출 | research_company_role 기업·직무 조사 | ESSAY-19, ESSAY-10 순차 |
 | agent/openai_llm.py | 모델 연결 경계 | 구조화 출력·Responses 검색·예산·재시도0 | ESSAY-19 |
-| graph.py의 업무 노드 | 단계별 책임 분리 | agent/nodes/research.py·analyze.py·write.py·review.py | ESSAY-10~13 |
+| graph.py의 업무 노드 | 단계별 책임 분리 | 기존 조사 재사용, B/C 분석·D 계획·E/I 작성·F 평가 | ESSAY-10~13 |
 | validate_node | 검증 후 재작성 분기 | validate_evidence.py 근거·길이 검사, 실패 강제 통과 제거 | ESSAY-13 |
 | web_chat.html | Vue 화면과 요청 상태 | 네 입력·근거·원문 비교·편집·복사·보완 | ESSAY-15 |
 | web_demo_server.py | 화면 제공·동일 출처 프록시 | POST JSON 프록시·유한 timeout·오류 보존 | ESSAY-15 |
@@ -56,12 +58,12 @@
 
 1. [ESSAY-18](https://kmskojb.atlassian.net/browse/ESSAY-18) 완료: 원본 소스 확보·기준선 기록·Mac 실행 관찰. [검증 보고서](qa-evidence/assignment/baseline/verification.md).
 2. [ESSAY-19](https://kmskojb.atlassian.net/browse/ESSAY-19) 완료: Python 계약·예산·MCP/모델 연결·실행 진입점 이식. [기반 검증 보고서](qa-evidence/assignment/foundation/verification.md).
-3. ESSAY-10 조사 / ESSAY-11 분석 / ESSAY-15 Vue 화면을 공통 계약 이후 병렬 개발 가능.
-4. ESSAY-12 작성 → ESSAY-13 검토 → ESSAY-14 그래프·FastAPI 통합.
+3. [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) 조사 완료: [검증 보고서](qa-evidence/assignment/research/verification.md). 다음은 [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획/평가/분기 공통 계약 확장이고, 이후 ESSAY-11 B/C 분석·ESSAY-15 Vue를 착수할 수 있다.
+4. ESSAY-12 D/E/I 계획·작성·부분 수정 → ESSAY-13 F 평가 → ESSAY-14 A/G/H/J 그래프·FastAPI 통합.
 5. ESSAY-14·15 이후 ESSAY-16 전체 회귀 → ESSAY-17 실제 모델·MCP·브라우저 QA와 작성자 사실성 승인.
 6. [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20): 제출 소스·README·변경 설명·검증 증거 완성. 모든 필수 작업과 승인 후 ESSAY-8 완료.
 
-기존 ESSAY-9→10/11/15 연결은 완료된 설계 기준선 이력으로 유지한다. 실제 구현 시작에는 ESSAY-19가 추가 필수 선행이다. 공통 server.py·MCP 연결 수정은 소유권을 순차 인계한다.
+기존 ESSAY-9/19 관련 선행 연결은 보존한다. 새 Blocks는 ESSAY-19·10→21, ESSAY-21→11·15다. 완료된 기반을 다시 열지 않고 확장 작업을 추가한다. 공통 계약/server.py/MCP 연결 수정은 소유권을 순차 인계한다. G의5분기·정보 부족/품질 미충족 구분은 최소 명세를 따르고 상세 전략은 후속으로 남긴다.
 
 ## 제출물과 검증
 
@@ -88,4 +90,4 @@
 
 ## ESSAY-19 인계
 
-Python 공통 기반은 구현·검증을 완료했다. 위 ESSAY-18 기록은 당시 원본 관찰이며 이후의 구현 결과는 [기반 보고서](qa-evidence/assignment/foundation/verification.md)와 [assignment 실행 안내](../assignment/README.md)를 따른다. 현재 run.sh는 고정 설치 후 localhost 서버를 실행하고 자기 소유 프로세스만 정리한다. 모델/MCP 의존성·계약·예산·문자 경계는 구현됐고 기본 서버는 health만 제공한다. 공식 출처 검증·네 업무 역할·전체 API·새 Vue 제품 화면은 ESSAY-10~15의 후속 범위다. 공통 API/파일 소유권은 기반 보고서의 인계 문서를 읽고 순차 전달한다.
+Python 공통 기반은 구현·검증을 완료했다. 위 ESSAY-18 기록은 당시 원본 관찰이며 이후의 구현 결과는 [기반 보고서](qa-evidence/assignment/foundation/verification.md)와 [assignment 실행 안내](../assignment/README.md)를 따른다. 현재 run.sh는 고정 설치 후 localhost 서버를 실행하고 자기 소유 프로세스만 정리한다. 모델/MCP 의존성·계약·예산·문자 경계는 구현됐고 기본 서버는 health만 제공한다. 당시 후속 범위였던 공식 출처 검증과 조사 역할은 ESSAY-10에서 완료했다. 분석·작성·검토·전체 API·새 Vue 제품 화면은 남아 있다. 공통 API/파일 소유권은 기반 보고서의 인계 문서를 읽고 순차 전달한다.

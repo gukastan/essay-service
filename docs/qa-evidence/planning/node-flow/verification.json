@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-20",
+  "verifiedAt": "2026-10-20 09:44:09 UTC",
+  "request": "Define minimal A-J node specification and update working documents and Jira; defer detailed internal strategies",
+  "specification": "docs/NODE_MIN_SPEC.md",
+  "implementationExecuted": false,
+  "productTestsExecuted": false,
+  "paidModelRequests": 0,
+  "committed": false,
+  "pushed": false,
+  "jira": {
+    "scope": "Planning and Jira only; no implementation, product tests or model requests",
+    "issueCount": 21,
+    "epicChildCount": 13,
+    "dependencyCount": 20,
+    "newDependencyCount": 4,
+    "created": [
+      "ESSAY-21"
+    ],
+    "updated": [
+      "ESSAY-8",
+      "ESSAY-11",
+      "ESSAY-12",
+      "ESSAY-13",
+      "ESSAY-14",
+      "ESSAY-15",
+      "ESSAY-16",
+      "ESSAY-17",
+      "ESSAY-20",
+      "ESSAY-21"
+    ],
+    "statusTransitions": 0,
+    "existingStatusesUnchanged": true,
+    "completedIssuesUnchanged": true,
+    "oldDependenciesPreserved": true,
+    "dependencyReadback": [
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-19",
+        "outwardIssue": "ESSAY-21",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-10",
+        "outwardIssue": "ESSAY-21",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-11",
+        "verified": true
+      },
+      {
+        "linkType": "Blocks",
+        "inwardIssue": "ESSAY-21",
+        "outwardIssue": "ESSAY-15",
+        "verified": true
+      }
+    ],
+    "acceptanceReadback": [
+      {
+        "key": "ESSAY-11",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 5,
+        "acceptanceExpected": 5,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-12",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-13",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 6,
+        "acceptanceExpected": 6,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-14",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 8,
+        "acceptanceExpected": 8,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-15",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-16",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-17",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-20",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 7,
+        "acceptanceExpected": 7,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      },
+      {
+        "key": "ESSAY-21",
+        "status": "할 일",
+        "summaryMatches": true,
+        "acceptanceUnchecked": 6,
+        "acceptanceExpected": 6,
+        "noCompletedAcceptance": true,
+        "hasMinimalSpec": true,
+        "parent": "ESSAY-8"
+      }
+    ],
+    "nextIssue": "ESSAY-21",
+    "nextIssueStarted": false,
+    "epicStatus": "진행 중",
+    "readbackPassed": true
+  },
+  "criteriaTextReadback": [
+    {
+      "key": "ESSAY-11",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-12",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-13",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-14",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-15",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-16",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-17",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-20",
+      "criteriaMatch": true
+    },
+    {
+      "key": "ESSAY-21",
+      "criteriaMatch": true
+    }
+  ],
+  "preservation": {
+    "protectedFilesCompared": 753,
+    "protectedFilesChanged": [],
+    "qaCompletionSectionsUnchanged": true,
+    "priorJiraVerificationRecordsUnchanged": true,
+    "localChecks": {
+      "markdownLinksValid": true,
+      "dependencyGraphAcyclic": true,
+      "allTenNodeRows": true,
+      "allTenPlannedCases": true,
+      "allThirteenIssuesMapped": true,
+      "syncIssueCount": 13,
+      "syncDependencyCount": 20,
+      "nextIssue": "ESSAY-21",
+      "newSpecHasNoCompletedAcceptance": true
+    },
+    "brokenLinks": []
+  },
+  "whitespaceCheck": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "limitations": [
+    "This verifies documentation, task contracts and Jira readback, not A-J runtime behavior.",
+    "ESSAY-21 and NF-01 through NF-10 remain unimplemented/unexecuted.",
+    "Completed issue preservation covers summary, description, status, parent and issue type; four new dependency links were intentionally added."
+  ]
+}

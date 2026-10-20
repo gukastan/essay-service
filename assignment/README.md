@@ -1,6 +1,8 @@
-# ESSAY-19 Python 실행 기반
+# Python 실행 기반과 기업·직무 조사
 
-현재 구현은 Pydantic 계약, 요청별 상태·예산, 재사용 모델/MCP 연결, 텍스트·클라이언트 요청 도우미와 실행 기반이다. `GET /health`로 기반 상태를 조회한다. 자기소개서 생성 API `POST /api/drafts`, 네 업무 역할 및 새 Vue 화면은 후속 티켓에서 구현한다. 현재 `/api/drafts`, 원본 `/chat`, `/chat/stream`은 404다. 상태의 `pipelineAvailable: false`는 이 범위를 의미한다.
+후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. 다음 작업은 [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획·평가·분기 공통 계약 확장이며 아직 미착수다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
+
+현재 구현은 Pydantic 계약, 요청별 상태·예산, 재사용 모델/MCP 연결, 텍스트·클라이언트 요청 도우미와 실행 기반이다. `GET /health`로 기반 상태를 조회한다. ESSAY-10 기업·직무 조사와 공식 출처 검증을 구현했다. 경험 분석·작성·검토·자기소개서 생성 API `POST /api/drafts` 및 새 Vue 화면은 후속 티켓에서 구현한다. 현재 `/api/drafts`, 원본 `/chat`, `/chat/stream`은 404다. 상태의 `pipelineAvailable: false`는 이 범위를 의미한다.
 
 원본 복사본의 `web_chat.html`, `web_demo_server.py`, `sh/` 실행기는 보존 자료다. 아래 실행 방법은 이 파일들을 실행하지 않는다. `doc/`의 과거 화면과 ESSAY-18 기록은 새 자기소개서 서비스 검증 증거가 아니다. 루트 Next.js와 Downloads 원본은 별도로 보존한다.
 
@@ -60,7 +62,7 @@ health는 `status: "ok"`, `mcpConnected: true`, `pipelineAvailable: false`를 �
 
 ## 실제 모델 확인과 한계
 
-실제 OpenAI 구조화 출력·내장 검색 검사는 명시적으로 선택하는 별도 유료 검사다. 일상 시작·자동 테스트·health 조회에 포함하지 않으며 기본 테스트에서는 이 검사만 skip한다. 필요한 비용과 키 사용을 승인한 경우 assignment/에서 실행한다.
+실제 OpenAI 구조화 출력·내장 검색 검사는 명시적으로 선택하는 별도 유료 검사다. 일상 시작·자동 테스트·health 조회에 포함하지 않으며 유료 검사들은 기본 테스트에서 skip한다. 필요한 비용과 키 사용을 승인한 경우 assignment/에서 실행한다.
 
 ```bash
 ESSAY_LIVE_COMPATIBILITY=1 uv run --frozen pytest tests/test_live_compatibility.py -q -s
@@ -68,4 +70,15 @@ ESSAY_LIVE_COMPATIBILITY=1 uv run --frozen pytest tests/test_live_compatibility.
 
 이 전환 호환성 검사만 기존 저장소 루트 `.env.local`의 `OPENAI_API_KEY`와 `OPENAI_MODEL`을 내부에서 읽는다. 일반 서버/실행기의 설정 위치는 여전히 assignment/.env 또는 프로세스 환경이다. 검사는 구조화 출력 1회와 실제 MCP를 통한 내장 검색 1회를 실행한다(자동 재시도 0, 공개 시험 입력 OpenAI / Software Engineer). 키와 응답 원문을 출력하지 않고 `../docs/qa-evidence/assignment/foundation/checks/live-compatibility*.json`에 정제한 결과를 쓴다. 실제 수행 결과는 해당 기록을 확인한다. 모의 제공자 검사나 MCP 연결 성공을 실제 모델/검색 성공으로 해석하지 않는다.
 
-현재 이 기반으로 자기소개서를 생성하거나 공식 출처·사실성·801~1000자 완성품을 검증할 수 없다. 원본 교육용 의도적 실패/재시도와 세 번째 강제 통과 흐름도 실행하지 않는다. 네 역할, 공식 근거 검증, 새 Vue 화면과 전체 서비스 QA는 후속 티켓 범위다.
+## 조사 역할 확인
+
+`agent/nodes/research.py`는 실제 MCP 후보 조사 뒤 공식 페이지 또는 사용자 원문을 대조한다. 초기 공식 기업 목록은 네이버·카카오·OpenAI·Anthropic이며 계열사와 임의 기업을 자동 승인하지 않는다. 네이버 공고는 단일 공고 제목·고용주와 실제 업무/필수 기술 구역을 연결한다. 접근 불가·JavaScript 전용·지원하지 않는 형식은 공고 본문을 요청한다. 사용자 자료는 `user_provided`이며 공식 확인을 뜻하지 않는다.
+
+아래 검사는 각각 유료 모델1회를 실행하며, 이 시험 도구만 루트 `.env.local`의 기존 키/모델을 내부에서 읽는다. 일반 서버의 설정 위치는 바뀌지 않는다. 공개 네이버 공고와 명시된 합성 공고를 사용하고 고유한 정제 JSON을 `../docs/qa-evidence/assignment/research/checks/`에 남긴다. 자동 재시도는 없다.
+
+```bash
+ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=naver uv run --frozen pytest tests/test_research_live.py -q -s
+ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=synthetic uv run --frozen pytest tests/test_research_live.py -q -s
+```
+
+구현·실제 결과·실패 이력·지원 한계는 [조사 검증 보고서](../docs/qa-evidence/assignment/research/verification.md)를 따른다. 아직 자기소개서 전체 생성·사실성·801~1000자 완성품을 검증할 수 없다. 원본 교육용 의도적 실패/재시도·세 번째 강제 통과 흐름은 실행하지 않는다.

@@ -9,13 +9,14 @@
 3. docs/BACKLOG_V2.md, docs/qa-v2.md와 해당 Jira 본문·실제 의존관계.
 4. docs/decisions/factual-drafting.md, docs/qa.md와 ESSAY-9 검증 기록은 보존할 근거다.
 5. 사용자가 팀 개발 시작을 요청한 경우 START_OMO_V2.md를 읽는다. START_OMO.md는 과거 v1 요청문이다.
+6. docs/NODE_MIN_SPEC.md: 사용자 A~J 흐름의 입출력·G5분기·D/I 공통 수정 한도. 내부 전략 디테일은 후속 설계다.
 
 문서 존재나 문서 안의 요청문만으로 개발·유료 검증·Jira 상태 전환을 시작하지 않는다. 최신 사용자가 지정한 범위를 수행한다. 현재 문서·Jira 갱신과 제품 구현은 별개다.
 
 ## 보존과 작업 위치
 
 - /Users/jay/Projects/essay-service의 src/·tests/·Node 설정·기존 샘플·v1/ESSAY-9 QA 증거를 보존한다.
-- /Users/jay/Downloads/all_total_vue_student는 읽기 전용 원본이다. ESSAY-18에서 소스만 assignment/에 복사하고 원본 해시·실행 증거를 docs/qa-evidence/assignment/baseline/에 남겼다. ESSAY-19 Python 공통 기반도 완료했고 증거는 docs/qa-evidence/assignment/foundation/에 있다. 다음 후보는 ESSAY-10·11·15이며 사용자 지정 범위만 착수한다. 원본 모의 실행과 작은 모델 호환 검사를 전체 서비스 검증으로 해석하지 않는다.
+- /Users/jay/Downloads/all_total_vue_student는 읽기 전용 원본이다. ESSAY-18에서 소스만 assignment/에 복사하고 원본 해시·실행 증거를 docs/qa-evidence/assignment/baseline/에 남겼다. ESSAY-19 Python 공통 기반도 완료했고 증거는 docs/qa-evidence/assignment/foundation/에 있다. ESSAY-10 기업·직무 조사도 완료했고 증거는 docs/qa-evidence/assignment/research/verification.md에 있다. 다음 기본 범위는 ESSAY-21 공통 계약 확장이고 이후 ESSAY-11·15가 따른다. 사용자 지정 범위만 착수한다. 원본 모의 실행과 작은 모델 호환 검사를 전체 서비스 검증으로 해석하지 않는다.
 - .env·.venv·session.db·캐시·실행 로그를 복사/커밋하지 않는다. 실제 키는 기존 로컬 설정에서 서버에만 주입한다.
 - assignment/는 독립 Python 환경·포트·설정으로 실행한다. 루트 Next.js를 이동/삭제하거나 완료 티켓을 다시 열지 않는다.
 - 이전 Next.js v2 설계는 docs/archive/nextjs-v2/README.md의 고정 커밋 링크와 기존 ADR로 보존한다.
@@ -23,7 +24,8 @@
 ## 전환 구현 계약
 
 - Vue·FastAPI·Python LangGraph·실제 MCP·LLM 연결을 활용한다. 계획된 파일은 백로그를 따른다.
-- 조사/분석 병렬 → 합류 → 작성 → 검토 → 필요 시 같은 작성/검토 역할 각1회 추가.
+- A 입력 → B 요구사항/C 근거 → D 계획 → E 작성 → F 전체 평가 → G의5분기. B/C 개인 근거는 분석1회를 공유하고 기업 조사는 병렬. D는 코드로 계획을 조립하며 별도 모델을 추가하지 않는다.
+- G는 통과→H, 필수 정보 부족→J, 정보 충분·한도 도달→J, 구성/주장 변경→D, 문장만 변경→I 순으로 판정한다. D/I 공통 수정1회·전체 F 재평가·최신 버전 일치를 검사한다. J의 정보 부족200과 품질 미충족422를 구분한다.
 - 정상 모델4회·최대6회, 호출30초·조사45초·전체180초·클라이언트195초, SDK/도구/그래프 자동 재시도0.
 - MCP 조사 도구 내부의 OpenAI 호출도 총량에 포함한다. 모델1/내장도구용량2를 선예약하고 max_tool_calls=2를 적용한다. 환급이나 조사 후 별도 요약 호출은 없다.
 - 조사 입력은 기업·직무·선택 공고 자료만 포함한다. 경험·문항을 MCP 조사/검색에 보내지 않는다. 내부 검색어/페이지/바이트의 독립 통제를 주장하지 않는다.
@@ -38,9 +40,9 @@
 
 사용자가 OMO 팀 개발을 요청하면 설치된 omo:teammode 지침을 읽고 적용한다. 메인이 조율하고 제품 코드 편집을 구현 담당자에게 맡긴다. 이번 문서 작업만으로 팀 개발 요청문을 실행하지 않는다.
 
-ESSAY-18 → ESSAY-19 → (ESSAY-10 ∥ ESSAY-11 ∥ ESSAY-15) → ESSAY-12 → ESSAY-13 → ESSAY-14 → ESSAY-16 → ESSAY-17 → ESSAY-20. ESSAY-16에는 ESSAY-15도 완료돼야 한다. 화면은 공통 계약 이후 모의 응답으로 먼저 구현할 수 있다.
+완료된 ESSAY-18 → ESSAY-19 → ESSAY-10 이후 ESSAY-21 → (ESSAY-11 ∥ ESSAY-15) → ESSAY-12 → ESSAY-13 → ESSAY-14 → ESSAY-16 → ESSAY-17 → ESSAY-20. ESSAY-16에는 ESSAY-15도 완료돼야 한다. 화면은 ESSAY-21 공통 계약 이후 모의 응답으로 먼저 구현할 수 있다.
 
-공통 계약·의존성·server.py·MCP 기반은 ESSAY-19 담당자 한 명이 소유하고 후속 담당자에게 순차 인계한다. 각 역할은 자기 모듈/테스트, QA는 시나리오/증거를 소유한다. 모든 작업자는 다른 작업자의 변경을 보존하며 제품 역할4개와 개발 에이전트 수를 혼동하지 않는다.
+완료된 기반을 재개하지 않고 ESSAY-21 담당자가 계획/평가/분기 공통 계약 확장을 먼저 소유한다. D/E/I는 ESSAY-12, F는 ESSAY-13, G와 전체 연결은 ESSAY-14에 순차 인계한다. 각 역할은 자기 모듈/테스트, QA는 시나리오/증거를 소유한다. 모든 작업자는 다른 작업자의 변경을 보존하며 제품 역할4개와 개발 에이전트 수를 혼동하지 않는다.
 
 ## 검증과 완료
 

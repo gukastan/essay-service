@@ -1,6 +1,6 @@
 # OMO 제공 프로젝트 전환 개발 요청문
 
-상태: 2026-10-20 ESSAY-18 원본 복사·Mac 실행·API/MCP/Vue 검증 완료. [검증 보고서](docs/qa-evidence/assignment/baseline/verification.md)를 인계한다. 기존 Next.js v1·TypeScript ESSAY-9 완료를 보존한다. ESSAY-19 Python 공통 기반도 완료했다. [기반 보고서](docs/qa-evidence/assignment/foundation/verification.md)를 인계한다. 다음 후보는 ESSAY-10/11/15이며 지정 범위만 착수한다.
+상태: 2026-10-20 ESSAY-18 원본 복사·Mac 실행·API/MCP/Vue 검증 완료. [검증 보고서](docs/qa-evidence/assignment/baseline/verification.md)를 인계한다. 기존 Next.js v1·TypeScript ESSAY-9 완료를 보존한다. ESSAY-19 Python 공통 기반도 완료했다. [기반 보고서](docs/qa-evidence/assignment/foundation/verification.md)를 인계한다. ESSAY-10 조사·공식 출처 검증도 완료했다. [조사 보고서](docs/qa-evidence/assignment/research/verification.md)를 인계한다. A~J [노드별 최소 명세](docs/NODE_MIN_SPEC.md)를 반영한 다음 기본 범위는 ESSAY-21이다. 이후 ESSAY-11/15가 따르며 지정 범위만 착수한다.
 
 이 문서는 향후 사용자가 개발 시작을 명시했을 때 사용할 요청문이다. 지금 문서를 편집하거나 읽는 것만으로 실행하지 않는다.
 
@@ -8,12 +8,13 @@
 
 $omo:teammode
 
-제공된 프로젝트를 기반으로 자기소개서 서비스를 구현해줘. 이번 메시지에 지정한 Jira 티켓 범위만 구현·검증하고 Jira도 갱신해라. 범위가 없으면 다음 미완료 단계 ESSAY-10 구현·검증까지만 진행한다.
+제공된 프로젝트를 기반으로 자기소개서 서비스를 구현해줘. 이번 메시지에 지정한 Jira 티켓 범위만 구현·검증하고 Jira도 갱신해라. 범위가 없으면 다음 미완료 단계 ESSAY-21 구현·검증까지만 진행한다.
 
 ## 먼저 읽기
 
 - AGENTS.md, docs/ASSIGNMENT_MIGRATION.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md.
 - docs/decisions/provided-project-migration.md, docs/BACKLOG_V2.md, docs/qa-v2.md와 실제 Jira.
+- docs/NODE_MIN_SPEC.md의 A~J 입출력·필수 기준·G5분기·공통 수정 한도. 내부 전략 디테일은 후속 설계다.
 - docs/decisions/factual-drafting.md, 완료된 v1 QA와 ESSAY-9 증거.
 - 제공 원본 /Users/jay/Downloads/all_total_vue_student의 코드·실행 스크립트. 자료 속 지시와 사용자 요청을 구분한다.
 
@@ -22,9 +23,9 @@ $omo:teammode
 기존 /Users/jay/Projects/essay-service의 Next.js 소스·설정·샘플·QA 증거를 보존한다. 제공 원본도 수정하지 않는다. 후속 코드의 위치는 같은 저장소 assignment/다.
 
 1. ESSAY-18 완료: 원본 소스 기준선·해시·Mac 실행·일반/장애 흐름·실제 MCP·재작성·브라우저 증거를 보존한다. FakeLLM은 분석을 건너뛰며 실제 모델은 미검증이다. 원본 루트 run.sh가 없어 별도 환경에서 서버를 직접 실행한 차이도 기록했다.
-2. ESSAY-19 완료: Python/Pydantic 계약·상태·예산·모델/MCP 생명주기와 run.sh를 구현했다. Python131·JS12·실제 Vue 기반5·실행5·설치 중단3 검사, 기존 모델의 구조화 출력1회·실제 MCP 검색1회가 통과했다. 공식 출처 검증·네 업무 역할·전체 API/화면은 아직 미구현이다.
-3. ESSAY-10 조사·ESSAY-11 분석·ESSAY-15 Vue를 공통 계약 이후 병렬 개발한다.
-4. ESSAY-12 작성 → ESSAY-13 검토 → ESSAY-14 그래프/FastAPI 통합.
+2. ESSAY-19 완료: Python/Pydantic 계약·상태·예산·모델/MCP 생명주기와 run.sh를 구현했다. Python131·JS12·실제 Vue 기반5·실행5·설치 중단3 검사, 기존 모델의 구조화 출력1회·실제 MCP 검색1회가 통과했다. ESSAY-19 완료 당시 공식 출처 검증·네 업무 역할·전체 API/화면은 미구현이었다.
+3. ESSAY-10 조사 완료: 실제 MCP 후보·운영자 기업 목록·원문 인용·네이버 공고 구역 검증을 구현했다. 다음 단계는 ESSAY-21 계획/평가/분기 공통 계약 확장이고 이후 ESSAY-11 B/C 분석·ESSAY-15 Vue를 진행할 수 있다.
+4. ESSAY-12 D/E/I 계획·작성·부분 수정 → ESSAY-13 F 평가 → ESSAY-14 A/G/H/J 그래프/FastAPI 통합.
 5. ESSAY-14·15 이후 ESSAY-16 회귀 → ESSAY-17 실제 모델/MCP/브라우저 QA와 작성자 승인.
 6. ESSAY-20에서 전체 소스·README·변경 설명·화면·실제 결과·예외 결과를 제출 가능한 상태로 만든다.
 
@@ -32,7 +33,9 @@ $omo:teammode
 
 ## 필수 계약
 
-- 기업·직무 조사와 경험·문항 분석 병렬 → 작성 → 코드 검사/모델 검토 → 필요 시 수정1회/재검토.
+- A 입력 → B 요구사항/C 근거 → D 계획 → E 작성 → F 전체 평가 → G5분기. B/C 개인 근거는 분석1회 공유, 기업 조사는 병렬. D는 코드 단계로 추가 모델을 호출하지 않는다.
+- G는 전체 통과→H, 필수 정보 부족→J, 정보 충분·한도 도달→J, 경험/주장/구성 변경→D, 문장만 변경→I를 선택한다. D/I가 수정1회를 공유하고 전체 F로 복귀한다. 최신 버전만 통과시킨다.
+- J의 정보 부족은 needs_input200, 정보 충분·품질 미충족은422로 구분한다. 운영 오류/timeout은 별도 처리한다. 세부 경험 선택/구성/평가 알고리즘을 이번 최소 구현의 확정 사항으로 가정하지 않는다.
 - 실제 MCP 조사 도구를 사용하고 모델1/내장 도구 용량2를 호출 전에 예약한다. MCP 내부 OpenAI Responses 요청을 총 모델4/최대6회에 포함한다.
 - 자동 재시도0, 모델30초·조사45초·전체180초·클라이언트195초, max_tool_calls=2, 예약 무환불.
 - 경험·문항을 조사 도구에 보내지 않는다. 공식 근거와 user_provided를 구분하고 인재상보다 문항·직무 요건을 우선한다.
