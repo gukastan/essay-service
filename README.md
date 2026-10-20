@@ -1,10 +1,14 @@
-# 자소서 서비스 MVP
+# 자소서 서비스 — 기존 MVP와 과제 전환 계획
 
 기업명·직무·문항·경험으로 자기소개서 초안을 생성하고, 원본 경험과 비교해 편집·복사하는 Next.js + TypeScript 앱이다.
 
-현재 실행 버전은 완료된 v1이다. v2는 ESSAY-9의 공통 계약·LangGraph 상태·실행 예산·OpenAI 제공자 기반을 구현했다. 기업·직무 조사, 경험·문항 분석, 작성, 검토의 실제 연결과 v2 API·화면은 ESSAY-10~17에서 이어간다.
+현재 루트의 완료된 Next.js v1과 TypeScript ESSAY-9 공통 기반을 보존한다. 2026-10-20 제공된 LangGraph·MCP·LLM·Vue·FastAPI 프로젝트의 소스를 assignment/에 복사하고 ESSAY-18 원본 실행 검증을 완료했다. 모의 LLM·JSON 자료와 실제 API·MCP·Vue 화면을 구분한 [기준선 검증 보고서](docs/qa-evidence/assignment/baseline/verification.md)가 있다. ESSAY-19 Python 공통 기반 구현·검증도 완료했다. [기반 보고서](docs/qa-evidence/assignment/foundation/verification.md)를 참고한다. 계약·예산·실제 MCP·모델 연결·실행 진입점은 구현됐으며 네 업무 역할·자기소개서 API·새 Vue 화면은 후속 작업이다.
+
+새 작업은 ESSAY-18 원본 실행 → ESSAY-19 Python 기반 이식 → ESSAY-10~17 기능·QA → ESSAY-20 제출 자료 순서다. [전환 계획](docs/ASSIGNMENT_MIGRATION.md)에 재사용/변경 대응과 여섯 제출물이 있다.
 
 ## 문서
+
+- [제공 프로젝트 전환 계획](docs/ASSIGNMENT_MIGRATION.md) · [전환 결정](docs/decisions/provided-project-migration.md) · [이전 기준선](docs/archive/nextjs-v2/README.md)
 
 - [기획서 및 PRD](docs/PRD.md)
 - [기술 설계서](docs/TECH_DESIGN.md)
@@ -15,14 +19,14 @@
 
 ## OMO로 시작하기
 
-후속 v2 개발은 이 폴더를 Codex의 개발 프로젝트로 열고 원하는 티켓 범위를 지정한다. ESSAY-9 기반 다음에는 조사 ESSAY-10·분석 ESSAY-11·화면 ESSAY-15를 병렬로 진행할 수 있다.
+후속 전환 개발은 이 폴더를 열고 원하는 티켓 범위를 명시한다. 다음 후보는 ESSAY-10 조사·ESSAY-11 분석·ESSAY-15 Vue 화면이다. [assignment 실행 안내](assignment/README.md)에 Python 설치·환경설정·bash run.sh·검사가 있다. 현재 Python 서버는 /health에서 pipelineAvailable:false를 반환하고 자기소개서 API는 아직 404다.
 
 ```text
 $omo:teammode
-AGENTS.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md에 따라 ESSAY-10, ESSAY-11, ESSAY-15를 구현·검증하고 Jira도 갱신해줘.
+AGENTS.md, docs/ASSIGNMENT_MIGRATION.md, docs/BACKLOG_V2.md를 읽고 START_OMO_V2.md에 따라 ESSAY-10 구현·검증까지만 진행하고 Jira도 갱신해줘.
 ```
 
-## 설치와 실행
+## 보존된 Next.js v1 설치와 실행
 
 Node.js 22 이상과 pnpm 11을 사용한다. 개발 시 확인한 환경은 Node.js 26.7.0, pnpm 11.18.0이다.
 
@@ -65,7 +69,7 @@ QA_OUTPUT_DIR=docs/qa-evidence/live-model-revalidation/new-run \
 node tests/run-live-samples.mjs --confirm-live-model
 ```
 
-## v2 공통 기반 확인
+## 보존된 TypeScript ESSAY-9 공통 기반 확인
 
 LangGraph 1.5.1·LangChain core 1.2.18·Zod 4.6.7을 고정했다. `pnpm test`는 실제 LangGraph 상태 합류와 요청 간 격리, 입력/출력 계약, 병렬 예산·취소, 제공자 경계를 검사한다. 일반 테스트에는 실제 유료 요청이 없다.
 
@@ -77,7 +81,7 @@ LangGraph 1.5.1·LangChain core 1.2.18·Zod 4.6.7을 고정했다. `pnpm test`�
 RUN_V2_NATIVE_ADAPTER_PROBE=1 pnpm exec vitest run tests/probe-v2-provider.live.test.ts
 ```
 
-검증 결과와 미검증 범위는 [ESSAY-9 기록](docs/qa-evidence/v2/essay-9/verification.md), 제공자 선택은 [결정 기록](docs/decisions/langgraph-v2.md)을 따른다. `/api/v2/drafts`와 `DRAFT_PIPELINE_VERSION`은 아직 연결하지 않았으므로 아래 시연은 현재 v1 기준이다.
+검증 결과와 미검증 범위는 [ESSAY-9 기록](docs/qa-evidence/v2/essay-9/verification.md), 제공자 선택은 [결정 기록](docs/decisions/langgraph-v2.md)을 따른다. Next.js `/api/v2/drafts`·`DRAFT_PIPELINE_VERSION` 추가 계획은 별도 Python·Vue 전환으로 대체했다. 위 검사와 아래 시연은 보존된 Next.js 기준이며 전환판 검증이 아니다. 제출 서비스의 설치·bash run.sh·시연은 구현 후 assignment/README.md에서 검증해 제공한다.
 
 ## 3분 시연
 

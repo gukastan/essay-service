@@ -1,24 +1,77 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "project": "ESSAY",
   "site": "https://kmskojb.atlassian.net",
   "epic": "ESSAY-8",
   "status": "진행 중",
-  "implementation": "foundation_complete",
-  "updatedAt": "2026-10-19T17:39:08+09:00",
-  "verificationReport": "docs/qa-evidence/v2/essay-9/verification.md",
+  "implementation": "python_foundation_complete",
+  "updatedAt": "2026-10-20 06:58:45 UTC",
+  "baseline": {
+    "commit": "c5299e954d0ff1b0848dad238e7b731ef078bb51",
+    "completedIssues": [
+      "ESSAY-1",
+      "ESSAY-2",
+      "ESSAY-3",
+      "ESSAY-4",
+      "ESSAY-5",
+      "ESSAY-6",
+      "ESSAY-7",
+      "ESSAY-9"
+    ],
+    "originalProject": "/Users/jay/Downloads/all_total_vue_student",
+    "targetDirectory": "assignment/",
+    "targetCodeImplemented": false,
+    "priorSnapshot": "docs/archive/nextjs-v2/jira-v2.json",
+    "sourceCopied": true,
+    "originalExecutionVerified": true,
+    "essayServicePythonImplemented": false,
+    "executionEvidence": "docs/qa-evidence/assignment/baseline/verification.md",
+    "pythonFoundationImplemented": true,
+    "completedMigrationIssues": [
+      "ESSAY-18",
+      "ESSAY-19"
+    ],
+    "foundationEvidence": "docs/qa-evidence/assignment/foundation/verification.md"
+  },
   "researchStrategy": {
-    "provider": "OpenAI Responses web_search",
-    "approvedByUser": "2026-10-19",
+    "provider": "OpenAI Responses web_search via MCP research_company_role",
+    "status": "candidate_adapter_verified_official_validation_pending",
+    "approvedNativeSearch": "2026-10-19",
+    "approvedProjectMigration": "2026-10-20",
+    "modelCallsNormal": 4,
+    "modelCallsMaximum": 6,
     "nativeToolCallsReserved": 2,
     "max_tool_calls": 2,
     "internalQueryAndPageCountsControlled": false
   },
   "issues": [
     {
+      "id": "MIG-01",
+      "key": "ESSAY-18",
+      "summary": "[MIG-01] 제공 프로젝트 기준선 보존과 Mac 원본 실행 확인",
+      "type": "작업",
+      "status": "완료",
+      "parent": "ESSAY-8",
+      "blockedBy": [],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-18"
+    },
+    {
+      "id": "MIG-02",
+      "key": "ESSAY-19",
+      "summary": "[MIG-02] Python 공통 계약·예산·MCP 실행 기반 이식",
+      "type": "작업",
+      "status": "완료",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-9",
+        "ESSAY-18"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-19"
+    },
+    {
       "id": "V2-01",
       "key": "ESSAY-9",
-      "summary": "공통 계약·LangGraph 실행 기반 구성",
+      "summary": "[V2-01] 공통 계약·LangGraph 실행 기반 구성",
       "type": "작업",
       "status": "완료",
       "parent": "ESSAY-8",
@@ -28,31 +81,33 @@
     {
       "id": "V2-02",
       "key": "ESSAY-10",
-      "summary": "기업·직무 조사 역할과 출처 검증 구현",
+      "summary": "[V2-02] MCP 기업·직무 조사와 공식 출처 검증 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
-        "ESSAY-9"
+        "ESSAY-9",
+        "ESSAY-19"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-10"
     },
     {
       "id": "V2-03",
       "key": "ESSAY-11",
-      "summary": "경험·문항 분석 역할과 원문 근거 추출 구현",
+      "summary": "[V2-03] Python 경험·문항 분석과 원문 근거 추출 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
-        "ESSAY-9"
+        "ESSAY-9",
+        "ESSAY-19"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-11"
     },
     {
       "id": "V2-04",
       "key": "ESSAY-12",
-      "summary": "근거 기반 초안 작성 역할 구현",
+      "summary": "[V2-04] Python 근거 기반 초안 작성 역할 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -65,7 +120,7 @@
     {
       "id": "V2-05",
       "key": "ESSAY-13",
-      "summary": "사실성·문항 적합성 검토 역할 구현",
+      "summary": "[V2-05] Python 근거 검사·사실성 검토와 제한된 수정 구현",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -77,7 +132,7 @@
     {
       "id": "V2-06",
       "key": "ESSAY-14",
-      "summary": "네 역할 LangGraph 연결과 v2 API 통합",
+      "summary": "[V2-06] Python LangGraph 네 역할과 FastAPI 통합",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -89,19 +144,20 @@
     {
       "id": "V2-07",
       "key": "ESSAY-15",
-      "summary": "공고 자료 입력·근거 확인·보완 안내 화면 구현",
+      "summary": "[V2-07] Vue 자기소개서 입력·근거·편집·보완 화면 구현",
       "type": "스토리",
       "status": "할 일",
       "parent": "ESSAY-8",
       "blockedBy": [
-        "ESSAY-9"
+        "ESSAY-9",
+        "ESSAY-19"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-15"
     },
     {
       "id": "V2-08",
       "key": "ESSAY-16",
-      "summary": "분기·출처·예산·사실성 회귀 자동 검증",
+      "summary": "[V2-08] Python·MCP·Vue 전체 흐름과 예외 회귀 검증",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -114,7 +170,7 @@
     {
       "id": "V2-09",
       "key": "ESSAY-17",
-      "summary": "실제 모델·공식 출처·브라우저 QA 및 최종 승인",
+      "summary": "[V2-09] 전환 서비스 실제 모델·MCP·Vue QA와 사실성 승인",
       "type": "작업",
       "status": "할 일",
       "parent": "ESSAY-8",
@@ -122,6 +178,18 @@
         "ESSAY-16"
       ],
       "url": "https://kmskojb.atlassian.net/browse/ESSAY-17"
+    },
+    {
+      "id": "MIG-03",
+      "key": "ESSAY-20",
+      "summary": "[MIG-03] 과제 제출 소스·README·변경 설명·검증 자료 완성",
+      "type": "작업",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "blockedBy": [
+        "ESSAY-17"
+      ],
+      "url": "https://kmskojb.atlassian.net/browse/ESSAY-20"
     }
   ],
   "dependencies": [
@@ -134,6 +202,16 @@
       "linkType": "Blocks",
       "inwardIssue": "ESSAY-9",
       "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-15"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-9",
+      "outwardIssue": "ESSAY-19"
     },
     {
       "linkType": "Blocks",
@@ -157,11 +235,6 @@
     },
     {
       "linkType": "Blocks",
-      "inwardIssue": "ESSAY-9",
-      "outwardIssue": "ESSAY-15"
-    },
-    {
-      "linkType": "Blocks",
       "inwardIssue": "ESSAY-14",
       "outwardIssue": "ESSAY-16"
     },
@@ -174,7 +247,133 @@
       "linkType": "Blocks",
       "inwardIssue": "ESSAY-16",
       "outwardIssue": "ESSAY-17"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-17",
+      "outwardIssue": "ESSAY-20"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-18",
+      "outwardIssue": "ESSAY-19"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-10"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-11"
+    },
+    {
+      "linkType": "Blocks",
+      "inwardIssue": "ESSAY-19",
+      "outwardIssue": "ESSAY-15"
     }
   ],
-  "verification": "ESSAY-9 transition31 returned 완료 after156 tests/typecheck/lint/build and4 live provider probes passed. ESSAY-8 remains 진행 중; ESSAY-10~17 remain 할 일. Existing parent and10 Blocks links preserved. Acceptance criteria updated to approved native tool-call cap2."
+  "verification": {
+    "scope": "ESSAY-19 Python foundation only",
+    "issueCount": 20,
+    "epicChildCount": 12,
+    "dependencyCount": 16,
+    "dependenciesUnchanged": true,
+    "changedStatuses": [
+      "ESSAY-19"
+    ],
+    "allOtherStatusesUnchanged": true,
+    "acceptanceChecked": 8,
+    "essay19Status": "완료",
+    "epicStatus": "진행 중",
+    "updated": [
+      "ESSAY-19",
+      "ESSAY-8"
+    ],
+    "statusTransitions": 2,
+    "transitionedIssues": [
+      "ESSAY-19"
+    ],
+    "startCommentId": "10020",
+    "completionCommentId": "10021",
+    "nextIssues": [
+      "ESSAY-10",
+      "ESSAY-11",
+      "ESSAY-15"
+    ],
+    "nextIssuesStarted": false,
+    "readbackPassed": true,
+    "checks": {
+      "python": 131,
+      "defaultPaidSkipped": 1,
+      "javascript": 12,
+      "vueFoundationBrowser": 5,
+      "runtime": 5,
+      "installerSignals": 3,
+      "paidStructuredModel": 1,
+      "paidMcpHostedSearch": 1,
+      "typeErrors": 0,
+      "lintPassed": true,
+      "formatPassed": true
+    },
+    "originalFilesPreserved": 46,
+    "protectedFilesPreserved": 441,
+    "evidence": "docs/qa-evidence/assignment/foundation/verification.md"
+  },
+  "migrationPlanningVerification": {
+    "completedIssuesUnchanged": true,
+    "issueCount": 20,
+    "epicChildCount": 12,
+    "dependencyCount": 16,
+    "newDependencyCount": 6,
+    "created": [
+      "ESSAY-18",
+      "ESSAY-19",
+      "ESSAY-20"
+    ],
+    "updated": [
+      "ESSAY-8",
+      "ESSAY-10",
+      "ESSAY-11",
+      "ESSAY-12",
+      "ESSAY-13",
+      "ESSAY-14",
+      "ESSAY-15",
+      "ESSAY-16",
+      "ESSAY-17"
+    ],
+    "statusTransitions": 0,
+    "readbackPassed": true,
+    "scope": "Planning/Jira only; original run, migration implementation and product QA not executed"
+  },
+  "originalBaselineVerification": {
+    "scope": "ESSAY-18 original baseline only; FakeLLM/JSON fixtures with real API, LangGraph, MCP and Vue; no paid model calls",
+    "issueCount": 20,
+    "epicChildCount": 12,
+    "completedIssuesUnchanged": true,
+    "dependenciesUnchanged": true,
+    "dependencyCount": 16,
+    "updated": [
+      "ESSAY-18",
+      "ESSAY-8"
+    ],
+    "statusTransitions": 2,
+    "transitionedIssues": [
+      "ESSAY-18"
+    ],
+    "readbackPassed": true,
+    "checks": {
+      "runtime": 13,
+      "apiSse": 25,
+      "mcp": 8,
+      "browser": 5
+    },
+    "originalFilesPreserved": 46,
+    "protectedRepositoryFilesPreserved": 341,
+    "startCommentId": "10018",
+    "completionCommentId": "10019",
+    "nextIssue": "ESSAY-19",
+    "nextIssueStarted": false
+  }
 }
