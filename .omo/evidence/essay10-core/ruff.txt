@@ -1,0 +1,12 @@
+E501 Line too long (103 > 100)
+   --> agent/source_admission.py:165:91
+    |
+163 |         r"(?<!\w)"
+164 |         + re.escape(input.role)
+165 |         + r"\s+(?:requirements|qualifications|responsibilities|자격요건|담당업무|요건)\s*[:\uff1a]\s*",
+    |                                                                                                     ^^^
+166 |         re.IGNORECASE,
+167 |     )
+    |
+
+Found 1 error.

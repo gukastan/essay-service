@@ -1,0 +1,169 @@
+{
+  "id": "10013",
+  "key": "ESSAY-10",
+  "fields": {
+    "summary": "[V2-02] MCP 기업·직무 조사와 공식 출처 검증 구현",
+    "description": "## 목적\n\n원본 모니터링/장애 매뉴얼 조회를 기업·채용 정보 조사로 바꾸고, 실제 MCP를 통해 회사와 직무 근거를 얻는다.\n\n## 구현 범위\n\n* 작업 ID: V2-02\n* 소유 파일: assignment/agent/nodes/research.py, assignment/mcp_server.py, assignment/agent/research/, 해당 테스트\n* 선행: [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9), [ESSAY-19](https://kmskojb.atlassian.net/browse/ESSAY-19)\n* 에픽: ESSAY-8\n\n## 완료 조건\n\n- [ ] 원본 agent/mcp_client.py와 MCP 서버 등록 구조를 활용해 research_company_role 도구를 실제 호출한다. 사용되지 않는 장애 진단·decoy docs 서버는 제품 실행에서 제외하고 변경 이유를 기록한다.\n- [ ] 현재 OpenAI 키와 내장 검색을 유지한다. 조사 모델은 MCP 서버 안의 Responses 1회이며 그래프에서 추가 조사/요약 모델을 호출하지 않는다. 모델1/도구2 선예약·30/45초 제한을 지킨다.\n- [ ] 기업 식별·공식 채용 도메인/공식 링크 관계·출처 구절을 확인한다. 후보 자료는 unverified이며 검색 요약만으로 official로 승격하지 않는다. sourceId·URL 또는 사용자 본문 표시·확인 시각·근거 구절을 저장한다.\n- [ ] 사용자 공고는 user_provided로 구분하고 문항·직무 요구를 인재상보다 우선한다. 인재상만 없으면 생략, 회사 식별/직무 근거 부족은 needs_input, 제공자 장애·잘못된 응답은 error로 종료한다.\n- [ ] 동명 기업·상충 자료·지시문 삽입·빈 자료·접근 거부를 시험한다. 경험·문항은 MCP 조사 입력이나 외부 검색에 포함하지 않는다.\n- [ ] 공식 페이지 직접 확인이 필요하면 HTTP(S)만 허용하고 DNS/IP/모든 리다이렉트에서 내부망을 차단한다. 직접 읽기3회·페이지1MiB·정리 텍스트12000 코드 포인트 제한을 적용한다. hosted 내부 페이지 수/바이트와 혼동하지 않는다.\n\n## 기준과 보존\n\n2026-10-20 사용자 승인: 기존 작업을 보존하고 제공된 프로젝트의 LangGraph·MCP·LLM·Vue·FastAPI 구조로 전환한다. 이번 요청은 문서·Jira 갱신이며 이 티켓 구현/실행은 아직 시작하지 않았다.\n\n* 원본: /Users/jay/Downloads/all_total_vue_student (읽기 전용 기준)\n* 개발 저장소: /Users/jay/Projects/essay-service\n* 전환 코드: assignment/ (후속 구현 시 생성)\n* 현재 기준: docs/ASSIGNMENT_MIGRATION.md, docs/PRD_V2.md, docs/TECH_DESIGN_V2.md, docs/BACKLOG_V2.md, docs/qa-v2.md\n* 과거 기준: c5299e954d0ff1b0848dad238e7b731ef078bb51, docs/decisions/langgraph-v2.md\n\nESSAY-1\\~7 및 ESSAY-9 완료·코드·원본5개 샘플·QA 승인 기록을 보존한다. 모의/실제 MCP/실제 모델/브라우저 결과를 구분하고 수행하지 않은 검증을 완료로 보고하지 않는다. 담당자·스프린트·기한은 변경하지 않는다.",
+    "parent": {
+      "id": "10011",
+      "key": "ESSAY-8",
+      "fields": {
+        "summary": "[V2] 제공 프로젝트 기반 자기소개서 서비스 전환",
+        "status": {
+          "description": "",
+          "name": "진행 중",
+          "id": "10005",
+          "statusCategory": {
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "진행 중"
+          }
+        },
+        "priority": {
+          "name": "Medium",
+          "id": "3"
+        },
+        "issuetype": {
+          "id": "10007",
+          "description": "관련 버그, 스토리 및 작업의 컬렉션.",
+          "name": "에픽",
+          "subtask": false,
+          "entityId": "bb193fed-0842-4456-b1e8-23a12c913e7c",
+          "hierarchyLevel": 1
+        }
+      }
+    },
+    "issuelinks": [
+      {
+        "id": "10009",
+        "type": {
+          "id": "10000",
+          "name": "Blocks",
+          "inward": "is blocked by",
+          "outward": "blocks"
+        },
+        "inwardIssue": {
+          "id": "10012",
+          "key": "ESSAY-9",
+          "fields": {
+            "summary": "[V2-01] 공통 계약·LangGraph 실행 기반 구성",
+            "status": {
+              "description": "",
+              "name": "완료",
+              "id": "10006",
+              "statusCategory": {
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "완료"
+              }
+            },
+            "priority": {
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "id": "10010",
+              "description": "소규모 개별 업무입니다.",
+              "name": "작업",
+              "subtask": false,
+              "entityId": "09e8b069-339e-490d-927b-52400bc06bde",
+              "hierarchyLevel": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "10011",
+        "type": {
+          "id": "10000",
+          "name": "Blocks",
+          "inward": "is blocked by",
+          "outward": "blocks"
+        },
+        "outwardIssue": {
+          "id": "10015",
+          "key": "ESSAY-12",
+          "fields": {
+            "summary": "[V2-04] Python 근거 기반 초안 작성 역할 구현",
+            "status": {
+              "description": "",
+              "name": "할 일",
+              "id": "10004",
+              "statusCategory": {
+                "id": 2,
+                "key": "new",
+                "colorName": "blue-gray",
+                "name": "해야 할 일"
+              }
+            },
+            "priority": {
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "id": "10010",
+              "description": "소규모 개별 업무입니다.",
+              "name": "작업",
+              "subtask": false,
+              "entityId": "09e8b069-339e-490d-927b-52400bc06bde",
+              "hierarchyLevel": 0
+            }
+          }
+        }
+      },
+      {
+        "id": "10021",
+        "type": {
+          "id": "10000",
+          "name": "Blocks",
+          "inward": "is blocked by",
+          "outward": "blocks"
+        },
+        "inwardIssue": {
+          "id": "10022",
+          "key": "ESSAY-19",
+          "fields": {
+            "summary": "[MIG-02] Python 공통 계약·예산·MCP 실행 기반 이식",
+            "status": {
+              "description": "",
+              "name": "완료",
+              "id": "10006",
+              "statusCategory": {
+                "id": 3,
+                "key": "done",
+                "colorName": "green",
+                "name": "완료"
+              }
+            },
+            "priority": {
+              "name": "Medium",
+              "id": "3"
+            },
+            "issuetype": {
+              "id": "10010",
+              "description": "소규모 개별 업무입니다.",
+              "name": "작업",
+              "subtask": false,
+              "entityId": "09e8b069-339e-490d-927b-52400bc06bde",
+              "hierarchyLevel": 0
+            }
+          }
+        }
+      }
+    ],
+    "status": {
+      "description": "",
+      "name": "할 일",
+      "id": "10004",
+      "statusCategory": {
+        "id": 2,
+        "key": "new",
+        "colorName": "blue-gray",
+        "name": "해야 할 일"
+      }
+    }
+  },
+  "appliedContentFormat": "markdown"
+}

@@ -1,0 +1,23 @@
+E501 Line too long (103 > 100)
+  --> assignment/agent/research.py:70:101
+   |
+68 |                         "Return candidate source excerpts, company facts and job requirements "
+69 |                         "with source identifiers. Job requirements must be exact contiguous "
+70 |                         "quotations from the original-language visible page text, not general values. "
+   |                                                                                                     ^^^
+71 |                         "For NAVER recruit.navercorp.com job details, return individual duty or "
+72 |                         "skill bullets from What You'll Do or Required Skills as separate job "
+   |
+
+E501 Line too long (101 > 100)
+  --> assignment/agent/research.py:80:101
+   |
+78 |                         "Each source excerpt must be one contiguous visible page passage. "
+79 |                         "Each company fact and job requirement must be an exact substring of "
+80 |                         "every referenced source excerpt. For NAVER, quote the original requirement "
+   |                                                                                                     ^
+81 |                         "section containing those bullets, without unrelated page metadata. "
+82 |                         "Whitespace runs may "
+   |
+
+Found 2 errors.

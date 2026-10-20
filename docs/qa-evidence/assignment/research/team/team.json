@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 3,
+  "transport": "multi_agent_v2",
+  "teamId": "88d21d3d-72d2-4e25-a44f-69e93a9b0933",
+  "teamName": "essay10-research",
+  "sessionName": "essay10-official-sources",
+  "sessionId": "team-fb2113fe",
+  "threadTitleConvention": null,
+  "status": "archived",
+  "createdAt": "2026-10-20T07:11:04.863Z",
+  "updatedAt": "2026-10-20T08:36:57.938Z",
+  "archivedAt": "2026-10-20T08:36:57.938Z",
+  "leader": {
+    "kind": "main-session",
+    "sessionId": null,
+    "agentPath": "/root"
+  },
+  "communication": {
+    "memberLanguage": "english",
+    "replyToUserInUserLanguage": true
+  },
+  "worktree": {
+    "enabled": false,
+    "baseBranch": "dev",
+    "root": "/Users/jay/Projects/essay-service/.omo/teams/team-fb2113fe/worktrees"
+  },
+  "paths": {
+    "dir": "/Users/jay/Projects/essay-service/.omo/teams/team-fb2113fe",
+    "team": "/Users/jay/Projects/essay-service/.omo/teams/team-fb2113fe/team.json",
+    "guide": "/Users/jay/Projects/essay-service/.omo/teams/team-fb2113fe/guide.md",
+    "artifacts": "/Users/jay/Projects/essay-service/.omo/teams/team-fb2113fe/artifacts"
+  },
+  "members": [
+    {
+      "id": "A",
+      "name": "research-source-core",
+      "focus": "All ESSAY-10 product modules: research node, source-verification/trust/HTTP boundary, existing research adapter/MCP shared files, manifests only if needed; no tests or root docs",
+      "lens": "ownership",
+      "deliverable": "Implemented conservative company/job research with real MCP, verified evidence, bounded safe direct reads, typed outcomes and public API handoff",
+      "taskName": "essay10_research_core",
+      "agentPath": "/root/essay10_research_core",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "B",
+      "name": "research-adversarial-checks",
+      "focus": "ESSAY-10 tests and fixtures under assignment/tests; evidence under docs/qa-evidence/assignment/research/checks; no product/shared-config edits",
+      "lens": "ownership",
+      "deliverable": "Independent meaningful tests of identity/source evidence, role relevance, user posting, SSRF/redirect/limits, real MCP and budget/error/privacy boundaries",
+      "taskName": "essay10_research_checks",
+      "agentPath": "/root/essay10_research_checks",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    },
+    {
+      "id": "C",
+      "name": "official-source-trust-audit",
+      "focus": "Read-only official identity provenance and outbound-HTTP security design audit; memo under team artifacts only",
+      "lens": "perspective",
+      "deliverable": "Concrete trust-root decision and attack cases grounded in repo/official primary sources; read-only final implementation audit",
+      "taskName": "essay10_trust_audit",
+      "agentPath": "/root/essay10_trust_audit",
+      "threadId": null,
+      "threadTitle": null,
+      "cwd": "/Users/jay/Projects/essay-service",
+      "worktree": {
+        "path": null,
+        "branch": null
+      },
+      "status": "archived"
+    }
+  ],
+  "log": [
+    {
+      "ts": "2026-10-20T07:11:04.863Z",
+      "event": "created",
+      "detail": "team essay10-research"
+    },
+    {
+      "ts": "2026-10-20T07:11:35.942Z",
+      "event": "add-member",
+      "detail": "member A (ownership): All ESSAY-10 product modules: research node, source-verification/trust/HTTP boundary, existing research adapter/MCP shared files, manifests only if needed; no tests or root docs"
+    },
+    {
+      "ts": "2026-10-20T07:11:38.881Z",
+      "event": "add-member",
+      "detail": "member B (ownership): ESSAY-10 tests and fixtures under assignment/tests; evidence under docs/qa-evidence/assignment/research/checks; no product/shared-config edits"
+    },
+    {
+      "ts": "2026-10-20T07:11:42.838Z",
+      "event": "add-member",
+      "detail": "member C (perspective): Read-only official identity provenance and outbound-HTTP security design audit; memo under team artifacts only"
+    },
+    {
+      "ts": "2026-10-20T07:13:19.032Z",
+      "event": "bind-agent",
+      "detail": "member A -> agent /root/essay10_research_core"
+    },
+    {
+      "ts": "2026-10-20T07:13:23.112Z",
+      "event": "bind-agent",
+      "detail": "member B -> agent /root/essay10_research_checks"
+    },
+    {
+      "ts": "2026-10-20T07:13:26.262Z",
+      "event": "bind-agent",
+      "detail": "member C -> agent /root/essay10_trust_audit"
+    },
+    {
+      "ts": "2026-10-20T08:36:47.884Z",
+      "event": "set-status",
+      "detail": "member A -> reported: Final handoff accepted; source frozen; all gates and scoped live QA complete."
+    },
+    {
+      "ts": "2026-10-20T08:36:51.608Z",
+      "event": "set-status",
+      "detail": "member B -> reported: Final handoff accepted; source frozen; all gates and scoped live QA complete."
+    },
+    {
+      "ts": "2026-10-20T08:36:54.531Z",
+      "event": "set-status",
+      "detail": "member C -> reported: Final handoff accepted; source frozen; all gates and scoped live QA complete."
+    },
+    {
+      "ts": "2026-10-20T08:36:57.938Z",
+      "event": "archive",
+      "detail": "All final member reports accepted; ESSAY-10 Done. Native V2 agents completed and idle; no runtime archive operation exists. Durable state and artifacts will be copied before deletion. Shared checkout; no worktrees or new commit/push."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-20T07:46:21.851337+00:00",
+  "baselineCommit": "2da2c898f71120ce087963feae12727848f24b64",
+  "startHashCount": 613,
+  "authorizedExistingPaths": [
+    "AGENTS.md",
+    "README.md",
+    "START_OMO_V2.md",
+    "assignment/README.md",
+    "assignment/agent/research.py",
+    "assignment/pyproject.toml",
+    "docs/ASSIGNMENT_MIGRATION.md",
+    "docs/BACKLOG_V2.md",
+    "docs/PRD_V2.md",
+    "docs/TECH_DESIGN_V2.md",
+    "docs/decisions/provided-project-migration.md",
+    "docs/jira-v2.json",
+    "docs/qa-v2.md"
+  ],
+  "protectedCount": 600,
+  "protectedFailures": [],
+  "originalFilesChecked": 46,
+  "originalFailures": [],
+  "excludedOriginalContentsRead": false,
+  "passed": true
+}

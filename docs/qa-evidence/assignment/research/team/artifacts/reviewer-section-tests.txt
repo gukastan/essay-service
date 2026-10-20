@@ -1,0 +1,2 @@
+PYTHONPATH=assignment assignment/.venv/bin/python -m pytest -p no:cacheprovider assignment/tests/test_source_sections.py assignment/tests/test_source_quotes.py assignment/tests/test_source_verification.py assignment/tests/test_source_domestic.py assignment/tests/test_source_user.py -q
+55 passed in 0.57s

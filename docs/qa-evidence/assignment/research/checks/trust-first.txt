@@ -1,0 +1,25 @@
+..............F                                                          [100%]
+=================================== FAILURES ===================================
+_______ test_aggregate_page_text_cannot_reenter_via_cached_overflow_page _______
+
+    @pytest.mark.anyio
+    async def test_aggregate_page_text_cannot_reenter_via_cached_overflow_page() -> None:
+        # Given: two sources share oversized second page, the second must not bypass aggregate cap.
+        second = "https://acme.example/jobs/2"
+        pages = MemoryPages((fetched(text="a" * 7000), fetched(second, text=JOB + "b" * 7000)))
+        report = candidate(source(excerpt="a"), source(second, id="s2"), source(second, id="s3"))
+        report = report.model_copy(update={"job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("s2", "s3")),)})
+        # When
+        result = await SourceVerifier(pages, ANCHOR).verify(report, ResearchInput(company="Acme", role="Engineer"), ExecutionBudget())
+        # Then
+        assert sum(len(item.text) for item in pages.pages) > 12000
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...'s2', 's3')),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('s2', 's3'))
+E         Use -v to get more diff
+
+assignment/tests/test_source_verification.py:124: AssertionError
+=========================== short test summary info ============================
+FAILED assignment/tests/test_source_verification.py::test_aggregate_page_text_cannot_reenter_via_cached_overflow_page
+1 failed, 14 passed in 0.59s

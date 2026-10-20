@@ -1,0 +1,5 @@
+cwd: /Users/jay/Projects/essay-service/assignment
+command: .venv/bin/basedpyright --project pyproject.toml
+exit: 0
+
+0 errors, 0 warnings, 0 notes

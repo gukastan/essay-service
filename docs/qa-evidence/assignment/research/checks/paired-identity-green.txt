@@ -1,0 +1,559 @@
+...........FFFFFFFFFFFFFFFF.                                             [100%]
+=================================== FAILURES ===================================
+_ test_official_evidence_uses_fetched_identity_quote_and_time_not_model_claims _
+
+    @pytest.mark.anyio
+    async def test_official_evidence_uses_fetched_identity_quote_and_time_not_model_claims() -> None:
+        # Given
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_model_official_label_name_and_https_do_not_create_trust[acme.example.evil.test] _
+
+host = 'acme.example.evil.test'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "host", ["acme.example.evil.test", "jobs.acme.example", "same-name.example"]
+    )
+    async def test_model_official_label_name_and_https_do_not_create_trust(host: str) -> None:
+        # Given
+        url = f"https://{host}/jobs/1"
+>       verifier = SourceVerifier(MemoryPages((fetched(url), fetched(ANCHOR.provenance_url))), ANCHOR)
+                                               ^^^^^^^^^^^^
+
+tests/test_source_verification.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example.evil.test/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_model_official_label_name_and_https_do_not_create_trust[jobs.acme.example] _
+
+host = 'jobs.acme.example'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "host", ["acme.example.evil.test", "jobs.acme.example", "same-name.example"]
+    )
+    async def test_model_official_label_name_and_https_do_not_create_trust(host: str) -> None:
+        # Given
+        url = f"https://{host}/jobs/1"
+>       verifier = SourceVerifier(MemoryPages((fetched(url), fetched(ANCHOR.provenance_url))), ANCHOR)
+                                               ^^^^^^^^^^^^
+
+tests/test_source_verification.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://jobs.acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_model_official_label_name_and_https_do_not_create_trust[same-name.example] _
+
+host = 'same-name.example'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "host", ["acme.example.evil.test", "jobs.acme.example", "same-name.example"]
+    )
+    async def test_model_official_label_name_and_https_do_not_create_trust(host: str) -> None:
+        # Given
+        url = f"https://{host}/jobs/1"
+>       verifier = SourceVerifier(MemoryPages((fetched(url), fetched(ANCHOR.provenance_url))), ANCHOR)
+                                               ^^^^^^^^^^^^
+
+tests/test_source_verification.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://same-name.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_fabricated_or_changed_quote_cannot_become_job_evidence[Engineer requirements: imaginary certification.] _
+
+text = 'Engineer requirements: imaginary certification.'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "Engineer requirements: imaginary certification.",
+            "Engineer requirements: Experience building reliable systems.",
+        ],
+    )
+    async def test_fabricated_or_changed_quote_cannot_become_job_evidence(text: str) -> None:
+        # Given
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_fabricated_or_changed_quote_cannot_become_job_evidence[Engineer requirements: Experience building reliable systems.] _
+
+text = 'Engineer requirements: Experience building reliable systems.'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "Engineer requirements: imaginary certification.",
+            "Engineer requirements: Experience building reliable systems.",
+        ],
+    )
+    async def test_fabricated_or_changed_quote_cannot_become_job_evidence(text: str) -> None:
+        # Given
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_role_elsewhere_on_page_does_not_promote_company_values_to_job_requirement _
+
+    @pytest.mark.anyio
+    async def test_role_elsewhere_on_page_does_not_promote_company_values_to_job_requirement() -> None:
+        # Given
+        values = "We value responsibility and integrity."
+>       verifier = SourceVerifier(MemoryPages((fetched(text=f"Engineer {values}"),)), ANCHOR)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_source_verification.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer We value responsibility and integrity.', links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_____ test_external_ats_requires_exact_official_link_not_shared_host[True] _____
+
+linked = True
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize("linked", [True, False])
+    async def test_external_ats_requires_exact_official_link_not_shared_host(*, linked: bool) -> None:
+        # Given
+        url = "https://jobs.ats.example/acme/123"
+        wrong = "https://jobs.ats.example/other-company/123"
+>       root = fetched(
+            ANCHOR.provenance_url,
+            text=f"Acme careers: {url if linked else wrong}",
+            links=(url if linked else wrong,),
+        )
+
+tests/test_source_verification.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/careers'
+text = 'Acme careers: https://jobs.ats.example/acme/123'
+links = ('https://jobs.ats.example/acme/123',)
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+____ test_external_ats_requires_exact_official_link_not_shared_host[False] _____
+
+linked = False
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize("linked", [True, False])
+    async def test_external_ats_requires_exact_official_link_not_shared_host(*, linked: bool) -> None:
+        # Given
+        url = "https://jobs.ats.example/acme/123"
+        wrong = "https://jobs.ats.example/other-company/123"
+>       root = fetched(
+            ANCHOR.provenance_url,
+            text=f"Acme careers: {url if linked else wrong}",
+            links=(url if linked else wrong,),
+        )
+
+tests/test_source_verification.py:98: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/careers'
+text = 'Acme careers: https://jobs.ats.example/other-company/123'
+links = ('https://jobs.ats.example/other-company/123',)
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+___________ test_invalid_evidence_ids_fail_closed[duplicate-source] ____________
+
+problem = 'duplicate-source'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "problem", ["duplicate-source", "duplicate-record", "unknown-id", "reserved-id"]
+    )
+    async def test_invalid_evidence_ids_fail_closed(problem: str) -> None:
+        # Given
+        original = candidate()
+        changes = {
+            "duplicate-source": {"sources": (source(), source())},
+            "duplicate-record": {
+                "company_facts": (CompanyFact(id="j1", text=JOB, source_ids=("s1",)),)
+            },
+            "unknown-id": {
+                "job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("missing",)),)
+            },
+            "reserved-id": {"sources": (source(id="user-posting"),)},
+        }
+        invalid = original.model_copy(update=changes[problem])
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+___________ test_invalid_evidence_ids_fail_closed[duplicate-record] ____________
+
+problem = 'duplicate-record'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "problem", ["duplicate-source", "duplicate-record", "unknown-id", "reserved-id"]
+    )
+    async def test_invalid_evidence_ids_fail_closed(problem: str) -> None:
+        # Given
+        original = candidate()
+        changes = {
+            "duplicate-source": {"sources": (source(), source())},
+            "duplicate-record": {
+                "company_facts": (CompanyFact(id="j1", text=JOB, source_ids=("s1",)),)
+            },
+            "unknown-id": {
+                "job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("missing",)),)
+            },
+            "reserved-id": {"sources": (source(id="user-posting"),)},
+        }
+        invalid = original.model_copy(update=changes[problem])
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+______________ test_invalid_evidence_ids_fail_closed[unknown-id] _______________
+
+problem = 'unknown-id'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "problem", ["duplicate-source", "duplicate-record", "unknown-id", "reserved-id"]
+    )
+    async def test_invalid_evidence_ids_fail_closed(problem: str) -> None:
+        # Given
+        original = candidate()
+        changes = {
+            "duplicate-source": {"sources": (source(), source())},
+            "duplicate-record": {
+                "company_facts": (CompanyFact(id="j1", text=JOB, source_ids=("s1",)),)
+            },
+            "unknown-id": {
+                "job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("missing",)),)
+            },
+            "reserved-id": {"sources": (source(id="user-posting"),)},
+        }
+        invalid = original.model_copy(update=changes[problem])
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+______________ test_invalid_evidence_ids_fail_closed[reserved-id] ______________
+
+problem = 'reserved-id'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize(
+        "problem", ["duplicate-source", "duplicate-record", "unknown-id", "reserved-id"]
+    )
+    async def test_invalid_evidence_ids_fail_closed(problem: str) -> None:
+        # Given
+        original = candidate()
+        changes = {
+            "duplicate-source": {"sources": (source(), source())},
+            "duplicate-record": {
+                "company_facts": (CompanyFact(id="j1", text=JOB, source_ids=("s1",)),)
+            },
+            "unknown-id": {
+                "job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("missing",)),)
+            },
+            "reserved-id": {"sources": (source(id="user-posting"),)},
+        }
+        invalid = original.model_copy(update=changes[problem])
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+________ test_reported_critical_conflict_suppresses_even_exact_evidence ________
+
+    @pytest.mark.anyio
+    async def test_reported_critical_conflict_suppresses_even_exact_evidence() -> None:
+        # Given
+        disputed = candidate().model_copy(update={"gaps": ("Conflicting core job requirements",)})
+>       verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+                                               ^^^^^^^^^
+
+tests/test_source_verification.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_______ test_aggregate_page_text_cannot_reenter_via_cached_overflow_page _______
+
+    @pytest.mark.anyio
+    async def test_aggregate_page_text_cannot_reenter_via_cached_overflow_page() -> None:
+        # Given: two sources share oversized second page, the second must not bypass aggregate cap.
+        second = "https://acme.example/jobs/2"
+>       pages = MemoryPages((fetched(text="a" * 7000), fetched(second, text=JOB + "b" * 7000)))
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_source_verification.py:163: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/jobs/1'
+text = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+_ test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence _
+
+    @pytest.mark.anyio
+    async def test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence() -> None:
+        # Given
+        url = "https://acme.example/blog/interview-with-engineer"
+>       verifier = SourceVerifier(MemoryPages((fetched(url),)), ANCHOR)
+                                               ^^^^^^^^^^^^
+
+tests/test_source_verification.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+url = 'https://acme.example/blog/interview-with-engineer'
+text = 'Engineer requirements: experience building reliable systems.'
+links = ()
+
+    def fetched(url: str = URL, *, text: str = JOB, links: tuple[str, ...] = ()) -> FetchedPage:
+        return FetchedPage(
+>           url, text, links, CHECKED, postings=(Posting(kind="JobPosting", title="Engineer"),)
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+E       pydantic_core._pydantic_core.ValidationError: 1 validation error for Posting
+E       @type
+E         Field required [type=missing, input_value={'kind': 'JobPosting', 'title': 'Engineer'}, input_type=dict]
+E           For further information visit https://errors.pydantic.dev/2.14/v/missing
+
+tests/research_fixture.py:60: ValidationError
+=========================== short test summary info ============================
+FAILED tests/test_source_verification.py::test_official_evidence_uses_fetched_identity_quote_and_time_not_model_claims
+FAILED tests/test_source_verification.py::test_model_official_label_name_and_https_do_not_create_trust[acme.example.evil.test]
+FAILED tests/test_source_verification.py::test_model_official_label_name_and_https_do_not_create_trust[jobs.acme.example]
+FAILED tests/test_source_verification.py::test_model_official_label_name_and_https_do_not_create_trust[same-name.example]
+FAILED tests/test_source_verification.py::test_fabricated_or_changed_quote_cannot_become_job_evidence[Engineer requirements: imaginary certification.]
+FAILED tests/test_source_verification.py::test_fabricated_or_changed_quote_cannot_become_job_evidence[Engineer requirements: Experience building reliable systems.]
+FAILED tests/test_source_verification.py::test_role_elsewhere_on_page_does_not_promote_company_values_to_job_requirement
+FAILED tests/test_source_verification.py::test_external_ats_requires_exact_official_link_not_shared_host[True]
+FAILED tests/test_source_verification.py::test_external_ats_requires_exact_official_link_not_shared_host[False]
+FAILED tests/test_source_verification.py::test_invalid_evidence_ids_fail_closed[duplicate-source]
+FAILED tests/test_source_verification.py::test_invalid_evidence_ids_fail_closed[duplicate-record]
+FAILED tests/test_source_verification.py::test_invalid_evidence_ids_fail_closed[unknown-id]
+FAILED tests/test_source_verification.py::test_invalid_evidence_ids_fail_closed[reserved-id]
+FAILED tests/test_source_verification.py::test_reported_critical_conflict_suppresses_even_exact_evidence
+FAILED tests/test_source_verification.py::test_aggregate_page_text_cannot_reenter_via_cached_overflow_page
+FAILED tests/test_source_verification.py::test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence
+16 failed, 12 passed in 0.61s

@@ -1,0 +1,195 @@
+{
+  "request": {
+    "company": "네이버",
+    "role": "N배송 운영 지원",
+    "job_posting_url": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005457",
+    "job_posting_text": null
+  },
+  "request_id": "12ac8243-f47d-4ff2-b75c-e9ede6f33ad1",
+  "model": "gpt-5.6-terra",
+  "started_at": "2026-10-20T07:56:06.843191Z",
+  "elapsed_seconds": 11.925,
+  "status": "needs_input",
+  "code": "JOB_EVIDENCE_MISSING",
+  "sources": [],
+  "job_requirements": [],
+  "budget": {
+    "model_calls": 1,
+    "searches": 0,
+    "page_reads": 1,
+    "native_tool_calls_reserved": 2,
+    "output_tokens_reserved": 3000,
+    "deadline": 1115705.587493041
+  },
+  "tool_calls_reported": null,
+  "input_tokens": null,
+  "output_tokens": null,
+  "source_hashes": [
+    {
+      "path": "assignment/agent/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assignment/agent/budget.py",
+      "sha256": "9547a1ad4f6f7929f20ad7d2321657341f389947836fe135e906ef28f7ef229e"
+    },
+    {
+      "path": "assignment/agent/contract_evidence.py",
+      "sha256": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880"
+    },
+    {
+      "path": "assignment/agent/contract_input.py",
+      "sha256": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760"
+    },
+    {
+      "path": "assignment/agent/contract_results.py",
+      "sha256": "8a36950b97ebb1c90778dab358d25c68f7abb8ee6b98bedc6efcfdcdbdf185d2"
+    },
+    {
+      "path": "assignment/agent/contracts.py",
+      "sha256": "5027280064aeed390e073f7db3d9942c15fd626c57b5fc12b03e7128062cf5d2"
+    },
+    {
+      "path": "assignment/agent/deps.py",
+      "sha256": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa"
+    },
+    {
+      "path": "assignment/agent/fake_llm.py",
+      "sha256": "8af6ae5c4c804053c6365ff1e54a7e549077a393e4803325cb3021fc2fe977c7"
+    },
+    {
+      "path": "assignment/agent/graph.py",
+      "sha256": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd"
+    },
+    {
+      "path": "assignment/agent/limits.py",
+      "sha256": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c"
+    },
+    {
+      "path": "assignment/agent/mcp_client.py",
+      "sha256": "2dfb31062d7d257eb7cb4c0460374f7f5e2432ba47427e9875a701a549d3c1b5"
+    },
+    {
+      "path": "assignment/agent/nodes/__init__.py",
+      "sha256": "38da52db969baed60ce344a7a4179b64b0ef7bca2dc364b531c44ab6ed2c0c2d"
+    },
+    {
+      "path": "assignment/agent/nodes/research.py",
+      "sha256": "7b9a8b634f92942cb43d8204a20595b84ede96ab309bbd47113dcfdd85109e12"
+    },
+    {
+      "path": "assignment/agent/ollama_llm.py",
+      "sha256": "5358994cde09c7f337bc11c1713995ab701f91175437238103b86dd1b5de46bb"
+    },
+    {
+      "path": "assignment/agent/openai_llm.py",
+      "sha256": "508ce35d892400531f0f397d7ec9e85d19ff6b1453c83951d2bf2278a36986a6"
+    },
+    {
+      "path": "assignment/agent/provider_schema.py",
+      "sha256": "e1e7c28705cb1ba1c56cce6a9ab787885070b5ae936eb2aa4de606a92e406c84"
+    },
+    {
+      "path": "assignment/agent/providers.py",
+      "sha256": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219"
+    },
+    {
+      "path": "assignment/agent/research.py",
+      "sha256": "906dff4a9d7e22be188338734ed26775d18c951788b3a3b409f134641ca54b65"
+    },
+    {
+      "path": "assignment/agent/response_wire.py",
+      "sha256": "d852fb4af61ab2bc718034470b4024e1a7e2f946d2df7e7f1f7b033d0754c982"
+    },
+    {
+      "path": "assignment/agent/retry.py",
+      "sha256": "d2524552348c9faa08b5ce446434bf593677c7028fb38c9e11b03de8839d2a3a"
+    },
+    {
+      "path": "assignment/agent/session_store.py",
+      "sha256": "cd1f61396ccd815d940be5a3d8929199648273c360c82fbd722163644b7356a6"
+    },
+    {
+      "path": "assignment/agent/settings.py",
+      "sha256": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925"
+    },
+    {
+      "path": "assignment/agent/source_admission.py",
+      "sha256": "aba071e75f92894b7305f072c9dc40eac70274b73e93a2e94faafe2bab7b4456"
+    },
+    {
+      "path": "assignment/agent/source_conflicts.py",
+      "sha256": "36430953b02667fb35d75c0f477118831b0862540b251a64956a421a49fa9aa4"
+    },
+    {
+      "path": "assignment/agent/source_http.py",
+      "sha256": "e8a031fa88d9fcdae84efe277951ddf07c3b7bc526f59f75edc7ef46f287a685"
+    },
+    {
+      "path": "assignment/agent/source_page.py",
+      "sha256": "2aa174e5ba7c971c943c60009f2fe7ba0afedfdb36ae3e10caa3c5b2f31f5488"
+    },
+    {
+      "path": "assignment/agent/source_structured.py",
+      "sha256": "db6b87b568d21add4f6de6b5340d19f4083bf90269a670eda728e0c28301d972"
+    },
+    {
+      "path": "assignment/agent/source_trust.py",
+      "sha256": "ea11beb071fa7a5d7155e0d4b9266f063618698a08a1dad60e8fb3722f10dba4"
+    },
+    {
+      "path": "assignment/agent/source_verify.py",
+      "sha256": "a4099e7fe4d4bf1d054eadee83436899e18fa3bc60fbc8c7c7b3951cb5fee09e"
+    },
+    {
+      "path": "assignment/agent/state.py",
+      "sha256": "f7840d3b6c64e8b200aff45515aeaa040d21b55c843d79c6f8cec4dd8286d12c"
+    },
+    {
+      "path": "assignment/agent/supervisor_v1.py",
+      "sha256": "6080b4b8c3a6bd56c617a560a64d644d5f1e5e2721ad65324a09886a2df6cab8"
+    }
+  ],
+  "diagnostics": [
+    {
+      "event": "candidate",
+      "resolved_company": "NAVER",
+      "gaps": [
+        "The supplied role label, “N배송 운영 지원,” is abbreviated. The official posting title is “[NAVER] 네이버쇼핑 부문별 운영 담당자 (계약) - N배송 운영 지원 부문,” while the role description refers to “N배송 운영 지원 직무.”",
+        "The posting does not provide a publication date; only the application period is stated.",
+        "The source is an unverified candidate source; its contents have not been independently verified beyond retrieval from the supplied NAVER Careers URL."
+      ],
+      "sources": [
+        {
+          "id": "official_1",
+          "kind": "official",
+          "url": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005457",
+          "excerpt_prefix": "Recruiting department: NAVER. Job positions: Service & Business / Business Development. Employment type: Temporary. Application period: 2026.09.16 ~ 2026.12.31 (23:59)."
+        }
+      ],
+      "job_quotes": [
+        "N배송 운영 지원 직무에서는 판매자 영업·혜택 운영·성장 콘텐츠 전 과정에 직접 참여함으로써 새로운 물류 사업 모델을 만들어 가는 셀러 생태계를 체험할 수 있고, 이를 통해 물류 사업 도메인에서 성장할 수 있는 역량을 키울 수 있습니다.\n\n#### What You'll Do\n\n﻿﻿﻿﻿• N배송 판매자 입점 영업·온보딩·계약·정산 지원\n\n﻿﻿• N배송 배송계획 및 배송 품질 운영 관리\n\n﻿﻿• N배송 물류사 개발 커뮤니케이션 및"
+      ],
+      "tool_calls_reported": 1,
+      "input_tokens": 9205,
+      "output_tokens": 1100
+    },
+    {
+      "event": "page",
+      "url": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005457",
+      "text_codepoints": 4386,
+      "posting_titles": [
+        "[NAVER] 네이버쇼핑 부문별 운영 담당자 (계약) - N배송 운영 지원 부문"
+      ],
+      "posting_employers": [
+        "NAVER"
+      ]
+    },
+    {
+      "event": "verification",
+      "resolved_company": "NAVER",
+      "gaps": [],
+      "admitted_job_count": 0
+    }
+  ]
+}

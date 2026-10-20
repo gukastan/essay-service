@@ -1,0 +1,14 @@
+{
+  "scope": "Interim actual production SafePageReader on public NAVER posting; no model; not final node/source-verdict proof",
+  "checkedAt": "2026-10-20T07:32:27Z",
+  "url": "https://recruit.navercorp.com/rcrt/view.do?annoId=30005457",
+  "textCodepoints": 4386,
+  "linkCount": 51,
+  "pageReadsReserved": 1,
+  "postingRole": "N배송 운영 지원",
+  "postingEmployer": "NAVER",
+  "postingSectionMarkersObserved": ["Who We Are", "What You'll Do", "Required Skills"],
+  "finding": "Global filters also list other employers and roles before the posting. Only posting-specific identity/role is evidence.",
+  "publicBodyStored": false,
+  "paidModelCalls": 0
+}

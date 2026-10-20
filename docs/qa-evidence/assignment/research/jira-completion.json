@@ -1,0 +1,45 @@
+{
+  "scope": "ESSAY-10 company/job research role only",
+  "verifiedAt": "2026-10-20 08:35:47 UTC",
+  "issueCount": 20,
+  "epicChildCount": 12,
+  "dependencyCount": 16,
+  "dependenciesUnchanged": true,
+  "changedStatuses": [
+    "ESSAY-10"
+  ],
+  "allOtherStatusesUnchanged": true,
+  "acceptanceChecked": 6,
+  "essay10Status": "완료",
+  "epicStatus": "진행 중",
+  "updated": [
+    "ESSAY-10",
+    "ESSAY-8"
+  ],
+  "statusTransitions": 2,
+  "transitionedIssues": [
+    "ESSAY-10"
+  ],
+  "startCommentId": "10022",
+  "completionCommentId": "10023",
+  "nextIssue": "ESSAY-11",
+  "nextIssuesStarted": false,
+  "readbackPassed": true,
+  "checks": {
+    "python": 242,
+    "defaultPaidSkipped": 2,
+    "javascript": 12,
+    "typeErrors": 0,
+    "lintPassed": true,
+    "formatPassed": true,
+    "paidResearchNodeRequests": 8,
+    "successfulPaidResearchNodeRequests": 3,
+    "retainedPositiveAssertionFailures": 5,
+    "codeQualityStatus": "WATCH",
+    "codeReviewRecommendation": "APPROVE",
+    "codeReviewBlockers": []
+  },
+  "originalFilesPreserved": 46,
+  "protectedFilesPreserved": 600,
+  "evidence": "docs/qa-evidence/assignment/research/verification.md"
+}

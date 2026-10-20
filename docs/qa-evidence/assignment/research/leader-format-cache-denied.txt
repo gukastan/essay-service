@@ -1,0 +1,7 @@
+cwd: /Users/jay/Projects/essay-service/assignment
+command: .venv/bin/ruff format --check .
+exit: 2
+
+ruff failed
+  Cause: Failed to create temporary file
+  Cause: Operation not permitted (os error 1) at path "/Users/jay/Projects/essay-service/assignment/.ruff_cache/0.17.1/.tmpsBUKgo"

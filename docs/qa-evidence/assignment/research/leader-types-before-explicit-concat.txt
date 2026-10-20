@@ -1,0 +1,7 @@
+cwd: /Users/jay/Projects/essay-service/assignment
+command: .venv/bin/basedpyright --project pyproject.toml
+exit: 1
+
+/Users/jay/Projects/essay-service/assignment/agent/source_admission.py
+  /Users/jay/Projects/essay-service/assignment/agent/source_admission.py:165:11 - error: Implicit string concatenation not allowed (reportImplicitStringConcatenation)
+1 error, 0 warnings, 0 notes

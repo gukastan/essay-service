@@ -1,0 +1,385 @@
+{
+  "issues": [
+    {
+      "key": "ESSAY-1",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10000",
+          "type": "Blocks",
+          "outward": "ESSAY-2"
+        },
+        {
+          "id": "10001",
+          "type": "Blocks",
+          "outward": "ESSAY-4"
+        },
+        {
+          "id": "10004",
+          "type": "Blocks",
+          "outward": "ESSAY-6"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-2",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10000",
+          "type": "Blocks",
+          "inward": "ESSAY-1"
+        },
+        {
+          "id": "10002",
+          "type": "Blocks",
+          "outward": "ESSAY-3"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-3",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10002",
+          "type": "Blocks",
+          "inward": "ESSAY-2"
+        },
+        {
+          "id": "10006",
+          "type": "Blocks",
+          "outward": "ESSAY-7"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-4",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10001",
+          "type": "Blocks",
+          "inward": "ESSAY-1"
+        },
+        {
+          "id": "10003",
+          "type": "Blocks",
+          "outward": "ESSAY-5"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-5",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10003",
+          "type": "Blocks",
+          "inward": "ESSAY-4"
+        },
+        {
+          "id": "10005",
+          "type": "Blocks",
+          "outward": "ESSAY-6"
+        },
+        {
+          "id": "10007",
+          "type": "Blocks",
+          "outward": "ESSAY-7"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-6",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10004",
+          "type": "Blocks",
+          "inward": "ESSAY-1"
+        },
+        {
+          "id": "10005",
+          "type": "Blocks",
+          "inward": "ESSAY-5"
+        },
+        {
+          "id": "10008",
+          "type": "Blocks",
+          "outward": "ESSAY-7"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-7",
+      "status": "완료",
+      "links": [
+        {
+          "id": "10006",
+          "type": "Blocks",
+          "inward": "ESSAY-3"
+        },
+        {
+          "id": "10007",
+          "type": "Blocks",
+          "inward": "ESSAY-5"
+        },
+        {
+          "id": "10008",
+          "type": "Blocks",
+          "inward": "ESSAY-6"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-8",
+      "status": "진행 중",
+      "links": []
+    },
+    {
+      "key": "ESSAY-9",
+      "status": "완료",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10009",
+          "type": "Blocks",
+          "outward": "ESSAY-10"
+        },
+        {
+          "id": "10010",
+          "type": "Blocks",
+          "outward": "ESSAY-11"
+        },
+        {
+          "id": "10015",
+          "type": "Blocks",
+          "outward": "ESSAY-15"
+        },
+        {
+          "id": "10020",
+          "type": "Blocks",
+          "outward": "ESSAY-19"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-10",
+      "status": "진행 중",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10009",
+          "type": "Blocks",
+          "inward": "ESSAY-9"
+        },
+        {
+          "id": "10011",
+          "type": "Blocks",
+          "outward": "ESSAY-12"
+        },
+        {
+          "id": "10021",
+          "type": "Blocks",
+          "inward": "ESSAY-19"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-11",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10010",
+          "type": "Blocks",
+          "inward": "ESSAY-9"
+        },
+        {
+          "id": "10012",
+          "type": "Blocks",
+          "outward": "ESSAY-12"
+        },
+        {
+          "id": "10022",
+          "type": "Blocks",
+          "inward": "ESSAY-19"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-12",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10011",
+          "type": "Blocks",
+          "inward": "ESSAY-10"
+        },
+        {
+          "id": "10012",
+          "type": "Blocks",
+          "inward": "ESSAY-11"
+        },
+        {
+          "id": "10013",
+          "type": "Blocks",
+          "outward": "ESSAY-13"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-13",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10013",
+          "type": "Blocks",
+          "inward": "ESSAY-12"
+        },
+        {
+          "id": "10014",
+          "type": "Blocks",
+          "outward": "ESSAY-14"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-14",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10014",
+          "type": "Blocks",
+          "inward": "ESSAY-13"
+        },
+        {
+          "id": "10016",
+          "type": "Blocks",
+          "outward": "ESSAY-16"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-15",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10015",
+          "type": "Blocks",
+          "inward": "ESSAY-9"
+        },
+        {
+          "id": "10017",
+          "type": "Blocks",
+          "outward": "ESSAY-16"
+        },
+        {
+          "id": "10023",
+          "type": "Blocks",
+          "inward": "ESSAY-19"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-16",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10016",
+          "type": "Blocks",
+          "inward": "ESSAY-14"
+        },
+        {
+          "id": "10017",
+          "type": "Blocks",
+          "inward": "ESSAY-15"
+        },
+        {
+          "id": "10018",
+          "type": "Blocks",
+          "outward": "ESSAY-17"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-17",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10018",
+          "type": "Blocks",
+          "inward": "ESSAY-16"
+        },
+        {
+          "id": "10024",
+          "type": "Blocks",
+          "outward": "ESSAY-20"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-18",
+      "status": "완료",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10019",
+          "type": "Blocks",
+          "outward": "ESSAY-19"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-19",
+      "status": "완료",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10019",
+          "type": "Blocks",
+          "inward": "ESSAY-18"
+        },
+        {
+          "id": "10020",
+          "type": "Blocks",
+          "inward": "ESSAY-9"
+        },
+        {
+          "id": "10021",
+          "type": "Blocks",
+          "outward": "ESSAY-10"
+        },
+        {
+          "id": "10022",
+          "type": "Blocks",
+          "outward": "ESSAY-11"
+        },
+        {
+          "id": "10023",
+          "type": "Blocks",
+          "outward": "ESSAY-15"
+        }
+      ]
+    },
+    {
+      "key": "ESSAY-20",
+      "status": "할 일",
+      "parent": "ESSAY-8",
+      "links": [
+        {
+          "id": "10024",
+          "type": "Blocks",
+          "inward": "ESSAY-17"
+        }
+      ]
+    }
+  ]
+}

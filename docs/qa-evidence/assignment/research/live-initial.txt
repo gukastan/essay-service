@@ -1,0 +1,67 @@
+ESSAY-10 leader, 2026-10-20. Actual executions, not automatic retry.
+cwd: /Users/jay/Projects/essay-service/assignment
+
+1. ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=naver .venv/bin/python -m pytest tests/test_research_live.py -q -s
+exit 1; 1 failed in 10.57s
+assert 'needs_input' == 'research-success'
+artifact: checks/live-node-192a9606-6ab4-43d2-8f42-87b5fec899c6.json
+started 2026-10-20T07:50:36.060186Z; node elapsed9.992s
+actual status: needs_input / EVIDENCE_INSUFFICIENT
+model1, hosted reserved2, direct pages1; actual tool/token metadata unavailable in first driver on needs_input.
+
+2. ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=synthetic .venv/bin/python -m pytest tests/test_research_live.py -q -s
+exit 0; 1 passed in 5.39s
+artifact: checks/live-node-7425be0f-968e-4283-a653-713e1565bbb7.json
+started 2026-10-20T07:51:09.482172Z; node elapsed5.011s
+actual status: research-success, one server-owned user_provided source
+model1, hosted reserved2, hosted reported1, direct pages0
+input_tokens9208, output_tokens279
+
+Separate unpaid leader HTTP/parser diagnostic attempted after these runs:
+The public reader returned, but the diagnostic harness failed while serializing
+BudgetSnapshot via .model_dump(): AttributeError (it is a dataclass).
+No product edit, no model request, no successful metadata artifact claimed.
+The subsequent opted-in runner captures parsed posting metadata with typed fields.
+
+The initial positive NAVER assertion is preserved as failed. Investigation adds
+sanitized public-fixture diagnostics only; no provider body/prompt/key is stored.
+
+3. Same NAVER command, after diagnostic-only test instrumentation; product unchanged.
+exit1; 1 failed in12.38s
+artifact: checks/live-node-c77efc29-3ffe-45aa-8dbb-c49ad22a2459.json
+started 2026-10-20T07:56:06.843191Z; elapsed11.925s
+actual status: needs_input / JOB_EVIDENCE_MISSING
+model1, hosted reserved2, hosted reported1, direct pages1
+input_tokens9205, output_tokens1100
+Candidate company NAVER; actual fetched single JobPosting title/employer correct.
+Candidate excerpt is English translated metadata; Korean job quote contains Markdown
+headings/newlines and is not a substring of its referenced excerpt. Verifier admits0.
+This explains run3; run1's conflict cause was not captured and is not inferred.
+Implementation follow-up asks for original-language source/requirement containment
+and only justified whitespace canonicalization; identity/quote gates stay required.
+
+4. Same NAVER command after original-language prompt + official whitespace-only fix.
+exit1; 1 failed in13.23s
+artifact: checks/live-node-69d8ead1-5d9f-461e-82ee-391615fb693c.json
+started 2026-10-20T08:01:28.768888Z; elapsed12.781s
+actual status: needs_input / JOB_EVIDENCE_MISSING
+model1, hosted reserved2, hosted reported1, direct pages1
+input_tokens9299, output_tokens1323
+Correct fetched single JobPosting; candidate source excerpt still includes English
+metadata. Candidate job quotes are individual Korean duty/skill bullets. These do
+not repeat the role title or requirement heading; verifier admits0.
+Follow-up: verify literal bullets against actual explicit duty/requirements sections
+under the already-verified posting and derive returned source excerpt from that real
+section. No extra model, translated quote promotion or company/role guard removal.
+
+5. Same NAVER command after actual card/requirement-section proof implementation.
+exit1; 1 failed in14.09s
+artifact: checks/live-node-1df87cef-1a25-4c78-ad31-9a4dcb16f62b.json
+started 2026-10-20T08:12:12.121758Z; elapsed13.670s
+actual status: needs_input / JOB_EVIDENCE_MISSING
+model1, hosted reserved2, hosted reported1, direct pages1
+input_tokens9299, output_tokens1410
+Verifier still correctly rejects a single whole-page job quotation starting with
+translated metadata. Research instructions still demanded a repeated role name and
+long passage, conflicting with the newly supported individual section-bullet proof.
+Final prompt consistency follow-up removes that mandate; no verifier weakening.

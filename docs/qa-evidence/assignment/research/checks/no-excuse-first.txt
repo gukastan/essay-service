@@ -1,0 +1,3 @@
+/Users/jay/Projects/essay-service/assignment/tests/test_research_live.py:109:5: [if-elif-on-variant] isinstance/enum if/elif chain — use match/case + assert_never
+
+1 violation(s) in 12 file(s)

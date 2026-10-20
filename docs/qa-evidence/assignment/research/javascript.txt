@@ -1,0 +1,22 @@
+2026-10-20, ESSAY-10 leader regression
+cwd: /Users/jay/Projects/essay-service/assignment
+command: node --test tests/test_foundation.mjs
+exit: 0
+
+✔ code-point fixture "한글 문장"
+✔ code-point fixture "가😀\r\n나"
+✔ code-point fixture "가é🧑‍💻\r끝"
+✔ invalid offset -1:1
+✔ invalid offset 0.5:2
+✔ invalid offset 0:9
+✔ invalid offset 2:1
+✔ invalid offset 0:NaN
+✔ deadline aborts after 195 seconds while reading body without retry
+✔ pre-aborted request never transmits
+✔ HTTP failure exposes status without provider body or retry
+✔ successful JSON cleans timer and abort listener
+tests 12; pass 12; fail 0; cancelled 0; skipped 0
+duration_ms 48.6915
+
+Timings per case omitted; behavior names and totals copied from actual output.
+These are unchanged Python/Vue foundation helper regressions, not browser QA.

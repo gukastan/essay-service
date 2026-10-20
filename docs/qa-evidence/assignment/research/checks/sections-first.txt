@@ -1,0 +1,42 @@
+FF...........                                                            [100%]
+=================================== FAILURES ===================================
+_ test_exact_bullet_in_bound_posting_section_uses_fetched_section[Required Skills] _
+
+heading = 'Required Skills'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize("heading", ["Required Skills", "What You'll Do"])
+    async def test_exact_bullet_in_bound_posting_section_uses_fetched_section(heading: str) -> None:
+        # Given
+        page = naver_page(card(section("Who We Are", "회사 소개") + section(heading, QUOTE)))
+        # When
+        result = await verify_section(page)
+        # Then
+>       assert len(result.job_requirements) == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = len(())
+E        +    where () = ResearchResult(resolved_company='NAVER', sources=(), company_facts=(), job_requirements=(), gaps=()).job_requirements
+
+tests/test_source_sections.py:40: AssertionError
+_ test_exact_bullet_in_bound_posting_section_uses_fetched_section[What You'll Do] _
+
+heading = "What You'll Do"
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize("heading", ["Required Skills", "What You'll Do"])
+    async def test_exact_bullet_in_bound_posting_section_uses_fetched_section(heading: str) -> None:
+        # Given
+        page = naver_page(card(section("Who We Are", "회사 소개") + section(heading, QUOTE)))
+        # When
+        result = await verify_section(page)
+        # Then
+>       assert len(result.job_requirements) == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = len(())
+E        +    where () = ResearchResult(resolved_company='NAVER', sources=(), company_facts=(), job_requirements=(), gaps=()).job_requirements
+
+tests/test_source_sections.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_source_sections.py::test_exact_bullet_in_bound_posting_section_uses_fetched_section[Required Skills]
+FAILED tests/test_source_sections.py::test_exact_bullet_in_bound_posting_section_uses_fetched_section[What You'll Do]
+2 failed, 11 passed in 0.59s

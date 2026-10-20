@@ -1,0 +1,5 @@
+cwd: /Users/jay/Projects/essay-service/assignment
+command: .venv/bin/ruff check --no-cache .
+exit: 0
+
+All checks passed!

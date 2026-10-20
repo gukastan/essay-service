@@ -1,0 +1,4 @@
+.......s                                                                 [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_research_live.py:82: explicit paid node opt-in required
+7 passed, 1 skipped in 7.65s

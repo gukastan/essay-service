@@ -1,0 +1,87 @@
+.F...FFF....                                                             [100%]
+=================================== FAILURES ===================================
+_ test_supplied_posting_must_match_exact_company_and_role_identity[AcmeCompetitor Engineer requirements: experience building reliable systems.] _
+
+body = 'AcmeCompetitor Engineer requirements: experience building reliable systems.'
+
+    @pytest.mark.anyio
+    @pytest.mark.parametrize("body", [f"AcmeCompetitor {JOB}", "Acme Designer requirements: draw."])
+    async def test_supplied_posting_must_match_exact_company_and_role_identity(body: str) -> None:
+        # Given
+        input = ResearchInput(company="Acme", role="Engineer", job_posting_text=body)
+        # When
+        result = await SourceVerifier(MemoryPages(()), None).verify(
+            candidate(), input, ExecutionBudget()
+        )
+        # Then
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...-posting',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('user-posting',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_user.py:38: AssertionError
+_______ test_security_role_requirement_with_api_key_is_valid_source_data _______
+
+    @pytest.mark.anyio
+    async def test_security_role_requirement_with_api_key_is_valid_source_data() -> None:
+        # Given
+        text = "Engineer requirements: experience securing API keys."
+        verifier = SourceVerifier(MemoryPages((fetched(text=text),)), ANCHOR)
+        # When
+        result = await verifier.verify(
+            candidate(source(excerpt=text), text=text),
+            ResearchInput(company="Acme", role="Engineer"),
+            ExecutionBudget(),
+        )
+        # Then
+>       assert result.job_requirements[0].text == text
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       IndexError: tuple index out of range
+
+assignment/tests/test_source_user.py:84: IndexError
+____ test_negated_conflict_observation_does_not_suppress_agreeing_evidence _____
+
+    @pytest.mark.anyio
+    async def test_negated_conflict_observation_does_not_suppress_agreeing_evidence() -> None:
+        # Given
+        report = candidate().model_copy(
+            update={"gaps": ("No conflicts found in the supplied job evidence.",)}
+        )
+        verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+        # When
+        result = await verifier.verify(
+            report, ResearchInput(company="Acme", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+>       assert len(result.job_requirements) == 1
+E       AssertionError: assert 0 == 1
+E        +  where 0 = len(())
+E        +    where () = ResearchResult(resolved_company='Acme', sources=(), company_facts=(), job_requirements=(), gaps=('CONFLICTING_EVIDENCE',)).job_requirements
+
+assignment/tests/test_source_user.py:99: AssertionError
+_______________ test_resolved_company_disagreement_fails_closed ________________
+
+    @pytest.mark.anyio
+    async def test_resolved_company_disagreement_fails_closed() -> None:
+        # Given
+        report = candidate().model_copy(update={"resolved_company": "Different Company"})
+        verifier = SourceVerifier(MemoryPages((fetched(),)), ANCHOR)
+        # When
+        result = await verifier.verify(
+            report, ResearchInput(company="Acme", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...ids=('s1',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('s1',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_user.py:112: AssertionError
+=========================== short test summary info ============================
+FAILED assignment/tests/test_source_user.py::test_supplied_posting_must_match_exact_company_and_role_identity[AcmeCompetitor Engineer requirements: experience building reliable systems.]
+FAILED assignment/tests/test_source_user.py::test_security_role_requirement_with_api_key_is_valid_source_data
+FAILED assignment/tests/test_source_user.py::test_negated_conflict_observation_does_not_suppress_agreeing_evidence
+FAILED assignment/tests/test_source_user.py::test_resolved_company_disagreement_fails_closed
+4 failed, 8 passed in 0.47s

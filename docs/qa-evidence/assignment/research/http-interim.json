@@ -1,0 +1,12 @@
+{
+  "scope": "Early direct HTTP transport smoke against public sources; no model/key; not an official-source verdict or final-code claim",
+  "checkedAt": "2026-10-20T07:19:51Z",
+  "invocation": "assignment cwd, .venv/bin/python: SafePageReader.read(url, new ExecutionBudget()) for two public careers pages",
+  "results": [
+    {"url": "https://openai.com/careers/", "outcome": "typed-error", "code": "ACCESS_DENIED", "pageReadsReserved": 1},
+    {"url": "https://www.anthropic.com/careers", "outcome": "fetched", "effectiveUrl": "https://www.anthropic.com/careers", "textCodepoints": 9890, "linkCount": 110, "pageReadsReserved": 1}
+  ],
+  "providerBodiesStored": false,
+  "paidModelCalls": 0,
+  "harnessCorrection": "First invocation used repo-root cwd and could not import agent. Re-run from documented assignment cwd completed. No product change or network request in the first attempt."
+}

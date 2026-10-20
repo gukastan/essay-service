@@ -1,0 +1,5 @@
+cwd: /Users/jay/Projects/essay-service/assignment
+command: .venv/bin/ruff format --check --no-cache .
+exit: 0
+
+59 files already formatted

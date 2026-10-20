@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-20T08:38:13.532306+00:00",
+  "startHashCount": 613,
+  "protectedCount": 600,
+  "protectedFailures": [],
+  "originalFilesChecked": 46,
+  "originalFailures": [],
+  "finalSourceFiles": 12,
+  "sourceHashFailures": [],
+  "changedAndNewFilesScanned": 161,
+  "configuredKeyExposures": [],
+  "jsonParseFailures": [],
+  "documentationMissingLinks": [],
+  "activeTeamStateRemoved": true,
+  "passed": true
+}

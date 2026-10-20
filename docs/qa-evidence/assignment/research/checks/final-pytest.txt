@@ -1,0 +1,7 @@
+........................................................................ [ 33%]
+....................s............................s...................... [ 66%]
+........................................................................ [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_live_compatibility.py:66: explicit paid opt-in required
+SKIPPED [1] tests/test_research_live.py:79: explicit paid node opt-in required
+214 passed, 2 skipped in 22.00s

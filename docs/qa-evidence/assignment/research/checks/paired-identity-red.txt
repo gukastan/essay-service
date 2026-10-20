@@ -1,0 +1,63 @@
+..........F................F                                             [100%]
+=================================== FAILURES ===================================
+______ test_employer_and_role_cannot_be_combined_across_distinct_postings ______
+
+    @pytest.mark.anyio
+    async def test_employer_and_role_cannot_be_combined_across_distinct_postings() -> None:
+        # Given
+        url = "https://recruit.navercorp.com/rcrt/view.do?annoId=42"
+        postings = [
+            {
+                "@type": "JobPosting",
+                "title": "Engineer",
+                "hiringOrganization": {"@type": "Organization", "name": "NAVER Cloud"},
+            },
+            {
+                "@type": "JobPosting",
+                "title": "Designer",
+                "hiringOrganization": {"@type": "Organization", "name": "NAVER"},
+            },
+        ]
+        html = f'<script type="application/ld+json">{json.dumps(postings)}</script><p>{JOB}</p>'
+        page = extract_page(url, html.encode(), CHECKED)
+        anchor = next(anchor for anchor in DEFAULT_ANCHORS if anchor.company == "NAVER")
+        report = candidate(source(url)).model_copy(update={"resolved_company": "NAVER"})
+        # When
+        result = await SourceVerifier(MemoryPages((page,)), anchor).verify(
+            report, ResearchInput(company="NAVER", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...ids=('s1',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('s1',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_domestic.py:116: AssertionError
+__ test_role_heading_in_explicit_nonvacancy_culture_page_is_not_job_evidence ___
+
+    @pytest.mark.anyio
+    async def test_role_heading_in_explicit_nonvacancy_culture_page_is_not_job_evidence() -> None:
+        # Given
+        url = "https://acme.example/careers/engineer-culture"
+        text = (
+            "Engineer qualifications are discussed in our culture blog; this is not a vacancy."
+        )
+        page = extract_page(url, f"<h1>Engineer culture</h1><p>{text}</p>".encode(), CHECKED)
+        report = candidate(source(url, excerpt=text), text=text)
+        # When
+        result = await SourceVerifier(MemoryPages((page,)), ANCHOR).verify(
+            report, ResearchInput(company="Acme", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...ids=('s1',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer qualifications are discussed in our culture blog; this is not a vacancy.', source_ids=('s1',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_verification.py:206: AssertionError
+=========================== short test summary info ============================
+FAILED assignment/tests/test_source_domestic.py::test_employer_and_role_cannot_be_combined_across_distinct_postings
+FAILED assignment/tests/test_source_verification.py::test_role_heading_in_explicit_nonvacancy_culture_page_is_not_job_evidence
+2 failed, 26 passed in 0.59s

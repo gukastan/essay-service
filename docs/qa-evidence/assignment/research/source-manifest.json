@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-20T08:31:40.867217+00:00",
+  "baselineCommit": "2da2c898f71120ce087963feae12727848f24b64",
+  "files": {
+    "assignment/agent/nodes/__init__.py": "38da52db969baed60ce344a7a4179b64b0ef7bca2dc364b531c44ab6ed2c0c2d",
+    "assignment/agent/nodes/research.py": "7b9a8b634f92942cb43d8204a20595b84ede96ab309bbd47113dcfdd85109e12",
+    "assignment/agent/research.py": "55f65588623110be5cfa8c90ecee4d03f1a287f113fbd16c30f4dcb51df760e0",
+    "assignment/agent/source_admission.py": "3eb910919692ce83f50516a47346221125d940043e250b5469876229b31b0345",
+    "assignment/agent/source_conflicts.py": "36430953b02667fb35d75c0f477118831b0862540b251a64956a421a49fa9aa4",
+    "assignment/agent/source_http.py": "e8a031fa88d9fcdae84efe277951ddf07c3b7bc526f59f75edc7ef46f287a685",
+    "assignment/agent/source_page.py": "197b061d456a48aebfba6a7327955a6afe0aab0b9372c41967cd0cef60f9b0aa",
+    "assignment/agent/source_sections.py": "4bcc777e9e65a06d2964237088842e12ade32e48be390272b98fab899be34ce9",
+    "assignment/agent/source_structured.py": "db6b87b568d21add4f6de6b5340d19f4083bf90269a670eda728e0c28301d972",
+    "assignment/agent/source_trust.py": "ea11beb071fa7a5d7155e0d4b9266f063618698a08a1dad60e8fb3722f10dba4",
+    "assignment/agent/source_verify.py": "6b78e819bb810e69e7cc85142ae7882a24e99c538823d44cb7741ed59e27422c",
+    "assignment/pyproject.toml": "7ee0c49afd72b43b5dae7eca5e2f0dcde6e960b22407b464c0118f7799464085"
+  }
+}

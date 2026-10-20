@@ -1,0 +1,14 @@
+{
+  "kind": "no-model public-page replay of recorded job quotes and excerpt prefix; not full paid response replay",
+  "job_count": 4,
+  "source_count": 1,
+  "model_calls": 0,
+  "page_reads": 1,
+  "checked_at": "2026-10-20T08:10:57.911612+00:00",
+  "requirements": [
+    "N배송 판매자 입점 영업·온보딩·계약·정산 지원",
+    "N배송 배송계획 및 배송 품질 운영 관리",
+    "N배송 물류사 개발 커뮤니케이션 및 운영 이슈 대응",
+    "물류 시스템 데이터 취합 및 분석 보조"
+  ]
+}

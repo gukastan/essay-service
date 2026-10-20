@@ -1,0 +1,12 @@
+assignment/agent/source_admission.py: OK
+assignment/agent/source_conflicts.py: OK
+assignment/agent/source_http.py: OK
+assignment/agent/source_page.py: OK
+assignment/agent/source_sections.py: OK
+assignment/agent/source_structured.py: OK
+assignment/agent/source_trust.py: OK
+assignment/agent/source_verify.py: OK
+assignment/agent/nodes/__init__.py: OK
+assignment/agent/nodes/research.py: OK
+assignment/agent/research.py: OK
+assignment/pyproject.toml: OK

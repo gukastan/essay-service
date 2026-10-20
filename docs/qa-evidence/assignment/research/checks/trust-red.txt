@@ -1,0 +1,51 @@
+..............FF                                                         [100%]
+=================================== FAILURES ===================================
+_______ test_aggregate_page_text_cannot_reenter_via_cached_overflow_page _______
+
+    @pytest.mark.anyio
+    async def test_aggregate_page_text_cannot_reenter_via_cached_overflow_page() -> None:
+        # Given: two sources share oversized second page, the second must not bypass aggregate cap.
+        second = "https://acme.example/jobs/2"
+        pages = MemoryPages((fetched(text="a" * 7000), fetched(second, text=JOB + "b" * 7000)))
+        report = candidate(source(excerpt="a"), source(second, id="s2"), source(second, id="s3"))
+        report = report.model_copy(
+            update={
+                "job_requirements": (JobRequirement(id="j1", text=JOB, source_ids=("s1", "s2", "s3")),)
+            }
+        )
+        # When
+        result = await SourceVerifier(pages, ANCHOR).verify(
+            report, ResearchInput(company="Acme", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+        assert sum(len(item.text) for item in pages.pages) > 12000
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...ids=('s3',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('s3',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_verification.py:167: AssertionError
+_ test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence _
+
+    @pytest.mark.anyio
+    async def test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence() -> None:
+        # Given
+        url = "https://acme.example/blog/interview-with-engineer"
+        verifier = SourceVerifier(MemoryPages((fetched(url),)), ANCHOR)
+        # When
+        result = await verifier.verify(
+            candidate(source(url)), ResearchInput(company="Acme", role="Engineer"), ExecutionBudget()
+        )
+        # Then
+>       assert result.job_requirements == ()
+E       AssertionError: assert (JobRequireme...ids=('s1',)),) == ()
+E         
+E         Left contains one more item: JobRequirement(id='j1', text='Engineer requirements: experience building reliable systems.', source_ids=('s1',))
+E         Use -v to get more diff
+
+assignment/tests/test_source_verification.py:180: AssertionError
+=========================== short test summary info ============================
+FAILED assignment/tests/test_source_verification.py::test_aggregate_page_text_cannot_reenter_via_cached_overflow_page
+FAILED assignment/tests/test_source_verification.py::test_incidental_role_and_requirements_in_official_blog_are_not_hiring_evidence
+2 failed, 14 passed in 0.58s

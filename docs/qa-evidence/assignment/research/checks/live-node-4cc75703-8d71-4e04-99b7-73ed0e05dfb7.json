@@ -1,0 +1,187 @@
+{
+  "request": {
+    "company": "Example Fixture Company",
+    "role": "Software Engineer",
+    "job_posting_url": null,
+    "job_posting_text": "Synthetic QA posting, not an actual company or vacancy.\nExample Fixture Company\nSoftware Engineer\nSoftware Engineer requirements: experience writing Python tests."
+  },
+  "request_id": "fb90873d-c2b0-4ef8-a32b-032b27e776e3",
+  "model": "gpt-5.6-terra",
+  "started_at": "2026-10-20T08:16:32.660803Z",
+  "elapsed_seconds": 7.054,
+  "status": "needs_input",
+  "code": "JOB_EVIDENCE_MISSING",
+  "sources": [],
+  "job_requirements": [],
+  "budget": {
+    "model_calls": 1,
+    "searches": 0,
+    "page_reads": 0,
+    "native_tool_calls_reserved": 2,
+    "output_tokens_reserved": 3000,
+    "deadline": 1116931.41253825
+  },
+  "tool_calls_reported": null,
+  "input_tokens": null,
+  "output_tokens": null,
+  "source_hashes": [
+    {
+      "path": "assignment/agent/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assignment/agent/budget.py",
+      "sha256": "9547a1ad4f6f7929f20ad7d2321657341f389947836fe135e906ef28f7ef229e"
+    },
+    {
+      "path": "assignment/agent/contract_evidence.py",
+      "sha256": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880"
+    },
+    {
+      "path": "assignment/agent/contract_input.py",
+      "sha256": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760"
+    },
+    {
+      "path": "assignment/agent/contract_results.py",
+      "sha256": "8a36950b97ebb1c90778dab358d25c68f7abb8ee6b98bedc6efcfdcdbdf185d2"
+    },
+    {
+      "path": "assignment/agent/contracts.py",
+      "sha256": "5027280064aeed390e073f7db3d9942c15fd626c57b5fc12b03e7128062cf5d2"
+    },
+    {
+      "path": "assignment/agent/deps.py",
+      "sha256": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa"
+    },
+    {
+      "path": "assignment/agent/fake_llm.py",
+      "sha256": "8af6ae5c4c804053c6365ff1e54a7e549077a393e4803325cb3021fc2fe977c7"
+    },
+    {
+      "path": "assignment/agent/graph.py",
+      "sha256": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd"
+    },
+    {
+      "path": "assignment/agent/limits.py",
+      "sha256": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c"
+    },
+    {
+      "path": "assignment/agent/mcp_client.py",
+      "sha256": "2dfb31062d7d257eb7cb4c0460374f7f5e2432ba47427e9875a701a549d3c1b5"
+    },
+    {
+      "path": "assignment/agent/nodes/__init__.py",
+      "sha256": "38da52db969baed60ce344a7a4179b64b0ef7bca2dc364b531c44ab6ed2c0c2d"
+    },
+    {
+      "path": "assignment/agent/nodes/research.py",
+      "sha256": "7b9a8b634f92942cb43d8204a20595b84ede96ab309bbd47113dcfdd85109e12"
+    },
+    {
+      "path": "assignment/agent/ollama_llm.py",
+      "sha256": "5358994cde09c7f337bc11c1713995ab701f91175437238103b86dd1b5de46bb"
+    },
+    {
+      "path": "assignment/agent/openai_llm.py",
+      "sha256": "508ce35d892400531f0f397d7ec9e85d19ff6b1453c83951d2bf2278a36986a6"
+    },
+    {
+      "path": "assignment/agent/provider_schema.py",
+      "sha256": "e1e7c28705cb1ba1c56cce6a9ab787885070b5ae936eb2aa4de606a92e406c84"
+    },
+    {
+      "path": "assignment/agent/providers.py",
+      "sha256": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219"
+    },
+    {
+      "path": "assignment/agent/research.py",
+      "sha256": "347f88fd96afd366b0b0c51535d98d6382c4d822138b8547e4182b47246ebdcb"
+    },
+    {
+      "path": "assignment/agent/response_wire.py",
+      "sha256": "d852fb4af61ab2bc718034470b4024e1a7e2f946d2df7e7f1f7b033d0754c982"
+    },
+    {
+      "path": "assignment/agent/retry.py",
+      "sha256": "d2524552348c9faa08b5ce446434bf593677c7028fb38c9e11b03de8839d2a3a"
+    },
+    {
+      "path": "assignment/agent/session_store.py",
+      "sha256": "cd1f61396ccd815d940be5a3d8929199648273c360c82fbd722163644b7356a6"
+    },
+    {
+      "path": "assignment/agent/settings.py",
+      "sha256": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925"
+    },
+    {
+      "path": "assignment/agent/source_admission.py",
+      "sha256": "856063bcf0b1a1e4bef4c223c01569099179b9046a32ffa1d924cc5ab4611c80"
+    },
+    {
+      "path": "assignment/agent/source_conflicts.py",
+      "sha256": "36430953b02667fb35d75c0f477118831b0862540b251a64956a421a49fa9aa4"
+    },
+    {
+      "path": "assignment/agent/source_http.py",
+      "sha256": "e8a031fa88d9fcdae84efe277951ddf07c3b7bc526f59f75edc7ef46f287a685"
+    },
+    {
+      "path": "assignment/agent/source_page.py",
+      "sha256": "197b061d456a48aebfba6a7327955a6afe0aab0b9372c41967cd0cef60f9b0aa"
+    },
+    {
+      "path": "assignment/agent/source_sections.py",
+      "sha256": "4bcc777e9e65a06d2964237088842e12ade32e48be390272b98fab899be34ce9"
+    },
+    {
+      "path": "assignment/agent/source_structured.py",
+      "sha256": "db6b87b568d21add4f6de6b5340d19f4083bf90269a670eda728e0c28301d972"
+    },
+    {
+      "path": "assignment/agent/source_trust.py",
+      "sha256": "ea11beb071fa7a5d7155e0d4b9266f063618698a08a1dad60e8fb3722f10dba4"
+    },
+    {
+      "path": "assignment/agent/source_verify.py",
+      "sha256": "6b78e819bb810e69e7cc85142ae7882a24e99c538823d44cb7741ed59e27422c"
+    },
+    {
+      "path": "assignment/agent/state.py",
+      "sha256": "f7840d3b6c64e8b200aff45515aeaa040d21b55c843d79c6f8cec4dd8286d12c"
+    },
+    {
+      "path": "assignment/agent/supervisor_v1.py",
+      "sha256": "6080b4b8c3a6bd56c617a560a64d644d5f1e5e2721ad65324a09886a2df6cab8"
+    }
+  ],
+  "diagnostics": [
+    {
+      "event": "candidate",
+      "resolved_company": "Example Fixture Company",
+      "gaps": [
+        "Web search did not identify an official company or vacancy matching “Example Fixture Company” and “Software Engineer.”",
+        "The supplied material explicitly describes itself as synthetic and not an actual company or vacancy."
+      ],
+      "sources": [
+        {
+          "id": "user_provided_1",
+          "kind": "user_provided",
+          "url": null,
+          "excerpt_prefix": "Synthetic QA posting, not an actual company or vacancy.\nExample Fixture Company\nSoftware Engineer\nSoftware Engineer requirements: experience writing Python tests."
+        }
+      ],
+      "job_quotes": [
+        "experience writing Python tests."
+      ],
+      "tool_calls_reported": 1,
+      "input_tokens": 9440,
+      "output_tokens": 352
+    },
+    {
+      "event": "verification",
+      "resolved_company": "Example Fixture Company",
+      "gaps": [],
+      "admitted_job_count": 0
+    }
+  ]
+}
