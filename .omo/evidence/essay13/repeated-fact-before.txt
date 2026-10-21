@@ -1,0 +1,38 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_wording_rejects_later_occurrence_of_fact_text ______________
+
+    @pytest.mark.anyio
+    async def test_wording_rejects_later_occurrence_of_fact_text() -> None:
+        # Given
+        context = review_input()
+        original = context.draft.claim_map[0]
+        body = context.draft.draft.rstrip() + " " + original.text
+        start = body.rindex(original.text)
+        paragraph = context.draft.paragraphs[0].model_copy(update={"end": len(body)})
+        context = context.model_copy(update={"draft": context.draft.model_copy(update={
+            "draft": body, "paragraphs": (paragraph,),
+        })})
+        issue = general_issue("expression_kind", "표현 수정").model_copy(update={
+            "scope": "wording", "claim_ids": (original.id,),
+            "start": start, "end": start + len(original.text),
+        })
+        model = evaluation_from_issues(context, (issue,))
+    
+        def respond(_request: httpx2.Request) -> httpx2.Response:
+            return httpx2.Response(200, content=response_body(model.model_dump_json(by_alias=True)))
+    
+        budget = ExecutionBudget()
+        async with (
+            httpx2.AsyncClient(transport=httpx2.MockTransport(respond)) as transport,
+            AsyncOpenAI(api_key="fixture", http_client=transport) as sdk,
+        ):
+            # When / Then
+>           with pytest.raises(ProviderError, match="INVALID_RESPONSE"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE ProviderError
+
+tests/test_review_node.py:176: Failed
+=========================== short test summary info ============================
+FAILED tests/test_review_node.py::test_wording_rejects_later_occurrence_of_fact_text
+1 failed in 0.25s

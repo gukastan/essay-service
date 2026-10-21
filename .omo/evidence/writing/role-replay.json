@@ -1,0 +1,188 @@
+{
+  "scope": "synthetic role replay; controlled provider; no full graph or live model",
+  "plan": {
+    "version": 1,
+    "selectedEvidenceIds": [
+      "e1",
+      "job"
+    ],
+    "claims": [
+      {
+        "id": "personal-1",
+        "text": "실행했다.",
+        "kind": "user_fact",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "job-1",
+        "text": "협업을 요구한다.",
+        "kind": "company_fact",
+        "evidenceIds": [
+          "job"
+        ]
+      },
+      {
+        "id": "interpretation",
+        "text": "현재 관점에서 경험과 직무의 연결을 설명한다.",
+        "kind": "interpretation",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "future",
+        "text": "입사 후의 구체적인 실행 계획을 설명한다.",
+        "kind": "future_plan",
+        "evidenceIds": [
+          "job"
+        ]
+      }
+    ],
+    "paragraphs": [
+      {
+        "id": "evidence",
+        "purpose": "원문 경험과 직무 근거를 순서대로 제시",
+        "order": 1,
+        "targetCharacters": 450,
+        "requirementIds": [
+          "r1"
+        ],
+        "claimIds": [
+          "personal-1",
+          "job-1"
+        ]
+      },
+      {
+        "id": "connection",
+        "purpose": "현재 해석과 미래 계획을 구분하여 문항에 답변",
+        "order": 2,
+        "targetCharacters": 450,
+        "requirementIds": [
+          "r1"
+        ],
+        "claimIds": [
+          "interpretation",
+          "future"
+        ]
+      }
+    ]
+  },
+  "initial": {
+    "version": 1,
+    "planVersion": 1,
+    "draft": "실행했다. 협업을 요구한다.\n\n현재 협업이 중요하다고 생각합니다. 입사 후 협업을 실천하겠습니다.",
+    "paragraphs": [
+      {
+        "paragraphId": "evidence",
+        "start": 0,
+        "end": 15
+      },
+      {
+        "paragraphId": "connection",
+        "start": 17,
+        "end": 54
+      }
+    ],
+    "claimMap": [
+      {
+        "id": "personal-1",
+        "text": "실행했다.",
+        "kind": "user_fact",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "job-1",
+        "text": "협업을 요구한다.",
+        "kind": "company_fact",
+        "evidenceIds": [
+          "job"
+        ]
+      },
+      {
+        "id": "interpretation",
+        "text": "현재 협업이 중요하다고 생각합니다.",
+        "kind": "interpretation",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "future",
+        "text": "입사 후 협업을 실천하겠습니다.",
+        "kind": "future_plan",
+        "evidenceIds": [
+          "job"
+        ]
+      }
+    ],
+    "fitReasons": []
+  },
+  "revised": {
+    "version": 2,
+    "planVersion": 1,
+    "draft": "실행했다. 협업을 요구한다.\n\n현재 협업과 소통이 중요하다고 생각합니다. 입사 후 협업을 실천하겠습니다.",
+    "paragraphs": [
+      {
+        "paragraphId": "evidence",
+        "start": 0,
+        "end": 15
+      },
+      {
+        "paragraphId": "connection",
+        "start": 17,
+        "end": 58
+      }
+    ],
+    "claimMap": [
+      {
+        "id": "personal-1",
+        "text": "실행했다.",
+        "kind": "user_fact",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "job-1",
+        "text": "협업을 요구한다.",
+        "kind": "company_fact",
+        "evidenceIds": [
+          "job"
+        ]
+      },
+      {
+        "id": "interpretation",
+        "text": "현재 협업과 소통이 중요하다고 생각합니다.",
+        "kind": "interpretation",
+        "evidenceIds": [
+          "e1"
+        ]
+      },
+      {
+        "id": "future",
+        "text": "입사 후 협업을 실천하겠습니다.",
+        "kind": "future_plan",
+        "evidenceIds": [
+          "job"
+        ]
+      }
+    ],
+    "fitReasons": []
+  },
+  "budget": {
+    "model_calls": 2,
+    "searches": 0,
+    "page_reads": 0,
+    "native_tool_calls_reserved": 0,
+    "output_tokens_reserved": 8000,
+    "deadline": 1128763.425845291,
+    "revision_count": 1,
+    "revision_route": "I"
+  },
+  "evaluationInvalidated": true,
+  "outsideRangePreserved": true
+}

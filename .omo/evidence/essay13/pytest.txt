@@ -1,0 +1,76 @@
+$ .venv/bin/python -m pytest tests/test_review_evidence.py tests/test_review_node.py tests/test_review_state.py tests/test_flow_state.py tests/test_flow_evaluation_boundaries.py tests/test_flow_handoff.py -v --junitxml=../.omo/evidence/essay13/pytest.xml
+============================= test session starts ==============================
+platform darwin -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- /Users/jay/Projects/essay-service/assignment/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jay/Projects/essay-service/assignment
+configfile: pyproject.toml
+plugins: langsmith-0.14.11, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 62 items
+
+tests/test_review_evidence.py::test_code_passes_when_exact_evidence_and_context_match PASSED [  1%]
+tests/test_review_evidence.py::test_fact_failure_when_claim_invents_achievement_time_cause_or_actor[\uc131\uacfc 90%\ub97c \ub2ec\uc131\ud588\ub2e4.] PASSED [  3%]
+tests/test_review_evidence.py::test_fact_failure_when_claim_invents_achievement_time_cause_or_actor[2024\ub144\uc5d0 \uc2e4\ud589\ud588\ub2e4.] PASSED [  4%]
+tests/test_review_evidence.py::test_fact_failure_when_claim_invents_achievement_time_cause_or_actor[\uc2e4\ud589\ud574\uc11c \ub9e4\ucd9c\uc744 \ub192\uc600\ub2e4.] PASSED [  6%]
+tests/test_review_evidence.py::test_fact_failure_when_claim_invents_achievement_time_cause_or_actor[\ud68c\uc0ac\uac00 \uc2e4\ud589\ud588\ub2e4.] PASSED [  8%]
+tests/test_review_evidence.py::test_length_uses_code_points_when_at_boundaries[800] PASSED [  9%]
+tests/test_review_evidence.py::test_length_uses_code_points_when_at_boundaries[801] PASSED [ 11%]
+tests/test_review_evidence.py::test_length_uses_code_points_when_at_boundaries[1000] PASSED [ 12%]
+tests/test_review_evidence.py::test_length_uses_code_points_when_at_boundaries[1001] PASSED [ 14%]
+tests/test_review_evidence.py::test_job_failure_distinguishes_missing_information_from_missing_connection[True] PASSED [ 16%]
+tests/test_review_evidence.py::test_job_failure_distinguishes_missing_information_from_missing_connection[False] PASSED [ 17%]
+tests/test_review_evidence.py::test_evidence_failure_when_provenance_is_broken[unmapped] PASSED [ 19%]
+tests/test_review_evidence.py::test_evidence_failure_when_provenance_is_broken[disguised] PASSED [ 20%]
+tests/test_review_evidence.py::test_evidence_failure_when_provenance_is_broken[company] PASSED [ 22%]
+tests/test_review_evidence.py::test_evidence_failure_when_provenance_is_broken[source_type] PASSED [ 24%]
+tests/test_review_node.py::test_model_pass_cannot_override_code_failure[True] PASSED [ 25%]
+tests/test_review_node.py::test_model_pass_cannot_override_code_failure[False] PASSED [ 27%]
+tests/test_review_node.py::test_revision_evaluates_full_new_draft_and_keeps_semantic_failure[D] PASSED [ 29%]
+tests/test_review_node.py::test_revision_evaluates_full_new_draft_and_keeps_semantic_failure[I] PASSED [ 30%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[stale] PASSED [ 32%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[range] PASSED [ 33%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[fact_wording] PASSED [ 35%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[http] PASSED [ 37%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[json] PASSED [ 38%]
+tests/test_review_node.py::test_invalid_or_failed_model_review_never_returns_a_pass[timeout] PASSED [ 40%]
+tests/test_review_node.py::test_wording_rejects_later_occurrence_of_fact_text PASSED [ 41%]
+tests/test_review_state.py::test_run_binds_captured_request_when_state_changes_during_model_call PASSED [ 43%]
+tests/test_review_state.py::test_third_review_is_rejected_without_forced_success PASSED [ 45%]
+tests/test_review_state.py::test_semantic_failures_survive_when_deterministic_checks_pass[company_factuality] PASSED [ 46%]
+tests/test_review_state.py::test_semantic_failures_survive_when_deterministic_checks_pass[question_coverage] PASSED [ 48%]
+tests/test_review_state.py::test_semantic_failures_survive_when_deterministic_checks_pass[job_fit] PASSED [ 50%]
+tests/test_flow_state.py::test_real_graph_preserves_flow_values_and_bound_evaluation PASSED [ 51%]
+tests/test_flow_state.py::test_ready_rejects_new_version_and_changed_same_version[changed0] PASSED [ 53%]
+tests/test_flow_state.py::test_ready_rejects_new_version_and_changed_same_version[changed1] PASSED [ 54%]
+tests/test_flow_state.py::test_ready_rejects_another_requests_pass_with_identical_versions PASSED [ 56%]
+tests/test_flow_state.py::test_binding_rejects_old_evaluation_version PASSED [ 58%]
+tests/test_flow_state.py::test_ready_accepts_the_exact_evaluated_context PASSED [ 59%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[0] PASSED [ 61%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[1] PASSED [ 62%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[2] PASSED [ 64%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[3] PASSED [ 66%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[4] PASSED [ 67%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[5] PASSED [ 69%]
+tests/test_flow_evaluation_boundaries.py::test_evaluation_rejects_every_missing_mandatory_criterion[6] PASSED [ 70%]
+tests/test_flow_evaluation_boundaries.py::test_duplicate_pass_cannot_replace_a_missing_criterion PASSED [ 72%]
+tests/test_flow_evaluation_boundaries.py::test_failed_criterion_requires_an_issue PASSED [ 74%]
+tests/test_flow_evaluation_boundaries.py::test_all_pass_cannot_hide_a_reported_issue PASSED [ 75%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[missing_info-missing_fields0-None-None] PASSED [ 77%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[wording-missing_fields1-0-1] PASSED [ 79%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[plan_or_claim-missing_fields2-None-None] PASSED [ 80%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[wording-missing_fields3-None-None] PASSED [ 82%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[wording-missing_fields4-0-None] PASSED [ 83%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[wording-missing_fields5-2-1] PASSED [ 85%]
+tests/test_flow_evaluation_boundaries.py::test_issue_rejects_false_missing_info_or_unusable_scope[unclassified-missing_fields6-0-1] PASSED [ 87%]
+tests/test_flow_evaluation_boundaries.py::test_real_sdk_adapter_rejects_incomplete_mandatory_evaluation PASSED [ 88%]
+tests/test_flow_handoff.py::test_typed_stage_fixture_can_bind_a_reviewed_ready_response PASSED [ 90%]
+tests/test_flow_handoff.py::test_sentence_revision_fixture_uses_new_draft_and_evaluation_versions PASSED [ 91%]
+tests/test_flow_handoff.py::test_missing_input_fixture_preserves_existing_wire_fields PASSED [ 93%]
+tests/test_flow_handoff.py::test_quality_failure_fixture_does_not_request_invented_information[QUALITY_CHECK_FAILED] PASSED [ 95%]
+tests/test_flow_handoff.py::test_quality_failure_fixture_does_not_request_invented_information[LENGTH_VALIDATION_FAILED] PASSED [ 96%]
+tests/test_flow_handoff.py::test_quality_failure_cannot_be_disguised_as_missing_information PASSED [ 98%]
+tests/test_flow_handoff.py::test_quality_failure_cannot_add_missing_fields PASSED [100%]
+
+- generated xml file: /Users/jay/Projects/essay-service/.omo/evidence/essay13/pytest.xml -
+============================== 62 passed in 0.43s ==============================
+
+EXIT_CODE=0

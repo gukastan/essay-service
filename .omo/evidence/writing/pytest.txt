@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- /Users/jay/Projects/essay-service/assignment/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jay/Projects/essay-service/assignment
+configfile: pyproject.toml
+plugins: langsmith-0.14.11, anyio-4.15.1, platformdirs-4.13.5
+collecting ... collected 41 items
+
+tests/test_writing_boundaries.py::test_plan_prioritizes_job_and_omits_optional_company_values PASSED [  2%]
+tests/test_writing_boundaries.py::test_plan_blocks_invalid_personal_evidence[fragment] PASSED [  4%]
+tests/test_writing_boundaries.py::test_plan_blocks_invalid_personal_evidence[offset] PASSED [  7%]
+tests/test_writing_boundaries.py::test_plan_blocks_invalid_personal_evidence[gap] PASSED [  9%]
+tests/test_writing_boundaries.py::test_plan_blocks_invalid_personal_evidence[missing_candidate] PASSED [ 12%]
+tests/test_writing_boundaries.py::test_d_then_e_uses_one_writer_call_and_keeps_reservation PASSED [ 14%]
+tests/test_writing_boundaries.py::test_second_revision_reservation_cannot_cross_routes PASSED [ 17%]
+tests/test_writing_boundaries.py::test_d_rejects_forged_observed_revision_count PASSED [ 19%]
+tests/test_writing_boundaries.py::test_revision_rejects_mixed_plan_and_wording_issues_before_model PASSED [ 21%]
+tests/test_writing_boundaries.py::test_company_evidence_cannot_be_laundered_as_personal_fact PASSED [ 24%]
+tests/test_writing_boundaries.py::test_unicode_sentence_offsets_and_source_order_are_preserved PASSED [ 26%]
+tests/test_writing_boundaries.py::test_plan_late_missing_research_stops_without_a_model[company] PASSED [ 29%]
+tests/test_writing_boundaries.py::test_plan_late_missing_research_stops_without_a_model[job] PASSED [ 31%]
+tests/test_writing_boundaries.py::test_d_reconsiders_affected_experience_from_existing_candidates PASSED [ 34%]
+tests/test_writing_expression.py::test_writer_preserves_length_boundary_for_f_without_padding[800] PASSED [ 36%]
+tests/test_writing_expression.py::test_writer_preserves_length_boundary_for_f_without_padding[801] PASSED [ 39%]
+tests/test_writing_expression.py::test_writer_preserves_length_boundary_for_f_without_padding[1000] PASSED [ 41%]
+tests/test_writing_expression.py::test_writer_preserves_length_boundary_for_f_without_padding[1001] PASSED [ 43%]
+tests/test_writing_expression.py::test_explicit_future_achievement_is_not_treated_as_past_fact PASSED [ 46%]
+tests/test_writing_nodes.py::test_plan_is_code_owned_and_covers_requirements PASSED [ 48%]
+tests/test_writing_nodes.py::test_writer_returns_short_draft_unpadded_for_full_review PASSED [ 51%]
+tests/test_writing_nodes.py::test_revision_reassembles_full_draft_and_invalidates_evaluation PASSED [ 53%]
+tests/test_writing_nodes.py::test_d_revision_restructures_without_model_and_e_uses_reserved_budget PASSED [ 56%]
+tests/test_writing_nodes.py::test_revision_rejects_control_attacks_before_model[unreserved] PASSED [ 58%]
+tests/test_writing_nodes.py::test_revision_rejects_control_attacks_before_model[wrong_route] PASSED [ 60%]
+tests/test_writing_nodes.py::test_revision_rejects_control_attacks_before_model[stale] PASSED [ 63%]
+tests/test_writing_nodes.py::test_revision_rejects_control_attacks_before_model[foreign] PASSED [ 65%]
+tests/test_writing_nodes.py::test_revision_rejects_adversarial_patches_without_refund[overlap] PASSED [ 68%]
+tests/test_writing_nodes.py::test_revision_rejects_adversarial_patches_without_refund[outside] PASSED [ 70%]
+tests/test_writing_nodes.py::test_revision_rejects_adversarial_patches_without_refund[old_version] PASSED [ 73%]
+tests/test_writing_nodes.py::test_revision_rejects_adversarial_patches_without_refund[fact] PASSED [ 75%]
+tests/test_writing_nodes.py::test_revision_rejects_adversarial_patches_without_refund[invention] PASSED [ 78%]
+tests/test_writing_nodes.py::test_writer_rejects_invented_or_misbound_output[achievement] PASSED [ 80%]
+tests/test_writing_nodes.py::test_writer_rejects_invented_or_misbound_output[unmapped] PASSED [ 82%]
+tests/test_writing_nodes.py::test_writer_rejects_invented_or_misbound_output[source] PASSED [ 85%]
+tests/test_writing_nodes.py::test_writer_rejects_invented_or_misbound_output[version] PASSED [ 87%]
+tests/test_writing_provider.py::test_writing_schema_and_budget_cross_real_sdk_wire[False] PASSED [ 90%]
+tests/test_writing_provider.py::test_writing_schema_and_budget_cross_real_sdk_wire[True] PASSED [ 92%]
+tests/test_writing_provider.py::test_writer_operational_errors_are_sanitized_without_retry[http] PASSED [ 95%]
+tests/test_writing_provider.py::test_writer_operational_errors_are_sanitized_without_retry[invalid_json] PASSED [ 97%]
+tests/test_writing_provider.py::test_writer_operational_errors_are_sanitized_without_retry[timeout] PASSED [100%]
+
+- generated xml file: /Users/jay/Projects/essay-service/.omo/evidence/writing/junit.xml -
+============================== 41 passed in 0.29s ==============================
