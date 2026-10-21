@@ -14,4 +14,8 @@ for(const mutate of [r=>{r.draft='가'.repeat(800)},r=>{r.status='unknown'},r=>{
 }
 assert.throws(()=>parseResponse(ready,422,input),/INVALID_RESPONSE/);
 assert.throws(()=>parseResponse({status:'error',requestId,code:'QUALITY_CHECK_FAILED',message:'failure'},200,input),/INVALID_RESPONSE/);
+const review={...ready,status:'review_needed',draft:'가'.repeat(800),characterCount:800,reviewSummary:'생성 당시 기준 미충족 · 직접 검토 필요',reviewIssues:[{criterionId:'length',reason:'분량이 부족합니다.',instruction:'내용을 보완하세요.',missingFields:[]}]};
+assert.equal(parseResponse(review,200,input),review);
+assert.throws(()=>parseResponse({...review,reviewIssues:[]},200,input),/INVALID_RESPONSE/);
+assert.throws(()=>parseResponse(review,422,input),/INVALID_RESPONSE/);
 console.log('PASS: LF/code-point boundaries; safe links; malformed variants, evidence offsets, HTTP status rejected.');

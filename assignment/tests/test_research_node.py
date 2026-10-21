@@ -107,14 +107,6 @@ async def test_node_returns_typed_supplement_or_error_from_real_mcp(scenario: st
         pages = ()
     if scenario == "malformed-id":
         report = report.model_copy(update={"sources": (*report.sources, *report.sources)})
-    expected = {
-        "unknown": "COMPANY_AMBIGUOUS",
-        "same-name": "COMPANY_AMBIGUOUS",
-        "missing-job": "JOB_EVIDENCE_MISSING",
-        "conflict": "EVIDENCE_INSUFFICIENT",
-        "access-denied": "JOB_EVIDENCE_MISSING",
-        "malformed-id": "INVALID_RESPONSE",
-    }
     with serve_wire(
         lambda _: HttpReply(response_body(report.model_dump_json(by_alias=True), search=True))
     ) as wire:
@@ -126,11 +118,12 @@ async def test_node_returns_typed_supplement_or_error_from_real_mcp(scenario: st
         # Then
         if scenario == "malformed-id":
             assert outcome.status == "error"
-            assert outcome.code == expected[scenario]
+            assert outcome.code == "INVALID_RESPONSE"
         else:
-            assert outcome.status == "needs_input"
-            assert outcome.reason_code == expected[scenario]
-        assert wire.requests.qsize() == 1
+            assert outcome.status == "research-success"
+            if scenario in {"unknown", "same-name", "missing-job", "conflict", "access-denied"}:
+                assert outcome.result.job_requirements == ()
+        assert wire.requests.qsize() == (0 if scenario in {"unknown", "same-name"} else 1)
 
 
 @pytest.mark.anyio

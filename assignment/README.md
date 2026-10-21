@@ -1,8 +1,10 @@
 # Python 자기소개서 역할 모듈과 Vue 화면
 
-후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 공통 계약과 [인계](../docs/FLOW_CONTRACTS.md)를 바탕으로 ESSAY-11 B/C 분석, ESSAY-12 D/E/I 작성, ESSAY-13 F 평가, ESSAY-15 Vue 화면을 독립 구현·검증했다. [병렬 개발과 완료 경계](../docs/PARALLEL_DEVELOPMENT.md)를 따른다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
+후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 공통 계약과 [인계](../docs/FLOW_CONTRACTS.md)를 바탕으로 ESSAY-11 B/C 분석, ESSAY-12 D/E/I 작성, ESSAY-13 F 평가, ESSAY-15 Vue 화면을 독립 구현·검증했다. [병렬 개발과 완료 경계](../docs/PARALLEL_DEVELOPMENT.md)를 따른다. D의 최소 계획 조립은 코드로 처리한다. 신뢰할 조사 출처가 없는 경우 정상3회, 조사 포함 정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
 
 현재 구현은 Pydantic 계약, 근거/버전 검사, 공통 D/I 수정 예약, 요청별 상태·예산, 모델/MCP 연결, ESSAY-10 조사, B/C 분석, D/E/I 작성, F 평가, Vue 화면·제한된 프록시, ESSAY-14 LangGraph·FastAPI POST `/api/drafts` 연결이다. [QA](../docs/qa-v2.md)는 통제 입력·실제 stdio MCP·실제 브라우저·유료 모델 검증 범위를 구분한다. `GET /health`는 `pipelineAvailable: true`를 반환한다. 원본 `/chat`, `/chat/stream`은 제품 경로가 아니다.
+
+결과는 `ready`(모든 기준 충족·초안 포함), `review_needed`(작성 후 기준 미충족·마지막 초안과 사유 포함), `needs_input`(작성 전 필수 경험 부족·초안 없음), `error`(운영/입력 오류)로 구분한다. 두 초안 결과 모두 HTTP 200이며 `review_needed`를 검토 통과로 표시하지 않는다. 문장만 수정할 때는 부분 수정, 경험 선택·주장·구성을 바꿔야 할 때는 재계획을 선택하며 두 경로는 수정 기회 1회를 공유한다.
 
 `web_chat.html`·`web_demo_server.py`는 ESSAY-15의 Vue 제품 화면·프록시로 변경했다. 원본 화면 검증은 ESSAY-18 기록에 별도로 남아 있다. `sh/`와 `doc/`의 과거 자료, 루트 Next.js와 Downloads 원본은 별도로 보존한다.
 
@@ -44,7 +46,7 @@ bash run.sh
 
 ## 기반 확인
 
-다른 터미널에서 실행한다. 두 번째 요청은 현재 API의 입력·설정 상태를 확인한다. 아래처럼 유효한 입력과 모델 키가 없으면 `500 CONFIG_ERROR`가 예상된다. 실제 생성은 `assignment/.env` 설정과 근거 있는 경험·공고 자료가 필요하다.
+다른 터미널에서 실행한다. 두 번째 요청은 현재 API의 입력·설정 상태를 확인한다. 아래처럼 유효한 입력과 모델 키가 없으면 `500 CONFIG_ERROR`가 예상된다. 실제 생성에는 `assignment/.env` 설정과 직접 한 행동이 드러나는 경험이 필요하다. 공고 URL·본문은 선택 입력이다.
 
 ```bash
 curl --fail --silent http://127.0.0.1:8001/health
@@ -78,7 +80,7 @@ ESSAY_LIVE_COMPATIBILITY=1 uv run --frozen pytest tests/test_live_compatibility.
 
 ## 조사 역할 확인
 
-`agent/nodes/research.py`는 실제 MCP 후보 조사 뒤 공식 페이지 또는 사용자 원문을 대조한다. 초기 공식 기업 목록은 네이버·카카오·OpenAI·Anthropic이며 계열사와 임의 기업을 자동 승인하지 않는다. 네이버 공고는 단일 공고 제목·고용주와 실제 업무/필수 기술 구역을 연결한다. 접근 불가·JavaScript 전용·지원하지 않는 형식은 공고 본문을 요청한다. 사용자 자료는 `user_provided`이며 공식 확인을 뜻하지 않는다.
+`agent/nodes/research.py`는 조사할 자료가 있을 때 실제 MCP 후보 조사 뒤 공식 페이지 또는 사용자 원문을 대조한다. 초기 공식 기업 목록은 네이버·카카오·OpenAI·Anthropic이며 계열사와 임의 기업을 자동 승인하지 않는다. 신뢰 출처가 없고 공고 입력도 없으면 조사를 생략하고 기업·직무·문항·경험 입력으로 작성한다. 확인되지 않은 회사 사실이나 공고 요건은 사용하지 않는다. 공고가 다른 직무를 가리키면 해당 요건을 제외하고 작성하며 화면에 이를 알린다. 사용자 자료는 `user_provided`이며 공식 확인을 뜻하지 않는다.
 
 아래 검사는 각각 유료 모델1회를 실행하며, 이 시험 도구만 루트 `.env.local`의 기존 키/모델을 내부에서 읽는다. 일반 서버의 설정 위치는 바뀌지 않는다. 공개 네이버 공고와 명시된 합성 공고를 사용하고 고유한 정제 JSON을 `../docs/qa-evidence/assignment/research/checks/`에 남긴다. 자동 재시도는 없다.
 

@@ -15,12 +15,13 @@ from pydantic import BaseModel, JsonValue, TypeAdapter
 import server
 import web_demo_server as web
 from agent.budget import ExecutionBudget
-from agent.contracts import DraftRequest, EvaluationIssue, ResearchInput
+from agent.contracts import DraftEnvelope, DraftRequest, EvaluationIssue, ResearchInput
 from agent.nodes.revise import RevisionPatches
+from agent.nodes.write import WritingInput
 from agent.providers import ModelResult, ProviderError, StructuredModelRequest
 from agent.settings import Settings
 from agent.validate_evidence import ReviewInput, general_issue
-from tests.test_essay_integration import ControlledProvider
+from tests.test_essay_integration import ControlledProvider, controlled_draft
 from tests.test_personal_analysis import request
 
 pytest_plugins = ("tests.test_essay_integration",)
@@ -67,7 +68,7 @@ async def connected_apps(
         Case(("plan", "pass"), 200, None, 6, 1),
         Case(("wording", "pass"), 200, None, 6, 1),
         Case(("missing",), 200, None, 4, 0),
-        Case(("plan", "plan"), 422, "QUALITY_CHECK_FAILED", 6, 1),
+        Case(("plan", "plan"), 200, "review_needed", 6, 1),
     ],
 )
 async def test_proxy_api_graph_real_roles_and_terminal_status(
@@ -82,10 +83,11 @@ async def test_proxy_api_graph_real_roles_and_terminal_status(
     assert result.status_code == case.status
     body = TypeAdapter(dict[str, JsonValue]).validate_json(result.content)
     assert body["status"] == (
-        "error" if case.code else "needs_input" if case.reviews == ("missing",) else "ready"
+        "review_needed" if case.code or case.reviews == ("missing",) else "ready"
     )
-    assert body.get("code") == case.code
-    if body["status"] == "ready":
+    if body["status"] == "review_needed":
+        assert body["reviewIssues"]
+    if body["status"] in {"ready", "review_needed"}:
         assert body["characterCount"] == 900
         assert body["usage"] == {
             "modelCalls": case.calls,
@@ -173,9 +175,42 @@ async def test_wording_repair_rechecks_entire_draft_and_rejects_new_plan_failure
     provider = ControlledProvider(source, ("wording", "plan"))
     async with connected_apps(monkeypatch, provider) as browser:
         result = await browser.post("/api/drafts", json=source.model_dump(by_alias=True))
-    assert result.status_code == 422
-    assert result.json()["code"] == "QUALITY_CHECK_FAILED"
+    assert result.status_code == 200
+    assert result.json()["status"] == "review_needed"
+    assert result.json()["reviewIssues"]
     assert provider.roles == ["analysis", "writer", "review", "writer", "review"]
+    assert len(researched) == 1
+
+
+@pytest.mark.anyio
+async def test_short_draft_remains_available_after_revision_limit(
+    monkeypatch: pytest.MonkeyPatch, researched: list[ResearchInput]
+) -> None:
+    source = request().model_copy(update={"job_posting_text": "협업을 요구한다."})
+    provider = ControlledProvider(source)
+
+    def short_draft(plan: WritingInput) -> DraftEnvelope:
+        return controlled_draft(plan, target_characters=800)
+
+    monkeypatch.setattr(
+        "tests.test_essay_integration.controlled_draft",
+        short_draft,
+    )
+    async with connected_apps(monkeypatch, provider) as browser:
+        result = await browser.post("/api/drafts", json=source.model_dump(by_alias=True))
+    assert result.status_code == 200
+    body = TypeAdapter(dict[str, JsonValue]).validate_json(result.content)
+    assert body["status"] == "review_needed"
+    assert body["characterCount"] == 800
+    draft = body["draft"]
+    issues = body["reviewIssues"]
+    usage = body["usage"]
+    assert isinstance(draft, str)
+    assert len(draft) == 800
+    assert isinstance(issues, list)
+    assert any(isinstance(issue, dict) and issue.get("criterionId") == "length" for issue in issues)
+    assert isinstance(usage, dict)
+    assert usage["revisionCount"] == 1
     assert len(researched) == 1
 
 

@@ -190,12 +190,18 @@ def require_ready_evaluation(
     binding: EvaluationBinding, request_id: UUID, draft: DraftEnvelope, plan: WritingPlan
 ) -> None:
     """Reject a pass reused across requests, versions, or same-version content changes."""
+    require_current_evaluation(binding, request_id, draft, plan)
+    if not MIN_READY_CHARACTERS <= len(draft.draft) <= MAX_READY_CHARACTERS:
+        raise FlowStateError("INVALID_LENGTH")
+    if not all(item.passed for item in binding.evaluation.criteria):
+        raise FlowStateError("EVALUATION_FAILED")
+
+
+def require_current_evaluation(
+    binding: EvaluationBinding, request_id: UUID, draft: DraftEnvelope, plan: WritingPlan
+) -> None:
     if binding.request_id != request_id:
         raise FlowStateError("FOREIGN_EVALUATION")
     if binding.draft != draft or binding.plan != plan:
         raise FlowStateError("STALE_EVALUATION")
     validate_evaluation_context(binding.evaluation, draft, plan)
-    if not MIN_READY_CHARACTERS <= len(draft.draft) <= MAX_READY_CHARACTERS:
-        raise FlowStateError("INVALID_LENGTH")
-    if not all(item.passed for item in binding.evaluation.criteria):
-        raise FlowStateError("EVALUATION_FAILED")

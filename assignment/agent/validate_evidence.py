@@ -159,12 +159,6 @@ def check_available_context(context: ReviewInput) -> tuple[EvaluationIssue, ...]
         issues.append(
             general_issue("user_factuality", "개인 경험 근거가 없습니다.", ("experience",))
         )
-    if context.research.resolved_company is None:
-        issues.append(
-            general_issue("company_factuality", "지원 기업을 식별할 수 없습니다.", ("company",))
-        )
-    if not context.research.job_requirements:
-        issues.append(general_issue("job_fit", "직무 근거가 없습니다.", ("jobPostingText",)))
-    elif not context.draft.fit_reasons:
-        issues.append(general_issue("job_fit", "개인 경험과 직무 요건 연결이 없습니다."))
+    if not context.draft.fit_reasons:
+        issues.append(general_issue("job_fit", "개인 경험과 입력한 직무의 연결이 없습니다."))
     return tuple(issues)

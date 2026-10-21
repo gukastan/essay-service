@@ -1,0 +1,216 @@
+{
+  "sampleId": "normal-collaboration",
+  "supplementalSyntheticPosting": false,
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "startedAt": "2026-10-21T04:50:32.074919+00:00",
+  "elapsedSeconds": 28.19,
+  "model": "gpt-5.6-terra",
+  "path": "real OpenAI model + real stdio MCP; no stub",
+  "request": {
+    "company": "가상회사 새봄",
+    "role": "서비스 기획",
+    "jobPostingUrl": null,
+    "jobPostingText": null,
+    "question": "협업 과정에서 문제를 해결한 경험을 설명해 주세요.",
+    "experience": "대학교 팀 프로젝트에서 학내 행사 안내 페이지를 기획했습니다. 저는 팀원 네 명과 함께 참여했고 인터뷰 질문 정리와 화면 흐름 초안을 맡았습니다. 초기에 팀원마다 필요한 기능을 다르게 생각해 회의가 반복됐습니다. 저는 각자가 생각한 사용자와 불편을 문서에 적도록 제안하고 공통되는 요구를 묶었습니다. 이후 공지 목록과 일정 확인을 우선 구현하기로 합의했습니다. 완성된 시안을 동료 학생에게 보여주고 메뉴 이름이 어렵다는 의견을 받아 바꿨습니다. 정량 성과나 수상 실적은 없습니다. 이 경험을 통해 의견 차이를 구체적인 사용자 문제로 바꾸어 논의하는 태도를 배웠습니다."
+  },
+  "response": {
+    "status": "ready",
+    "requestId": "ae19cffa-d642-41f2-9c41-f25ef3d89985",
+    "draft": "대학교 팀 프로젝트에서 학내 행사 안내 페이지를 기획했습니다. 저는 팀원 네 명과 함께 참여했고 인터뷰 질문 정리와 화면 흐름 초안을 맡았습니다. 초기에 팀원마다 필요한 기능을 다르게 생각해 회의가 반복됐습니다. 저는 각자가 생각한 사용자와 불편을 문서에 적도록 제안하고 공통되는 요구를 묶었습니다. 이후 공지 목록과 일정 확인을 우선 구현하기로 합의했습니다. 완성된 시안을 동료 학생에게 보여주고 메뉴 이름이 어렵다는 의견을 받아 바꿨습니다.\n\n서비스 기획에서 협업의 핵심은 기능에 대한 개인별 선호를 조정하는 데만 있지 않고, 사용자가 누구인지와 어떤 상황에서 불편을 느끼는지를 함께 정의하는 데 있다고 생각합니다. 의견이 엇갈릴수록 논의의 근거를 문서로 확인하고, 각 요구가 해결하려는 사용자 문제와 우선순위를 분명히 해야 합니다. 이러한 기준이 있어야 회의의 반복을 줄이고, 제한된 화면과 기능 안에서도 팀이 납득할 수 있는 결정을 내릴 수 있습니다. 또한 화면의 명칭과 흐름은 기획자의 익숙함이 아니라 이용자의 이해를 기준으로 점검해야 한다고 봅니다. 앞으로 서비스 기획 역할에서는 협업을 시작할 때 참여자들이 이해하는 사용자, 이용 상황, 해결할 불편을 먼저 같은 형식의 문서로 정리하겠습니다. 이후에는 요구를 중요도와 사용자 영향에 따라 함께 검토하고, 우선순위의 이유까지 팀이 확인할 수 있도록 하겠습니다. 화면 흐름을 구체화한 뒤에는 실제 이용자의 관점에서 용어와 메뉴 구성을 점검하는 피드백을 반영하겠습니다. 의견 차이를 결론 없는 논쟁으로 남기기보다 검증 가능한 사용자 문제로 바꾸어, 팀이 다음 단계로 이동할 수 있는 서비스 기획을 만들어 가겠습니다.",
+    "characterCount": 824,
+    "sources": [],
+    "evidence": {
+      "companyFacts": [],
+      "jobRequirements": [],
+      "experienceEvidence": [
+        {
+          "id": "E1",
+          "quote": "대학교 팀 프로젝트에서 학내 행사 안내 페이지를 기획했습니다.",
+          "start": 0,
+          "end": 34,
+          "category": "context"
+        },
+        {
+          "id": "E2",
+          "quote": "저는 팀원 네 명과 함께 참여했고 인터뷰 질문 정리와 화면 흐름 초안을 맡았습니다.",
+          "start": 35,
+          "end": 81,
+          "category": "context"
+        },
+        {
+          "id": "E3",
+          "quote": "초기에 팀원마다 필요한 기능을 다르게 생각해 회의가 반복됐습니다.",
+          "start": 82,
+          "end": 118,
+          "category": "context"
+        },
+        {
+          "id": "E4",
+          "quote": "저는 각자가 생각한 사용자와 불편을 문서에 적도록 제안하고 공통되는 요구를 묶었습니다.",
+          "start": 119,
+          "end": 167,
+          "category": "action"
+        },
+        {
+          "id": "E5",
+          "quote": "이후 공지 목록과 일정 확인을 우선 구현하기로 합의했습니다.",
+          "start": 168,
+          "end": 201,
+          "category": "result"
+        },
+        {
+          "id": "E6",
+          "quote": "완성된 시안을 동료 학생에게 보여주고 메뉴 이름이 어렵다는 의견을 받아 바꿨습니다.",
+          "start": 202,
+          "end": 248,
+          "category": "action"
+        }
+      ],
+      "claimMap": [
+        {
+          "id": "personal-1",
+          "text": "대학교 팀 프로젝트에서 학내 행사 안내 페이지를 기획했습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E1"
+          ]
+        },
+        {
+          "id": "personal-2",
+          "text": "저는 팀원 네 명과 함께 참여했고 인터뷰 질문 정리와 화면 흐름 초안을 맡았습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E2"
+          ]
+        },
+        {
+          "id": "personal-3",
+          "text": "초기에 팀원마다 필요한 기능을 다르게 생각해 회의가 반복됐습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E3"
+          ]
+        },
+        {
+          "id": "personal-4",
+          "text": "저는 각자가 생각한 사용자와 불편을 문서에 적도록 제안하고 공통되는 요구를 묶었습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E4"
+          ]
+        },
+        {
+          "id": "personal-5",
+          "text": "이후 공지 목록과 일정 확인을 우선 구현하기로 합의했습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E5"
+          ]
+        },
+        {
+          "id": "personal-6",
+          "text": "완성된 시안을 동료 학생에게 보여주고 메뉴 이름이 어렵다는 의견을 받아 바꿨습니다.",
+          "kind": "user_fact",
+          "evidenceIds": [
+            "E6"
+          ]
+        },
+        {
+          "id": "interpretation",
+          "text": "서비스 기획에서 협업의 핵심은 기능에 대한 개인별 선호를 조정하는 데만 있지 않고, 사용자가 누구인지와 어떤 상황에서 불편을 느끼는지를 함께 정의하는 데 있다고 생각합니다. 의견이 엇갈릴수록 논의의 근거를 문서로 확인하고, 각 요구가 해결하려는 사용자 문제와 우선순위를 분명히 해야 합니다. 이러한 기준이 있어야 회의의 반복을 줄이고, 제한된 화면과 기능 안에서도 팀이 납득할 수 있는 결정을 내릴 수 있습니다. 또한 화면의 명칭과 흐름은 기획자의 익숙함이 아니라 이용자의 이해를 기준으로 점검해야 한다고 봅니다.",
+          "kind": "interpretation",
+          "evidenceIds": [
+            "E1"
+          ]
+        },
+        {
+          "id": "future",
+          "text": "앞으로 서비스 기획 역할에서는 협업을 시작할 때 참여자들이 이해하는 사용자, 이용 상황, 해결할 불편을 먼저 같은 형식의 문서로 정리하겠습니다. 이후에는 요구를 중요도와 사용자 영향에 따라 함께 검토하고, 우선순위의 이유까지 팀이 확인할 수 있도록 하겠습니다. 화면 흐름을 구체화한 뒤에는 실제 이용자의 관점에서 용어와 메뉴 구성을 점검하는 피드백을 반영하겠습니다. 의견 차이를 결론 없는 논쟁으로 남기기보다 검증 가능한 사용자 문제로 바꾸어, 팀이 다음 단계로 이동할 수 있는 서비스 기획을 만들어 가겠습니다.",
+          "kind": "future_plan",
+          "evidenceIds": []
+        }
+      ],
+      "fitReasons": [
+        {
+          "experienceEvidenceIds": [
+            "E1",
+            "E2",
+            "E3",
+            "E4",
+            "E5",
+            "E6"
+          ],
+          "jobRequirementIds": [],
+          "reason": "기능에 대한 의견 차이를 사용자와 불편의 관점으로 정리하고, 우선순위 합의와 이용자 피드백 반영으로 연결한 경험이 협업 과정에서 문제를 해결한 사례를 설명하는 데 적합합니다."
+        }
+      ]
+    },
+    "reviewSummary": "생성 당시 검토 통과",
+    "usage": {
+      "modelCalls": 3,
+      "revisionCount": 0
+    }
+  },
+  "events": [
+    {
+      "role": "analysis",
+      "seconds": 15.099,
+      "inputTokens": 673,
+      "outputTokens": 2015
+    },
+    {
+      "role": "writer",
+      "seconds": 9.775,
+      "inputTokens": 1601,
+      "outputTokens": 988
+    },
+    {
+      "role": "writer-validation",
+      "claimIds": [
+        "interpretation",
+        "future"
+      ],
+      "expectedIds": [
+        "personal-1",
+        "personal-2",
+        "personal-3",
+        "personal-4",
+        "personal-5",
+        "personal-6",
+        "interpretation",
+        "future"
+      ],
+      "factMatchesPlan": {},
+      "claimBindingsMatchPlan": {
+        "interpretation": false,
+        "future": false
+      },
+      "generatedTextChecks": {
+        "interpretation": {
+          "hasDigit": false,
+          "hasPastMarker": false,
+          "length": 287
+        },
+        "future": {
+          "hasDigit": false,
+          "hasPastMarker": false,
+          "length": 286
+        }
+      },
+      "draftLength": 824
+    },
+    {
+      "role": "review",
+      "seconds": 2.75,
+      "inputTokens": 3015,
+      "outputTokens": 226
+    },
+    {
+      "role": "review-validation",
+      "draftLength": 824,
+      "correctedIssues": 0,
+      "issues": []
+    }
+  ]
+}

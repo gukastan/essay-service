@@ -16,7 +16,7 @@ System-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif. Display 32–48px; se
 4px base; spacing 4/8/12/16/24/32/48/64px. Max width 1200px. Desktop 44% input and remaining result column with 24px gap. Below 960px a single column; below 480px short fields stack. Document owns scroll. All text surfaces wrap long words.
 
 ## 5. Components
-Field: visible label, required semantics, helper and linked error; focus first invalid field. Button: minimum 48px height, filled primary or bordered secondary, hover/active/focus/disabled states. Panel: neutral border, 12px corners, 24px padding. Feedback: inline polite progress/needs-input and alert errors. Result: immutable request snapshot, editable draft, live count and copy feedback. Empty state explains the next step.
+Field: visible label, required semantics, helper and linked error; focus first invalid field. Button: minimum 48px height, filled primary or bordered secondary, hover/active/focus/disabled states. Panel: neutral border, 12px corners, 24px padding. Feedback: inline polite progress/needs-input, warning-wash review-needed with concrete failed criteria, and alert operational errors. Result: immutable request snapshot, editable draft, live count and copy feedback. Review-needed shows the current draft with a distinct unpassed status; needs-input has no current draft. Empty state explains the next step.
 
 ## 6. Interaction
 Button press transform 120ms; pending spinner 1s, removed for reduced motion. Form locks for entire request. Client deadline 195 seconds allows the 180-second server deadline plus transport overhead; never retry. Editing makes no model request. Out-of-range text can still be copied.

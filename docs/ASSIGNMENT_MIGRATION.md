@@ -7,7 +7,7 @@
 - 전환 코드 위치: `assignment/` (ESSAY-18 복사 기준선에 ESSAY-19 공통 기반 구현. Downloads 원본은 불변)
 - 보존 기준 커밋: `c5299e954d0ff1b0848dad238e7b731ef078bb51`
 - [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [백로그](BACKLOG_V2.md) · [QA](qa-v2.md) · [결정](decisions/provided-project-migration.md)
-- 2026-10-20 후속 사용자 흐름: [A~J 노드별 최소 명세](NODE_MIN_SPEC.md). 공통 계약을 먼저 구현했고 내부 전략 상세·업무 노드는 후속 작업이다.
+- 2026-10-20 후속 사용자 흐름: [노드별 최소 명세](NODE_MIN_SPEC.md). 2026-10-21 사용자 결정에 따라 작성 후 품질 미충족도 마지막 초안과 사유를 최종 결과로 제공한다. 작성 전 필수 개인 경험 부족만 초안 없이 종료한다. 내부 전략 상세는 후속 작업이다.
 - 후속 사용자 요청으로 [병렬 개발](PARALLEL_DEVELOPMENT.md) 선행을 반영하고 ESSAY-21 공통 계약 확장 구현·검증을 완료했다. [검증 보고서](qa-evidence/assignment/flow-foundation/verification.md)와 [계약 인계](FLOW_CONTRACTS.md)를 따른다. 이번 구현 범위를 다른 역할로 확대하지 않는다.
 
 ## 과제와 사용자 결정
@@ -32,14 +32,14 @@
 | 원본 | 유지할 구조 | 목적에 맞는 변경 | 소유 작업 |
 | --- | --- | --- | --- |
 | server.py | FastAPI 요청·lifespan·그래프 실행 | POST /api/drafts, 입력/오류 규격, 요청별 예산 | ESSAY-19, ESSAY-14 순차 |
-| agent/graph.py | StateGraph·조건 분기·작성/검증 루프 | A~J 논리 흐름·G5분기·D/I 공통 수정1회 | ESSAY-14 |
+| agent/graph.py | StateGraph·조건 분기·작성/검증 루프 | 요구사항/근거 → 계획 → 작성 → 검토 → 최종 결과·부분 수정·재계획 분기, D/I 공통 수정1회 | ESSAY-14 |
 | agent/state.py·계약 | 타입 있는 상태·요청 격리 | 기존 기반 위 계획/평가/분기 계약 확장 | ESSAY-21 |
 | agent/deps.py | 의존성 주입 | 타입 있는 모델·MCP·설정, 요청 상태 분리 | ESSAY-19 |
 | agent/mcp_client.py, mcp_server.py | 실제 MCP stdio 연결·도구 호출 | research_company_role 기업·직무 조사 | ESSAY-19, ESSAY-10 순차 |
 | agent/openai_llm.py | 모델 연결 경계 | 구조화 출력·Responses 검색·예산·재시도0 | ESSAY-19 |
 | graph.py의 업무 노드 | 단계별 책임 분리 | 기존 조사 재사용, B/C 분석·D 계획·E/I 작성·F 평가 | ESSAY-10~13 |
 | validate_node | 검증 후 재작성 분기 | validate_evidence.py 근거·길이 검사, 실패 강제 통과 제거 | ESSAY-13 |
-| web_chat.html | Vue 화면과 요청 상태 | 네 입력·근거·원문 비교·편집·복사·보완 | ESSAY-15 |
+| web_chat.html | Vue 화면과 요청 상태 | 네 입력·근거·원문 비교·편집·복사, 작성 전 보완과 작성 후 검토 필요 결과 구분 | ESSAY-15 |
 | web_demo_server.py | 화면 제공·동일 출처 프록시 | POST JSON 프록시·유한 timeout·오류 보존 | ESSAY-15 |
 | data/runbooks/, mcp_server_docs.py | 자료/도구와 업무 로직의 분리 개념 | 장애 매뉴얼·decoy 서버는 제출 서비스에서 제외, 이유 기록 | ESSAY-10 |
 | agent/session_store.py, GET /chat/stream | 원본 실행 확인용 기준 | 경험 저장·쿼리문자열 전송·전체 프롬프트 노출은 제출 경로에서 제외 | ESSAY-19, ESSAY-14 |
@@ -64,7 +64,7 @@
 5. ESSAY-14·15 이후 ESSAY-16 통제 전체 회귀 완료 → ESSAY-17 실제 모델·MCP·브라우저 QA와 작성자 사실성 승인.
 6. [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20): 제출 소스·README·변경 설명·검증 증거 완성. 모든 필수 작업과 승인 후 ESSAY-8 완료.
 
-기존 ESSAY-9/19 관련 선행 연결과 ESSAY-19·10→21, 21→11·15는 보존한다. 병렬 개발을 위해11→12·12→13을 해제하고21→12·13 및11·12→14를 추가한다. 완료된 기반을 다시 열지 않는다. 역할 파일은 병렬로 개발하되 공통 계약/server.py/MCP 연결은 단일 소유권으로 순차 반영한다. G의5분기·상세 전략 유예는 최소 명세를 따른다.
+기존 ESSAY-9/19 관련 선행 연결과 ESSAY-19·10→21, 21→11·15는 보존한다. 병렬 개발을 위해11→12·12→13을 해제하고21→12·13 및11·12→14를 추가한다. 완료된 기반을 다시 열지 않는다. 역할 파일은 병렬로 개발하되 공통 계약/server.py/MCP 연결은 단일 소유권으로 순차 반영한다. 현재 최종 결과/재계획/부분 수정 분기와 상세 전략 유예는 최소 명세를 따른다.
 
 ## 제출물과 검증
 

@@ -46,36 +46,28 @@ class ResearchNode:
             job_posting_url=input.job_posting_url,
             job_posting_text=input.job_posting_text,
         )
+        anchors = tuple(
+            anchor
+            for anchor in self.anchors
+            if public.company.casefold() in {alias.casefold() for alias in anchor.aliases}
+        )
+        anchor = anchors[0] if len(anchors) == 1 else None
+        if anchor is None and public.job_posting_url is None and public.job_posting_text is None:
+            return ResearchSuccess(
+                result=ResearchResult(
+                    resolved_company=None,
+                    sources=(),
+                    company_facts=(),
+                    job_requirements=(),
+                    gaps=("NO_TRUSTED_EXTERNAL_SOURCE",),
+                ),
+                tool_calls_reported=0,
+                usage=None,
+            )
 
         async def execute(_context: OperationContext) -> ResearchOutcome:
             report = await self.mcp.research(public, budget, request_id)
-            anchors = tuple(
-                anchor
-                for anchor in self.anchors
-                if public.company.casefold() in {alias.casefold() for alias in anchor.aliases}
-            )
-            anchor = anchors[0] if len(anchors) == 1 else None
             result = await SourceVerifier(self.reader, anchor).verify(report.result, public, budget)
-            if result.resolved_company is None:
-                return NeedsInputResponse(
-                    status="needs_input",
-                    request_id=request_id,
-                    message="기업을 식별할 자료가 필요합니다.",
-                    missing_fields=("company", "jobPostingText"),
-                    questions=("기업명과 직무가 명시된 공고 본문을 제공해 주세요.",),
-                    reason_code="COMPANY_AMBIGUOUS",
-                )
-            if not result.job_requirements:
-                return NeedsInputResponse(
-                    status="needs_input",
-                    request_id=request_id,
-                    message="확인 가능한 직무 근거가 필요합니다.",
-                    missing_fields=("jobPostingText",),
-                    questions=("직무명과 요건이 함께 명시된 공고 본문을 제공해 주세요.",),
-                    reason_code="EVIDENCE_INSUFFICIENT"
-                    if "CONFLICTING_EVIDENCE" in result.gaps
-                    else "JOB_EVIDENCE_MISSING",
-                )
             return ResearchSuccess(
                 result=result, tool_calls_reported=report.tool_calls_reported, usage=report.usage
             )

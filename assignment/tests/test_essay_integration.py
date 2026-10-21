@@ -36,7 +36,7 @@ from tests.test_review_evidence import review_input
 from tests.wire_fixture import HttpReply, response_body, serve_wire
 
 
-def controlled_draft(plan: WritingInput) -> DraftEnvelope:
+def controlled_draft(plan: WritingInput, target_characters: int = 900) -> DraftEnvelope:
     original = {claim.id: claim.text for claim in plan.plan.claims}
     fixed = sum(
         len(value) for key, value in original.items() if key not in {"interpretation", "future"}
@@ -44,7 +44,11 @@ def controlled_draft(plan: WritingInput) -> DraftEnvelope:
     separators = sum(len(paragraph.claim_ids) - 1 for paragraph in plan.plan.paragraphs)
     separators += 2 * (len(plan.plan.paragraphs) - 1)
     room = (
-        900 - fixed - separators - len("현재 라고 생각합니다.") - len("입사 후 를 실천하겠습니다.")
+        target_characters
+        - fixed
+        - separators
+        - len("현재 라고 생각합니다.")
+        - len("입사 후 를 실천하겠습니다.")
     )
     interpretation = "현재 " + "가" * (room // 2) + "라고 생각합니다."
     future = "입사 후 " + "나" * (room - room // 2) + "를 실천하겠습니다."
@@ -81,7 +85,7 @@ def controlled_draft(plan: WritingInput) -> DraftEnvelope:
         fit_reasons=(
             FitReason(
                 experience_evidence_ids=("e1",),
-                job_requirement_ids=("j1",),
+                job_requirement_ids=tuple(item.id for item in plan.research.job_requirements),
                 reason="경험과 직무 요건을 연결합니다.",
             ),
         ),
@@ -239,6 +243,21 @@ async def test_actual_role_nodes_join_into_reviewed_ready(
 
 
 @pytest.mark.anyio
+async def test_unknown_company_without_posting_writes_from_user_input() -> None:
+    # Given
+    source = request().model_copy(update={"company": "가상회사 새봄", "role": "서비스 기획"})
+    provider = ControlledProvider(source)
+    # When
+    outcome = await EssayWorkflow(WorkflowDeps(provider, MCPClient())).run(source)
+    # Then
+    assert outcome.status == "ready", (outcome, provider.roles)
+    assert outcome.sources == ()
+    assert outcome.evidence.job_requirements == ()
+    assert outcome.evidence.fit_reasons[0].job_requirement_ids == ()
+    assert all(claim.kind != "company_fact" for claim in outcome.evidence.claim_map)
+
+
+@pytest.mark.anyio
 @pytest.mark.parametrize("route", ["plan", "wording"])
 async def test_review_repair_runs_one_writer_and_full_second_review(
     researched: list[ResearchInput],
@@ -255,27 +274,29 @@ async def test_review_repair_runs_one_writer_and_full_second_review(
 
 
 @pytest.mark.anyio
-async def test_review_missing_information_stops_without_revision(
+async def test_review_missing_information_returns_draft_without_revision(
     researched: list[ResearchInput],
 ) -> None:
     source = request()
     provider = ControlledProvider(source, ("missing",))
     outcome = await EssayWorkflow(WorkflowDeps(provider, MCPClient())).run(source)
-    assert outcome.status == "needs_input", (outcome, provider.roles)
-    assert outcome.missing_fields == ("experience",)
+    assert outcome.status == "review_needed", (outcome, provider.roles)
+    assert outcome.draft
+    assert outcome.review_issues[0].missing_fields == ("experience",)
     assert provider.roles == ["analysis", "writer", "review"]
     assert len(researched) == 1
 
 
 @pytest.mark.anyio
-async def test_failed_revision_returns_quality_error_without_third_writer(
+async def test_failed_revision_returns_draft_and_issues_without_third_writer(
     researched: list[ResearchInput],
 ) -> None:
     source = request()
     provider = ControlledProvider(source, ("plan", "plan"))
     outcome = await EssayWorkflow(WorkflowDeps(provider, MCPClient())).run(source)
-    assert outcome.status == "error", (outcome, provider.roles)
-    assert outcome.code == "QUALITY_CHECK_FAILED"
+    assert outcome.status == "review_needed", (outcome, provider.roles)
+    assert outcome.draft
+    assert outcome.review_issues[0].criterion_id == "question_coverage"
     assert provider.roles == ["analysis", "writer", "review", "writer", "review"]
     assert len(researched) == 1
 
@@ -309,6 +330,42 @@ async def test_graph_uses_actual_stdio_mcp_and_verified_user_posting() -> None:
     assert outcome.status == "ready", (outcome, provider.roles)
     assert outcome.usage.model_calls == 4
     assert outcome.evidence.job_requirements[0].source_ids == ("user-posting",)
+    assert wire.requests.qsize() == 1
+
+
+@pytest.mark.anyio
+async def test_mismatched_optional_posting_does_not_block_requested_role() -> None:
+    # Given
+    source = request().model_copy(
+        update={"job_posting_text": "회사 운영 지원 requirements: 협업을 요구한다."}
+    )
+    provider = ControlledProvider(source)
+    candidate = ResearchResult(
+        resolved_company="회사",
+        sources=(
+            UserProvidedSource(
+                id="model-source",
+                kind="user_provided",
+                title="다른 직무의 시험 공고",
+                checked_at=datetime.now(UTC),
+                excerpt=source.job_posting_text or "",
+            ),
+        ),
+        company_facts=(),
+        job_requirements=(
+            JobRequirement(id="j1", text="협업을 요구한다.", source_ids=("model-source",)),
+        ),
+        gaps=(),
+    )
+    body = response_body(candidate.model_dump_json(by_alias=True), search=True)
+    # When
+    with serve_wire(lambda _payload: HttpReply(body)) as wire:
+        async with MCPClient(wire_client(wire.base_url)) as mcp:
+            outcome = await EssayWorkflow(WorkflowDeps(provider, mcp)).run(source)
+    # Then
+    assert outcome.status == "ready", (outcome, provider.roles)
+    assert outcome.evidence.job_requirements == ()
+    assert outcome.evidence.fit_reasons[0].job_requirement_ids == ()
     assert wire.requests.qsize() == 1
 
 
@@ -373,8 +430,8 @@ def test_missing_information_wins_over_plan_issue_in_routing() -> None:
         context.request_id, evaluation, reviewed.draft, reviewed.plan
     )
     decision = decide(state, context)
-    assert decision.get("route") == "J"
-    outcome = decision.get("outcome")
-    assert outcome is not None
-    assert outcome.status == "needs_input"
+    assert decision.get("route") == "U"
+    terminal = decision.get("terminal_reason")
+    assert terminal is not None
+    assert terminal.kind == "review_needed"
     assert context.budget.snapshot().revision_count == 0

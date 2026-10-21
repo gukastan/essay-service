@@ -18,6 +18,7 @@ const text = value => typeof value === 'string' && value.trim().length > 0;
 const list = (value, check) => Array.isArray(value) && value.every(check);
 const ids = value => list(value, text);
 const item = value => value && text(value.id) && text(value.text);
+const criteria = ['contract_evidence', 'user_factuality', 'company_factuality', 'question_coverage', 'job_fit', 'length', 'expression_kind'];
 export function parseResponse(data, status, snapshot) {
   const invalid = () => { throw new Error('INVALID_RESPONSE'); };
   if (!data || !/^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(data.requestId ?? '')) invalid();
@@ -29,12 +30,17 @@ export function parseResponse(data, status, snapshot) {
           !['COMPANY_AMBIGUOUS', 'JOB_EVIDENCE_MISSING', 'EXPERIENCE_INSUFFICIENT', 'EVIDENCE_INSUFFICIENT'].includes(data.reasonCode)) invalid();
       break;
     case 'error':
-      if (status < 400 || !text(data.message) || !['INVALID_INPUT', 'V2_DISABLED', 'LENGTH_VALIDATION_FAILED', 'QUALITY_CHECK_FAILED', 'CONFIG_ERROR', 'MODEL_ERROR', 'SEARCH_ERROR', 'INVALID_RESPONSE', 'TIMEOUT', 'CANCELLED', 'BUDGET_EXCEEDED'].includes(data.code)) invalid();
-      if (['QUALITY_CHECK_FAILED', 'LENGTH_VALIDATION_FAILED'].includes(data.code) && status !== 422) invalid();
+      if (status < 400 || !text(data.message) || !['INVALID_INPUT', 'V2_DISABLED', 'CONFIG_ERROR', 'MODEL_ERROR', 'SEARCH_ERROR', 'INVALID_RESPONSE', 'TIMEOUT', 'CANCELLED', 'BUDGET_EXCEEDED'].includes(data.code)) invalid();
       break;
-    case 'ready': {
+    case 'ready':
+    case 'review_needed': {
       if (status !== 200 || !text(data.draft) || count(data.draft) !== data.characterCount ||
-          data.characterCount < 801 || data.characterCount > 1000 || data.reviewSummary !== '생성 당시 검토 통과') invalid();
+          data.characterCount < (data.status === 'ready' ? 801 : 1) ||
+          data.characterCount > (data.status === 'ready' ? 1000 : 4000) ||
+          data.reviewSummary !== (data.status === 'ready' ? '생성 당시 검토 통과' : '생성 당시 기준 미충족 · 직접 검토 필요')) invalid();
+      if (data.status === 'review_needed' && (!list(data.reviewIssues, issue => issue &&
+          criteria.includes(issue.criterionId) && text(issue.reason) && text(issue.instruction) &&
+          list(issue.missingFields, key => fields.some(f => f.key === key))) || !data.reviewIssues.length)) invalid();
       if (!list(data.sources, s => s && text(s.id) && text(s.title) && text(s.excerpt) &&
           text(s.checkedAt) && Number.isFinite(Date.parse(s.checkedAt)) &&
           ['official', 'user_provided'].includes(s.kind) &&

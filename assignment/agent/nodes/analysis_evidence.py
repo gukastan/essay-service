@@ -57,17 +57,6 @@ class AnalysisJoin:
         if gap is not None:
             return gap
         result = research.result
-        if result.resolved_company is None or not result.job_requirements:
-            return NeedsInputResponse(
-                status="needs_input",
-                request_id=self.request_id,
-                message="기업과 직무를 확인할 공고 자료가 필요합니다.",
-                missing_fields=("jobPostingText",),
-                questions=("기업명과 해당 직무 요건이 명시된 공고를 제공해 주세요.",),
-                reason_code="COMPANY_AMBIGUOUS"
-                if result.resolved_company is None
-                else "JOB_EVIDENCE_MISSING",
-            )
         validate_research_binding(analysis.result, result)
         return EvidenceBundle(analysis.result, result)
 

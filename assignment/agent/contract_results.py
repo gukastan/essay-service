@@ -15,6 +15,7 @@ from agent.contract_evidence import (
     ReviewIssue,
     Source,
 )
+from agent.contract_flow_evaluation import CriterionId, MissingField
 from agent.contract_input import Contract, NormalizedText, Text, count_characters
 
 
@@ -91,6 +92,31 @@ class ReadyResponse(Contract):
         return self
 
 
+class ReviewNotice(Contract):
+    criterion_id: CriterionId
+    reason: Text
+    instruction: Text
+    missing_fields: tuple[MissingField, ...] = ()
+
+
+class ReviewNeededResponse(Contract):
+    status: Literal["review_needed"]
+    request_id: UUID
+    draft: NormalizedText
+    character_count: Annotated[int, Field(strict=True, ge=1, le=4000)]
+    sources: tuple[Source, ...]
+    evidence: Evidence
+    review_summary: Literal["생성 당시 기준 미충족 · 직접 검토 필요"]
+    review_issues: Annotated[tuple[ReviewNotice, ...], Field(min_length=1, max_length=40)]
+    usage: Usage
+
+    @model_validator(mode="after")
+    def check_count(self) -> Self:
+        if count_characters(self.draft) != self.character_count:
+            raise PydanticCustomError("character_count", "Draft count does not match")
+        return self
+
+
 class NeedsInputResponse(Contract):
     status: Literal["needs_input"]
     request_id: UUID
@@ -125,8 +151,6 @@ class ErrorResponse(Contract):
     code: Literal[
         "INVALID_INPUT",
         "V2_DISABLED",
-        "LENGTH_VALIDATION_FAILED",
-        "QUALITY_CHECK_FAILED",
         "CONFIG_ERROR",
         "MODEL_ERROR",
         "SEARCH_ERROR",
@@ -139,7 +163,7 @@ class ErrorResponse(Contract):
 
 DraftResponse = TypeAdapter(
     Annotated[
-        ReadyResponse | NeedsInputResponse | ErrorResponse,
+        ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse,
         Field(discriminator="status"),
     ]
 )

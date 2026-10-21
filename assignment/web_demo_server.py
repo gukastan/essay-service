@@ -70,8 +70,6 @@ async def proxy_draft(req: Request) -> JSONResponse:
         valid_status = upstream.status_code == HTTPStatus.OK
         if isinstance(response, ErrorResponse):
             valid_status = upstream.status_code >= HTTPStatus.BAD_REQUEST
-            if response.code in {"QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"}:
-                valid_status = upstream.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
         if not valid_status:
             return failure("INVALID_RESPONSE", 502)
     except (TimeoutError, httpx.TimeoutException):

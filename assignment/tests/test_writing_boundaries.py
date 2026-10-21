@@ -215,7 +215,7 @@ def test_unicode_sentence_offsets_and_source_order_are_preserved() -> None:
 
 
 @pytest.mark.parametrize("missing", ["company", "job"])
-def test_plan_late_missing_research_stops_without_a_model(missing: str) -> None:
+def test_plan_uses_personal_evidence_without_optional_job_research(missing: str) -> None:
     # Given
     budget = ExecutionBudget()
     state = writing_state(budget)
@@ -228,9 +228,13 @@ def test_plan_late_missing_research_stops_without_a_model(missing: str) -> None:
             "job_requirements": () if missing == "job" else report.job_requirements,
         }
     )
-    # When / Then
-    with pytest.raises(WritingError, match="MISSING_EVIDENCE"):
-        _ = build_plan(state, budget)
+    # When
+    result = build_plan(state, budget)
+    # Then
+    plan = result.get("plan")
+    assert plan is not None
+    if missing == "job":
+        assert all(claim.kind != "company_fact" for claim in plan.claims)
     assert budget.snapshot().model_calls == 0
 
 

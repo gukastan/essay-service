@@ -9,10 +9,16 @@ from langgraph.graph import END, START, StateGraph
 from pydantic import ValidationError
 
 from agent.budget import ExecutionBudgetError, RevisionReservationError
-from agent.contracts import DraftRequest, ErrorResponse, NeedsInputResponse, ReadyResponse
+from agent.contracts import (
+    DraftRequest,
+    ErrorResponse,
+    NeedsInputResponse,
+    ReadyResponse,
+    ReviewNeededResponse,
+)
 from agent.deps import RequestContext, WorkflowDeps
 from agent.essay_collect import ContextCollector
-from agent.essay_route import decide, error_result, ready
+from agent.essay_route import decide, error_result, ready, review_needed
 from agent.flow_state import FlowStateError
 from agent.nodes.plan import build_plan
 from agent.nodes.review import ReviewNode
@@ -71,6 +77,7 @@ class EssayWorkflow:
         _ = graph.add_node("replan", replan)
         _ = graph.add_node("revise", revise)
         _ = graph.add_node("ready", lambda state: ready(state, context))
+        _ = graph.add_node("review_needed", lambda state: review_needed(state, context))
         _ = graph.add_edge(START, "collect")
         _ = graph.add_conditional_edges("collect", after_collect, {"stop": END, "plan": "plan"})
         _ = graph.add_edge("plan", "write")
@@ -79,16 +86,17 @@ class EssayWorkflow:
         _ = graph.add_conditional_edges(
             "decide",
             after_decide,
-            {"H": "ready", "J": END, "D": "replan", "I": "revise"},
+            {"H": "ready", "U": "review_needed", "D": "replan", "I": "revise"},
         )
         _ = graph.add_edge("replan", "write")
         _ = graph.add_edge("revise", "review")
         _ = graph.add_edge("ready", END)
+        _ = graph.add_edge("review_needed", END)
         return graph.compile()
 
     async def run(
         self, request: DraftRequest
-    ) -> ReadyResponse | NeedsInputResponse | ErrorResponse:
+    ) -> ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse:
         context = self.deps.new_request(request)
         graph = self._graph(context)
         try:

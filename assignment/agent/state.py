@@ -17,6 +17,7 @@ from agent.contracts import (
     NeedsInputResponse,
     ReadyResponse,
     ResearchResult,
+    ReviewNeededResponse,
     ReviewResult,
     TerminalReason,
     WritingPlan,
@@ -73,7 +74,7 @@ class WorkflowState(TypedDict, total=False):
     review: ReviewResult | None
     revision_count: Annotated[Literal[0, 1], revision_reducer]
     usage: BudgetSnapshot
-    outcome: ReadyResponse | NeedsInputResponse | ErrorResponse | None
+    outcome: ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse | None
 
 
 def initial_state(

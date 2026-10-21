@@ -1,7 +1,6 @@
 """Synthetic typed examples for ESSAY-11/12/13/15; no generated essay or business node."""
 
 from dataclasses import dataclass
-from typing import Literal
 from uuid import UUID
 
 import pytest
@@ -11,12 +10,13 @@ from agent.contracts import (
     Claim,
     DraftEnvelope,
     DraftResponse,
-    ErrorResponse,
     Evaluation,
     Evidence,
     FlowAnalysisResult,
     NeedsInputResponse,
     ReadyResponse,
+    ReviewNeededResponse,
+    ReviewNotice,
     Usage,
     WritingPlan,
 )
@@ -70,14 +70,24 @@ def needs_input_fixture() -> NeedsInputResponse:
     )
 
 
-def quality_failure_fixture(
-    code: Literal["QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"] = "QUALITY_CHECK_FAILED",
-) -> ErrorResponse:
-    return ErrorResponse(
-        status="error",
-        request_id=UUID("5e7fd874-1d5a-4540-9cf4-37f9e842823d"),
-        message="The generation did not meet the required checks.",
-        code=code,
+def review_needed_fixture() -> ReviewNeededResponse:
+    ready = ready_fixture()
+    return ReviewNeededResponse(
+        status="review_needed",
+        request_id=ready.request_id,
+        draft=ready.draft,
+        character_count=ready.character_count,
+        sources=ready.sources,
+        evidence=ready.evidence,
+        review_summary="생성 당시 기준 미충족 · 직접 검토 필요",
+        review_issues=(
+            ReviewNotice(
+                criterion_id="question_coverage",
+                reason="문항에 대한 답변이 부족합니다.",
+                instruction="사용자 경험에 근거해 답변을 보완하세요.",
+            ),
+        ),
+        usage=ready.usage,
     )
 
 
@@ -129,21 +139,18 @@ def test_missing_input_fixture_preserves_existing_wire_fields() -> None:
     assert parsed.reason_code == "EXPERIENCE_INSUFFICIENT"
 
 
-@pytest.mark.parametrize("code", ["QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"])
-def test_quality_failure_fixture_does_not_request_invented_information(
-    code: Literal["QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"],
-) -> None:
+def test_review_needed_fixture_includes_latest_draft_and_issue() -> None:
     # Given
-    response = quality_failure_fixture(code)
+    response = review_needed_fixture()
     # When
     parsed = DraftResponse.validate_json(response.model_dump_json(by_alias=True))
     # Then
-    assert isinstance(parsed, ErrorResponse)
-    assert parsed.code == code
-    assert set(parsed.model_dump(by_alias=True)) == {"status", "requestId", "message", "code"}
+    assert isinstance(parsed, ReviewNeededResponse)
+    assert parsed.draft == response.draft
+    assert parsed.review_issues[0].criterion_id == "question_coverage"
 
 
-def test_quality_failure_cannot_be_disguised_as_missing_information() -> None:
+def test_review_needed_cannot_be_disguised_as_missing_information() -> None:
     # Given
     payload = needs_input_fixture().model_dump(by_alias=True)
     payload["reasonCode"] = "QUALITY_CHECK_FAILED"
@@ -152,9 +159,9 @@ def test_quality_failure_cannot_be_disguised_as_missing_information() -> None:
         _ = DraftResponse.validate_python(payload)
 
 
-def test_quality_failure_cannot_add_missing_fields() -> None:
+def test_review_needed_cannot_add_top_level_missing_fields() -> None:
     # Given
-    payload = quality_failure_fixture().model_dump(by_alias=True)
+    payload = review_needed_fixture().model_dump(by_alias=True)
     payload["missingFields"] = ["experience"]
     # When / Then
     with pytest.raises(ValidationError):

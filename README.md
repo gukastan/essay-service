@@ -4,7 +4,7 @@
 
 현재 루트의 완료된 Next.js v1과 TypeScript ESSAY-9 공통 기반을 보존한다. 제공된 LangGraph·MCP·LLM·Vue·FastAPI 프로젝트의 소스를 assignment/에 복사하고 ESSAY-18 원본 실행, ESSAY-19 Python 공통 기반, ESSAY-10 기업·직무 조사를 확인했다. [기준선](docs/qa-evidence/assignment/baseline/verification.md)·[기반](docs/qa-evidence/assignment/foundation/verification.md)·[조사](docs/qa-evidence/assignment/research/verification.md) 보고서는 각 검증의 범위를 구분한다. 네이버·카카오·OpenAI·Anthropic의 공식 출처 목록과 실제 공고/사용자 자료 대조가 있다. 분석·작성·검토의 독립 역할과 새 Vue 화면을 구현했고 ESSAY-14에서 LangGraph·자기소개서 API까지 연결했다.
 
-ESSAY-21의 [공통 계약](docs/FLOW_CONTRACTS.md)을 기준으로 ESSAY-11 분석·ESSAY-12 작성·ESSAY-13 평가·ESSAY-15 화면을 [병렬 개발](docs/PARALLEL_DEVELOPMENT.md)하고 역할별로 검증했다. ESSAY-14는 네 역할을 통제 모델과 실제 stdio MCP로 연결했고 ESSAY-16은 실제 Chrome→Vue→API→LangGraph 전체 경로를 통제 입력으로 회귀 검증했다. [QA 기록](docs/qa-v2.md)에 테스트·화면 증거와 한계를 모았다. 다음 순서는 실제 QA17 → 제출20이다. 내부 전략의 정교화는 후속 설계다. [전환 계획](docs/ASSIGNMENT_MIGRATION.md)에 재사용/변경 대응과 여섯 제출물이 있다.
+ESSAY-21의 [공통 계약](docs/FLOW_CONTRACTS.md)을 기준으로 ESSAY-11 분석·ESSAY-12 작성·ESSAY-13 평가·ESSAY-15 화면을 [병렬 개발](docs/PARALLEL_DEVELOPMENT.md)하고 역할별로 검증했다. ESSAY-14는 네 역할을 통제 모델과 실제 stdio MCP로 연결했고 ESSAY-16은 실제 Chrome→Vue→API→LangGraph 전체 경로를 통제 입력으로 회귀 검증했다. 작성 후 품질 기준 미충족 시에도 마지막 초안과 미충족 사유를 제공하도록 결과 처리를 변경했고 [노드 명세](docs/NODE_MIN_SPEC.md)·[PRD](docs/PRD_V2.md)·[기술 설계](docs/TECH_DESIGN_V2.md)에 반영했다. [QA 기록](docs/qa-v2.md)에 테스트·화면 증거와 한계를 모았다. 다음 순서는 실제 QA17 → 제출20이다. 내부 전략의 정교화는 후속 설계다. [전환 계획](docs/ASSIGNMENT_MIGRATION.md)에 재사용/변경 대응과 여섯 제출물이 있다.
 
 ## 문서
 

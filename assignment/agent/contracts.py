@@ -46,8 +46,8 @@ from agent.contract_flow_plan import WritingPlan as WritingPlan
 from agent.contract_flow_route import FlowRoute as FlowRoute
 from agent.contract_flow_route import MissingInputTerminal as MissingInputTerminal
 from agent.contract_flow_route import OperationalTerminal as OperationalTerminal
-from agent.contract_flow_route import QualityTerminal as QualityTerminal
 from agent.contract_flow_route import ReadyTerminal as ReadyTerminal
+from agent.contract_flow_route import ReviewNeededTerminal as ReviewNeededTerminal
 from agent.contract_flow_route import TerminalReason as TerminalReason
 from agent.contract_input import (
     DraftRequest as DraftRequest,
@@ -84,6 +84,12 @@ from agent.contract_results import (
 )
 from agent.contract_results import (
     ResearchResult as ResearchResult,
+)
+from agent.contract_results import (
+    ReviewNeededResponse as ReviewNeededResponse,
+)
+from agent.contract_results import (
+    ReviewNotice as ReviewNotice,
 )
 from agent.contract_results import (
     ReviewResult as ReviewResult,

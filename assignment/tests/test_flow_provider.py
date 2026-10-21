@@ -7,8 +7,8 @@ from agent.contracts import (
     FlowAnalysisResult,
     MissingInputTerminal,
     OperationalTerminal,
-    QualityTerminal,
     ReadyTerminal,
+    ReviewNeededTerminal,
     WritingPlan,
 )
 from agent.provider_schema import strict_schema
@@ -24,7 +24,7 @@ from tests.wire_fixture import assert_strict_schema
         Evaluation,
         ReadyTerminal,
         MissingInputTerminal,
-        QualityTerminal,
+        ReviewNeededTerminal,
         OperationalTerminal,
     ],
 )

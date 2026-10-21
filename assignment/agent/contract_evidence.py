@@ -80,7 +80,7 @@ class Claim(Contract):
 
 class FitReason(Contract):
     experience_evidence_ids: NonemptyIds
-    job_requirement_ids: NonemptyIds
+    job_requirement_ids: tuple[Text, ...]
     reason: Text
 
 

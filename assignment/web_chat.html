@@ -30,14 +30,16 @@
 </section>
 <section class="panel" aria-labelledby="result-title">
 <h2 id="result-title">02 초안과 근거</h2>
-<div v-if="notice" class="feedback" :role="notice.kind === 'error' ? 'alert' : 'status'">
+<div v-if="notice" class="feedback" :class="notice.kind" :role="notice.kind === 'error' ? 'alert' : 'status'">
 <h3>{{notice.title}}</h3><p>{{notice.message}}</p>
 <template v-if="notice.kind === 'needs_input'"><p>보완할 입력: {{notice.missingFields.map(fieldLabel).join(', ')}}</p><ul><li v-for="q in notice.questions" :key="q">{{q}}</li></ul></template>
-<p v-if="result" class="muted">아래는 이전에 생성한 결과입니다.</p>
+<ul v-if="notice.kind === 'review_needed'"><li v-for="(issue,i) in notice.reviewIssues" :key="i"><strong>{{criterionLabel(issue.criterionId)}}:</strong> {{issue.reason}} {{issue.instruction}}<span v-if="issue.missingFields.length"> 필요한 정보: {{issue.missingFields.map(fieldLabel).join(', ')}}</span></li></ul>
+<p v-if="result && notice.kind !== 'review_needed'" class="muted">아래는 이전에 생성한 결과입니다.</p>
 </div>
 <div v-if="!result" class="empty"><h3>경험을 먼저 들려주세요</h3><p>직접 한 행동과 결과, 배운 점을 구체적으로 적어 주세요. 완성된 초안은 출처와 원문을 함께 확인할 수 있습니다.</p></div>
 <template v-else>
 <p class="status">{{changed ? '편집한 내용 · 수정본 미검토' : result.response.reviewSummary}}</p>
+<p v-if="!result.response.evidence.jobRequirements.length" class="hint">{{result.snapshot.jobPostingText || result.snapshot.jobPostingUrl ? '입력한 직무와 연결되는 공고 요건을 확인하지 못해, 공고 내용은 반영하지 않고 입력한 직무와 경험으로 작성했습니다.' : '확인된 공고 요건 없이 입력한 직무와 경험으로 작성했습니다.'}}</p>
 <label for="draft">편집 가능한 초안</label>
 <textarea id="draft" v-model="edited" :disabled="busy" rows="18" @input="copied = ''" aria-describedby="draft-count"></textarea>
 <p id="draft-count" class="hint">{{editedCount.toLocaleString()}}자 / 권장 801~1,000자 · 공백 포함</p>

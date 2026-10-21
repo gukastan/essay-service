@@ -11,7 +11,13 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from agent.contract_input import Contract
-from agent.contracts import DraftRequest, ErrorResponse, NeedsInputResponse, ReadyResponse
+from agent.contracts import (
+    DraftRequest,
+    ErrorResponse,
+    NeedsInputResponse,
+    ReadyResponse,
+    ReviewNeededResponse,
+)
 from agent.deps import WorkflowDeps
 from agent.essay_graph import EssayWorkflow
 from agent.mcp_client import MCPClient
@@ -36,16 +42,16 @@ class Runtime:
     instance_id: UUID
 
 
-def response_status(result: ReadyResponse | NeedsInputResponse | ErrorResponse) -> int:
+def response_status(
+    result: ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse,
+) -> int:
     match result.status:
-        case "ready" | "needs_input":
+        case "ready" | "review_needed" | "needs_input":
             return 200
         case "error":
             match result.code:
                 case "INVALID_INPUT":
                     return 400
-                case "LENGTH_VALIDATION_FAILED" | "QUALITY_CHECK_FAILED":
-                    return 422
                 case "CONFIG_ERROR":
                     return 500
                 case "TIMEOUT":
@@ -86,7 +92,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             status_code=400, content=response.model_dump(mode="json", by_alias=True)
         )
 
-    @app.post("/api/drafts", response_model=ReadyResponse | NeedsInputResponse | ErrorResponse)
+    @app.post(
+        "/api/drafts",
+        response_model=ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse,
+    )
     async def drafts(payload: DraftRequest) -> JSONResponse:
         if runtime is None:
             result = ErrorResponse(

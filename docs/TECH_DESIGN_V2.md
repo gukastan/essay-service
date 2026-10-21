@@ -11,7 +11,7 @@
 
 assignment/agent/contract_input.py·contract_evidence.py·contract_results.py를 contracts.py에서 내보낸다. state.py·deps.py는 새 요청 상태/예산과 타입 있는 의존성, budget.py·limits.py는 원자 예약/취소를 제공한다. openai_llm.py·provider_schema.py·response_wire.py는 strict wire 스키마와 SDK 응답을 검증한다. research.py·mcp_client.py·mcp_server.py는 실제 stdio 후보 조사 경계다. web/foundation.mjs는 LF/코드 포인트와 단일 HTTP 요청/취소 기반이다.
 
-검증 환경은 CPython3.12.15, FastAPI0.150.0, LangGraph1.2.16, FastMCP4.1.1, MCP2.3.0, OpenAI3.35.1, Pydantic2.14.1, AnyIO4.15.1, uvicorn0.54.0이다. 전체 잠금은 assignment/uv.lock을 따른다. Python SDK는 httpx2를 사용한다. 기본 서버는 SQLite/legacy graph/chat을 열지 않고 /health에서 pipelineAvailable:true를 반환한다. /api/drafts는 입력 오류400, 보완200, 품질 실패422, 운영 오류500/502/504, 검토 통과200을 구분한다.
+검증 환경은 CPython3.12.15, FastAPI0.150.0, LangGraph1.2.16, FastMCP4.1.1, MCP2.3.0, OpenAI3.35.1, Pydantic2.14.1, AnyIO4.15.1, uvicorn0.54.0이다. 전체 잠금은 assignment/uv.lock을 따른다. Python SDK는 httpx2를 사용한다. 기본 서버는 SQLite/legacy graph/chat을 열지 않고 /health에서 pipelineAvailable:true를 반환한다. /api/drafts는 입력 오류400, 작성 전 경험 부족200, 작성 후 기준 충족/미충족200, 운영 오류500/502/504를 구분한다.
 
 모델 SDK/MCP는 lifespan마다 한 번 생성하며 요청마다 상태/예산을 새로 만든다. stdio keep_alive=false와 shielded 명시적 close로 자식을 정리한다. domain 입력과 _meta를 분리하며 표준 프로토콜 메타데이터5개만 제외한 후 내부 메타데이터를 검증한다. MCP REQUEST_TIMEOUT도 예산을 정지한다. 공식 OpenAI endpoint를 명시하고 inherited tracing을 비활성화한다. [ESSAY-19 보고서](qa-evidence/assignment/foundation/verification.md)에 실제 결과가 있다.
 
@@ -19,7 +19,7 @@ assignment/agent/contract_input.py·contract_evidence.py·contract_results.py를
 
 제공된 Vue web_chat.html → FastAPI web_demo_server.py 프록시 → server.py → Python LangGraph agent/essay_graph.py 구조를 활용한다. 기존 장애 진단용 agent/graph.py는 원본 기준선으로 보존한다. 모델/MCP 연결은 deps.py와 lifespan 구조로 주입하고 상태·예산은 요청마다 새로 생성한다. 모델 역할은 조사·분석·작성·검토의 네 가지이며 같은 기반 모델을 사용할 수 있다. A~J는 논리적 책임으로 모델 호출과 일대일 대응하지 않는다. D의 최소 계획 조립과 G의 분기는 코드로 처리하며 호출 수·종료를 통제한다.
 
-2026-10-21 현재 `nodes/research.py`(조사), `nodes/analyze.py`·`analysis_evidence.py`(B/C), `nodes/plan.py`·`write.py`·`revise.py`(D/E/I), `nodes/review.py`·`validate_evidence.py`(F)를 `essay_collect.py`·`essay_route.py`·`essay_graph.py`가 연결한다. Vue는 `web_chat.html`·`web_app.js`·`web_contract.js`·`web_style.css`이고 별도 `web_demo_server.py` 프록시는 기본 Python 서버 포트8001로 POST JSON을 전달한다. 역할 통합은 통제 모델과 실제 stdio MCP로, Chrome→Vue→프록시→API→그래프 전체 회귀는 통제 모델로 검증했다. 실제 유료 모델을 통한 자기소개서 품질은 아직 확인하지 않았다.
+2026-10-21 현재 `nodes/research.py`(조사), `nodes/analyze.py`·`analysis_evidence.py`(B/C), `nodes/plan.py`·`write.py`·`revise.py`(D/E/I), `nodes/review.py`·`validate_evidence.py`(F)를 `essay_collect.py`·`essay_route.py`·`essay_graph.py`가 연결한다. Vue는 `web_chat.html`·`web_app.js`·`web_contract.js`·`web_style.css`이고 별도 `web_demo_server.py` 프록시는 기본 Python 서버 포트8001로 POST JSON을 전달한다. 역할 통합은 통제 모델과 실제 stdio MCP로, Chrome→Vue→프록시→API→그래프 전체 회귀는 통제 모델로 검증했다. 선택 공고가 없는 가상 회사 입력의 실제 유료 모델 초안 1건도 확인했으며 전체 자기소개서 품질·작성자 사실성 승인은 아직 완료하지 않았다.
 
 ```mermaid
 flowchart TD
@@ -27,20 +27,19 @@ flowchart TD
   A --> C[사용 가능한 근거 정리]
   B --> D[작성 전략과 구성 결정]
   C --> D
-  B -->|필수 정보 부족| J[보완 필요 결과]
-  C -->|필수 정보 부족| J
+  B -->|필수 개인 경험 부족| N[추가 정보 필요 · 초안 없음]
+  C -->|필수 개인 경험 부족| N
   D --> E[초안 작성]
   E --> F[검증 및 평가]
   F --> G{다음 행동 결정}
-  G -->|1. 모든 필수 기준 충족| H[최종 결과]
-  G -->|2. 필수 정보 부족| J
-  G -->|3. 정보 충분 · 수정 한도 도달| J
+  G -->|1. 모든 필수 기준 충족| H[최종 결과 · 기준 충족]
+  G -->|2. 작성 후 필수 정보 부족 또는 수정 한도 도달| U[최종 결과 · 기준 미충족]
   G -->|4. 수정 가능 · 경험/주장/구성 변경| D
   G -->|5. 수정 가능 · 문장 수정| I[부분 수정]
   I --> F
 ```
 
-모든 단계의 제공자 실패·시간 초과·취소·형식 오류는 도표 밖의 공통 오류/취소 경로로 종료한다. J는 화면상 종료 지점이며 정보 부족은 needs_input 200, 정보 충분·수정 한도 소진은 품질 오류422로 구분한다. D 재계획과 I 부분 수정은 같은 작성 역할의 두 번째 호출을 사용하고 수정 기회1회를 공유한다. B/C와 조사는 수정 시 재실행하지 않는다. D 계획의 필수 정보 부족도 J로 종료한다.
+모든 단계의 제공자 실패·시간 초과·취소·형식 오류는 도표 밖의 공통 오류/취소 경로로 종료한다. 작성 전 필수 개인 경험 부족은 needs_input 200, 작성 후 미충족은 마지막 초안을 포함한 review_needed 200이다. D 재계획과 I 부분 수정은 같은 작성 역할의 두 번째 호출을 사용하고 수정 기회1회를 공유한다. B/C와 조사는 수정 시 재실행하지 않는다. D 계획에서 작성 전 필수 개인 경험 부족을 확인해도 needs_input으로 종료한다.
 
 ## 2. 역할과 구조화 출력
 
@@ -51,7 +50,7 @@ flowchart TD
 | 작성(E/I) | 원래 네 입력, 검증된 근거, D의 작성 계획, 수정 시 지적·허용 범위·버전 | DraftEnvelope: version, planVersion, draft, paragraphs(문단 ID/범위), claimMap, fitReasons |
 | 검토(F) | 최신 초안/계획, claimMap, 원문, 회사 근거, 문항 요구, 코드 검사 | Evaluation: draftVersion, planVersion, criteria(7개 필수 기준), issues(기준/주장/문단·위치·scope·instruction·missingFields) |
 
-조사 결과와 경험 분석 결과는 서로 다른 상태 필드에 기록한다. 합류는 두 결과가 모두 도착했을 때 한 번만 진행한다. 한 분기가 실패하거나 보완이 확정되면 다른 분기에서 새 작업을 시작하지 않으며 가능한 진행 작업을 취소한다.
+조사 결과와 경험 분석 결과는 서로 다른 상태 필드에 기록한다. 합류는 두 결과가 모두 도착했을 때 한 번만 진행한다. 조사 출처가 없거나 직무가 다른 공고만 있으면 조사 결과를 빈 검증 근거로 기록하고 개인 경험·입력 직무를 기준으로 계속 작성한다. 한 분기가 운영 오류이거나 필수 개인 경험 부족이 확정되면 다른 분기에서 새 작업을 시작하지 않으며 가능한 진행 작업을 취소한다.
 
 현재 공통 상태는 requestId, inputSnapshot, research, analysis, draft, claimMap, deterministicChecks, review, revisionCount(0|1), usage, deadline, outcome을 가진다. ESSAY-21은 flow_analysis(요구사항·개인 근거), plan(WritingPlan), draft_envelope(DraftEnvelope), evaluation(EvaluationBinding), route, terminal_reason을 추가했다. 요구사항은 flow_analysis.requirements, 계획/초안 버전은 각 envelope가 단독 소유한다. D는 유효 근거·주장·요구사항 대응·문단 목적/순서/분량을 짧은 구조화 계획으로 조립하며 숨은 추론을 저장하지 않는다. flow_state.py가 원문·근거 종류/ID·문단/주장 범위와 버전을 대조한다. F 호출 직전 포착한 요청/계획/초안을 EvaluationBinding에 묶고 ready 직전에 require_ready_evaluation으로 다른 요청·버전·동일 버전 내용 변경·분량 실패를 차단한다. budget.reserve_revision은 D/I 공통 수정 기회를 한 번만 예약하며 RevisionReservationError를 기존 운영 예산 오류와 분리한다. ESSAY-14가 G의 우선순위, H/J의 응답, FastAPI 상태 코드를 연결했다.
 
@@ -83,7 +82,7 @@ FastAPI 요청 예산이 MCP 전송 전에 모델1/내장용량2를 원자 예�
 - `source_http.py`는 HTTP(S)와 포트80/443만 허용한다. 공개 DNS 응답 전체와 모든 리다이렉트를 검사해 loopback·사설망·link-local·메타데이터/전환 주소를 차단한다. 실제 연결도 검사한 숫자 IP로 고정하고 원래 Host/TLS SNI·인증서 검증을 유지한다. 환경 proxy·자동 redirect·자동 재시도를 사용하지 않는다.
 - 직접 읽기는 요청3회·페이지당1MiB·검증기가 읽는 정리 텍스트 합계12000코드포인트로 제한한다. 리다이렉트도 요청 수에 포함한다. 내장 검색이 내부에서 읽는 페이지 수·바이트는 앱에서 강제할 수 없으며 이 상한의 검증 대상으로 간주하지 않는다. 인증 우회 없이 접근 불가를 처리한다.
 - 페이지 속 명령과 사용자 자료는 신뢰하지 않는 데이터다. 검색 결과로 실행 도구·예산·비밀 접근 권한을 바꾸지 않는다.
-- 기업 식별 모호 또는 직무 근거 없음 → needs_input. 인재상만 없음 → 생략. 제공자 장애/파싱 실패 → error. 사용자 제공 본문만 활용하면 그 한계를 명시한다.
+- 기업 식별 모호 또는 확인된 직무 요건 없음 → 조사 근거 없이 작성하며, 회사 사실과 특정 공고 요건을 만들어 넣지 않는다. 인재상만 없음 → 생략. 제공자 장애/파싱 실패 → error. 사용자 제공 본문만 활용하면 그 한계를 명시한다.
 
 본문 추출은 실행 가능한 페이지 스크립트를 실행하지 않고 표준 JobPosting JSON-LD를 자료로 파싱한다. 네이버 `/rcrt/view.do`의 단일 `card_wrap`에서 `card_title`이 동일 JobPosting 제목과 일치하고, 그 카드의 `detail_box` 안 `What You'll Do`/`Required Skills` 구역에 실제 인용이 있을 때 서버가 해당 원문 구역을 발췌로 만든다. 모델이 번역한 메타데이터를 출처로 승격하지 않는다. 개별 업무 항목에 직무명/제목을 반복시킬 필요가 없다. 다른 형식은 기존 엄격한 인용 검사를 통과하거나 보완으로 끝난다. 직무와 고용주는 같은 공고에 연결돼야 한다. 일반 문화 글·전역 내비게이션·회사 필터는 공고 증거가 아니다. 사용자 본문은 서버 소유 `user-posting` source로 만들며 실제 원문에 있는 직무 요건만 수용한다. 짧은 인용은 같은 LF 줄의 요청 직무명·명시적 요건 표시·콜론 뒤 값 전체와 정확히 같아야 한다. 부정/조건을 잘라내거나 다른 줄의 직무명을 빌려올 수 없다. 사용자 원문과 인용의 공백은 그대로 보존하며, 공식 페이지 인용만 연속 공백을 정리해 대조한다. 서버의 확인 시각을 기록하고 후보가 지어낸 게시/마감일은 전달하지 않는다. 제한된 명시적 상충 검사와 원문 일치 검사는 모든 의미적 모순이나 현재 모집 여부의 증명이 아니다. 최종 수행 결과는 [ESSAY-10 보고서](qa-evidence/assignment/research/verification.md)에 기록한다.
 
@@ -91,7 +90,7 @@ FastAPI 요청 예산이 MCP 전송 전에 모델1/내장용량2를 원자 예�
 
 | 항목 | 상한/규칙 |
 | --- | --- |
-| 모델 호출 | 정상 4회(조사·분석·작성·검토), 수정 포함 최대 6회 |
+| 모델 호출 | 조사 생략 시 정상 3회(분석·작성·검토), 조사 시 정상 4회, 수정 포함 최대 6회 |
 | 논리 노드 배치 | B/C 개인 근거는 분석1회 공유, D 계획 조립·G 분기는 코드, E/I는 같은 작성 역할 |
 | 모델 호출당 | 최대 30초, 남은 요청/단계 시간보다 길게 설정하지 않음 |
 | 조사 전체 | 검색·읽기·모델 포함 최대 45초 |
@@ -133,10 +132,11 @@ D를 별도 모델로 만드는 정책은 이번 범위에 없다. 별도 호출
 
 최종 JSON 응답:
 - `ready`: requestId, draft, characterCount, sources, evidence(필요한 근거·claimMap·fitReasons), reviewSummary("생성 당시 검토 통과"), usage(modelCalls, revisionCount). 모델의 숨은 추론은 반환하지 않는다.
-- `needs_input`: requestId, message, missingFields, questions, reasonCode. 초안 없음, 길이 규칙 미적용. 기업/직무 모호, 경험 부족, 근거 부족을 구분한다.
+- `review_needed`: requestId, 마지막 draft, characterCount, sources, evidence, reviewSummary, reviewIssues(미충족 criterionId·reason·instruction·실제 부족 필드), usage. 평가한 초안/계획 버전 일치와 내용 불변을 확인한다. 1~4,000자 초안도 반환하되 801~1,000자 기준을 통과했다고 표시하지 않는다.
+- `needs_input`: requestId, message, missingFields, questions, reasonCode. 작성 전 필수 개인 경험 부족에만 사용하며 초안이 없다. 공고·외부 조사 자료 부족은 해당하지 않는다.
 - `error`: requestId, code, message. 초안·API 키·원문·제공자 원문 오류 없음.
 
-상태 코드: ready/needs_input 200, 입력 오류 400(FastAPI 기본 요청 검증 422도 400으로 정규화), 수정 후 길이/품질 실패 422(`LENGTH_VALIDATION_FAILED`/`QUALITY_CHECK_FAILED`), 설정 오류 500, 모델/검색 응답 오류 502, 시간 초과 504. J의 필수 정보 부족에는 실제 missingFields/questions를 제공하고, 정보 충분·수정 한도 소진에는 이를 지어내지 않고422로 끝낸다. 파싱/운영 오류를 J의 정보 부족이나 품질 실패로 바꾸지 않는다.
+상태 코드: ready/review_needed/needs_input 200, 입력 오류 400(FastAPI 기본 요청 검증 422도 400으로 정규화), 설정 오류 500, 모델/검색 응답 오류 502, 시간 초과 504. 작성 후 정보 부족 또는 수정 한도 소진은 마지막 초안·평가 지적을 반환하며 입력 질문을 지어내지 않는다. 파싱/운영 오류를 정보 부족이나 품질 미충족으로 바꾸지 않는다.
 
 루트 Next.js와 assignment는 독립 실행한다. Next.js /api/v2/drafts·DRAFT_PIPELINE_VERSION 추가 계획은 대체됐으며 기존 v1 기본값을 바꾸지 않는다. assignment/의 run.sh·빈 환경설정 예시·README는 ESSAY-19에서 실제 설치·실행을 확인했다. 전체 제품 시연·제출 검증은 ESSAY-20에서 완성한다. 원본의 SQLite 대화 저장과 외부 tracing은 제출 경로에서 기본 비활성화하고 전체 프롬프트를 응답에 포함하지 않는다.
 
@@ -145,9 +145,9 @@ D를 별도 모델로 만드는 정책은 이번 범위에 없다. 별도 호출
 ## 7. 검토·분량·실패 판정
 
 1. F는 최신 초안의 계약/근거·개인 사실·회사 사실·필수 문항·직무 연결·분량·해석/계획 구분을 모두 평가한다. 모델 pass는 코드 검사 실패를 덮을 수 없다.
-2. G1: 모든 필수 기준 및801~1,000자 통과 → H ready. 수정 횟수1에서도 먼저 통과를 확인한다.
-3. G2: 필수 정보 부족 → J needs_input. B/C에서 확정하면 작성 전에 종료한다.
-4. G3: 정보 충분·미통과·revisionCount=1 → J 품질/길이 실패422.
+2. G1: 모든 필수 기준 및801~1,000자 통과 → 최종 결과 ready. 수정 횟수1에서도 먼저 통과를 확인한다.
+3. G2: 작성 전 필수 개인 경험 부족 → needs_input(초안 없음). 작성 후 모델이 부족 정보를 지적하면 마지막 초안과 해당 지적을 review_needed로 반환한다.
+4. G3: 미통과·revisionCount=1 → 마지막 초안과 미충족 기준을 review_needed 200으로 반환한다.
 5. G4: 정보 충분·revisionCount=0·경험/주장/구성 변경 필요 → 공통 수정 기회 예약 → D/E → F.
 6. G5: 정보 충분·revisionCount=0·허용 문장 변경만 필요 → 같은 수정 기회 예약 → I → F. 지적이 섞이면 G4를 우선한다.
 7. I는 계획·사실 원문을 고정하고 문단/주장 ID와 버전이 유효한 범위만 수정한다. 수정 후 전체 초안과 claimMap을 재평가한다. E/I 이전의 검토 결과는 재사용하지 않는다.
@@ -157,7 +157,7 @@ D를 별도 모델로 만드는 정책은 이번 범위에 없다. 별도 호출
 
 ## 8. 화면과 관찰 정보
 
-공고 URL/본문은 선택 항목으로 제공한다. 요청 당시 입력 스냅샷과 결과가 함께 유지되고, 실패/보완 시 현재 입력과 이전 결과를 보존한다. 생성 결과에 공식/사용자 제공 출처와 확인일, 직무 연결 이유를 표시한다. 링크는 안전한 HTTP(S)만 노출한다.
+공고 URL/본문은 선택 항목으로 제공한다. 요청 당시 입력 스냅샷과 결과가 함께 유지된다. ready와 review_needed 모두 이번 초안을 표시하며, review_needed에는 통과로 오인되지 않는 상태와 미충족 기준·사유·수정 안내를 표시한다. needs_input/운영 오류에서만 이전 결과를 보존해 구분한다. 생성 결과에 공식/사용자 제공 출처와 확인일, 직무 연결 이유를 표시한다. 링크는 안전한 HTTP(S)만 노출한다.
 
 사용자가 초안을 수정하면 글자 수는 즉시 갱신하고 검토 표시를 “생성 당시 결과 기준, 수정 내용 미검토”로 바꾼다. 자동으로 모델을 재호출하지 않는다. 복사는 현재 편집 텍스트를 사용한다.
 

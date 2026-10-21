@@ -31,12 +31,7 @@ def build_plan(
         version = 2
     elif state.get("plan") is not None or budget.snapshot().revision_count:
         raise WritingError("INVALID_REVISION")
-    if (
-        context.analysis.gaps
-        or not context.analysis.experience_evidence
-        or context.research.resolved_company is None
-        or not context.research.job_requirements
-    ):
+    if context.analysis.gaps or not context.analysis.experience_evidence:
         raise WritingError("MISSING_EVIDENCE")
     candidates = select_candidates(context, binding)
     if any(

@@ -5,11 +5,17 @@ import httpx2
 import pytest
 from pydantic import JsonValue, TypeAdapter
 
-from agent.contracts import DraftRequest, ErrorResponse, NeedsInputResponse, ReadyResponse
+from agent.contracts import (
+    DraftRequest,
+    ErrorResponse,
+    NeedsInputResponse,
+    ReadyResponse,
+    ReviewNeededResponse,
+)
 from agent.essay_graph import EssayWorkflow
 from agent.settings import Settings
 from server import create_app
-from tests.test_flow_handoff import ready_fixture
+from tests.test_flow_handoff import ready_fixture, review_needed_fixture
 
 
 @pytest.mark.anyio
@@ -18,7 +24,7 @@ from tests.test_flow_handoff import ready_fixture
     [
         ("ready", 200),
         ("needs", 200),
-        ("quality", 422),
+        ("quality", 200),
         ("config", 500),
         ("model", 502),
         ("timeout", 504),
@@ -35,7 +41,7 @@ async def test_post_drafts_maps_typed_outcomes_without_leaking_inputs(
         question="경험을 설명하세요.",
         experience="비공개 경험을 설명했다.",
     )
-    result: ReadyResponse | NeedsInputResponse | ErrorResponse
+    result: ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse
     match kind:
         case "ready":
             result = ready_fixture()
@@ -49,12 +55,7 @@ async def test_post_drafts_maps_typed_outcomes_without_leaking_inputs(
                 reason_code="EXPERIENCE_INSUFFICIENT",
             )
         case "quality":
-            result = ErrorResponse(
-                status="error",
-                request_id=uuid4(),
-                message="품질 기준을 충족하지 못했습니다.",
-                code="QUALITY_CHECK_FAILED",
-            )
+            result = review_needed_fixture()
         case "config":
             result = ErrorResponse(
                 status="error",
@@ -79,7 +80,7 @@ async def test_post_drafts_maps_typed_outcomes_without_leaking_inputs(
 
     async def fake_run(
         _self: EssayWorkflow, _request: DraftRequest
-    ) -> ReadyResponse | NeedsInputResponse | ErrorResponse:
+    ) -> ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse:
         return result
 
     monkeypatch.setattr(EssayWorkflow, "run", fake_run)

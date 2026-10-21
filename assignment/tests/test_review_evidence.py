@@ -120,9 +120,7 @@ def test_length_uses_code_points_when_at_boundaries(length: int) -> None:
 
 
 @pytest.mark.parametrize("missing", [True, False])
-def test_job_failure_distinguishes_missing_information_from_missing_connection(
-    *, missing: bool
-) -> None:
+def test_job_failure_requires_connection_but_not_optional_posting(*, missing: bool) -> None:
     # Given
     context = review_input()
     context = context.model_copy(
@@ -136,8 +134,8 @@ def test_job_failure_distinguishes_missing_information_from_missing_connection(
     result = check_evidence(context)
     # Then
     issue = next(item for item in result.issues if item.criterion_id == "job_fit")
-    assert issue.scope == ("missing_info" if missing else "plan_or_claim")
-    assert bool(issue.missing_fields) == missing
+    assert issue.scope == "plan_or_claim"
+    assert issue.missing_fields == ()
 
 
 @pytest.mark.parametrize("attack", ["unmapped", "disguised", "company", "source_type"])

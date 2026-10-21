@@ -284,5 +284,5 @@ async def test_essay_live_case(sample: dict[str, str], monkeypatch: pytest.Monke
     target = ROOT / f"docs/qa-evidence/assignment/live/{kind}-{sample['id']}-{run_stamp}.json"
     target.parent.mkdir(parents=True, exist_ok=True)
     _ = target.write_text(json.dumps(output, ensure_ascii=False, indent=2) + "\n")
-    expected = "ready" if sample is SUPPLEMENTAL else "needs_input"
+    expected = "needs_input" if sample["id"] == "insufficient" else "ready"
     assert response.status == expected, f"Expected {expected}: {target}"

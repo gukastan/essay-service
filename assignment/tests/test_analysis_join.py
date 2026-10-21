@@ -48,7 +48,7 @@ def test_analysis_join_requires_both_branches_and_keeps_sources_separate() -> No
 
 
 @pytest.mark.parametrize("missing", ["company", "job"])
-def test_analysis_join_core_gaps_stop(missing: str) -> None:
+def test_analysis_join_allows_unverified_optional_company_context(missing: str) -> None:
     source = request()
     company = research()
     changes = {"resolved_company": None} if missing == "company" else {"job_requirements": ()}
@@ -56,9 +56,9 @@ def test_analysis_join_core_gaps_stop(missing: str) -> None:
     result = AnalysisJoin(source, uuid4()).run(
         AnalysisSuccess(result=analysis(source), usage=None), company
     )
-    assert result is not None
-    assert not isinstance(result, EvidenceBundle)
-    assert result.status == "needs_input"
+    assert isinstance(result, EvidenceBundle)
+    assert result.analysis == analysis(source)
+    assert result.research == company.result
 
 
 @pytest.mark.parametrize(("identifier", "source_id"), [("e1", "s1"), ("j1", "absent")])

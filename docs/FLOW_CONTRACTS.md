@@ -17,8 +17,8 @@ ESSAY-11·12·13·15의 독립 역할/화면 구현·검증을 완료했고 ESSA
 | ESSAY-11 B/C | FlowRequirement, FlowAnalysisResult | requirements·experienceEvidence·gaps 생성과 원문 대조 |
 | ESSAY-12 D/E/I | WritingPlan, PlanClaim, PlanParagraph, DraftEnvelope, ParagraphSpan | 계획 조립·본문·부분 수정. 의미 전략은 해당 티켓에서 구체화 |
 | ESSAY-13 F | Evaluation, CriterionResult, EvaluationIssue | 모든 필수 기준의 실제 평가와 수정 범위 판정 |
-| ESSAY-14 G/H/J | FlowRoute, TerminalReason, EvaluationBinding | 분기 우선순위·호출 연결·최종 HTTP 응답 조립 |
-| ESSAY-15 Vue | 기존 DraftResponse와 합성 응답 fixture | ready/needs_input/error 화면. 내부 제어 계약을 HTTP 응답으로 오인하지 않음 |
+| ESSAY-14 다음 행동/최종 결과 | FlowRoute, TerminalReason, EvaluationBinding | 분기 우선순위·호출 연결·최종 HTTP 응답 조립 |
+| ESSAY-15 Vue | DraftResponse와 합성 응답 fixture | ready/review_needed/needs_input/error 화면. 내부 제어 계약을 HTTP 응답으로 오인하지 않음 |
 
 7개 필수 criterionId는 `contract_evidence`, `user_factuality`, `company_factuality`, `question_coverage`, `job_fit`, `length`, `expression_kind`다. 누락·중복 결과, 실패 기준과 지적의 불일치를 거부한다. issue.scope는 `missing_info | plan_or_claim | wording`이며 wording은 위치가 필요하고 missing_info에만 missingFields가 허용된다.
 
@@ -39,10 +39,10 @@ G는 D/I 진입 **전에** `await budget.reserve_revision("D" 또는 "I")`를 �
 
 `RevisionReservationError("REVISION_EXHAUSTED" | "INVALID_REVISION_ROUTE")`는 수정 제어 오류다. 잘못된 경로는 기회를 소비하지 않는다. 기존 `ExecutionBudgetError`의 LIMIT_EXCEEDED/DEADLINE_EXCEEDED/CANCELLED는 유지하며 기존 조사 오류 어댑터에 수정 오류를 전달하지 않는다.
 
-TerminalReason은 ready(H), needs_input(J), quality_failure(J), operational_error를 구별한다. 정보 부족은 기존 missingFields/questions/reasonCode, 품질 실패는 QUALITY_CHECK_FAILED/LENGTH_VALIDATION_FAILED로 표현한다. 실제200/422 매핑·G 우선순위·전체 ready 조립은 ESSAY-14에서 구현했다.
+2026-10-21 결과 처리 변경 계약: 작성 전 필수 개인 경험 부족은 기존 needs_input(초안 없음)을 유지한다. 작성 후 모든 기준을 충족하면 ready, 필수 정보 부족 평가 또는 수정 한도 소진으로 기준을 충족하지 못하면 마지막 초안과 실패 기준·사유·수정 안내를 담은 review_needed 200을 반환한다. 품질 미충족은 더 이상 422 운영 오류가 아니다. 두 초안 결과 모두 평가가 실제 반환 초안/계획에 묶였는지 검사한다. ESSAY-21 최초 계약의 quality_failure(J)는 당시 QA 기록에만 남는다.
 
 ## 병렬 검증 입력
 
-`tests.flow_fixture`의 analysis()/research()/plan()/draft()/evaluation()과 `tests.test_flow_handoff`의 ready_fixture()/needs_input_fixture()/quality_failure_fixture()를 사용한다. 합성900자 초안은 계약 검사용이며 글 품질 증거가 아니다. F는 작성자의 실제 구현 없이 DraftEnvelope fixture로 검증하고, D/E/I는 FlowAnalysisResult/ResearchResult fixture로 검증할 수 있다. 실제 모듈 조합 검증은14, 전체 API/Vue는16, 유료 모델/사실성 승인은17이다.
+`tests.flow_fixture`의 analysis()/research()/plan()/draft()/evaluation()과 `tests.test_flow_handoff`의 ready_fixture()/review_needed_fixture()/needs_input_fixture()를 사용한다. 합성900자 초안은 계약 검사용이며 글 품질 증거가 아니다. F는 작성자의 실제 구현 없이 DraftEnvelope fixture로 검증하고, D/E/I는 FlowAnalysisResult/ResearchResult fixture로 검증할 수 있다. 실제 모듈 조합 검증은14, 전체 API/Vue는16, 유료 모델/사실성 승인은17이다.
 
 정상 모델4회·최대6회·출력18,000토큰·수정1회·모델30초/조사45초/전체180초/클라이언트195초·재시도0을 유지한다. D/G는 코드 단계다. 공통 계약·내보내기·상태·예산·설정은 한 담당자가 수정하며 역할별 파일을 분리한다. 상세 경험 선택·문단 전개·프롬프트·의미 평가 점수/가중치는 후속 설계다.

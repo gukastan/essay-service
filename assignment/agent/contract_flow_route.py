@@ -8,7 +8,7 @@ from agent.contract_flow_evaluation import MissingField
 from agent.contract_flow_plan import FlowText
 from agent.contract_input import Contract
 
-FlowRoute = Literal["H", "J", "D", "I"]
+FlowRoute = Literal["H", "U", "J", "D", "I"]
 
 
 class ReadyTerminal(Contract):
@@ -31,11 +31,10 @@ class MissingInputTerminal(Contract):
     ]
 
 
-class QualityTerminal(Contract):
-    kind: Literal["quality_failure"]
-    route: Literal["J"]
-    reason: Literal["revision_limit", "invalid_plan"]
-    code: Literal["QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"]
+class ReviewNeededTerminal(Contract):
+    kind: Literal["review_needed"]
+    route: Literal["U"]
+    reason: Literal["revision_limit", "missing_required_information"]
 
 
 class OperationalTerminal(Contract):
@@ -53,6 +52,6 @@ class OperationalTerminal(Contract):
 
 
 TerminalReason = Annotated[
-    ReadyTerminal | MissingInputTerminal | QualityTerminal | OperationalTerminal,
+    ReadyTerminal | MissingInputTerminal | ReviewNeededTerminal | OperationalTerminal,
     Field(discriminator="kind"),
 ]

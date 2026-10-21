@@ -8,18 +8,19 @@ import pytest
 from fastapi.testclient import TestClient
 
 import web_demo_server as web
-from agent.contracts import ErrorResponse, NeedsInputResponse, ReadyResponse
-from tests.test_flow_handoff import needs_input_fixture, quality_failure_fixture, ready_fixture
+from agent.contracts import ErrorResponse, NeedsInputResponse, ReadyResponse, ReviewNeededResponse
+from tests.test_flow_handoff import needs_input_fixture, ready_fixture, review_needed_fixture
 
 REQUEST = {"company": "예시", "role": "개발", "question": "경험", "experience": "행동"}
 
 
 @pytest.mark.parametrize(
     ("response", "status"),
-    [(ready_fixture(), 200), (needs_input_fixture(), 200), (quality_failure_fixture(), 422)],
+    [(ready_fixture(), 200), (needs_input_fixture(), 200), (review_needed_fixture(), 200)],
 )
 def test_proxy_preserves_typed_response(
-    response: ReadyResponse | NeedsInputResponse | ErrorResponse, status: int
+    response: ReadyResponse | ReviewNeededResponse | NeedsInputResponse | ErrorResponse,
+    status: int,
 ) -> None:
     observed: list[httpx.Request] = []
 
@@ -46,7 +47,7 @@ def test_proxy_preserves_typed_response(
         (b"not-json", 200),
         (b"{}", 200),
         (ready_fixture().model_dump_json(by_alias=True).encode(), 500),
-        (quality_failure_fixture().model_dump_json(by_alias=True).encode(), 200),
+        (review_needed_fixture().model_dump_json(by_alias=True).encode(), 422),
     ],
 )
 def test_malformed_upstream_is_sanitized(body: bytes, status: int) -> None:
