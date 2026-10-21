@@ -1,10 +1,10 @@
-# Python 실행 기반과 기업·직무 조사
+# Python 자기소개서 역할 모듈과 Vue 화면
 
-후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 계획·평가·분기 공통 계약 확장을 완료했다. [실제 계약·인계](../docs/FLOW_CONTRACTS.md)와 [검증 보고서](../docs/qa-evidence/assignment/flow-foundation/verification.md)를 따른다. 다음 기본 작업은 ESSAY-11이며 분석11·작성12·평가13·화면15를 [병렬 개발](../docs/PARALLEL_DEVELOPMENT.md)할 수 있다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
+후속 구현 기준은 [A~J 노드별 최소 명세](../docs/NODE_MIN_SPEC.md)다. [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) 공통 계약과 [인계](../docs/FLOW_CONTRACTS.md)를 바탕으로 ESSAY-11 B/C 분석, ESSAY-12 D/E/I 작성, ESSAY-13 F 평가, ESSAY-15 Vue 화면을 독립 구현·검증했다. [병렬 개발과 완료 경계](../docs/PARALLEL_DEVELOPMENT.md)를 따른다. D의 최소 계획 조립은 코드로 처리하고 네 모델 역할·정상4회/최대6회·공통 수정1회를 유지한다. 내부 전략 디테일은 후속 설계다.
 
-현재 구현은 Pydantic 계약(요구사항·계획·초안·평가·종료 사유 포함), 근거/버전 참조 검사, 공통 D/I 수정 예약, 요청별 상태·예산, 재사용 모델/MCP 연결, 텍스트·클라이언트 요청 도우미와 실행 기반이다. `GET /health`로 기반 상태를 조회한다. ESSAY-10 기업·직무 조사와 공식 출처 검증을 구현했다. 경험 분석·작성·검토·자기소개서 생성 API `POST /api/drafts` 및 새 Vue 화면은 후속 티켓에서 구현한다. 현재 `/api/drafts`, 원본 `/chat`, `/chat/stream`은 404다. 상태의 `pipelineAvailable: false`는 이 범위를 의미한다.
+현재 구현은 Pydantic 계약, 근거/버전 검사, 공통 D/I 수정 예약, 요청별 상태·예산, 모델/MCP 연결, ESSAY-10 조사, B/C 분석, D/E/I 작성, F 평가, Vue 화면·제한된 프록시, ESSAY-14 LangGraph·FastAPI POST `/api/drafts` 연결이다. [QA](../docs/qa-v2.md)는 통제 입력·실제 stdio MCP·실제 브라우저·유료 모델 검증 범위를 구분한다. `GET /health`는 `pipelineAvailable: true`를 반환한다. 원본 `/chat`, `/chat/stream`은 제품 경로가 아니다.
 
-원본 복사본의 `web_chat.html`, `web_demo_server.py`, `sh/` 실행기는 보존 자료다. 아래 실행 방법은 이 파일들을 실행하지 않는다. `doc/`의 과거 화면과 ESSAY-18 기록은 새 자기소개서 서비스 검증 증거가 아니다. 루트 Next.js와 Downloads 원본은 별도로 보존한다.
+`web_chat.html`·`web_demo_server.py`는 ESSAY-15의 Vue 제품 화면·프록시로 변경했다. 원본 화면 검증은 ESSAY-18 기록에 별도로 남아 있다. `sh/`와 `doc/`의 과거 자료, 루트 Next.js와 Downloads 원본은 별도로 보존한다.
 
 ## Mac 설치
 
@@ -44,7 +44,7 @@ bash run.sh
 
 ## 기반 확인
 
-다른 터미널에서 실행한다. 두 번째 요청은 미구현 API가 정직하게 404를 반환하는지 확인하는 제어 입력이다. 초안 결과가 아니다.
+다른 터미널에서 실행한다. 두 번째 요청은 현재 API의 입력·설정 상태를 확인한다. 아래처럼 유효한 입력과 모델 키가 없으면 `500 CONFIG_ERROR`가 예상된다. 실제 생성은 `assignment/.env` 설정과 근거 있는 경험·공고 자료가 필요하다.
 
 ```bash
 curl --fail --silent http://127.0.0.1:8001/health
@@ -56,9 +56,15 @@ uv run --frozen pytest
 node --test tests/test_foundation.mjs
 ```
 
-health는 `status: "ok"`, `mcpConnected: true`, `pipelineAvailable: false`를 표시한다. 키/모델이 없으면 `modelConfigured: false`다. `instanceId`와 `creationCount`는 여러 health 조회에서 연결을 다시 생성하지 않는지 확인하는 기반 진단이다. `modelConfigured: true`만으로 키 유효성이나 실제 모델 호환성을 입증하지 않는다.
+health는 `status: "ok"`, `mcpConnected: true`, `pipelineAvailable: true`를 표시한다. 키/모델이 없으면 `modelConfigured: false`이며 유효한 초안 요청은 `500 CONFIG_ERROR`로 종료한다. `instanceId`와 `creationCount`는 여러 health 조회에서 연결을 다시 생성하지 않는지 확인하는 기반 진단이다. `modelConfigured: true`만으로 키 유효성이나 실제 모델 호환성을 입증하지 않는다.
 
-브라우저 통합 준비용 `web/foundation.mjs`는 LF 정규화, Unicode 코드 포인트 수/슬라이스/근거 대조와 JSON 요청 도우미를 제공한다. 이모지의 UTF-16 길이나 화면상 글자 묶음 수를 사용하지 않는다. `requestJson`은 응답 본문까지 195초 제한을 적용하고 외부 취소를 연결하며 자동 재시도하지 않는다. 서버 요청 제한은 180초다. 후속 Vue 화면이 이 모듈을 연결하고 반환 JSON의 기능별 계약을 검증해야 한다.
+`web/foundation.mjs`는 기반 요청 도우미이며 새 Vue 화면은 `web_chat.html`·`web_app.js`·`web_contract.js`·`web_style.css`를 사용한다. 화면의 LF/Unicode 코드 포인트 계산, POST JSON, 195초 취소, 응답 계약 검사는 [ESSAY-15 보고서](../docs/qa-evidence/assignment/vue/verification.md)를 따른다. 별도 `web_demo_server.py` 프록시는 190초 전체 제한으로 실제 생성 API에 연결된다. 실제 Chrome→Vue→프록시→API→LangGraph 경로는 통제 모델로 [ESSAY-16 회귀](../docs/qa-evidence/assignment/automated/verification.md)에서 확인했다.
+
+```bash
+# 기반 서버와 다른 터미널에서 Vue 화면·프록시를 실행한다.
+uv run --frozen uvicorn web_demo_server:app --host 127.0.0.1 --port 8600
+# http://127.0.0.1:8600/ 를 연다.
+```
 
 ## 실제 모델 확인과 한계
 
@@ -81,4 +87,4 @@ ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=naver uv run --frozen pytest tests/tes
 ESSAY_LIVE_RESEARCH=1 ESSAY_RESEARCH_CASE=synthetic uv run --frozen pytest tests/test_research_live.py -q -s
 ```
 
-구현·실제 결과·실패 이력·지원 한계는 [조사 검증 보고서](../docs/qa-evidence/assignment/research/verification.md)를 따른다. 아직 자기소개서 전체 생성·사실성·801~1000자 완성품을 검증할 수 없다. 원본 교육용 의도적 실패/재시도·세 번째 강제 통과 흐름은 실행하지 않는다.
+구현·실제 결과·실패 이력·지원 한계는 [조사 검증 보고서](../docs/qa-evidence/assignment/research/verification.md)를 따른다. 전체 그래프/API 연결의 통제 입력 시험은 [ESSAY-14 검증](../docs/qa-evidence/assignment/integration/verification.md), 화면을 포함한 통제 회귀는 [ESSAY-16 검증](../docs/qa-evidence/assignment/automated/verification.md)을 따른다. 실제 유료 모델의 자기소개서 품질·사실성과 기존 5개 샘플 재실행은 ESSAY-17에서 확인한다. 원본 교육용 의도적 실패/재시도·세 번째 강제 통과 흐름은 실행하지 않는다.

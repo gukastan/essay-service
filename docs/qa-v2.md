@@ -1,7 +1,7 @@
 # v2 전환 QA 기록과 계획
 
-- 갱신일: 2026-10-20
-- 현재 검증 완료: 기존 Next.js v1, TypeScript ESSAY-9, ESSAY-18 원본 실행 기준선, ESSAY-19 Python 공통 기반과 작은 실제 모델/MCP 검색 호환 검사, ESSAY-10 조사·공식 출처 검증 및 실제 네이버/합성 공고 검사. 전체 자기소개서 업무 흐름과 품질 검증은 후속 작업.
+- 갱신일: 2026-10-21
+- 현재 검증 완료: 기존 Next.js v1, TypeScript ESSAY-9, ESSAY-18·19·10·21·11·12·13·14·15 및 ESSAY-16 전체 회귀. 실제 Chrome→Vue 프록시→FastAPI→LangGraph 연결은 통제 모델·조사 자료로 확인했다. 실제 모델 품질·사실성은 ESSAY-17 범위다.
 - [백로그](BACKLOG_V2.md) · [전환 계획](ASSIGNMENT_MIGRATION.md) · [v1 최종 QA](qa.md)
 - 기존 실행 증거·원본5개·run-7 승인 기록은 보존하며 새 통과 증거로 재사용하지 않는다.
 - 2026-10-20 [노드별 최소 명세](NODE_MIN_SPEC.md)·작업 문서·Jira를 갱신했다. [문서/Jira 정합성 확인](qa-evidence/planning/node-flow/verification.md)은 제품 동작 QA와 구분한다. 이 문서 작업 당시에는 공통 확장이 미착수였고 제품 테스트/실모델 호출은 없었다. 이후 ESSAY-21 공통 계약 구현·검증 결과를 아래에 별도로 기록했다.
@@ -40,13 +40,41 @@ OMO 계약·상태/수정 예약·독립 반례 검증 세 담당자가 병렬 �
 | Python 계약·예산·모델/MCP 호환 | ESSAY-19 | 완료(실제 모델2회 포함) | [기반 보고서](qa-evidence/assignment/foundation/verification.md) |
 | 기업·직무 조사와 공식 출처 검증 | ESSAY-10 | 완료(실제 MCP·모델·원문 대조) | [조사 보고서](qa-evidence/assignment/research/verification.md) |
 | A~J 계획·평가·분기 공통 계약 확장 | ESSAY-21 | 완료(합성 입력·실제 계약/상태/예약) | [공통 흐름 검증](qa-evidence/assignment/flow-foundation/verification.md) |
-| 나머지 역할/전체 그래프·예외 자동 검사 | ESSAY-11~16 | 미실행 | docs/qa-evidence/assignment/automated/ |
+| B/C 요구사항·개인 근거와 합류 | ESSAY-11 | 완료(통제 모델·조사 대역) | [분석 검증](qa-evidence/assignment/analysis/verification.md) |
+| D/E/I 계획·초안·부분 수정 | ESSAY-12 | 완료(통제 모델·SDK HTTP 대역) | [작성 검증](qa-evidence/assignment/writing/verification.md) |
+| F 필수 기준 평가 | ESSAY-13 | 완료(통제 SDK HTTP 대역) | [평가 검증](qa-evidence/assignment/evaluation/verification.md) |
+| Vue 입력·결과·편집 및 프록시 | ESSAY-15 | 완료(합성 응답·실제 브라우저/프록시) | [화면 검증](qa-evidence/assignment/vue/verification.md) |
+| 실제 그래프·API 역할 연결 | ESSAY-14 | 완료(통제 모델·실제 stdio MCP·HTTP) | [통합 검증](qa-evidence/assignment/integration/verification.md) |
+| 전체 API·Vue 예외 회귀 | ESSAY-16 | 완료(통제 모델·실제 Chrome/API/프록시) | [전체 회귀](qa-evidence/assignment/automated/verification.md) |
 | 실제 모델·공식 자료·기존5개 재실행 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/live/ |
 | 실제 Vue 화면·편집·복사·오류 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/browser/ |
 | 새 사실성 작성자 승인 | ESSAY-17 | 미확인 | 최종 보고서와 승인 시각 |
 | 제출물·깨끗한 설치 재현 | ESSAY-20 | 미실행 | assignment/docs/verification.md |
 
 미실행 행의 경로는 예정 위치이며 증거 파일 존재를 뜻하지 않는다.
+
+## ESSAY-16 전체 회귀 검증 — 2026-10-21
+
+실제 FastAPI 생성 API와 Vue 프록시를 통해 정상·D/I 수정·정보 보완·품질 실패·운영 오류·동시 요청을 검증했다. 실제 Chrome에서는 통제 모델을 연결한 두 localhost 서버를 거쳐 900자 초안, 근거 표시, 편집·복사, 보완·품질 실패 후 이전 결과 보존을 확인했다. NF-01~10과 MCP·출처·글자 수·예산 경계는 자동 회귀표에 연결했다. Python **485개 통과·유료 2개 기본 제외**, JavaScript 13개, 기존 Next.js 156개 통과·1개 제외였고 Ruff·basedpyright·루트 타입·lint 검사도 통과했다. [시나리오·화면·제한](qa-evidence/assignment/automated/verification.md)을 따른다.
+
+이번 브라우저 초안은 반복 문구를 내는 통제 모델의 결과다. 실제 유료 모델의 작성 품질·공식 자료·기존 5개 샘플·작성자 사실성 승인은 ESSAY-17에서 확인한다. 180초 연속 HTTP 연결 시험도 수행하지 않았으며 예산·클라이언트 제한은 단축/가상시계 검사로 확인했다.
+
+## ESSAY-14 그래프·API 통합 검증 — 2026-10-21
+
+`essay_graph.py`가 조사·분석 병렬 수집, D/E/F, G의 종료·수정 경로를 연결한다. 통제 모델 출력으로 정상 ready4회, D/I 수정·전체 재평가6회, 정보 부족/품질 실패, 분석 보완 시 조사 취소와 작성 차단을 확인했다. 한 통합 사례는 실제 stdio MCP와 사용자 제공 공고의 출처 검증을 거쳤으며 외부 OpenAI 유료 호출은 없었다. 실제 Uvicorn HTTP에서는 health200(`pipelineAvailable:true`, MCP 연결)과 잘못된 POST400을 확인했다.
+
+Python 전체 회귀는 로컬 시험 포트가 허용된 환경에서 **474개 통과·유료 2개 기본 제외**였다. Ruff 검사·포맷·basedpyright 0오류, JavaScript 계약13개도 통과했다. 처음 격리 실행의 20개 실패는 기존 localhost 시험 서버가 포트를 열지 못한 권한 문제였고 같은 전체 검사를 포트 허용 환경에서 다시 실행했다. 실제 유료 모델의 전체 초안 품질·기존 5개·실제 Vue→API 브라우저 실행은 ESSAY-16·17 범위로 남긴다. [명령·시나리오·한계](qa-evidence/assignment/integration/verification.md)를 따른다.
+
+## ESSAY-11·12·13·15 독립 역할 검증 — 2026-10-21
+
+OMO 담당자 네 명이 파일 소유권을 나눠 B/C 분석·근거 합류, D/E/I 작성·부분 수정, F 평가, Vue 화면·제한된 프록시를 구현했다. 공통 계약과 합성 입력으로 모듈을 독립 검증했고, 작성·평가에는 실제 OpenAI SDK와 통제된 HTTP 응답을 사용했다. 외부 유료 모델 호출은 0회다. 전체 Python 회귀는 로컬 테스트 포트가 허용된 실행에서 **460개 통과·유료 2개 기본 제외**였고 Ruff 검사·포맷·basedpyright도 통과했다. JavaScript 기반·화면 계약 검사는 13개 통과했다. 첫 격리 실행의 Python 20개 실패는 기존 로컬 MCP/HTTP fixture가 임시 포트를 열지 못한 실행 권한 문제였다. 로컬 포트 허용 상태에서 다시 실행했고, 이후 평가의 반복 사실 인용 및 Vue 프록시 기본 포트 회귀를 수정한 뒤 동일 전체 명령으로 460개를 확인했다.
+
+- [분석 보고서](qa-evidence/assignment/analysis/verification.md): 23개 역할 테스트. 원문 문장·코드 포인트 위치, 허위 사실·지시문·CRLF/이모지, 조사/개인 근거의 분리와 조기 보완을 확인했다.
+- [작성 보고서](qa-evidence/assignment/writing/verification.md): 41개 역할 테스트. 코드 계획, 사실 문장 보존, 버전·예약·허용 범위의 부분 수정, SDK 통제 응답을 확인했다.
+- [평가 보고서](qa-evidence/assignment/evaluation/verification.md): 역할 및 기존 흐름 62개 검사. 일곱 필수 기준, 코드 실패 우선, 반복 사실 인용·근거·분량 반례, 전체 재평가와 SDK 통제 응답을 확인했다.
+- [화면 보고서](qa-evidence/assignment/vue/verification.md): 프록시 10개와 실제 Chrome의 48개 합성 응답 시나리오. 390/1440px, 밝은/어두운 화면 24장 전체를 독립 검토했다. 요청·결과 스냅샷, 편집/복사, 보완/품질 실패, 취소/시간 초과와 190초 프록시 제한을 확인했다.
+
+이 검증은 역할별 계약과 제어 동작에 한정한다. ESSAY-14가 기존 ESSAY-10과 실제 11·12·13 모듈을 LangGraph/API로 연결해야 하고, ESSAY-16이 Vue를 포함한 전체 예외를 회귀해야 하며, ESSAY-17이 실제 모델·공식 자료·작성자 사실성 확인을 새로 수행해야 한다. 합성 초안·응답과 화면 캡처는 실제 생성 품질 증거가 아니다.
 
 ## ESSAY-18 완료 기록 — 2026-10-20
 

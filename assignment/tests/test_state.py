@@ -63,9 +63,9 @@ async def test_real_graph_joins_once_for_either_completion_order(first: str) -> 
     result = await graph.compile().ainvoke(state)
     # Then
     assert joins == [str(state.get("request_id"))]
-    assert result["input_snapshot"] == state.get("input_snapshot")
-    assert result["deadline"] == state.get("deadline")
-    assert result["revision_count"] == 0
+    assert result.get("input_snapshot") == state.get("input_snapshot")
+    assert result.get("deadline") == state.get("deadline")
+    assert result.get("revision_count") == 0
 
 
 @pytest.mark.anyio

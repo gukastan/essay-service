@@ -1,16 +1,16 @@
 # v2 전환 구현 백로그
 
-- 갱신일: 2026-10-20 / 상태: ESSAY-18·19·10·21 완료, Python 공통 기반·조사·A~J 공통 계약 구현·검증 완료
+- 갱신일: 2026-10-21 / 상태: ESSAY-18·19·10·21·11·12·13·14·15·16 완료. Chrome→Vue→API→LangGraph 통제 회귀 확인, 다음 ESSAY-17 실제 QA
 - 기존 ESSAY-1~7 및 ESSAY-9는 완료 상태로 보존한다. ESSAY-8은 진행 중이다.
 - ESSAY-10~17은 Python·MCP·Vue 기준이다. ESSAY-18~20 전환 작업과 ESSAY-21 노드 공통 계약 확장을 관리한다. 미착수 구현/검증/제출 티켓은 할 일이다.
-- 2026-10-20 사용자 A~J 흐름에 맞춰 [노드별 최소 명세](NODE_MIN_SPEC.md)를 추가했다. 후속 요청으로 병렬 선행 관계와 ESSAY-21 공통 계약 구현·검증까지 완료했다. 내부 전략 디테일은 후속 설계다.
+- 2026-10-20 사용자 A~J 흐름에 맞춰 [노드별 최소 명세](NODE_MIN_SPEC.md)를 추가했다. 2026-10-21 병렬 선행 관계에 따라 ESSAY-11·12·13·15를 역할별 구현·검증했다. 내부 전략 디테일은 후속 설계다.
 - [전환 계획](ASSIGNMENT_MIGRATION.md) · [PRD](PRD_V2.md) · [기술 설계](TECH_DESIGN_V2.md) · [QA](qa-v2.md)
 - [이전 문서 기준선](archive/nextjs-v2/README.md) · [Jira 동기화 기록](jira-v2.json)
 - 사용자 승인 병렬 작업 기준: [병렬 개발·통합 검증](PARALLEL_DEVELOPMENT.md). 실행 흐름 A~J와 개발 티켓의 병렬 순서를 구분한다.
 
 ## 순서와 소유권
 
-완료된 ESSAY-18 → ESSAY-19 → ESSAY-10 이후, ESSAY-21 공통 계약 확장 → (ESSAY-11 B/C 분석 ∥ ESSAY-12 D/E/I 작성 ∥ ESSAY-13 F 평가 ∥ ESSAY-15 Vue). ESSAY-11·12·13 이후 ESSAY-14 A/G/H/J 그래프/FastAPI, ESSAY-14·15 이후 ESSAY-16 회귀 → ESSAY-17 실제 QA/작성자 승인 → ESSAY-20 제출 자료.
+완료된 ESSAY-18 → ESSAY-19 → ESSAY-10 → ESSAY-21 공통 계약 확장 → (완료된 ESSAY-11 B/C 분석 ∥ ESSAY-12 D/E/I 작성 ∥ ESSAY-13 F 평가 ∥ ESSAY-15 Vue) → ESSAY-14 A/G/H/J 그래프/FastAPI → ESSAY-16 전체 회귀. 다음 ESSAY-17 실제 QA/작성자 승인 → ESSAY-20 제출 자료.
 
 ESSAY-16은 ESSAY-14·15 모두를 선행으로 한다. ESSAY-19는 ESSAY-18과 완료된 ESSAY-9를 따른다. 기존 ESSAY-9→10/11/15 연결도 보존하지만 Python 구현 착수에는 ESSAY-19가 추가 필수다.
 
@@ -59,7 +59,7 @@ Jira: [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9)
 
 ## 현재 작업 계약
 
-assignment/에는 ESSAY-18 기준선 위에 ESSAY-19 공통 기반·ESSAY-10 조사 역할·ESSAY-21 A~J 공통 계약이 구현됐다. 분석·작성·검토·전체 그래프/API·화면 기능은 후속 계획이며 사용자 지정 범위만 착수한다.
+assignment/에는 ESSAY-18 기준선 위에 ESSAY-19 공통 기반·ESSAY-10 조사 역할·ESSAY-21 A~J 공통 계약·ESSAY-11 분석·ESSAY-12 작성·ESSAY-13 평가·ESSAY-15 Vue 화면·ESSAY-14 LangGraph/API 연결이 구현됐다. ESSAY-16에서 통제 모델과 실제 Chrome으로 Vue→프록시→API→그래프 전체 회귀를 확인했다. 실제 모델 품질은 ESSAY-17 범위다.
 
 ### MIG-01 제공 프로젝트 기준선 보존과 Mac 원본 실행 확인
 
@@ -120,7 +120,7 @@ Jira: [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) / 유형: 작업
 - [x] 동명 기업·상충 자료·지시문 삽입·빈 자료·접근 거부를 시험한다. 경험·문항은 MCP 조사 입력이나 외부 검색에 포함하지 않는다.
 - [x] 공식 페이지 직접 확인이 필요하면 HTTP(S)만 허용하고 DNS/IP/모든 리다이렉트에서 내부망을 차단한다. 직접 읽기3회·페이지1MiB·정리 텍스트12000 코드 포인트 제한을 적용한다. hosted 내부 페이지 수/바이트와 혼동하지 않는다.
 
-구현·최종 통합242개·실제 네이버/합성 공고·실패5회 보존·출처 신뢰 검토는 [조사 보고서](qa-evidence/assignment/research/verification.md)를 따른다. 이후 ESSAY-21 공통 계약 확장도 완료했다. 다음 기본 범위는 ESSAY-11이며11·12·13·15를 병렬 개발할 수 있다.
+ESSAY-10 완료 당시 구현·최종 통합242개·실제 네이버/합성 공고·실패5회 보존·출처 신뢰 검토는 [조사 보고서](qa-evidence/assignment/research/verification.md)를 따른다. 이후 ESSAY-21 공통 계약과 ESSAY-11·12·13·15 독립 역할 구현·검증도 완료했다.
 
 ### V2-10 A~J 흐름의 공통 계약·계획·평가 상태 확장
 
@@ -144,7 +144,7 @@ Python355·JavaScript12 통과, 유료2개 기본 제외·이번 유료 호출0�
 
 ### V2-03 B/C 요구사항 해석·개인 근거 추출 구현
 
-Jira: [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) / 유형: 작업 / 상태: 완료
 
 - 선행: [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9), [ESSAY-19](https://kmskojb.atlassian.net/browse/ESSAY-19), [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21)
 - 소유 범위: assignment/agent/nodes/analyze.py, C의 검증 근거 묶음 조립 및 해당 테스트
@@ -153,15 +153,15 @@ Jira: [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) / 유형: 작업
 
 완료 조건:
 
-- [ ] B의 요구사항에 ID·필수 여부·확인 조건·관련 경험 후보 ID를 연결하고 experienceEvidence·gaps를 함께 반환한다. 각 개인 근거에 원문 구절·코드 포인트 start/end를 연결하며 사용자가 요구하지 않은 조건을 필수로 만들지 않는다.
-- [ ] LF 정규화한 경험의 원문 구절과 위치를 서버에서 대조한다. 없는 역할·행동·결과·수치·시점·인과관계·과거 심리 변화를 추가하지 않는다.
-- [ ] 경험 부족 시 구체적 보완 항목과 질문을 반환해 작성 호출 전에 종료할 수 있다.
-- [ ] C에서 검증된 회사/직무 근거와 개인 근거를 분리해 묶고, B/C 모두 준비돼야 D를 실행할 수 있게 한다. 인재상만 없음은 보완 사유가 아니며 핵심 직무/경험 부족과 구분한다.
-- [ ] 긴 경험·불완전한 경험·허위 성과 요구·입력 내 지시문·CRLF/이모지 인용을 시험한다. 모델은 최대1회이고 조사 도구를 호출하지 않는다.
+- [x] B의 요구사항에 ID·필수 여부·확인 조건·관련 경험 후보 ID를 연결하고 experienceEvidence·gaps를 함께 반환한다. 각 개인 근거에 원문 구절·코드 포인트 start/end를 연결하며 사용자가 요구하지 않은 조건을 필수로 만들지 않는다.
+- [x] LF 정규화한 경험의 원문 구절과 위치를 서버에서 대조한다. 없는 역할·행동·결과·수치·시점·인과관계·과거 심리 변화를 추가하지 않는다.
+- [x] 경험 부족 시 구체적 보완 항목과 질문을 반환해 작성 호출 전에 종료할 수 있다.
+- [x] C에서 검증된 회사/직무 근거와 개인 근거를 분리해 묶고, B/C 모두 준비돼야 D를 실행할 수 있게 한다. 인재상만 없음은 보완 사유가 아니며 핵심 직무/경험 부족과 구분한다.
+- [x] 긴 경험·불완전한 경험·허위 성과 요구·입력 내 지시문·CRLF/이모지 인용을 시험한다. 모델은 최대1회이고 조사 도구를 호출하지 않는다.
 
 ### V2-04 D/E/I 작성 계획·초안·부분 수정 구현
 
-Jira: [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) / 유형: 작업 / 상태: 완료
 
 - 선행: [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10), [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21)
 - 소유 범위: assignment/agent/nodes/write.py, D 계획 조립·I 부분 수정 모듈 및 해당 테스트
@@ -170,18 +170,18 @@ Jira: [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) / 유형: 작업
 
 완료 조건:
 
-- [ ] D가 선택 근거·주장 종류/근거·필수 요구사항 대응·문단 ID/목적/순서/분량·버전의 WritingPlan을 코드로 생성/검증한다. F의 구성/주장 지적에 따라 계획을 갱신하며 추가 계획 모델을 호출하지 않는다.
-- [ ] E는 원래 문항·원문·검증된 근거와 계획을 받아 draft·claimMap·fitReasons·문단 범위·버전을 반환한다. 계획을 몰래 변경하지 않고 회사 사실과 개인 사실을 분리한다.
-- [ ] 과거 사실은 원문의 완전한 문장을 선택해 표현·순서를 보존한다. 새 문장은 별도 현재 해석·미래 계획으로 구분하며 없는 근거 ID·수치·성과를 만들지 않는다.
-- [ ] 직무 요구를 일반 인재상보다 우선하고 인재상 자료가 없을 때 임의 생성하지 않는다.
-- [ ] G가 예약한 공통 수정1회에 D→E 또는 I만 실행한다. I는 최신 버전의 허용 문장 범위만 바꾸고 계획·경험 선택·사실 문장을 고정한다. 범위 밖/중복/오래된 패치를 거부하며 전체 초안·claimMap을 재조립해 F로 보낸다.
-- [ ] 서버 길이·검토 지적을 사용하며 문자열 자르기·패딩으로801~1000자를 맞추지 않는다. 수정 시 B/C·조사를 재실행하거나 횟수를 초기화하지 않는다.
-- [ ] 허위 성과 유도·회사 사실의 개인 성과 전용·수정 중 사실 추가 사례를 단위 테스트한다.
-- [ ] ESSAY-21의 실제 공통 계약과 합성 분석/조사 fixture로 독립 모듈을 검증해 ESSAY-11·13·15와 병렬 개발한다. 실제 다른 역할 연결·전체 서비스 통과는 ESSAY-14·16에서 별도로 확인한다.
+- [x] D가 선택 근거·주장 종류/근거·필수 요구사항 대응·문단 ID/목적/순서/분량·버전의 WritingPlan을 코드로 생성/검증한다. F의 구성/주장 지적에 따라 계획을 갱신하며 추가 계획 모델을 호출하지 않는다.
+- [x] E는 원래 문항·원문·검증된 근거와 계획을 받아 draft·claimMap·fitReasons·문단 범위·버전을 반환한다. 계획을 몰래 변경하지 않고 회사 사실과 개인 사실을 분리한다.
+- [x] 과거 사실은 원문의 완전한 문장을 선택해 표현·순서를 보존한다. 새 문장은 별도 현재 해석·미래 계획으로 구분하며 없는 근거 ID·수치·성과를 만들지 않는다.
+- [x] 직무 요구를 일반 인재상보다 우선하고 인재상 자료가 없을 때 임의 생성하지 않는다.
+- [x] G가 예약한 공통 수정1회에 D→E 또는 I만 실행한다. I는 최신 버전의 허용 문장 범위만 바꾸고 계획·경험 선택·사실 문장을 고정한다. 범위 밖/중복/오래된 패치를 거부하며 전체 초안·claimMap을 재조립해 F로 보낸다.
+- [x] 서버 길이·검토 지적을 사용하며 문자열 자르기·패딩으로801~1000자를 맞추지 않는다. 수정 시 B/C·조사를 재실행하거나 횟수를 초기화하지 않는다.
+- [x] 허위 성과 유도·회사 사실의 개인 성과 전용·수정 중 사실 추가 사례를 단위 테스트한다.
+- [x] ESSAY-21의 실제 공통 계약과 합성 분석/조사 fixture로 독립 모듈을 검증해 ESSAY-11·13·15와 병렬 개발한다. 실제 다른 역할 연결·전체 서비스 통과는 ESSAY-14·16에서 별도로 확인한다.
 
 ### V2-05 F 필수 기준 평가·수정 범위 판정 구현
 
-Jira: [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13) / 유형: 작업 / 상태: 완료
 
 - 선행: [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21)
 - 소유 범위: assignment/agent/nodes/review.py, assignment/agent/validate_evidence.py 및 해당 테스트
@@ -190,38 +190,38 @@ Jira: [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13) / 유형: 작업
 
 완료 조건:
 
-- [ ] 최신 초안/계획 버전의 계약·개인/회사 사실·문항·직무 연결·분량·해석/계획 구분을 기준별로 검사한다. 코드 검사와 독립 모델 검토의 결과·평가 버전을 함께 반환한다.
-- [ ] 없는 성과·시점 추가·출처 없는 회사 주장·회사/사용자 사실 혼동·문항 미응답 반례를 검출한다. 모델 pass가 코드 검사 실패를 덮을 수 없다.
-- [ ] issues에 기준 ID·주장/문단 범위·원인·missing_info/plan_or_claim/wording·구체적 수정 지시를 연결한다. 정보 충분 여부와 허용 문장 범위를 설명하며 분류 불가를 임의 pass/부분 수정으로 처리하지 않는다.
-- [ ] D/E 및 I 수정 뒤 전체 초안을 다시 검토하고 이전 평가를 재사용하지 않는다. 필수 정보 부족과 정보 충분·수정 한도 소진을 G가 구분할 수 있게 반환한다. 점수/가중치·세부 의미 평가 전략은 후속 설계다.
-- [ ] 원본의 세 번째 시도 강제 통과를 사용하지 않는다. 검토 미완료/실패 초안을 ready로 반환하지 않는다.
-- [ ] 검토 통과를 사실성의 증명이나 합격 보장으로 표현하지 않는다.
-- [ ] ESSAY-21의 WritingPlan/DraftEnvelope 합성 fixture와 실제 검토 어댑터로 독립 검증한다. ESSAY-12 완료를 기다리는 의존은 제거하며, 실제 작성 결과와의 연결은 ESSAY-14에서 검증한다.
+- [x] 최신 초안/계획 버전의 계약·개인/회사 사실·문항·직무 연결·분량·해석/계획 구분을 기준별로 검사한다. 코드 검사와 독립 모델 검토의 결과·평가 버전을 함께 반환한다.
+- [x] 없는 성과·시점 추가·출처 없는 회사 주장·회사/사용자 사실 혼동·문항 미응답 반례를 검출한다. 모델 pass가 코드 검사 실패를 덮을 수 없다.
+- [x] issues에 기준 ID·주장/문단 범위·원인·missing_info/plan_or_claim/wording·구체적 수정 지시를 연결한다. 정보 충분 여부와 허용 문장 범위를 설명하며 분류 불가를 임의 pass/부분 수정으로 처리하지 않는다.
+- [x] D/E 및 I 수정 뒤 전체 초안을 다시 검토하고 이전 평가를 재사용하지 않는다. 필수 정보 부족과 정보 충분·수정 한도 소진을 G가 구분할 수 있게 반환한다. 점수/가중치·세부 의미 평가 전략은 후속 설계다.
+- [x] 원본의 세 번째 시도 강제 통과를 사용하지 않는다. 검토 미완료/실패 초안을 ready로 반환하지 않는다.
+- [x] 검토 통과를 사실성의 증명이나 합격 보장으로 표현하지 않는다.
+- [x] ESSAY-21의 WritingPlan/DraftEnvelope 합성 fixture와 실제 검토 어댑터로 독립 검증한다. ESSAY-12 완료를 기다리는 의존은 제거하며, 실제 작성 결과와의 연결은 ESSAY-14에서 검증한다.
 
 ### V2-06 A/G/H/J LangGraph 분기·FastAPI 통합
 
-Jira: [ESSAY-14](https://kmskojb.atlassian.net/browse/ESSAY-14) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-14](https://kmskojb.atlassian.net/browse/ESSAY-14) / 유형: 작업 / 상태: 완료
 
 - 선행: [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11), [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12), [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13)
-- 소유 범위: assignment/agent/graph.py, assignment/server.py의 POST /api/drafts, 통합 테스트
+- 소유 범위: assignment/agent/essay_graph.py·essay_collect.py·essay_route.py, assignment/server.py의 POST /api/drafts, 통합 테스트. 원본 장애 진단 graph.py는 보존
 
 원본 build_graph/deps/FastAPI 생명주기 구조를 활용해 A~J 논리 흐름과 G의 다섯 분기를 연결한다. G는 코드로 결정하며 [최소 명세](NODE_MIN_SPEC.md)의 분기 순서를 따른다.
 
 완료 조건:
 
-- [ ] A 이후 B/C 자료를 한 번만 합류해 D/E/F로 진행한다. B/C 필수 정보 부족·실패 시 작성하지 않고 가능한 진행 작업을 취소한다. 실제 그래프 정상4회·D/I 수정 포함최대6회를 검증한다.
-- [ ] G가 순서대로 모두 통과→H, 필수 정보 부족→J, 정보 충분·한도 도달→J, 구성/주장 변경→D, 문장만 변경→I를 선택한다. 혼합 지적은 정보 부족 우선·그다음 D 우선이며 D/I는 같은 수정1회 원자 예약을 공유한다.
-- [ ] H는 최신 전체 F 통과 버전만 반환한다. J는 needs_input200과 정보 충분·품질실패422를 구분한다. 한도1에서 통과한 결과는 H이며 timeout/제공자/계약 오류를 정보 부족으로 바꾸지 않는다.
-- [ ] 요청별 상태·예산·MCP 응답을 격리하고 숨은 SDK/도구/그래프 재시도 및 중복 실행을 차단한다. MCP 조사를 전체 모델/시간 예산에 포함한다.
-- [ ] FastAPI POST /api/drafts가 ready/needs_input 200, INVALID_INPUT400, 품질실패422, CONFIG_ERROR500, 제공자오류502, timeout504를 반환한다. FastAPI 기본 입력 오류422는 공통 입력 계약400으로 정규화한다.
-- [ ] 모든 ready는 근거 검사·모델 검토·801~1000자를 통과한다. 오류 응답은 requestId·code·message만 포함하고 초안·원문·키·전체 프롬프트를 노출하지 않는다.
-- [ ] 원본 GET /chat/stream에 경험을 싣지 않으며 제출 서비스는 POST JSON으로 처리한다. 원본 대화 이력 SQLite 저장/전체 프롬프트 반환/외부 tracing을 제품 경로에서 사용하지 않는다.
-- [ ] Next.js 루트는 별도로 실행되는 보존본이다. Next.js /api/v2/drafts·DRAFT_PIPELINE_VERSION 추가는 취소된 계획이며 assignment 서버와 포트를 분리하고 180초 요청 지원을 실제 확인한다.
-- [ ] ESSAY-11·12·13의 실제 구현을 기존 ESSAY-10과 연결해 각 모듈 대역을 제거한 실행을 검증한다. 개별 모듈/fixture 통과만으로 전체 그래프 완료를 판정하지 않는다.
+- [x] A 이후 B/C 자료를 한 번만 합류해 D/E/F로 진행한다. B/C 필수 정보 부족·실패 시 작성하지 않고 가능한 진행 작업을 취소한다. 실제 그래프 정상4회·D/I 수정 포함최대6회를 검증한다.
+- [x] G가 순서대로 모두 통과→H, 필수 정보 부족→J, 정보 충분·한도 도달→J, 구성/주장 변경→D, 문장만 변경→I를 선택한다. 혼합 지적은 정보 부족 우선·그다음 D 우선이며 D/I는 같은 수정1회 원자 예약을 공유한다.
+- [x] H는 최신 전체 F 통과 버전만 반환한다. J는 needs_input200과 정보 충분·품질실패422를 구분한다. 한도1에서 통과한 결과는 H이며 timeout/제공자/계약 오류를 정보 부족으로 바꾸지 않는다.
+- [x] 요청별 상태·예산·MCP 응답을 격리하고 숨은 SDK/도구/그래프 재시도 및 중복 실행을 차단한다. MCP 조사를 전체 모델/시간 예산에 포함한다.
+- [x] FastAPI POST /api/drafts가 ready/needs_input 200, INVALID_INPUT400, 품질실패422, CONFIG_ERROR500, 제공자오류502, timeout504를 반환한다. FastAPI 기본 입력 오류422는 공통 입력 계약400으로 정규화한다.
+- [x] 모든 ready는 근거 검사·모델 검토·801~1000자를 통과한다. 오류 응답은 requestId·code·message만 포함하고 초안·원문·키·전체 프롬프트를 노출하지 않는다.
+- [x] 원본 GET /chat/stream에 경험을 싣지 않으며 제출 서비스는 POST JSON으로 처리한다. 원본 대화 이력 SQLite 저장/전체 프롬프트 반환/외부 tracing을 제품 경로에서 사용하지 않는다.
+- [x] Next.js 루트는 별도로 실행되는 보존본이다. Next.js /api/v2/drafts·DRAFT_PIPELINE_VERSION 추가는 취소된 계획이며 assignment 서버와 포트를 분리했다. 180초 요청 deadline 적용과 실제 HTTP smoke를 확인했다. 180초 연속 HTTP 연결 시험은 수행하지 않았고 [ESSAY-16 보고서](qa-evidence/assignment/automated/verification.md)에 경계를 기록했다.
+- [x] ESSAY-11·12·13의 실제 구현을 기존 ESSAY-10과 연결해 각 모듈 대역을 제거한 실행을 검증한다. 개별 모듈/fixture 통과만으로 전체 그래프 완료를 판정하지 않는다.
 
 ### V2-07 Vue 자기소개서 입력·근거·편집·보완 화면 구현
 
-Jira: [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15) / 유형: 스토리 / 상태: 할 일
+Jira: [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15) / 유형: 스토리 / 상태: 완료
 
 - 선행: [ESSAY-9](https://kmskojb.atlassian.net/browse/ESSAY-9), [ESSAY-19](https://kmskojb.atlassian.net/browse/ESSAY-19), [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21)
 - 소유 범위: assignment/web_chat.html, assignment/web_demo_server.py, 화면 계약 테스트
@@ -230,17 +230,17 @@ Jira: [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15) / 유형: 스토
 
 완료 조건:
 
-- [ ] 기업·직무·문항·경험 필수 입력과 선택 공고 URL/본문을 제공하고 요청 당시 스냅샷을 결과와 연결한다. POST JSON으로 전송하며 경험을 URL에 담지 않는다.
-- [ ] ready에서 원문 비교·출처/확인일·user_provided 표시·직무 연결 이유·편집·복사를 제공한다. 복사본은 현재 편집 내용과 일치한다.
-- [ ] 생성 중 입력/버튼 잠금·중복 방지·195초 제한·취소를 구현하고 보완/실패 시 현재 입력과 이전 결과를 보존한다.
-- [ ] J에서 실제 필수 정보 부족은 보완 질문으로, 정보 충분·수정 한도 소진422는 이번 생성의 품질 미충족으로 구분한다. 없는 부족 항목을 요청하거나 미검토 초안을 최종 결과로 노출하지 않는다.
-- [ ] 서버와 동일한 LF/Unicode 코드 포인트로 글자 수를 계산한다. 편집 후 생성 당시 검토와 수정본 미검토를 구분하고 범위 밖에서도 사용자 복사는 허용한다.
-- [ ] 실제 단계 이벤트를 연결하지 않으므로 공통 처리 중 표시만 사용한다. 원본 SSE 표시·full prompt 영역을 제품 화면에서 사용하지 않는다.
-- [ ] 모의 응답과 실제 FastAPI를 구분해 시험하고 데스크톱/모바일·클립보드 실패·잘못된 응답을 확인한다. 프록시가 원본의 무한 timeout을 계승하지 않도록 제한한다.
+- [x] 기업·직무·문항·경험 필수 입력과 선택 공고 URL/본문을 제공하고 요청 당시 스냅샷을 결과와 연결한다. POST JSON으로 전송하며 경험을 URL에 담지 않는다.
+- [x] ready에서 원문 비교·출처/확인일·user_provided 표시·직무 연결 이유·편집·복사를 제공한다. 복사본은 현재 편집 내용과 일치한다.
+- [x] 생성 중 입력/버튼 잠금·중복 방지·195초 제한·취소를 구현하고 보완/실패 시 현재 입력과 이전 결과를 보존한다.
+- [x] J에서 실제 필수 정보 부족은 보완 질문으로, 정보 충분·수정 한도 소진422는 이번 생성의 품질 미충족으로 구분한다. 없는 부족 항목을 요청하거나 미검토 초안을 최종 결과로 노출하지 않는다.
+- [x] 서버와 동일한 LF/Unicode 코드 포인트로 글자 수를 계산한다. 편집 후 생성 당시 검토와 수정본 미검토를 구분하고 범위 밖에서도 사용자 복사는 허용한다.
+- [x] 실제 단계 이벤트를 연결하지 않으므로 공통 처리 중 표시만 사용한다. 원본 SSE 표시·full prompt 영역을 제품 화면에서 사용하지 않는다.
+- [x] 모의 응답과 실제 FastAPI를 구분해 시험하고 데스크톱/모바일·클립보드 실패·잘못된 응답을 확인한다. 프록시가 원본의 무한 timeout을 계승하지 않도록 제한한다.
 
 ### V2-08 Python·MCP·Vue 전체 흐름과 예외 회귀 검증
 
-Jira: [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) / 유형: 작업 / 상태: 완료
 
 - 선행: [ESSAY-14](https://kmskojb.atlassian.net/browse/ESSAY-14), [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15)
 - 소유 범위: assignment/tests/, assignment/tests/fixtures/, docs/qa-v2.md, docs/qa-evidence/assignment/automated/
@@ -249,13 +249,13 @@ Jira: [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) / 유형: 작업
 
 완료 조건:
 
-- [ ] [최소 명세](NODE_MIN_SPEC.md)의 NF-01~10을 실제 그래프와 제어 가능한 모델/도구 대역으로 검증한다. G의5분기·B/C 조기 보완·혼합 지적 우선순위·한도1에서의 통과를 포함한다.
-- [ ] D 재계획/I 부분 수정이 같은 수정1회를 공유하고 정상4회·수정최대6회·합류1회로 끝나는지 확인한다. 잘못된 범위/버전·사실 원문 변경·I 이후 전체 재평가 누락·이전 pass 재사용·숨은 재시도를 거부한다.
-- [ ] 800/801/1000/1001자·CRLF·한글/이모지·offset 일치, 입력400·응답형식·설정누락·모델/검색시간초과·예산소진·취소·동시요청 격리를 검증한다.
-- [ ] MCP stdio 연결·도구 발견·실제 프로토콜 호출·단절/잘못된 응답/취소를 검사한다. 제공자 대역을 쓴 경우 실제 MCP와 실제 OpenAI 검증을 혼동하지 않는다.
-- [ ] 동명기업·공고상충·출처없음·지시문삽입·내부망URL·근거ID오류·없는성과 추가를 포함하고 hosted 예약2/보고량 및 모델1 선예약을 검사한다.
-- [ ] 기존 5개 샘플 원본과 v1/run-7/ESSAY-9 증거를 변경하지 않는다. 전환용 fixture·추가 공고는 별도로 출처를 표시한다.
-- [ ] Python lint/타입 검사/전체 테스트 및 Vue/프록시 검증, 기존 Next.js 회귀 확인 또는 기존 증거 대비 미실행 사유를 기록한다. 새 Python 통과를 기존156개 통과로 대체하지 않는다.
+- [x] [최소 명세](NODE_MIN_SPEC.md)의 NF-01~10을 실제 그래프와 제어 가능한 모델/도구 대역으로 검증한다. G의5분기·B/C 조기 보완·혼합 지적 우선순위·한도1에서의 통과를 포함한다.
+- [x] D 재계획/I 부분 수정이 같은 수정1회를 공유하고 정상4회·수정최대6회·합류1회로 끝나는지 확인한다. 잘못된 범위/버전·사실 원문 변경·I 이후 전체 재평가 누락·이전 pass 재사용·숨은 재시도를 거부한다.
+- [x] 800/801/1000/1001자·CRLF·한글/이모지·offset 일치, 입력400·응답형식·설정누락·모델/검색시간초과·예산소진·취소·동시요청 격리를 검증한다.
+- [x] MCP stdio 연결·도구 발견·실제 프로토콜 호출·단절/잘못된 응답/취소를 검사한다. 제공자 대역을 쓴 경우 실제 MCP와 실제 OpenAI 검증을 혼동하지 않는다.
+- [x] 동명기업·공고상충·출처없음·지시문삽입·내부망URL·근거ID오류·없는성과 추가를 포함하고 hosted 예약2/보고량 및 모델1 선예약을 검사한다.
+- [x] 기존 5개 샘플 원본과 v1/run-7/ESSAY-9 증거를 변경하지 않는다. 전환용 fixture·추가 공고는 별도로 출처를 표시한다.
+- [x] Python lint/타입 검사/전체 테스트 및 Vue/프록시 검증, 기존 Next.js 회귀 확인 또는 기존 증거 대비 미실행 사유를 기록한다. 새 Python 통과를 기존156개 통과로 대체하지 않는다. [ESSAY-16 보고서](qa-evidence/assignment/automated/verification.md)를 따른다.
 
 ### V2-09 전환 서비스 실제 모델·MCP·Vue QA와 사실성 승인
 
@@ -298,7 +298,7 @@ Jira: [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20) / 유형: 작업
 
 ## 상태와 보존 규칙
 
-실제 구현을 시작한 티켓만 진행 중, 완료 조건을 관찰한 티켓만 완료로 바꾼다. ESSAY-18·19·10 완료와 기존 이력을 보존한다. 이번 요청의 ESSAY-21 공통 계약 구현·검증을 완료했다. ESSAY-11~17·20은 할 일이며11·12·13·15 병렬 개발을 준비했다. 다음 기본 범위는 ESSAY-11이다. ESSAY-17 작성자 승인과 ESSAY-20 여섯 제출물 확인 후에만 ESSAY-8을 완료한다.
+실제 구현을 시작한 티켓만 진행 중, 완료 조건을 관찰한 티켓만 완료로 바꾼다. ESSAY-18·19·10·21의 완료와 기존 이력을 보존한다. ESSAY-11·12·13·15 독립 구현·검증, ESSAY-14 실제 역할 연결, ESSAY-16 전체 회귀를 완료했다. ESSAY-17·20은 할 일이며 다음 기본 범위는 ESSAY-17이다. ESSAY-17 작성자 승인과 ESSAY-20 여섯 제출물 확인 후에만 ESSAY-8을 완료한다.
 
 기존 담당자·유형·스프린트·기한을 임의 변경하지 않는다. 신규 작업은 같은 에픽 아래에 두고 실제 Blocks 링크로 선행을 연결한다. 현재 동기화 결과는 jira-v2.json을 따른다.
 

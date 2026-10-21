@@ -1,23 +1,25 @@
 # 자소서 서비스 v2 기술 설계 — Python·MCP·Vue 전환
 
-- 작성일: 2026-10-19 / 갱신: 2026-10-20 / 상태: ESSAY-18·19·10·21 완료. Python 공통 기반·조사 역할 검증 완료, 분석·작성·검토·전체 API·Vue 제품 화면은 후속 구현
+- 작성일: 2026-10-19 / 갱신: 2026-10-21 / 상태: ESSAY-18·19·10·21·11·12·13·14·15·16 완료. Python 역할·LangGraph/API 및 실제 Chrome→Vue→API 경로를 통제 입력으로 회귀 검증했다. 실제 모델 품질·사실성은17
 - [v2 PRD](PRD_V2.md) · [백로그](BACKLOG_V2.md) · [전환 결정](decisions/provided-project-migration.md) · [보존·원본 대응](ASSIGNMENT_MIGRATION.md)
-- 완료된 루트 Next.js의 `POST /api/drafts`는 [v1 설계](TECH_DESIGN.md)를 따른다. 별도 assignment 서버의 동명 업무 API는 ESSAY-14 후속 범위이며 현재404다.
+- 완료된 루트 Next.js의 `POST /api/drafts`는 [v1 설계](TECH_DESIGN.md)를 따른다. 별도 assignment 서버의 동명 업무 API는 ESSAY-14에서 연결했고 두 서버는 독립 포트로 실행한다.
 - 구현된 공통 기반: `src/shared/contracts-v2.ts`, `src/server/workflow/state.ts`, `budget.ts`, `providers.ts`, `native-provider.ts`, `provider-schemas.ts`. LangGraph 1.5.1, LangChain core 1.2.18, Zod 4.6.7을 고정했다.
-- 위 TypeScript 기반은 보존본이다. Python 공통 기반은 ESSAY-19에서 별도로 구현·검증했다. 아래 전체 서비스 흐름은 후속 구현 계약이며 네 역할 완성 증거가 아니다.
+- 위 TypeScript 기반은 보존본이다. Python 공통 기반은 ESSAY-19에서 별도로 구현·검증했다. 네 역할의 독립 모듈과 ESSAY-14 전체 연결은 [QA](qa-v2.md)로 확인했다.
 - 2026-10-20 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md)를 적용한다. 공통 계약 확장은 ESSAY-21에서 완료했고 [실제 계약 인계](FLOW_CONTRACTS.md)를 따른다. 내부 전략·평가 점수·세부 프롬프트는 후속 설계다.
 
 ### 구현된 Python 공통 기반
 
 assignment/agent/contract_input.py·contract_evidence.py·contract_results.py를 contracts.py에서 내보낸다. state.py·deps.py는 새 요청 상태/예산과 타입 있는 의존성, budget.py·limits.py는 원자 예약/취소를 제공한다. openai_llm.py·provider_schema.py·response_wire.py는 strict wire 스키마와 SDK 응답을 검증한다. research.py·mcp_client.py·mcp_server.py는 실제 stdio 후보 조사 경계다. web/foundation.mjs는 LF/코드 포인트와 단일 HTTP 요청/취소 기반이다.
 
-검증 환경은 CPython3.12.15, FastAPI0.150.0, LangGraph1.2.16, FastMCP4.1.1, MCP2.3.0, OpenAI3.35.1, Pydantic2.14.1, AnyIO4.15.1, uvicorn0.54.0이다. 전체 잠금은 assignment/uv.lock을 따른다. Python SDK는 httpx2를 사용한다. 기본 서버는 SQLite/legacy graph/chat을 열지 않고 /health에서 pipelineAvailable:false를 반환한다. /api/drafts는 ESSAY-14까지 404다.
+검증 환경은 CPython3.12.15, FastAPI0.150.0, LangGraph1.2.16, FastMCP4.1.1, MCP2.3.0, OpenAI3.35.1, Pydantic2.14.1, AnyIO4.15.1, uvicorn0.54.0이다. 전체 잠금은 assignment/uv.lock을 따른다. Python SDK는 httpx2를 사용한다. 기본 서버는 SQLite/legacy graph/chat을 열지 않고 /health에서 pipelineAvailable:true를 반환한다. /api/drafts는 입력 오류400, 보완200, 품질 실패422, 운영 오류500/502/504, 검토 통과200을 구분한다.
 
 모델 SDK/MCP는 lifespan마다 한 번 생성하며 요청마다 상태/예산을 새로 만든다. stdio keep_alive=false와 shielded 명시적 close로 자식을 정리한다. domain 입력과 _meta를 분리하며 표준 프로토콜 메타데이터5개만 제외한 후 내부 메타데이터를 검증한다. MCP REQUEST_TIMEOUT도 예산을 정지한다. 공식 OpenAI endpoint를 명시하고 inherited tracing을 비활성화한다. [ESSAY-19 보고서](qa-evidence/assignment/foundation/verification.md)에 실제 결과가 있다.
 
 ## 1. 실행 구조
 
-제공된 Vue web_chat.html → FastAPI web_demo_server.py 프록시 → server.py → Python LangGraph agent/graph.py 구조를 활용한다. 모델/MCP 연결은 원본 deps.py와 lifespan 구조로 주입하고 상태·예산은 요청마다 새로 생성한다. 모델 역할은 조사·분석·작성·검토의 네 가지이며 같은 기반 모델을 사용할 수 있다. A~J는 논리적 책임으로 모델 호출과 일대일 대응하지 않는다. D의 최소 계획 조립과 G의 분기는 코드로 처리하며 호출 수·종료를 통제한다.
+제공된 Vue web_chat.html → FastAPI web_demo_server.py 프록시 → server.py → Python LangGraph agent/essay_graph.py 구조를 활용한다. 기존 장애 진단용 agent/graph.py는 원본 기준선으로 보존한다. 모델/MCP 연결은 deps.py와 lifespan 구조로 주입하고 상태·예산은 요청마다 새로 생성한다. 모델 역할은 조사·분석·작성·검토의 네 가지이며 같은 기반 모델을 사용할 수 있다. A~J는 논리적 책임으로 모델 호출과 일대일 대응하지 않는다. D의 최소 계획 조립과 G의 분기는 코드로 처리하며 호출 수·종료를 통제한다.
+
+2026-10-21 현재 `nodes/research.py`(조사), `nodes/analyze.py`·`analysis_evidence.py`(B/C), `nodes/plan.py`·`write.py`·`revise.py`(D/E/I), `nodes/review.py`·`validate_evidence.py`(F)를 `essay_collect.py`·`essay_route.py`·`essay_graph.py`가 연결한다. Vue는 `web_chat.html`·`web_app.js`·`web_contract.js`·`web_style.css`이고 별도 `web_demo_server.py` 프록시는 기본 Python 서버 포트8001로 POST JSON을 전달한다. 역할 통합은 통제 모델과 실제 stdio MCP로, Chrome→Vue→프록시→API→그래프 전체 회귀는 통제 모델로 검증했다. 실제 유료 모델을 통한 자기소개서 품질은 아직 확인하지 않았다.
 
 ```mermaid
 flowchart TD
@@ -51,7 +53,7 @@ flowchart TD
 
 조사 결과와 경험 분석 결과는 서로 다른 상태 필드에 기록한다. 합류는 두 결과가 모두 도착했을 때 한 번만 진행한다. 한 분기가 실패하거나 보완이 확정되면 다른 분기에서 새 작업을 시작하지 않으며 가능한 진행 작업을 취소한다.
 
-현재 공통 상태는 requestId, inputSnapshot, research, analysis, draft, claimMap, deterministicChecks, review, revisionCount(0|1), usage, deadline, outcome을 가진다. ESSAY-21은 flow_analysis(요구사항·개인 근거), plan(WritingPlan), draft_envelope(DraftEnvelope), evaluation(EvaluationBinding), route, terminal_reason을 추가했다. 요구사항은 flow_analysis.requirements, 계획/초안 버전은 각 envelope가 단독 소유한다. D는 유효 근거·주장·요구사항 대응·문단 목적/순서/분량을 짧은 구조화 계획으로 조립하며 숨은 추론을 저장하지 않는다. flow_state.py가 원문·근거 종류/ID·문단/주장 범위와 버전을 대조한다. F 호출 직전 포착한 요청/계획/초안을 EvaluationBinding에 묶고 ready 직전에 require_ready_evaluation으로 다른 요청·버전·동일 버전 내용 변경·분량 실패를 차단한다. budget.reserve_revision은 D/I 공통 수정 기회를 한 번만 예약하며 RevisionReservationError를 기존 운영 예산 오류와 분리한다. 실제 분기/HTTP 응답 조립은 ESSAY-14다.
+현재 공통 상태는 requestId, inputSnapshot, research, analysis, draft, claimMap, deterministicChecks, review, revisionCount(0|1), usage, deadline, outcome을 가진다. ESSAY-21은 flow_analysis(요구사항·개인 근거), plan(WritingPlan), draft_envelope(DraftEnvelope), evaluation(EvaluationBinding), route, terminal_reason을 추가했다. 요구사항은 flow_analysis.requirements, 계획/초안 버전은 각 envelope가 단독 소유한다. D는 유효 근거·주장·요구사항 대응·문단 목적/순서/분량을 짧은 구조화 계획으로 조립하며 숨은 추론을 저장하지 않는다. flow_state.py가 원문·근거 종류/ID·문단/주장 범위와 버전을 대조한다. F 호출 직전 포착한 요청/계획/초안을 EvaluationBinding에 묶고 ready 직전에 require_ready_evaluation으로 다른 요청·버전·동일 버전 내용 변경·분량 실패를 차단한다. budget.reserve_revision은 D/I 공통 수정 기회를 한 번만 예약하며 RevisionReservationError를 기존 운영 예산 오류와 분리한다. ESSAY-14가 G의 우선순위, H/J의 응답, FastAPI 상태 코드를 연결했다.
 
 상태는 요청 메모리에 한정하고 DB/checkpointer로 경험을 영구 저장하지 않는다. 병렬 노드가 동일한 입력/예산을 임의로 덮어쓸 수 없게 reducer와 예산 예약을 분리한다. 최신 초안/계획 버전과 다른 평가 결과로 ready를 만들 수 없다. 필드별 계약·노드 소유권은 [최소 명세](NODE_MIN_SPEC.md)를 따른다.
 
@@ -163,7 +165,7 @@ D를 별도 모델로 만드는 정책은 이번 범위에 없다. 별도 호출
 
 ## 9. 소유권과 검증
 
-[병렬 개발 기준](PARALLEL_DEVELOPMENT.md)에 따라 공통 계약 확정 후 ESSAY-11·12·13·15는 합성 fixture와 실제 각 모듈로 병렬 검증한다. ESSAY-14는11·12·13 완료 후 실제 모듈을 연결하고 ESSAY-16은14·15 완료 후 전체를 검증한다. 같은 공통 파일을 여러 담당자가 동시에 수정하지 않는다.
+[병렬 개발 기준](PARALLEL_DEVELOPMENT.md)에 따라 공통 계약 확정 후 ESSAY-11·12·13·15는 합성 fixture와 실제 각 모듈로 병렬 검증했다. ESSAY-14에서 실제 모듈을 연결했고 ESSAY-16에서 Chrome을 포함한 통제 회귀를 확인했다. 같은 공통 파일을 여러 담당자가 동시에 수정하지 않는다.
 
 원본 실행은 ESSAY-18, Python 공통 계약/설정은 ESSAY-19(V2-01은 보존된 TypeScript 기준선), 새 계획·평가·분기 계약 확장은 ESSAY-21이다. 기존 조사는 ESSAY-10(C 기업 근거), 분석은 ESSAY-11(B/C), 계획·작성·부분 수정은 ESSAY-12(D/E/I), 평가는 ESSAY-13(F), 그래프/API는 ESSAY-14(A/G/H/J), 화면은 ESSAY-15, 회귀는 ESSAY-16, 실제 연결·작성자 확인은 ESSAY-17, 제출물은 ESSAY-20이다. 각 파일은 한 구현 담당자가 수정하고 공통 계약 소유권을 순차 인계한다.
 

@@ -44,11 +44,16 @@ async def test_real_lifespan_reuses_dependencies_and_never_creates_database(
             for method, path in (
                 ("GET", "/chat/stream"),
                 ("POST", "/chat"),
-                ("POST", "/api/drafts"),
             ):
                 response = await client.request(method, path)
                 assert response.status_code == 404
                 assert "prompt" not in response.text
+            invalid = await client.post("/api/drafts", json={})
+            assert invalid.status_code == 400
+            assert invalid.json()["code"] == "INVALID_INPUT"
+            unavailable = await client.post("/api/drafts", json=draft.model_dump(by_alias=True))
+            assert unavailable.status_code == 500
+            assert unavailable.json()["code"] == "CONFIG_ERROR"
         assert deps is runtime_deps(app.state)
         assert deps.mcp.connected
         assert first.request_id != second.request_id
@@ -56,7 +61,7 @@ async def test_real_lifespan_reuses_dependencies_and_never_creates_database(
         assert first.state is not second.state
         assert health1.json() == health2.json()
         assert health1.json()["mcpConnected"] is True
-        assert health1.json()["pipelineAvailable"] is False
+        assert health1.json()["pipelineAvailable"] is True
         assert health1.json()["creationCount"] == 1
         assert all(
             os.environ[name] == "false"

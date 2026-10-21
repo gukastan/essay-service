@@ -137,18 +137,18 @@ J는 화면상의 종료 지점이다. 정보가 충분한데 수정 한도를 �
 
 ## 9. 작업 연결과 현재 상태
 
-후속 사용자 요청으로 [개발 병렬화](PARALLEL_DEVELOPMENT.md)를 적용한다. ESSAY-21 공통 계약 확정 후11·12·13·15는 병렬 개발하고, 실제 연결은14·전체 회귀는16에서 검증한다. 위 A~J 도표는 서비스 실행의 순서이며 개발 티켓이 전부 순차여야 한다는 뜻은 아니다.
+후속 사용자 요청으로 [개발 병렬화](PARALLEL_DEVELOPMENT.md)를 적용했다. ESSAY-21 공통 계약 확정 후11·12·13·15를 병렬 개발하고, 실제 연결은14·Chrome 포함 통제 전체 회귀는16에서 검증했다. 위 A~J 도표는 서비스 실행의 순서이며 개발 티켓이 전부 순차여야 한다는 뜻은 아니다.
 
 | 범위 | Jira | 상태 |
 | --- | --- | --- |
 | 계획·평가·분기 공통 계약/상태 | [ESSAY-21](https://kmskojb.atlassian.net/browse/ESSAY-21) | 완료. 공통 계약·참조/버전 검사·원자 수정 예약 검증 |
 | C의 기업·직무 조사 | [ESSAY-10](https://kmskojb.atlassian.net/browse/ESSAY-10) | 완료된 결과 재사용 |
-| B와 C의 개인 근거·합류 자료 | [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) | ESSAY-21 이후 |
-| D/E/I 계획·작성·부분 수정 | [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) | 할 일 |
-| F 필수 기준별 평가 | [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13) | 할 일 |
-| A/G/H/J 및 전체 그래프/API | [ESSAY-14](https://kmskojb.atlassian.net/browse/ESSAY-14) | 할 일 |
-| 결과·J 종료 사유 화면 | [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15) | ESSAY-21 이후 |
-| NF-01~10 자동 검증 | [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) | 할 일 |
+| B와 C의 개인 근거·합류 자료 | [ESSAY-11](https://kmskojb.atlassian.net/browse/ESSAY-11) | 완료 |
+| D/E/I 계획·작성·부분 수정 | [ESSAY-12](https://kmskojb.atlassian.net/browse/ESSAY-12) | 완료 |
+| F 필수 기준별 평가 | [ESSAY-13](https://kmskojb.atlassian.net/browse/ESSAY-13) | 완료 |
+| A/G/H/J 및 전체 그래프/API | [ESSAY-14](https://kmskojb.atlassian.net/browse/ESSAY-14) | 완료 |
+| 결과·J 종료 사유 화면 | [ESSAY-15](https://kmskojb.atlassian.net/browse/ESSAY-15) | 완료 |
+| NF-01~10 자동 검증 | [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) | 완료. [회귀 증거](qa-evidence/assignment/automated/verification.md) |
 | 실모델·화면·작성자 검증 / 제출 | [ESSAY-17](https://kmskojb.atlassian.net/browse/ESSAY-17) / [ESSAY-20](https://kmskojb.atlassian.net/browse/ESSAY-20) | 할 일 |
 
-ESSAY-19·10의 완료 기록을 다시 열지 않는다. ESSAY-21의 공통 계약을 구현·검증하고 각 역할에 인계했다. 다음 기본 범위는 ESSAY-11이며11·12·13·15는 병렬 개발할 수 있다. 각 노드의 경험 선택·작성·의미 평가 디테일은 후속 설계다.
+ESSAY-19·10의 완료 기록을 다시 열지 않는다. 다음 기본 범위는 ESSAY-17 실제 모델·자료·화면 QA와 작성자 사실성 승인이다. 각 노드의 경험 선택·작성·의미 평가 디테일은 후속 설계다.

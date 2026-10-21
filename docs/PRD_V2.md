@@ -1,9 +1,9 @@
 # 자소서 서비스 v2 PRD — 제공 프로젝트 기반 네 역할
 
-- 작성일: 2026-10-19 / 전환 갱신: 2026-10-20
-- 상태: 기존 Next.js v1·TypeScript ESSAY-9 완료 보존. ESSAY-18 원본 실행·ESSAY-19 Python 공통 기반·ESSAY-10 조사/공식 출처 검증·ESSAY-21 A~J 공통 계약 구현/검증을 완료했다. [조사 검증](qa-evidence/assignment/research/verification.md) · [계약 검증](qa-evidence/assignment/flow-foundation/verification.md). 분석·작성·검토·Vue 제품 기능은 병렬 개발할 후속 단계이며 전체 API 연결은 ESSAY-14다. [기반 검증](qa-evidence/assignment/foundation/verification.md).
+- 작성일: 2026-10-19 / 전환 갱신: 2026-10-21
+- 상태: 기존 Next.js v1·TypeScript ESSAY-9 완료 보존. ESSAY-18·19·10·21·11·12·13·14·15·16의 각 범위 구현/검증을 완료했다. [QA](qa-v2.md)를 따른다. LangGraph/API 역할 연결은14에서, 실제 Chrome을 포함한 통제 전체 회귀는16에서 확인했다. 실제 모델·사실성 승인은17이다.
 - 전환 범위: [전환 계획](ASSIGNMENT_MIGRATION.md). assignment/에서 LangGraph·MCP·LLM·Vue·FastAPI를 활용한다. ESSAY-18·19 이후 ESSAY-10~17, 제출은 ESSAY-20이다.
-- 완료된 자기소개서 제품: [v1 PRD](PRD.md), ESSAY-1~7. 전환판은 조사/공통 계약까지 완료했으며 자기소개서 생성 API와 새 Vue 제품 화면은 아직 제공하지 않는다.
+- 완료된 자기소개서 제품: [v1 PRD](PRD.md), ESSAY-1~7. 전환판은 조사·분석·작성·검토·LangGraph와 POST 생성 API를 구현했다. 새 Vue는 실제 API와 통제 모델로 연결해 회귀 검증했다. 유료 모델의 생성 품질은 ESSAY-17에서 확인한다.
 - 구현 계약: [v2 기술 설계](TECH_DESIGN_V2.md)
 - 사용자 A~J 흐름의 [노드별 최소 명세](NODE_MIN_SPEC.md). 계획·평가·분기 공통 계약 확장은 ESSAY-21에서 구현·검증을 완료했다. [계약 인계](FLOW_CONTRACTS.md) · [검증 결과](qa-evidence/assignment/flow-foundation/verification.md). 내부 전략은 후속 설계다.
 - 작업 및 의존관계: [v2 백로그](BACKLOG_V2.md)

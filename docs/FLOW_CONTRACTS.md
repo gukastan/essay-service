@@ -2,6 +2,12 @@
 
 2026-10-20 구현·검증 완료. [최소 명세](NODE_MIN_SPEC.md) · [병렬 개발](PARALLEL_DEVELOPMENT.md) · [검증 보고서](qa-evidence/assignment/flow-foundation/verification.md).
 
+## 2026-10-21 실제 역할 구현 인계
+
+ESSAY-11·12·13·15의 독립 역할/화면 구현·검증을 완료했고 ESSAY-14에서 실제 역할을 연결했다. `essay_collect.py`가 `AnalyzeNode.run(request, budget, request_id)`과 기존 `ResearchNode.run`을 병렬 실행해 `AnalysisJoin.run`에서 개인/회사 근거를 한 번 합류시킨다. `EvidenceBundle`일 때만 D로 진행하고 조기 보완/운영 오류는 작성 전에 종료한다. `build_plan(state, budget)`은 모델 없이 초기 계획을 만들고, `WriteNode.run(state, budget)`이 E를 실행한다. G가 구조/주장 수정이면 `budget.reserve_revision("D")`→`build_plan(..., reservation)`→E, 문장 수정이면 `budget.reserve_revision("I")`→`RevisionNode.run(..., reservation)`으로 보낸다. 두 경로 모두 전체 `ReviewNode.run(state, budget)`을 다시 실행한다. F의 `ReviewAssessment`는 코드·모델 결과와 포착된 요청/초안/계획에 묶인 평가를 포함한다. `essay_route.py`가 G/H/J를 결정하고 `server.py`가 HTTP 상태를 조립한다.
+
+새 Vue는 `web_chat.html`·`web_app.js`·`web_contract.js`·`web_style.css`와 `web_demo_server.py` 프록시에서 실행한다. 프록시는 기본 Python 서버 `127.0.0.1:8001`의 POST `/api/drafts`를 호출한다. API 연결은 ESSAY-14에서 통제 입력으로 확인했고 화면은 합성 응답으로 검증했다. 전체 브라우저 회귀는16, 실제 모델/사실성 검증은17에서 확인한다. [분석](qa-evidence/assignment/analysis/verification.md) · [작성](qa-evidence/assignment/writing/verification.md) · [평가](qa-evidence/assignment/evaluation/verification.md) · [Vue](qa-evidence/assignment/vue/verification.md) · [통합](qa-evidence/assignment/integration/verification.md) 보고서를 따른다.
+
 ## 계약과 소유권
 
 공개 타입은 `agent.contracts`에서 가져온다. 기존 ResearchResult·AnalysisResult·WriterResult·ReviewResult와 HTTP 응답 계약은 보존했다. 새 타입은 frozen Pydantic 계약이며 camelCase 직렬화·미정의 필드 거부·컬렉션/문자 수 제한을 적용한다.
@@ -33,7 +39,7 @@ G는 D/I 진입 **전에** `await budget.reserve_revision("D" 또는 "I")`를 �
 
 `RevisionReservationError("REVISION_EXHAUSTED" | "INVALID_REVISION_ROUTE")`는 수정 제어 오류다. 잘못된 경로는 기회를 소비하지 않는다. 기존 `ExecutionBudgetError`의 LIMIT_EXCEEDED/DEADLINE_EXCEEDED/CANCELLED는 유지하며 기존 조사 오류 어댑터에 수정 오류를 전달하지 않는다.
 
-TerminalReason은 ready(H), needs_input(J), quality_failure(J), operational_error를 구별한다. 정보 부족은 기존 missingFields/questions/reasonCode, 품질 실패는 QUALITY_CHECK_FAILED/LENGTH_VALIDATION_FAILED로 표현한다. 실제200/422 매핑·G 우선순위·전체 ready 조립은 ESSAY-14가 구현한다.
+TerminalReason은 ready(H), needs_input(J), quality_failure(J), operational_error를 구별한다. 정보 부족은 기존 missingFields/questions/reasonCode, 품질 실패는 QUALITY_CHECK_FAILED/LENGTH_VALIDATION_FAILED로 표현한다. 실제200/422 매핑·G 우선순위·전체 ready 조립은 ESSAY-14에서 구현했다.
 
 ## 병렬 검증 입력
 

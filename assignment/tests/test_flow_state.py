@@ -98,12 +98,12 @@ async def test_real_graph_preserves_flow_values_and_bound_evaluation() -> None:
     # When
     result = await graph.compile().ainvoke(initial)
     # Then
-    assert result["plan"] == current_plan
-    assert result["flow_analysis"] == current_analysis
-    assert result["draft_envelope"] == current_draft
-    assert result["evaluation"] == binding
-    assert result["route"] == "H"
-    assert result["terminal_reason"] == terminal
+    assert result.get("plan") == current_plan
+    assert result.get("flow_analysis") == current_analysis
+    assert result.get("draft_envelope") == current_draft
+    assert result.get("evaluation") == binding
+    assert result.get("route") == "H"
+    assert result.get("terminal_reason") == terminal
 
 
 @pytest.mark.parametrize("changed", [draft(2), draft(text="경험 추가")])
