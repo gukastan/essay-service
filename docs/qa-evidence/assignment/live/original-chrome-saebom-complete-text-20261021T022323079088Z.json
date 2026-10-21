@@ -1,0 +1,206 @@
+{
+  "sampleId": "chrome-saebom-complete-text",
+  "supplementalSyntheticPosting": false,
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "startedAt": "2026-10-21T02:23:23.079088+00:00",
+  "elapsedSeconds": 77.24,
+  "model": "gpt-5.6-terra",
+  "path": "real OpenAI model + real stdio MCP; no stub",
+  "request": {
+    "company": "가상회사 새봄",
+    "role": "서비스 기획",
+    "jobPostingUrl": null,
+    "jobPostingText": "가상회사 새봄\n서비스 기획 채용 공고 (테스트용 가상 공고)\n서비스 기획 요건: 팀원과 협업하여 사용자 요구를 정리하고 화면 흐름을 개선한 경험.",
+    "question": "협업 과정에서 문제를 해결한 경험을 설명해 주세요.",
+    "experience": "대학교 팀 프로젝트에서 학내 행사 안내 페이지를 기획했습니다. 저는 팀원 네 명과 함께 참여했고 인터뷰 질문 정리와 화면 흐름 초안을 맡았습니다. 초기에 팀원마다 필요한 기능을 다르게 생각해 회의가 반복됐습니다. 저는 각자가 생각한 사용자와 불편을 문서에 적도록 제안하고 공통되는 요구를 묶었습니다. 이후 공지 목록과 일정 확인을 우선 구현하기로 합의했습니다. 완성된 시안을 동료 학생에게 보여주고 메뉴 이름이 어렵다는 의견을 받아 바꿨습니다. 정량 성과나 수상 실적은 없습니다. 이 경험을 통해 의견 차이를 구체적인 사용자 문제로 바꾸어 논의하는 태도를 배웠습니다."
+  },
+  "response": {
+    "status": "error",
+    "requestId": "05481dc1-cd99-4a2a-a602-0c8e5a96ae6c",
+    "message": "이번 생성은 필수 품질 기준을 충족하지 못했습니다.",
+    "code": "QUALITY_CHECK_FAILED"
+  },
+  "events": [
+    {
+      "role": "research",
+      "seconds": 4.903,
+      "toolCallsReported": 1,
+      "inputTokens": 9483,
+      "outputTokens": 287
+    },
+    {
+      "role": "analysis",
+      "seconds": 22.072,
+      "inputTokens": 673,
+      "outputTokens": 2493
+    },
+    {
+      "role": "analysis-anchoring",
+      "correctedOffsets": 6
+    },
+    {
+      "role": "writer",
+      "seconds": 12.137,
+      "inputTokens": 1488,
+      "outputTokens": 1193
+    },
+    {
+      "role": "writer-validation",
+      "claimIds": [
+        "interpretation",
+        "future"
+      ],
+      "expectedIds": [
+        "personal-1",
+        "job-1",
+        "interpretation",
+        "future"
+      ],
+      "factMatchesPlan": {},
+      "claimBindingsMatchPlan": {
+        "interpretation": true,
+        "future": true
+      },
+      "generatedTextChecks": {
+        "interpretation": {
+          "hasDigit": false,
+          "hasPastMarker": true,
+          "length": 396
+        },
+        "future": {
+          "hasDigit": false,
+          "hasPastMarker": false,
+          "length": 294
+        }
+      },
+      "draftLength": 764
+    },
+    {
+      "role": "review",
+      "seconds": 19.731,
+      "inputTokens": 2788,
+      "outputTokens": 1712
+    },
+    {
+      "role": "review-validation",
+      "draftLength": 764,
+      "correctedIssues": 4,
+      "issues": [
+        {
+          "criterion": "contract_evidence",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "personal-1",
+            "interpretation"
+          ],
+          "paragraphIds": [],
+          "start": 0,
+          "end": 469
+        },
+        {
+          "criterion": "user_factuality",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "interpretation"
+          ],
+          "paragraphIds": [],
+          "start": 73,
+          "end": 469
+        },
+        {
+          "criterion": "length",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "personal-1",
+            "job-1",
+            "interpretation",
+            "future"
+          ],
+          "paragraphIds": [],
+          "start": 0,
+          "end": 764
+        },
+        {
+          "criterion": "expression_kind",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "interpretation"
+          ],
+          "paragraphIds": [],
+          "start": 73,
+          "end": 469
+        }
+      ]
+    },
+    {
+      "role": "writer",
+      "seconds": 9.47,
+      "inputTokens": 1622,
+      "outputTokens": 846
+    },
+    {
+      "role": "writer-validation",
+      "claimIds": [
+        "interpretation",
+        "future"
+      ],
+      "expectedIds": [
+        "personal-1",
+        "job-1",
+        "interpretation",
+        "future"
+      ],
+      "factMatchesPlan": {},
+      "claimBindingsMatchPlan": {
+        "interpretation": false,
+        "future": true
+      },
+      "generatedTextChecks": {
+        "interpretation": {
+          "hasDigit": false,
+          "hasPastMarker": true,
+          "length": 411
+        },
+        "future": {
+          "hasDigit": false,
+          "hasPastMarker": false,
+          "length": 402
+        }
+      },
+      "draftLength": 900
+    },
+    {
+      "role": "review",
+      "seconds": 13.252,
+      "inputTokens": 3088,
+      "outputTokens": 1320
+    },
+    {
+      "role": "review-validation",
+      "draftLength": 900,
+      "correctedIssues": 2,
+      "issues": [
+        {
+          "criterion": "contract_evidence",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "interpretation"
+          ],
+          "paragraphIds": [],
+          "start": 85,
+          "end": 496
+        },
+        {
+          "criterion": "user_factuality",
+          "scope": "plan_or_claim",
+          "claimIds": [
+            "interpretation"
+          ],
+          "paragraphIds": [],
+          "start": 85,
+          "end": 496
+        }
+      ]
+    }
+  ]
+}
