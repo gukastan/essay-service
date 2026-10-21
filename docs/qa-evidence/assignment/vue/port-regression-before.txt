@@ -1,0 +1,115 @@
+FFF.......                                                               [100%]
+=================================== FAILURES ===================================
+______________ test_proxy_preserves_typed_response[response0-200] ______________
+
+response = ReadyResponse(status='ready', request_id=UUID('5e7fd874-1d5a-4540-9cf4-37f9e842823d'), draft='실행했다.가가가가가가가가가가가가가가가가가가가..., evidence_ids=('e1',)),), fit_reasons=()), review_summary='생성 당시 검토 통과', usage=Usage(model_calls=4, revision_count=0))
+status = 200
+
+    @pytest.mark.parametrize(
+        ("response", "status"),
+        [(ready_fixture(), 200), (needs_input_fixture(), 200), (quality_failure_fixture(), 422)],
+    )
+    def test_proxy_preserves_typed_response(
+        response: ReadyResponse | NeedsInputResponse | ErrorResponse, status: int
+    ) -> None:
+        observed: list[httpx.Request] = []
+    
+        def handler(request: httpx.Request) -> httpx.Response:
+            observed.append(request)
+            return httpx.Response(status, content=response.model_dump_json(by_alias=True))
+    
+        client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        with (
+            patch("web_demo_server.httpx.AsyncClient", return_value=client),
+            TestClient(web.app) as browser,
+        ):
+            result = browser.post("/api/drafts", json=REQUEST)
+        assert result.status_code == status
+        assert result.json() == response.model_dump(mode="json", by_alias=True)
+        assert observed[0].method == "POST"
+>       assert str(observed[0].url) == "http://127.0.0.1:8001/api/drafts"
+E       AssertionError: assert 'http://127.0...00/api/drafts' == 'http://127.0...01/api/drafts'
+E         
+E         - http://127.0.0.1:8001/api/drafts
+E         ?                     -
+E         + http://127.0.0.1:8100/api/drafts
+E         ?                   +
+
+assignment/tests/test_web_proxy.py:39: AssertionError
+______________ test_proxy_preserves_typed_response[response1-200] ______________
+
+response = NeedsInputResponse(status='needs_input', request_id=UUID('5e7fd874-1d5a-4540-9cf4-37f9e842823d'), message='Describe a ...ing_fields=('experience',), questions=('What action did you personally take?',), reason_code='EXPERIENCE_INSUFFICIENT')
+status = 200
+
+    @pytest.mark.parametrize(
+        ("response", "status"),
+        [(ready_fixture(), 200), (needs_input_fixture(), 200), (quality_failure_fixture(), 422)],
+    )
+    def test_proxy_preserves_typed_response(
+        response: ReadyResponse | NeedsInputResponse | ErrorResponse, status: int
+    ) -> None:
+        observed: list[httpx.Request] = []
+    
+        def handler(request: httpx.Request) -> httpx.Response:
+            observed.append(request)
+            return httpx.Response(status, content=response.model_dump_json(by_alias=True))
+    
+        client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        with (
+            patch("web_demo_server.httpx.AsyncClient", return_value=client),
+            TestClient(web.app) as browser,
+        ):
+            result = browser.post("/api/drafts", json=REQUEST)
+        assert result.status_code == status
+        assert result.json() == response.model_dump(mode="json", by_alias=True)
+        assert observed[0].method == "POST"
+>       assert str(observed[0].url) == "http://127.0.0.1:8001/api/drafts"
+E       AssertionError: assert 'http://127.0...00/api/drafts' == 'http://127.0...01/api/drafts'
+E         
+E         - http://127.0.0.1:8001/api/drafts
+E         ?                     -
+E         + http://127.0.0.1:8100/api/drafts
+E         ?                   +
+
+assignment/tests/test_web_proxy.py:39: AssertionError
+______________ test_proxy_preserves_typed_response[response2-422] ______________
+
+response = ErrorResponse(status='error', request_id=UUID('5e7fd874-1d5a-4540-9cf4-37f9e842823d'), message='The generation did not meet the required checks.', code='QUALITY_CHECK_FAILED')
+status = 422
+
+    @pytest.mark.parametrize(
+        ("response", "status"),
+        [(ready_fixture(), 200), (needs_input_fixture(), 200), (quality_failure_fixture(), 422)],
+    )
+    def test_proxy_preserves_typed_response(
+        response: ReadyResponse | NeedsInputResponse | ErrorResponse, status: int
+    ) -> None:
+        observed: list[httpx.Request] = []
+    
+        def handler(request: httpx.Request) -> httpx.Response:
+            observed.append(request)
+            return httpx.Response(status, content=response.model_dump_json(by_alias=True))
+    
+        client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        with (
+            patch("web_demo_server.httpx.AsyncClient", return_value=client),
+            TestClient(web.app) as browser,
+        ):
+            result = browser.post("/api/drafts", json=REQUEST)
+        assert result.status_code == status
+        assert result.json() == response.model_dump(mode="json", by_alias=True)
+        assert observed[0].method == "POST"
+>       assert str(observed[0].url) == "http://127.0.0.1:8001/api/drafts"
+E       AssertionError: assert 'http://127.0...00/api/drafts' == 'http://127.0...01/api/drafts'
+E         
+E         - http://127.0.0.1:8001/api/drafts
+E         ?                     -
+E         + http://127.0.0.1:8100/api/drafts
+E         ?                   +
+
+assignment/tests/test_web_proxy.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED assignment/tests/test_web_proxy.py::test_proxy_preserves_typed_response[response0-200]
+FAILED assignment/tests/test_web_proxy.py::test_proxy_preserves_typed_response[response1-200]
+FAILED assignment/tests/test_web_proxy.py::test_proxy_preserves_typed_response[response2-422]
+3 failed, 7 passed in 0.20s

@@ -1,0 +1,82 @@
+[
+  {
+    "width": 390,
+    "theme": "light",
+    "passed": true,
+    "scenarios": [
+      "validation",
+      "post-snapshot",
+      "ready-provenance",
+      "unicode-edit-copy",
+      "clipboard-failure",
+      "needs-input-preservation",
+      "quality-distinct",
+      "malformed",
+      "duplicate-lock",
+      "cancel",
+      "195s-virtual-clock",
+      "overflow"
+    ],
+    "pageErrors": []
+  },
+  {
+    "width": 390,
+    "theme": "dark",
+    "passed": true,
+    "scenarios": [
+      "validation",
+      "post-snapshot",
+      "ready-provenance",
+      "unicode-edit-copy",
+      "clipboard-failure",
+      "needs-input-preservation",
+      "quality-distinct",
+      "malformed",
+      "duplicate-lock",
+      "cancel",
+      "195s-virtual-clock",
+      "overflow"
+    ],
+    "pageErrors": []
+  },
+  {
+    "width": 1440,
+    "theme": "light",
+    "passed": true,
+    "scenarios": [
+      "validation",
+      "post-snapshot",
+      "ready-provenance",
+      "unicode-edit-copy",
+      "clipboard-failure",
+      "needs-input-preservation",
+      "quality-distinct",
+      "malformed",
+      "duplicate-lock",
+      "cancel",
+      "195s-virtual-clock",
+      "overflow"
+    ],
+    "pageErrors": []
+  },
+  {
+    "width": 1440,
+    "theme": "dark",
+    "passed": true,
+    "scenarios": [
+      "validation",
+      "post-snapshot",
+      "ready-provenance",
+      "unicode-edit-copy",
+      "clipboard-failure",
+      "needs-input-preservation",
+      "quality-distinct",
+      "malformed",
+      "duplicate-lock",
+      "cancel",
+      "195s-virtual-clock",
+      "overflow"
+    ],
+    "pageErrors": []
+  }
+]

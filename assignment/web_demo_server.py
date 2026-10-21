@@ -1,65 +1,89 @@
-"""web_demo_server.py — all_total_vue 에이전트와 브라우저 채팅창으로 대화해보는 데모.
+"""Serve the Vue writing desk and a bounded, validated JSON draft proxy."""
 
-web_chat.html이 바닐라 JS 대신 Vue 3(CDN 글로벌 빌드, 별도 빌드 단계 없음)로 되어
-있다는 점만 all_total과 다르다. server.py(8100, 기존 통합 테스트 서버)는 전혀
-건드리지 않는다. 이 스크립트는
-- web_chat.html 한 장을 같은 출처(origin)로 띄우고
-- /chat/stream 요청을 그대로 8100으로 중계(프록시)해서
-
-브라우저의 CORS 제약 없이 실제 에이전트와 대화할 수 있게 해주는 아주 얇은 레이어다.
-server.py는 평소처럼(fake/ollama/openai 아무 백엔드로나) 8100에 미리 띄워 놓아야 한다.
-
-실행:
-    python3 web_demo_server.py        # http://localhost:8600 에서 채팅 화면 오픈
-"""
+from http import HTTPStatus
 from pathlib import Path
+from uuid import uuid4
 
+import anyio
 import httpx
 import uvicorn
 from fastapi import FastAPI, Request
-from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse
+from pydantic import ValidationError
 
-BACKEND = "http://127.0.0.1:8100"
+from agent.contracts import DraftRequest, DraftResponse, ErrorResponse
+
+BACKEND = "http://127.0.0.1:8001"
 HERE = Path(__file__).parent
-
+PROXY_DEADLINE = 190.0
 app = FastAPI()
 
 
+@app.get("/health")
+async def proxy_health() -> JSONResponse:
+    return JSONResponse({"status": "ok", "service": "vue-proxy"})
+
+
 @app.get("/")
-async def index():
+async def index() -> FileResponse:
     return FileResponse(HERE / "web_chat.html")
 
 
-@app.get("/health")
-async def proxy_health():
-    async with httpx.AsyncClient(timeout=10.0) as client:
-        r = await client.get(f"{BACKEND}/health")
-    return JSONResponse(r.json(), status_code=r.status_code)
+@app.get("/web/{asset}", response_model=None)
+async def web_asset(asset: str) -> FileResponse | JSONResponse:
+    if asset not in {"web_app.js", "web_contract.js", "web_style.css"}:
+        return JSONResponse({"detail": "Not found"}, status_code=404)
+    return FileResponse(HERE / asset)
 
 
-@app.post("/chat")
-async def proxy_chat(req: Request):
-    body = await req.body()
-    async with httpx.AsyncClient(timeout=120.0) as client:
-        r = await client.post(f"{BACKEND}/chat", content=body,
-                              headers={"content-type": "application/json"})
-    return JSONResponse(r.json(), status_code=r.status_code)
+def failure(code: str, status: int) -> JSONResponse:
+    messages = {
+        "INVALID_INPUT": "입력 형식을 확인해 주세요.",
+        "INVALID_RESPONSE": "응답 형식을 확인할 수 없습니다. 다시 시도해 주세요.",
+        "TIMEOUT": "처리 시간이 초과됐습니다. 다시 시도해 주세요.",
+        "MODEL_ERROR": "서버에 연결할 수 없습니다. 잠시 후 다시 시도해 주세요.",
+    }
+    return JSONResponse(
+        {"status": "error", "requestId": str(uuid4()), "code": code, "message": messages[code]},
+        status_code=status,
+    )
 
 
-@app.get("/chat/stream")
-async def proxy_stream(message: str, thread_id: str = "web-demo"):
-    async def relay():
-        async with httpx.AsyncClient(timeout=None) as client:
-            async with client.stream(
-                "GET", f"{BACKEND}/chat/stream",
-                params={"message": message, "thread_id": thread_id},
-            ) as upstream:
-                async for chunk in upstream.aiter_bytes():
-                    yield chunk
-
-    return StreamingResponse(relay(), media_type="text/event-stream")
+@app.post("/api/drafts")
+async def proxy_draft(req: Request) -> JSONResponse:
+    try:
+        body = DraftRequest.model_validate_json(await req.body())
+    except ValidationError:
+        return failure("INVALID_INPUT", 400)
+    try:
+        with anyio.fail_after(PROXY_DEADLINE):
+            async with httpx.AsyncClient(
+                timeout=httpx.Timeout(185.0, connect=5.0, pool=5.0),
+                follow_redirects=False,
+            ) as client:
+                upstream = await client.post(
+                    f"{BACKEND}/api/drafts",
+                    content=body.model_dump_json(by_alias=True),
+                    headers={"content-type": "application/json"},
+                )
+        response = DraftResponse.validate_json(upstream.content)
+        valid_status = upstream.status_code == HTTPStatus.OK
+        if isinstance(response, ErrorResponse):
+            valid_status = upstream.status_code >= HTTPStatus.BAD_REQUEST
+            if response.code in {"QUALITY_CHECK_FAILED", "LENGTH_VALIDATION_FAILED"}:
+                valid_status = upstream.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
+        if not valid_status:
+            return failure("INVALID_RESPONSE", 502)
+    except (TimeoutError, httpx.TimeoutException):
+        return failure("TIMEOUT", 504)
+    except httpx.RequestError:
+        return failure("MODEL_ERROR", 502)
+    except ValidationError:
+        return failure("INVALID_RESPONSE", 502)
+    return JSONResponse(
+        response.model_dump(mode="json", by_alias=True), status_code=upstream.status_code
+    )
 
 
 if __name__ == "__main__":
-    print("브라우저에서 http://localhost:8600 을 열어보세요 (server.py가 8100에 떠 있어야 합니다)")
-    uvicorn.run(app, host="0.0.0.0", port=8600)
+    uvicorn.run(app, host="127.0.0.1", port=8600)
