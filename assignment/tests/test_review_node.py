@@ -6,12 +6,46 @@ from openai import AsyncOpenAI
 
 from agent.budget import ExecutionBudget
 from agent.flow_state import FlowStateError, require_ready_evaluation
-from agent.nodes.review import ReviewNode
+from agent.nodes.review import ReviewNode, anchor_plan_issues
 from agent.openai_llm import OpenAIModelProvider
 from agent.providers import ProviderError
 from agent.validate_evidence import evaluation_from_issues, general_issue
 from tests.test_review_evidence import review_input
 from tests.wire_fixture import JSON, assert_strict_schema, response_body
+
+
+def test_plan_issue_offsets_are_anchored_to_claims() -> None:
+    context = review_input()
+    claim = context.draft.claim_map[0]
+    issue = general_issue("question_coverage", "본문 근거 보완").model_copy(
+        update={
+            "claim_ids": (claim.id,),
+            "paragraph_ids": ("wrong-paragraph",),
+            "start": 900,
+            "end": 901,
+        }
+    )
+    evaluation = evaluation_from_issues(context, (issue,))
+    anchored = anchor_plan_issues(evaluation, context.draft)
+    fixed = anchored.issues[0]
+    assert fixed.start == context.draft.draft.find(claim.text)
+    assert fixed.start is not None
+    assert fixed.end == fixed.start + len(claim.text)
+    assert fixed.paragraph_ids == ()
+
+
+def test_general_plan_issue_discards_cross_paragraph_range() -> None:
+    context = review_input()
+    issue = general_issue("length", "분량 부족").model_copy(
+        update={
+            "paragraph_ids": tuple(item.paragraph_id for item in context.draft.paragraphs),
+            "start": 0,
+            "end": len(context.draft.draft),
+        }
+    )
+    anchored = anchor_plan_issues(evaluation_from_issues(context, (issue,)), context.draft)
+    assert anchored.issues[0].start is None
+    assert anchored.issues[0].end is None
 
 
 @pytest.mark.anyio

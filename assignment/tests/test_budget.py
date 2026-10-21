@@ -23,7 +23,7 @@ async def complete(context: OperationContext) -> OperationContext:
 
 @pytest.mark.anyio
 @pytest.mark.parametrize(
-    ("revision", "expected_calls", "expected_tokens"), [(False, 4, 12000), (True, 6, 18000)]
+    ("revision", "expected_calls", "expected_tokens"), [(False, 4, 13000), (True, 6, 20000)]
 )
 async def test_normal_and_revision_reservations(
     *, revision: bool, expected_calls: int, expected_tokens: int
@@ -70,7 +70,7 @@ async def test_simultaneous_reservations_never_oversubscribe() -> None:
     assert outcomes.count("accepted") == 6
     assert outcomes.count("LIMIT_EXCEEDED") == 6
     assert budget.snapshot().model_calls == 6
-    assert budget.snapshot().output_tokens_reserved == 18000
+    assert budget.snapshot().output_tokens_reserved == 20000
 
 
 @pytest.mark.anyio

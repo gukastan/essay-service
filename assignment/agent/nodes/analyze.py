@@ -8,7 +8,7 @@ from uuid import UUID
 
 from agent.budget import ExecutionBudget
 from agent.contract_input import Contract
-from agent.contracts import DraftRequest, FlowAnalysisResult, NeedsInputResponse
+from agent.contracts import DraftRequest, ExperienceEvidence, FlowAnalysisResult, NeedsInputResponse
 from agent.flow_state import FlowStateError, validate_analysis_context
 from agent.providers import ModelProvider, ProviderError, StructuredModelRequest, TokenUsage
 
@@ -33,6 +33,8 @@ INSTRUCTION_PATTERN: Final = re.compile(
     (?:fabricate|invent)\s+(?:an?\s+)?(?:achievement|result|experience)""",
     re.IGNORECASE | re.VERBOSE,
 )
+SENTENCE_ENDINGS: Final = (".", "!", "?", "。", "\uff01", "\uff1f")
+SOURCE_BOUNDARIES: Final = ("\n", *SENTENCE_ENDINGS)
 
 
 class AnalysisSuccess(Contract):
@@ -44,21 +46,40 @@ class AnalysisSuccess(Contract):
 AnalysisOutcome = AnalysisSuccess | NeedsInputResponse
 
 
+def sentence_bounds(experience: str, start: int, end: int) -> bool:
+    before = experience[:start].rstrip(" \t")
+    after = experience[end:]
+    return (not before or before.endswith(SOURCE_BOUNDARIES)) and (not after or after[0].isspace())
+
+
+def anchor_personal_analysis(
+    analysis: FlowAnalysisResult, request: DraftRequest
+) -> FlowAnalysisResult:
+    """Locate model-selected sentences in the original experience in their stated order."""
+    evidence: list[ExperienceEvidence] = []
+    previous_end = 0
+    for item in analysis.experience_evidence:
+        start = request.experience.find(item.quote, previous_end)
+        while start >= 0 and not sentence_bounds(
+            request.experience, start, start + len(item.quote)
+        ):
+            start = request.experience.find(item.quote, start + 1)
+        if start < 0:
+            raise FlowStateError("INVALID_EVIDENCE")
+        end = start + len(item.quote)
+        evidence.append(item.model_copy(update={"start": start, "end": end}))
+        previous_end = end
+    return analysis.model_copy(update={"experience_evidence": tuple(evidence)})
+
+
 def validate_personal_analysis(analysis: FlowAnalysisResult, request: DraftRequest) -> None:
     """Reject altered/partial quotes and unsupported mandatory requirements."""
     validate_analysis_context(analysis, request)
     previous_end = 0
     for item in analysis.experience_evidence:
-        before = request.experience[: item.start].rstrip(" \t")
-        after = request.experience[item.end :]
-        starts_sentence = not before or before.endswith(
-            ("\n", ".", "!", "?", "。", "\uff01", "\uff1f")
-        )
-        ends_sentence = item.quote.endswith((".", "!", "?", "。", "\uff01", "\uff1f"))
         if (
-            not starts_sentence
-            or not ends_sentence
-            or (after and not after[0].isspace())
+            not sentence_bounds(request.experience, item.start, item.end)
+            or not item.quote.endswith(SENTENCE_ENDINGS)
             or item.start < previous_end
             or INSTRUCTION_PATTERN.search(item.quote)
         ):
@@ -111,8 +132,9 @@ class AnalyzeNode:
             budget,
         )
         try:
-            validate_personal_analysis(result.value, request)
+            analysis = anchor_personal_analysis(result.value, request)
+            validate_personal_analysis(analysis, request)
         except FlowStateError:
             raise ProviderError("INVALID_RESPONSE") from None
-        gap = experience_gap(result.value, request_id)
-        return gap if gap is not None else AnalysisSuccess(result=result.value, usage=result.usage)
+        gap = experience_gap(analysis, request_id)
+        return gap if gap is not None else AnalysisSuccess(result=analysis, usage=result.usage)

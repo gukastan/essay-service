@@ -16,6 +16,7 @@ from agent.contracts import (
     DraftRequest,
     Evaluation,
     EvaluationIssue,
+    FitReason,
     JobRequirement,
     ParagraphSpan,
     PlanClaim,
@@ -40,9 +41,8 @@ class ControlledProvider:
         self, request: StructuredModelRequest[T], budget: ExecutionBudget
     ) -> ModelResult[T]:
         async def invoke(_context: OperationContext) -> ModelResult[T]:
-            return ModelResult(
-                request.schema.model_validate_json(self.value.model_dump_json()), None
-            )
+            wire = self.value.model_dump_json(include=set(request.schema.model_fields))
+            return ModelResult(request.schema.model_validate_json(wire), None)
 
         return await budget.run_model(request.role, invoke)
 
@@ -271,25 +271,139 @@ async def test_revision_rejects_adversarial_patches_without_refund(attack: str) 
 
 
 @pytest.mark.anyio
-@pytest.mark.parametrize("attack", ["achievement", "unmapped", "source", "version"])
+@pytest.mark.parametrize("attack", ["unmapped", "version"])
 async def test_writer_rejects_invented_or_misbound_output(attack: str) -> None:
     # Given
     budget = ExecutionBudget()
     state = writing_state(budget)
     draft = generated(require_plan(state))
     data = draft.model_dump()
-    if attack == "achievement":
-        data["claim_map"][0]["text"] = "수상했다."
-        data["draft"] = draft.draft.replace("실행했다.", "수상했다.")
-    if attack == "unmapped":
-        data["draft"] = draft.draft + " 허위"
-        data["paragraphs"][-1]["end"] += 3
-    if attack == "source":
-        data["claim_map"][0]["evidence_ids"] = ("company-fact",)
     if attack == "version":
         data["version"] = 2
-    response = DraftEnvelope.model_validate(data)
+    response = (
+        draft.model_copy(
+            update={
+                "claim_map": (
+                    *draft.claim_map,
+                    PlanClaim(id="unmapped", text="허위.", kind="interpretation", evidence_ids=()),
+                )
+            }
+        )
+        if attack == "unmapped"
+        else DraftEnvelope.model_validate(data)
+    )
     # When / Then
     with pytest.raises((WritingError, FlowStateError)):
         _ = await WriteNode(ControlledProvider(response)).run(state, budget)
     assert budget.snapshot().model_calls == 1
+
+
+@pytest.mark.anyio
+async def test_writer_uses_plan_facts_even_when_model_changes_them() -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    plan = require_plan(state)
+    draft = generated(plan)
+    changed = draft.model_copy(
+        update={
+            "claim_map": (
+                draft.claim_map[0].model_copy(update={"text": "수상했다."}),
+                *draft.claim_map[1:],
+            )
+        }
+    )
+    update = await WriteNode(ControlledProvider(changed)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert result.claim_map[0] == plan.claims[0]
+    assert "수상했다" not in result.draft
+
+
+@pytest.mark.anyio
+async def test_writer_accepts_only_generated_claims_and_restores_plan_facts() -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    plan = require_plan(state)
+    draft = generated(plan)
+    generated_only = draft.model_copy(
+        update={
+            "claim_map": tuple(
+                claim
+                for claim in draft.claim_map
+                if claim.kind in {"interpretation", "future_plan"}
+            )
+        }
+    )
+    update = await WriteNode(ControlledProvider(generated_only)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert result.claim_map[0] == plan.claims[0]
+    assert result.claim_map[1] == plan.claims[1]
+
+
+@pytest.mark.anyio
+async def test_writer_binds_fit_reason_to_selected_evidence() -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    draft = generated(require_plan(state))
+    unbound = draft.model_copy(
+        update={
+            "fit_reasons": (
+                FitReason(
+                    experience_evidence_ids=("invented",),
+                    job_requirement_ids=("invented",),
+                    reason="협업 경험이 직무와 관련됩니다.",
+                ),
+            )
+        }
+    )
+    update = await WriteNode(ControlledProvider(unbound)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert result.fit_reasons[0].experience_evidence_ids == ("e1",)
+    assert result.fit_reasons[0].job_requirement_ids == ("job",)
+
+
+@pytest.mark.anyio
+async def test_writer_accepts_multiple_complete_expression_sentences() -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    draft = generated(require_plan(state))
+    changed = draft.model_copy(
+        update={
+            "claim_map": tuple(
+                claim.model_copy(
+                    update={"text": "협업을 중요하게 생각합니다. 문제를 함께 살피겠습니다."}
+                )
+                if claim.id == "interpretation"
+                else claim
+                for claim in draft.claim_map
+            )
+        }
+    )
+    update = await WriteNode(ControlledProvider(changed)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert "협업을 중요하게 생각합니다. 문제를 함께 살피겠습니다." in result.draft
+
+
+@pytest.mark.anyio
+async def test_writer_omits_unfinished_generated_tail() -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    draft = generated(require_plan(state))
+    changed = draft.model_copy(
+        update={
+            "claim_map": tuple(
+                claim.model_copy(update={"text": "협업을 중요하게 생각합니다. 미완성 문장"})
+                if claim.id == "interpretation"
+                else claim
+                for claim in draft.claim_map
+            )
+        }
+    )
+    update = await WriteNode(ControlledProvider(changed)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert "협업을 중요하게 생각합니다." in result.draft
+    assert "미완성 문장" not in result.draft

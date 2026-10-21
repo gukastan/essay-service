@@ -76,6 +76,75 @@ def test_analysis_normalized_emoji_one_call_and_no_research() -> None:
     anyio.run(scenario)
 
 
+def test_analysis_anchors_verbatim_sentences_when_model_offsets_are_wrong() -> None:
+    async def scenario() -> None:
+        source = request("첫 문장입니다. 두 번째 문장입니다.")
+        value = analysis(source)
+        evidence = (
+            ExperienceEvidence(id="e1", quote="첫 문장입니다.", start=0, end=7, category="context"),
+            ExperienceEvidence(
+                id="e2", quote="두 번째 문장입니다.", start=7, end=18, category="action"
+            ),
+        )
+        provider = MockAnalysisProvider(value.model_copy(update={"experience_evidence": evidence}))
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        assert [(item.start, item.end) for item in outcome.result.experience_evidence] == [
+            (0, 8),
+            (9, 20),
+        ]
+
+    anyio.run(scenario)
+
+
+def test_analysis_anchors_repeated_sentences_in_original_order() -> None:
+    async def scenario() -> None:
+        source = request("반복했다. 반복했다.")
+        value = analysis(source)
+        evidence = (
+            ExperienceEvidence(id="e1", quote="반복했다.", start=0, end=1, category="action"),
+            ExperienceEvidence(id="e2", quote="반복했다.", start=1, end=2, category="action"),
+        )
+        provider = MockAnalysisProvider(value.model_copy(update={"experience_evidence": evidence}))
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        assert [(item.start, item.end) for item in outcome.result.experience_evidence] == [
+            (0, 5),
+            (6, 11),
+        ]
+
+    anyio.run(scenario)
+
+
+def test_analysis_anchors_full_sentence_after_matching_fragment() -> None:
+    async def scenario() -> None:
+        source = request("팀에서 직접 수정했다. 직접 수정했다.")
+        value = analysis(source)
+        evidence = ExperienceEvidence(
+            id="e1", quote="직접 수정했다.", start=0, end=1, category="action"
+        )
+        provider = MockAnalysisProvider(
+            value.model_copy(update={"experience_evidence": (evidence,)})
+        )
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        assert (
+            outcome.result.experience_evidence[0].start,
+            outcome.result.experience_evidence[0].end,
+        ) == (
+            13,
+            21,
+        )
+
+    anyio.run(scenario)
+
+
 @pytest.mark.parametrize(
     "quote",
     [
@@ -159,7 +228,7 @@ def test_analysis_operational_failure_never_retries() -> None:
 
 
 @pytest.mark.parametrize(("start_delta", "end_delta"), [(1, 1), (0, 1), (-1, 0)])
-def test_analysis_rejects_wrong_codepoint_offsets(start_delta: int, end_delta: int) -> None:
+def test_analysis_reanchors_wrong_codepoint_offsets(start_delta: int, end_delta: int) -> None:
     async def scenario() -> None:
         source = request()
         value = analysis(source)
@@ -167,10 +236,11 @@ def test_analysis_rejects_wrong_codepoint_offsets(start_delta: int, end_delta: i
         changed = item.model_copy(
             update={"start": item.start + start_delta, "end": item.end + end_delta}
         )
-        with pytest.raises(ProviderError, match="INVALID_RESPONSE"):
-            _ = await AnalyzeNode(
-                MockAnalysisProvider(value.model_copy(update={"experience_evidence": (changed,)}))
-            ).run(source, ExecutionBudget(), uuid4())
+        outcome = await AnalyzeNode(
+            MockAnalysisProvider(value.model_copy(update={"experience_evidence": (changed,)}))
+        ).run(source, ExecutionBudget(), uuid4())
+        assert isinstance(outcome, AnalysisSuccess)
+        assert outcome.result.experience_evidence[0] == item
 
     anyio.run(scenario)
 

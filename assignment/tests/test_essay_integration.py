@@ -174,7 +174,8 @@ class ControlledProvider:
                     value = evaluation_from_issues(review, self.review_issues(review))
                 case "research":
                     raise AssertionError
-            return ModelResult(request.schema.model_validate(value.model_dump()), None)
+            wire = value.model_dump_json(include=set(request.schema.model_fields))
+            return ModelResult(request.schema.model_validate_json(wire), None)
 
         return await budget.run_model(request.role, invoke)
 

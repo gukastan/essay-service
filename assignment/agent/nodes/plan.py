@@ -158,10 +158,11 @@ def select_candidates(context: WritingContext, binding: EvaluationBinding | None
                 ):
                     affected.update(paragraph.requirement_ids)
     selected: set[str] = set()
+    per_requirement = max(1, min(8, 38 // len(context.analysis.requirements)))
     for requirement in context.analysis.requirements:
         candidates = requirement.candidate_evidence_ids
         alternatives = tuple(identifier for identifier in candidates if identifier not in previous)
         if requirement.id in affected and alternatives:
             candidates = alternatives
-        selected.update(candidates[:1])
+        selected.update(candidates[:per_requirement])
     return selected

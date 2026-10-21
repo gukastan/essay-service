@@ -166,8 +166,11 @@ async def test_company_evidence_cannot_be_laundered_as_personal_fact() -> None:
     data["claim_map"][0]["kind"] = "company_fact"
     response = DraftEnvelope.model_validate(data)
     # When / Then
-    with pytest.raises(FlowStateError, match="PLAN_MISMATCH"):
-        _ = await WriteNode(ControlledProvider(response)).run(state, budget)
+    update = await WriteNode(ControlledProvider(response)).run(state, budget)
+    result = update.get("draft_envelope")
+    assert result is not None
+    assert result.claim_map[0].kind == "user_fact"
+    assert result.claim_map[0].evidence_ids == draft.claim_map[0].evidence_ids
 
 
 def test_unicode_sentence_offsets_and_source_order_are_preserved() -> None:

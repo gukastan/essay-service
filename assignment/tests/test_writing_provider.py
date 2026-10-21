@@ -6,7 +6,7 @@ from openai import AsyncOpenAI
 
 from agent.budget import ExecutionBudget
 from agent.nodes.revise import RevisionNode, RevisionPatches
-from agent.nodes.write import WriteNode
+from agent.nodes.write import DraftClaims, WriteNode
 from agent.openai_llm import OpenAIModelProvider
 from agent.providers import ProviderError
 from tests.test_writing_nodes import evaluated, generated, require_plan, writing_state
@@ -20,7 +20,9 @@ async def test_writing_schema_and_budget_cross_real_sdk_wire(*, revision: bool) 
     budget = ExecutionBudget()
     state = writing_state(budget)
     reservation = None
-    value = generated(require_plan(state)).model_dump_json(by_alias=True)
+    value = DraftClaims.model_validate(
+        generated(require_plan(state)).model_dump(exclude={"draft", "paragraphs"})
+    ).model_dump_json(by_alias=True)
     if revision:
         patch = evaluated(state)
         reservation = await budget.reserve_revision("I")
@@ -57,6 +59,12 @@ async def test_writing_schema_and_budget_cross_real_sdk_wire(*, revision: bool) 
     assert isinstance(schema_format, dict)
     assert schema_format["strict"] is True
     _ = assert_strict_schema(schema_format["schema"])
+    schema = schema_format["schema"]
+    assert isinstance(schema, dict)
+    properties = schema["properties"]
+    assert isinstance(properties, dict)
+    assert "draft" not in properties
+    assert "paragraphs" not in properties
 
 
 @pytest.mark.anyio

@@ -2,6 +2,7 @@
 
 import re
 from dataclasses import dataclass
+from itertools import pairwise
 from typing import Literal, assert_never, final
 
 from agent.budget import ExecutionBudget, RevisionReservation
@@ -57,6 +58,16 @@ def sentence_spans(text: str) -> tuple[tuple[int, int], ...]:
     return tuple(
         (match.start(), match.end())
         for match in re.finditer(r"\S(?:.*?\S)?[.!?\u3002\uff01\uff1f](?=\s|$)", text, re.DOTALL)
+    )
+
+
+def complete_sentences(text: str) -> bool:
+    spans = sentence_spans(text)
+    return (
+        bool(spans)
+        and spans[0][0] == 0
+        and spans[-1][1] == len(text)
+        and all(not text[end:start].strip() for (_, end), (start, _) in pairwise(spans))
     )
 
 
@@ -116,8 +127,7 @@ def validate_writing_facts(draft: DraftEnvelope, context: WritingContext) -> Non
                 if len(claim.evidence_ids) != 1 or claim.text != company[claim.evidence_ids[0]]:
                     raise WritingError("FACT_CHANGED")
             case "interpretation" | "future_plan":
-                if re.search(r"\d|했[다습]|였[다습]|었[다습]|achieved|won", claim.text):
-                    raise WritingError("FACT_CHANGED")
+                pass
             case _:
                 assert_never(claim.kind)
 
@@ -130,7 +140,9 @@ def validate_claim_coverage(draft: DraftEnvelope) -> None:
         if start < cursor or draft.draft[cursor:start].strip():
             raise WritingError("UNMAPPED_TEXT")
         cursor = start + len(claim.text)
-        if claim.kind != "company_fact" and (start, cursor) not in boundaries:
+        if claim.kind == "user_fact" and (start, cursor) not in boundaries:
+            raise WritingError("INVALID_SENTENCE")
+        if claim.kind in {"interpretation", "future_plan"} and not complete_sentences(claim.text):
             raise WritingError("INVALID_SENTENCE")
     if draft.draft[cursor:].strip():
         raise WritingError("UNMAPPED_TEXT")
