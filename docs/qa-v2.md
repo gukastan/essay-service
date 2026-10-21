@@ -46,12 +46,14 @@ OMO 계약·상태/수정 예약·독립 반례 검증 세 담당자가 병렬 �
 | Vue 입력·결과·편집 및 프록시 | ESSAY-15 | 완료(합성 응답·실제 브라우저/프록시) | [화면 검증](qa-evidence/assignment/vue/verification.md) |
 | 실제 그래프·API 역할 연결 | ESSAY-14 | 완료(통제 모델·실제 stdio MCP·HTTP) | [통합 검증](qa-evidence/assignment/integration/verification.md) |
 | 전체 API·Vue 예외 회귀 | ESSAY-16 | 완료(통제 모델·실제 Chrome/API/프록시) | [전체 회귀](qa-evidence/assignment/automated/verification.md) |
-| 실제 모델·공식 자료·기존5개 재실행 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/live/ |
-| 실제 Vue 화면·편집·복사·오류 | ESSAY-17 | 미실행 | docs/qa-evidence/assignment/browser/ |
+| 실제 모델·공식 자료·기존5개 재실행 | ESSAY-17 | 진행 중(원본5개 1차·재실행1개·실기업2곳 조사; 전체 초안 미검증) | [중간 기록](qa-evidence/assignment/live/verification.md) |
+| 실제 Vue 화면·편집·복사·오류 | ESSAY-17 | 진행 중(실제 Chrome 보완·생성 오류 확인; ready·편집·복사 미검증) | [브라우저 중간 기록](qa-evidence/assignment/browser/verification.md) |
 | 새 사실성 작성자 승인 | ESSAY-17 | 미확인 | 최종 보고서와 승인 시각 |
 | 제출물·깨끗한 설치 재현 | ESSAY-20 | 미실행 | assignment/docs/verification.md |
 
-미실행 행의 경로는 예정 위치이며 증거 파일 존재를 뜻하지 않는다.
+미실행 행의 경로는 예정 위치이며 증거 파일 존재를 뜻하지 않는다. ESSAY-17 실제 실행은 원본 가상 기업의 조기 보완과 기업 조사까지 확인했으며 작성 품질·사실성 승인은 아직 확인하지 않았다.
+
+2026-10-21 사용자 Chrome 탭의 실제 Vue→프록시→FastAPI 흐름에서 가상회사 새봄/서비스 기획과 문항을 공고 본문에 다시 넣은 입력은 `COMPANY_AMBIGUOUS` 보완으로 끝났다. 같은 경험·문항에 기업/직무/요건이 명시된 별도 시험용 가상 공고를 넣으면 보완 단계는 넘어갔으나 화면에 생성 실패가 표시됐다. `/health`는 `modelConfigured`, `mcpConnected`, `pipelineAvailable` 모두 `true`였다. 오류 응답의 세부 코드는 UI에 표시되지 않아 이번 화면 확인만으로 확정하지 않는다. [브라우저 기록](qa-evidence/assignment/browser/verification.md).
 
 ## ESSAY-16 전체 회귀 검증 — 2026-10-21
 

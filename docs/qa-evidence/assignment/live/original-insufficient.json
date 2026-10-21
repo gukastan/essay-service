@@ -1,0 +1,36 @@
+{
+  "sampleId": "insufficient",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "startedAt": "2026-10-21T01:15:07.255249+00:00",
+  "elapsedSeconds": 2.174,
+  "model": "gpt-5.6-terra",
+  "path": "real OpenAI model + real stdio MCP; no stub",
+  "request": {
+    "company": "가상회사",
+    "role": "개발자",
+    "jobPostingUrl": null,
+    "jobPostingText": null,
+    "question": "문제 해결 경험을 설명해 주세요.",
+    "experience": "열심히 했습니다."
+  },
+  "response": {
+    "status": "needs_input",
+    "requestId": "dc2080f6-4b08-4188-932a-6ce6feffe8e8",
+    "message": "경험을 확인할 구체적인 정보가 필요합니다.",
+    "missingFields": [
+      "experience"
+    ],
+    "questions": [
+      "어떤 문제를 해결했는지, 당시 상황과 본인이 취한 행동을 구체적으로 설명할 수 있나요?"
+    ],
+    "reasonCode": "EXPERIENCE_INSUFFICIENT"
+  },
+  "events": [
+    {
+      "role": "analysis",
+      "seconds": 1.625,
+      "inputTokens": 511,
+      "outputTokens": 86
+    }
+  ]
+}

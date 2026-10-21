@@ -42,6 +42,11 @@ CASES: Final = {
             "Software Engineer requirements: experience writing Python tests."
         ),
     ),
+    "anthropic": ResearchInput(
+        company="Anthropic",
+        role="Software Engineer",
+        job_posting_url="https://www.anthropic.com/careers/jobs",
+    ),
 }
 
 
@@ -163,4 +168,8 @@ async def test_paid_research_node_once(monkeypatch: pytest.MonkeyPatch) -> None:
     _ = artifact.write_text(summary.model_dump_json(indent=2) + "\n")
     assert budget.snapshot().model_calls == 1, f"Metadata artifact: {artifact}"
     assert budget.snapshot().native_tool_calls_reserved == 2, f"Metadata artifact: {artifact}"
-    assert outcome.status == "research-success", f"Metadata artifact: {artifact}"
+    if os.environ.get("ESSAY_RESEARCH_CASE") == "anthropic":
+        assert outcome.status == "needs_input", f"Metadata artifact: {artifact}"
+        assert code == "JOB_EVIDENCE_MISSING", f"Metadata artifact: {artifact}"
+    else:
+        assert outcome.status == "research-success", f"Metadata artifact: {artifact}"

@@ -1,0 +1,279 @@
+{
+  "request": {
+    "company": "Anthropic",
+    "role": "Software Engineer",
+    "job_posting_url": "https://www.anthropic.com/careers/jobs",
+    "job_posting_text": null
+  },
+  "request_id": "0bd7cf3c-63ce-4c85-80e6-deb1b9366beb",
+  "model": "gpt-5.6-terra",
+  "started_at": "2026-10-21T01:16:53.375121Z",
+  "elapsed_seconds": 24.09,
+  "status": "needs_input",
+  "code": "JOB_EVIDENCE_MISSING",
+  "sources": [],
+  "job_requirements": [],
+  "budget": {
+    "model_calls": 1,
+    "searches": 0,
+    "page_reads": 3,
+    "native_tool_calls_reserved": 2,
+    "output_tokens_reserved": 3000,
+    "deadline": 1132646.223525208,
+    "revision_count": 0,
+    "revision_route": null
+  },
+  "tool_calls_reported": null,
+  "input_tokens": null,
+  "output_tokens": null,
+  "source_hashes": [
+    {
+      "path": "assignment/agent/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "assignment/agent/budget.py",
+      "sha256": "5a434460fdcb31f95f64ca7274b4c29d4b9231799efb5479e958e5724c182f63"
+    },
+    {
+      "path": "assignment/agent/contract_evidence.py",
+      "sha256": "f195d0d9f3ebf7ebb7f8e6004f251fa93a9c21485eadee5c11923ec83d509880"
+    },
+    {
+      "path": "assignment/agent/contract_flow_draft.py",
+      "sha256": "9152cc407f14a8aceaff91f2b2680bce65f68a73b381917127dd5e1499927741"
+    },
+    {
+      "path": "assignment/agent/contract_flow_evaluation.py",
+      "sha256": "9b61c9023513c98b1db0648c010eef9aa7651a20992162288557fd31d819e536"
+    },
+    {
+      "path": "assignment/agent/contract_flow_plan.py",
+      "sha256": "920410ce1d9d0aa81172a0c5ba15d22ba9bf895943456ee55791c08a149a2319"
+    },
+    {
+      "path": "assignment/agent/contract_flow_route.py",
+      "sha256": "ea2f98032d7ba56bddb28ca09e77ab99a4b55869dde41f13186137cf744d284a"
+    },
+    {
+      "path": "assignment/agent/contract_input.py",
+      "sha256": "2e54d499499bda55d981625a2047ff1fb25af683057bdafde7ba90fecd157760"
+    },
+    {
+      "path": "assignment/agent/contract_results.py",
+      "sha256": "8a36950b97ebb1c90778dab358d25c68f7abb8ee6b98bedc6efcfdcdbdf185d2"
+    },
+    {
+      "path": "assignment/agent/contracts.py",
+      "sha256": "6be29fad0170fb6267e650338154995b7b8814134e0a1dbbb583a43171605007"
+    },
+    {
+      "path": "assignment/agent/deps.py",
+      "sha256": "dda22642c3f7a92b281759e7fe63085ae8834258cde2f7a0ae4c8217899da2fa"
+    },
+    {
+      "path": "assignment/agent/essay_collect.py",
+      "sha256": "27892034a177eae074bc8ff2632c54bfd6f5915d2a83f0d44877f8bc35b16782"
+    },
+    {
+      "path": "assignment/agent/essay_graph.py",
+      "sha256": "1b9c93e0f9dee881c74426c7d80b8fc26c3dda88b382d3bbd33dfc3ee5a310f4"
+    },
+    {
+      "path": "assignment/agent/essay_route.py",
+      "sha256": "7d91e2281a41cc301ac1554b64c56e1510ba6115f47c31d6d9009aff077305d7"
+    },
+    {
+      "path": "assignment/agent/fake_llm.py",
+      "sha256": "8af6ae5c4c804053c6365ff1e54a7e549077a393e4803325cb3021fc2fe977c7"
+    },
+    {
+      "path": "assignment/agent/flow_state.py",
+      "sha256": "8731b394ad2e33f3e2eb423750832d638c9153fc106c1cdbf1bc26ea6dc447a4"
+    },
+    {
+      "path": "assignment/agent/graph.py",
+      "sha256": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd"
+    },
+    {
+      "path": "assignment/agent/limits.py",
+      "sha256": "2669a637a43dec8914f2f185f0b4c2029cb8997882285fd0fc275a6874c6961c"
+    },
+    {
+      "path": "assignment/agent/mcp_client.py",
+      "sha256": "2dfb31062d7d257eb7cb4c0460374f7f5e2432ba47427e9875a701a549d3c1b5"
+    },
+    {
+      "path": "assignment/agent/nodes/__init__.py",
+      "sha256": "38da52db969baed60ce344a7a4179b64b0ef7bca2dc364b531c44ab6ed2c0c2d"
+    },
+    {
+      "path": "assignment/agent/nodes/analysis_evidence.py",
+      "sha256": "ff33b6e7bbb76d2892dc0ffc07ca4a03fab77080f07156e7460af53b1e72c861"
+    },
+    {
+      "path": "assignment/agent/nodes/analyze.py",
+      "sha256": "ed4230852d49d8a4946e28334f416e0170d596d760598965d90351e349b8e2c9"
+    },
+    {
+      "path": "assignment/agent/nodes/plan.py",
+      "sha256": "3eda31e700e0b1499dc0af94e88ffb99bf2d905d93834b13ac21f9bdf7f602a0"
+    },
+    {
+      "path": "assignment/agent/nodes/research.py",
+      "sha256": "7b9a8b634f92942cb43d8204a20595b84ede96ab309bbd47113dcfdd85109e12"
+    },
+    {
+      "path": "assignment/agent/nodes/review.py",
+      "sha256": "897b246572c3057bbfc4033e1575e774b0e985e8f5e50e5e83dd38b4c8cbc8d2"
+    },
+    {
+      "path": "assignment/agent/nodes/revise.py",
+      "sha256": "e201c69e8d06616e667ef379c8b1d41313b9279ba48f5f6c93c0a3d50b8d07b3"
+    },
+    {
+      "path": "assignment/agent/nodes/write.py",
+      "sha256": "f119d852403b25958804d49a08a866091bfadc6b816c9384626205440f9bf410"
+    },
+    {
+      "path": "assignment/agent/nodes/writing_support.py",
+      "sha256": "7fa53d4eb384b710a097d06812af9c6e172f4e687b818e9f930bcf65013d3da2"
+    },
+    {
+      "path": "assignment/agent/ollama_llm.py",
+      "sha256": "5358994cde09c7f337bc11c1713995ab701f91175437238103b86dd1b5de46bb"
+    },
+    {
+      "path": "assignment/agent/openai_llm.py",
+      "sha256": "508ce35d892400531f0f397d7ec9e85d19ff6b1453c83951d2bf2278a36986a6"
+    },
+    {
+      "path": "assignment/agent/provider_schema.py",
+      "sha256": "e1e7c28705cb1ba1c56cce6a9ab787885070b5ae936eb2aa4de606a92e406c84"
+    },
+    {
+      "path": "assignment/agent/providers.py",
+      "sha256": "e6d95f4e835a0322728801a6ee4ee09e0842ff9d155b0c3d05f15853998c6219"
+    },
+    {
+      "path": "assignment/agent/research.py",
+      "sha256": "55f65588623110be5cfa8c90ecee4d03f1a287f113fbd16c30f4dcb51df760e0"
+    },
+    {
+      "path": "assignment/agent/response_wire.py",
+      "sha256": "d852fb4af61ab2bc718034470b4024e1a7e2f946d2df7e7f1f7b033d0754c982"
+    },
+    {
+      "path": "assignment/agent/retry.py",
+      "sha256": "d2524552348c9faa08b5ce446434bf593677c7028fb38c9e11b03de8839d2a3a"
+    },
+    {
+      "path": "assignment/agent/session_store.py",
+      "sha256": "cd1f61396ccd815d940be5a3d8929199648273c360c82fbd722163644b7356a6"
+    },
+    {
+      "path": "assignment/agent/settings.py",
+      "sha256": "0ee97238bc8b10d82c2347d6baa8b035a070026c2975f1fd3a7ee656031ab925"
+    },
+    {
+      "path": "assignment/agent/source_admission.py",
+      "sha256": "3eb910919692ce83f50516a47346221125d940043e250b5469876229b31b0345"
+    },
+    {
+      "path": "assignment/agent/source_conflicts.py",
+      "sha256": "36430953b02667fb35d75c0f477118831b0862540b251a64956a421a49fa9aa4"
+    },
+    {
+      "path": "assignment/agent/source_http.py",
+      "sha256": "e8a031fa88d9fcdae84efe277951ddf07c3b7bc526f59f75edc7ef46f287a685"
+    },
+    {
+      "path": "assignment/agent/source_page.py",
+      "sha256": "197b061d456a48aebfba6a7327955a6afe0aab0b9372c41967cd0cef60f9b0aa"
+    },
+    {
+      "path": "assignment/agent/source_sections.py",
+      "sha256": "4bcc777e9e65a06d2964237088842e12ade32e48be390272b98fab899be34ce9"
+    },
+    {
+      "path": "assignment/agent/source_structured.py",
+      "sha256": "db6b87b568d21add4f6de6b5340d19f4083bf90269a670eda728e0c28301d972"
+    },
+    {
+      "path": "assignment/agent/source_trust.py",
+      "sha256": "ea11beb071fa7a5d7155e0d4b9266f063618698a08a1dad60e8fb3722f10dba4"
+    },
+    {
+      "path": "assignment/agent/source_verify.py",
+      "sha256": "6b78e819bb810e69e7cc85142ae7882a24e99c538823d44cb7741ed59e27422c"
+    },
+    {
+      "path": "assignment/agent/state.py",
+      "sha256": "dfcc45f46bc30057407fbba612c4ee38517e3e2d3c82b018e205abdf83da4bf7"
+    },
+    {
+      "path": "assignment/agent/supervisor_v1.py",
+      "sha256": "6080b4b8c3a6bd56c617a560a64d644d5f1e5e2721ad65324a09886a2df6cab8"
+    },
+    {
+      "path": "assignment/agent/validate_evidence.py",
+      "sha256": "b35d654f6350f9356314ef660f36a81b7def0e76ed8d3a420a2b97e6a15d417e"
+    }
+  ],
+  "diagnostics": [
+    {
+      "event": "candidate",
+      "resolved_company": "Anthropic",
+      "gaps": [
+        "The supplied role, “Software Engineer,” does not identify one specific posting. The careers page currently lists multiple distinct Software Engineer roles, including Software Engineer, Labs and Software Engineer, Beneficial Deployments, with materially different responsibilities and qualifications.",
+        "No user-provided posting text was available. Requirements above are unverified candidates drawn from two distinct official job postings rather than one confirmed target posting.",
+        "The supplied careers-page URL is a listings page, not a direct job-posting URL."
+      ],
+      "sources": [
+        {
+          "id": "src_careers",
+          "kind": "official",
+          "url": "https://www.anthropic.com/careers/jobs",
+          "excerpt_prefix": "## Engineering & Design - Product 51 Open Roles 51 Open Roles"
+        },
+        {
+          "id": "src_labs",
+          "kind": "official",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5017202008",
+          "excerpt_prefix": "## About Anthropic Anthropic’s mission is to create reliable, interpretable, and steerable AI systems. We want AI to be safe and beneficial for our users and for society as a whole. Our team is a quickly growing group of committed researche"
+        },
+        {
+          "id": "src_beneficial_deployments",
+          "kind": "official",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/4942024008",
+          "excerpt_prefix": "## You might be a good fit if you: * Have 6+ years of practical experience as a full-stack software engineer * Have experience building consumer or enterprise products that prioritize accessibility, inclusivity, or served underserved popula"
+        }
+      ],
+      "job_quotes": [
+        "Rapidly prototype full-stack applications that showcase emerging AI capabilities, shipping early and often to maximize learning",
+        "Collaborate closely with research teams to understand new model capabilities and translate them into intuitive user experiences",
+        "Work directly with internal test users and external partners to gather feedback, iterate quickly, and validate (or invalidate) product concepts",
+        "Design and run structured experiments to test hypotheses, balancing creative exploration with rigorous evaluation",
+        "Have 6+ years of practical experience as a full-stack software engineer",
+        "Have experience building consumer or enterprise products that prioritize accessibility, inclusivity, or served underserved populations",
+        "Have technical expertise in identity management, billing systems, self-serve onboarding flows, or API integrations",
+        "Have a builder mentality with ability to ship products quickly while maintaining quality for diverse user needs",
+        "Care deeply about using technology for social good and want your engineering work to have meaningful impact",
+        "Have excellent collaboration skills and can work effectively with product, partnerships, and field teams"
+      ],
+      "tool_calls_reported": 2,
+      "input_tokens": 21747,
+      "output_tokens": 2477
+    },
+    {
+      "event": "verification",
+      "resolved_company": "Anthropic",
+      "gaps": [
+        "TOO_LARGE",
+        "TOO_LARGE",
+        "TOO_LARGE"
+      ],
+      "admitted_job_count": 0
+    }
+  ]
+}

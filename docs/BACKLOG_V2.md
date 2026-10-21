@@ -259,12 +259,14 @@ Jira: [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16) / 유형: 작업
 
 ### V2-09 전환 서비스 실제 모델·MCP·Vue QA와 사실성 승인
 
-Jira: [ESSAY-17](https://kmskojb.atlassian.net/browse/ESSAY-17) / 유형: 작업 / 상태: 할 일
+Jira: [ESSAY-17](https://kmskojb.atlassian.net/browse/ESSAY-17) / 유형: 작업 / 상태: 진행 중
 
 - 선행: [ESSAY-16](https://kmskojb.atlassian.net/browse/ESSAY-16)
 - 소유 범위: docs/qa-v2.md, docs/qa-evidence/assignment/live/, assignment/tests/실모델 실행 도구
 
 전환 서비스에서 기존 5개 샘플과 실제 기업 자료를 다시 실행하고 화면·예외·사실성을 검증한다.
+
+2026-10-21 실제 모델·MCP로 원본5개 1차 실행과 실패1개 재실행, 네이버 공식 공고 성공 및 Anthropic 채용 목록 근거 부족을 기록했다. 별도 합성 사용자 공고의 전체 작성 시도는 근거 검증 실패와 작성 timeout으로 종료했다. 아직 전체 초안·Vue 실모델·사실성 승인은 미검증이다. [중간 QA](qa-evidence/assignment/live/verification.md).
 
 완료 조건:
 

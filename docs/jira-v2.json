@@ -4,10 +4,10 @@
   "site": "https://kmskojb.atlassian.net",
   "epic": "ESSAY-8",
   "status": "진행 중",
-  "implementation": "controlled_end_to_end_regression_complete_live_qa_pending",
-  "activeIssue": null,
-  "activeScope": null,
-  "updatedAt": "2026-10-21 01:05:10 UTC",
+  "implementation": "live_qa_in_progress",
+  "activeIssue": "ESSAY-17",
+  "activeScope": "real_model_mcp_original_samples_and_company_research",
+  "updatedAt": "2026-10-21 01:18:17 UTC",
   "baseline": {
     "commit": "c5299e954d0ff1b0848dad238e7b731ef078bb51",
     "completedIssues": [
@@ -202,7 +202,7 @@
       "key": "ESSAY-17",
       "summary": "[V2-09] 전환 서비스 실제 모델·MCP·Vue QA와 사실성 승인",
       "type": "작업",
-      "status": "할 일",
+      "status": "진행 중",
       "parent": "ESSAY-8",
       "blockedBy": [
         "ESSAY-16"
@@ -809,5 +809,18 @@
       "paidModelRequests": 0
     },
     "evidence": "docs/qa-evidence/assignment/automated/verification.md"
+  },
+  "essay17LiveQa": {
+    "scope": "Original five inputs unchanged, actual OpenAI and stdio MCP, two real-company research cases",
+    "startedAt": "2026-10-21",
+    "issueStatus": "진행 중",
+    "baselineCommit": "e417d00b8ef30b29c39c6a95f46dcfeafb858ff4",
+    "originalFirstRun": {"needsInput": 4, "invalidResponse": 1},
+    "originalRetry": {"normalServiceNeedsInput": true},
+    "companyResearch": {"naverOfficialSuccess": true, "anthropicJobEvidenceMissing": true},
+    "supplementalDraftAttempts": ["INVALID_EVIDENCE", "TIMEOUT"],
+    "fullDraftVerified": false,
+    "authorFactualityApproved": false,
+    "evidence": "docs/qa-evidence/assignment/live/verification.md"
   }
 }

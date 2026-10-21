@@ -1,0 +1,38 @@
+{
+  "sampleId": "normal-service",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "startedAt": "2026-10-21T01:16:05.798303+00:00",
+  "elapsedSeconds": 5.53,
+  "model": "gpt-5.6-terra",
+  "path": "real OpenAI model + real stdio MCP; no stub",
+  "request": {
+    "company": "가상회사 다온",
+    "role": "고객 지원",
+    "jobPostingUrl": null,
+    "jobPostingText": null,
+    "question": "고객의 불편을 발견하고 개선한 경험과 배운 점을 설명해 주세요.",
+    "experience": "동네 서점에서 주말 아르바이트를 했습니다. 손님들이 예약 도서 수령 방법을 반복해서 물어보는 것을 보고 안내가 부족하다고 생각했습니다. 저는 사장님께 문의 내용을 정리해 전달하고 승인받아 수령 장소와 준비물을 적은 안내문을 만들었습니다. 이후 손님에게 안내가 이해되는지 직접 물어보고 표현을 수정했습니다. 안내문을 붙인 뒤에도 개별 문의에는 직접 응대했습니다. 문의 감소율이나 매출 수치는 측정하지 않았습니다. 제가 맡은 범위는 문의 정리, 안내문 작성과 현장 응대였고 다른 직원의 업무를 주도한 것은 아닙니다. 고객이 이미 알고 있을 것이라고 가정하지 않는 것이 중요하다고 배웠습니다."
+  },
+  "response": {
+    "status": "needs_input",
+    "requestId": "33426707-980f-45d1-bb65-56731335432f",
+    "message": "기업을 식별할 자료가 필요합니다.",
+    "missingFields": [
+      "company",
+      "jobPostingText"
+    ],
+    "questions": [
+      "기업명과 직무가 명시된 공고 본문을 제공해 주세요."
+    ],
+    "reasonCode": "COMPANY_AMBIGUOUS"
+  },
+  "events": [
+    {
+      "role": "research",
+      "seconds": 4.918,
+      "toolCallsReported": 1,
+      "inputTokens": 11459,
+      "outputTokens": 271
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "sampleId": "normal-service",
+  "fixtureSha256": "950c8b3689082481d1943acadbd4c8ac507b5738015e3697978e38fea7059c35",
+  "startedAt": "2026-10-21T01:15:03.204197+00:00",
+  "elapsedSeconds": 3.981,
+  "model": "gpt-5.6-terra",
+  "path": "real OpenAI model + real stdio MCP; no stub",
+  "request": {
+    "company": "가상회사 다온",
+    "role": "고객 지원",
+    "jobPostingUrl": null,
+    "jobPostingText": null,
+    "question": "고객의 불편을 발견하고 개선한 경험과 배운 점을 설명해 주세요.",
+    "experience": "동네 서점에서 주말 아르바이트를 했습니다. 손님들이 예약 도서 수령 방법을 반복해서 물어보는 것을 보고 안내가 부족하다고 생각했습니다. 저는 사장님께 문의 내용을 정리해 전달하고 승인받아 수령 장소와 준비물을 적은 안내문을 만들었습니다. 이후 손님에게 안내가 이해되는지 직접 물어보고 표현을 수정했습니다. 안내문을 붙인 뒤에도 개별 문의에는 직접 응대했습니다. 문의 감소율이나 매출 수치는 측정하지 않았습니다. 제가 맡은 범위는 문의 정리, 안내문 작성과 현장 응대였고 다른 직원의 업무를 주도한 것은 아닙니다. 고객이 이미 알고 있을 것이라고 가정하지 않는 것이 중요하다고 배웠습니다."
+  },
+  "response": {
+    "status": "error",
+    "requestId": "8567b158-fe67-4d63-8b66-79ada410187d",
+    "message": "초안 생성 요청을 완료하지 못했습니다.",
+    "code": "INVALID_RESPONSE"
+  },
+  "events": [
+    {
+      "role": "analysis",
+      "seconds": 3.456,
+      "inputTokens": 686,
+      "outputTokens": 433
+    }
+  ]
+}
