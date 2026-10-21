@@ -35,6 +35,7 @@ INSTRUCTION_PATTERN: Final = re.compile(
 )
 SENTENCE_ENDINGS: Final = (".", "!", "?", "。", "\uff01", "\uff1f")
 SOURCE_BOUNDARIES: Final = ("\n", *SENTENCE_ENDINGS)
+MARKDOWN_FIELD_PREFIX: Final = re.compile(r"\s*[-*+]\s+\*\*[^*:\n]{1,40}[:\uFF1A]\*\*\s*")
 
 
 class AnalysisSuccess(Contract):
@@ -49,11 +50,20 @@ AnalysisOutcome = AnalysisSuccess | NeedsInputResponse
 def sentence_bounds(experience: str, start: int, end: int) -> bool:
     before = experience[:start].rstrip(" \t")
     after = experience[end:]
-    return (not before or before.endswith(SOURCE_BOUNDARIES)) and (not after or after[0].isspace())
+    if before.endswith("**") and after.startswith("**"):
+        before = before[:-2].rstrip(" \t")
+        after = after[2:]
+    line_prefix = before.rsplit("\n", 1)[-1]
+    begins_sentence = (
+        not before
+        or before.endswith(SOURCE_BOUNDARIES)
+        or MARKDOWN_FIELD_PREFIX.fullmatch(line_prefix) is not None
+    )
+    return begins_sentence and (not after or after[0].isspace())
 
 
 def anchor_personal_analysis(
-    analysis: FlowAnalysisResult, request: DraftRequest
+    analysis: FlowAnalysisResult, request: DraftRequest, *, verified_only: bool = False
 ) -> FlowAnalysisResult:
     """Locate model-selected sentences in the original experience in their stated order."""
     evidence: list[ExperienceEvidence] = []
@@ -65,11 +75,34 @@ def anchor_personal_analysis(
         ):
             start = request.experience.find(item.quote, start + 1)
         if start < 0:
+            if verified_only:
+                continue
             raise FlowStateError("INVALID_EVIDENCE")
+        if verified_only and (
+            not item.quote.endswith(SENTENCE_ENDINGS) or INSTRUCTION_PATTERN.search(item.quote)
+        ):
+            continue
         end = start + len(item.quote)
         evidence.append(item.model_copy(update={"start": start, "end": end}))
         previous_end = end
-    return analysis.model_copy(update={"experience_evidence": tuple(evidence)})
+    if not verified_only:
+        return analysis.model_copy(update={"experience_evidence": tuple(evidence)})
+    if not evidence and analysis.experience_evidence:
+        raise FlowStateError("INVALID_EVIDENCE")
+    kept = {item.id for item in evidence}
+    requirements = tuple(
+        item.model_copy(
+            update={
+                "candidate_evidence_ids": tuple(
+                    identifier for identifier in item.candidate_evidence_ids if identifier in kept
+                )
+            }
+        )
+        for item in analysis.requirements
+    )
+    return analysis.model_copy(
+        update={"experience_evidence": tuple(evidence), "requirements": requirements}
+    )
 
 
 def validate_personal_analysis(analysis: FlowAnalysisResult, request: DraftRequest) -> None:
@@ -95,7 +128,7 @@ def validate_personal_analysis(analysis: FlowAnalysisResult, request: DraftReque
 
 def experience_gap(analysis: FlowAnalysisResult, request_id: UUID) -> NeedsInputResponse | None:
     """Produce a pre-writing stop only for missing personal evidence."""
-    if analysis.gaps or not analysis.experience_evidence:
+    if not analysis.experience_evidence:
         return NeedsInputResponse(
             status="needs_input",
             request_id=request_id,
@@ -132,7 +165,7 @@ class AnalyzeNode:
             budget,
         )
         try:
-            analysis = anchor_personal_analysis(result.value, request)
+            analysis = anchor_personal_analysis(result.value, request, verified_only=True)
             validate_personal_analysis(analysis, request)
         except FlowStateError:
             raise ProviderError("INVALID_RESPONSE") from None

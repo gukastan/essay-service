@@ -86,7 +86,10 @@ def test_analysis_join_propagates_early_terminal() -> None:
     request_id = uuid4()
     join = AnalysisJoin(source, request_id)
     gap = experience_gap(
-        analysis(source).model_copy(update={"gaps": ("맡은 역할은 무엇인가요?",)}), request_id
+        analysis(source).model_copy(
+            update={"experience_evidence": (), "gaps": ("맡은 역할은 무엇인가요?",)}
+        ),
+        request_id,
     )
     assert gap is not None
     assert join.run(gap, None) == gap

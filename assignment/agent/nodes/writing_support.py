@@ -12,6 +12,7 @@ from agent.flow_state import (
     validate_analysis_context,
     validate_evaluation_context,
 )
+from agent.nodes.analyze import SENTENCE_ENDINGS, sentence_bounds
 from agent.state import WorkflowState
 
 
@@ -107,7 +108,6 @@ def validate_writing_facts(draft: DraftEnvelope, context: WritingContext) -> Non
         item.id: item.text
         for item in (*context.research.company_facts, *context.research.job_requirements)
     }
-    source_spans = sentence_spans(context.request.experience)
     validate_claim_coverage(draft)
     source_end = 0
     for claim in draft.claim_map:
@@ -119,7 +119,8 @@ def validate_writing_facts(draft: DraftEnvelope, context: WritingContext) -> Non
                 if (
                     claim.text != original.quote
                     or original.start < source_end
-                    or (original.start, original.end) not in source_spans
+                    or not original.quote.endswith(SENTENCE_ENDINGS)
+                    or not sentence_bounds(context.request.experience, original.start, original.end)
                 ):
                     raise WritingError("FACT_CHANGED")
                 source_end = original.end

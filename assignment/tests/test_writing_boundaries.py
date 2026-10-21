@@ -60,7 +60,7 @@ def test_plan_prioritizes_job_and_omits_optional_company_values() -> None:
     assert plan.claims[1].kind == "company_fact"
 
 
-@pytest.mark.parametrize("attack", ["fragment", "offset", "gap", "missing_candidate"])
+@pytest.mark.parametrize("attack", ["fragment", "offset"])
 def test_plan_blocks_invalid_personal_evidence(attack: str) -> None:
     # Given
     budget = ExecutionBudget()
@@ -86,21 +86,65 @@ def test_plan_blocks_invalid_personal_evidence(attack: str) -> None:
                 )
             }
         )
-    if attack == "gap":
-        analysis = analysis.model_copy(update={"gaps": ("경험 부족",)})
-    if attack == "missing_candidate":
-        analysis = analysis.model_copy(
-            update={
-                "requirements": (
-                    analysis.requirements[0].model_copy(update={"candidate_evidence_ids": ()}),
-                )
-            }
-        )
     state["flow_analysis"] = analysis
     # When / Then
     with pytest.raises((WritingError, FlowStateError)):
         _ = build_plan(state, budget)
     assert budget.snapshot().model_calls == 0
+
+
+@pytest.mark.parametrize("case", ["gap", "missing_candidate"])
+def test_plan_uses_verified_experience_despite_analysis_shortfall(case: str) -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    state["plan"] = None
+    analysis = WritingContext.from_state(state).analysis
+    if case == "gap":
+        analysis = analysis.model_copy(update={"gaps": ("결과를 더 구체화할 수 있나요?",)})
+    else:
+        requirement = analysis.requirements[0].model_copy(update={"candidate_evidence_ids": ()})
+        analysis = analysis.model_copy(update={"requirements": (requirement,)})
+    state["flow_analysis"] = analysis
+
+    plan = require_plan(build_plan(state, budget))
+
+    assert plan.selected_evidence_ids
+    assert any(claim.kind == "user_fact" for claim in plan.claims)
+
+
+@pytest.mark.parametrize(
+    "experience",
+    ["- **행동:** 실행했다.", "앞선 일을 정리했다. **실행했다.**"],
+)
+def test_markdown_source_sentence_survives_plan_and_fact_check(experience: str) -> None:
+    budget = ExecutionBudget()
+    state = writing_state(budget)
+    source = state.get("input_snapshot")
+    analysis = state.get("flow_analysis")
+    assert source is not None
+    assert analysis is not None
+    start = experience.index("실행했다.")
+    state["input_snapshot"] = source.model_copy(update={"experience": experience})
+    state["flow_analysis"] = analysis.model_copy(
+        update={
+            "experience_evidence": (
+                ExperienceEvidence(
+                    id="e1",
+                    quote="실행했다.",
+                    start=start,
+                    end=start + len("실행했다."),
+                    category="action",
+                ),
+            )
+        }
+    )
+    state["plan"] = None
+
+    plan = require_plan(build_plan(state, budget))
+    draft = generated(plan)
+    validate_writing_facts(draft, WritingContext.from_state(state))
+
+    assert plan.claims[0].text == "실행했다."
 
 
 @pytest.mark.anyio

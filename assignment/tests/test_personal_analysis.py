@@ -145,6 +145,119 @@ def test_analysis_anchors_full_sentence_after_matching_fragment() -> None:
     anyio.run(scenario)
 
 
+def test_analysis_accepts_complete_sentence_after_markdown_field_label() -> None:
+    async def scenario() -> None:
+        source = request(
+            "- **행동:** 팀원들과 역할을 다시 나눴다.\n- **결과:** 현장 참여가 이어졌다."
+        )
+        value = analysis(source)
+        evidence = (
+            ExperienceEvidence(
+                id="e1", quote="팀원들과 역할을 다시 나눴다.", start=0, end=1, category="action"
+            ),
+            ExperienceEvidence(
+                id="e2", quote="현장 참여가 이어졌다.", start=0, end=1, category="result"
+            ),
+        )
+        provider = MockAnalysisProvider(value.model_copy(update={"experience_evidence": evidence}))
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        assert [item.quote for item in outcome.result.experience_evidence] == [
+            "팀원들과 역할을 다시 나눴다.",
+            "현장 참여가 이어졌다.",
+        ]
+        assert all(
+            source.experience[item.start : item.end] == item.quote
+            for item in outcome.result.experience_evidence
+        )
+
+    anyio.run(scenario)
+
+
+def test_analysis_rejects_fragment_after_markdown_field_label() -> None:
+    async def scenario() -> None:
+        source = request("- **행동:** 팀에서 나는 직접 수정했다.")
+        value = analysis(source)
+        evidence = ExperienceEvidence(
+            id="e1", quote="직접 수정했다.", start=0, end=1, category="action"
+        )
+        provider = MockAnalysisProvider(
+            value.model_copy(update={"experience_evidence": (evidence,)})
+        )
+
+        with pytest.raises(ProviderError, match="INVALID_RESPONSE"):
+            _ = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+    anyio.run(scenario)
+
+
+def test_analysis_accepts_complete_bold_wrapped_sentence() -> None:
+    async def scenario() -> None:
+        source = request("앞선 일을 정리했다. **강조한 행동을 직접 실행했다.**")
+        value = analysis(source)
+        evidence = ExperienceEvidence(
+            id="e1", quote="강조한 행동을 직접 실행했다.", start=0, end=1, category="action"
+        )
+        provider = MockAnalysisProvider(
+            value.model_copy(update={"experience_evidence": (evidence,)})
+        )
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        item = outcome.result.experience_evidence[0]
+        assert source.experience[item.start : item.end] == item.quote
+
+    anyio.run(scenario)
+
+
+def test_analysis_rejects_bold_wrapped_fragment_of_a_sentence() -> None:
+    async def scenario() -> None:
+        source = request("팀에서 **직접 수정했다.**")
+        value = analysis(source)
+        evidence = ExperienceEvidence(
+            id="e1", quote="직접 수정했다.", start=0, end=1, category="action"
+        )
+        provider = MockAnalysisProvider(
+            value.model_copy(update={"experience_evidence": (evidence,)})
+        )
+
+        with pytest.raises(ProviderError, match="INVALID_RESPONSE"):
+            _ = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+    anyio.run(scenario)
+
+
+def test_analysis_keeps_verified_sentences_when_other_model_quotes_are_unmatched() -> None:
+    async def scenario() -> None:
+        source = request("직접 수정했다.")
+        value = analysis(source)
+        forged = ExperienceEvidence(
+            id="e2", quote="성과를 만들어 냈다.", start=1, end=2, category="result"
+        )
+        requirement = value.requirements[0].model_copy(
+            update={"candidate_evidence_ids": ("e1", "e2")}
+        )
+        provider = MockAnalysisProvider(
+            value.model_copy(
+                update={
+                    "requirements": (requirement,),
+                    "experience_evidence": (*value.experience_evidence, forged),
+                }
+            )
+        )
+
+        outcome = await AnalyzeNode(provider).run(source, ExecutionBudget(), uuid4())
+
+        assert isinstance(outcome, AnalysisSuccess)
+        assert tuple(item.id for item in outcome.result.experience_evidence) == ("e1",)
+        assert outcome.result.requirements[0].candidate_evidence_ids == ("e1",)
+
+    anyio.run(scenario)
+
+
 @pytest.mark.parametrize(
     "quote",
     [
@@ -196,9 +309,11 @@ def test_analysis_long_experience_and_concrete_gaps() -> None:
         )
         assert isinstance(outcome, AnalysisSuccess)
         value = analysis(source).model_copy(update={"gaps": ("직접 맡은 행동은 무엇인가요?",)})
-        gap = await AnalyzeNode(MockAnalysisProvider(value)).run(source, ExecutionBudget(), uuid4())
-        assert gap.status == "needs_input"
-        assert gap.questions == ("직접 맡은 행동은 무엇인가요?",)
+        result = await AnalyzeNode(MockAnalysisProvider(value)).run(
+            source, ExecutionBudget(), uuid4()
+        )
+        assert isinstance(result, AnalysisSuccess)
+        assert result.result.gaps == ("직접 맡은 행동은 무엇인가요?",)
 
     anyio.run(scenario)
 

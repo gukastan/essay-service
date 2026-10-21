@@ -3,12 +3,12 @@
 from agent.budget import ExecutionBudget, RevisionReservation
 from agent.contracts import PlanClaim, PlanParagraph, WritingPlan
 from agent.flow_state import EvaluationBinding, validate_plan_context
+from agent.nodes.analyze import SENTENCE_ENDINGS, sentence_bounds
 from agent.nodes.writing_support import (
     WritingContext,
     WritingError,
     current_evaluation,
     require_reservation,
-    sentence_spans,
 )
 from agent.state import WorkflowState
 
@@ -31,19 +31,18 @@ def build_plan(
         version = 2
     elif state.get("plan") is not None or budget.snapshot().revision_count:
         raise WritingError("INVALID_REVISION")
-    if context.analysis.gaps or not context.analysis.experience_evidence:
+    if not context.analysis.experience_evidence:
         raise WritingError("MISSING_EVIDENCE")
     candidates = select_candidates(context, binding)
-    if any(
-        req.mandatory and not req.candidate_evidence_ids for req in context.analysis.requirements
-    ):
-        raise WritingError("MISSING_EVIDENCE")
-    spans = sentence_spans(context.request.experience)
     selected = sorted(
         (item for item in context.analysis.experience_evidence if item.id in candidates),
         key=lambda item: item.start,
     )
-    if not selected or any((item.start, item.end) not in spans for item in selected):
+    if not selected or any(
+        not item.quote.endswith(SENTENCE_ENDINGS)
+        or not sentence_bounds(context.request.experience, item.start, item.end)
+        for item in selected
+    ):
         raise WritingError("INVALID_SENTENCE")
     claims = [
         PlanClaim(
@@ -160,4 +159,6 @@ def select_candidates(context: WritingContext, binding: EvaluationBinding | None
         if requirement.id in affected and alternatives:
             candidates = alternatives
         selected.update(candidates[:per_requirement])
+    if not selected:
+        selected.add(context.analysis.experience_evidence[0].id)
     return selected

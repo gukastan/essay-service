@@ -99,11 +99,13 @@ class ControlledProvider:
         reviews: tuple[Literal["pass", "plan", "wording", "missing"], ...] = ("pass",),
         *,
         analysis_gap: bool = False,
+        missing_experience: bool = False,
     ) -> None:
         self.source: DraftRequest = source
         self.roles: list[str] = []
         self.reviews: tuple[Literal["pass", "plan", "wording", "missing"], ...] = reviews
         self.analysis_gap: bool = analysis_gap
+        self.missing_experience: bool = missing_experience
 
     def review_issues(self, context: ReviewInput) -> tuple[EvaluationIssue, ...]:
         index = self.roles.count("review") - 1
@@ -147,6 +149,16 @@ class ControlledProvider:
                     value = analysis(self.source)
                     if self.analysis_gap:
                         value = value.model_copy(update={"gaps": ("맡은 행동은 무엇인가요?",)})
+                    if self.missing_experience:
+                        value = value.model_copy(
+                            update={
+                                "requirements": tuple(
+                                    item.model_copy(update={"candidate_evidence_ids": ()})
+                                    for item in value.requirements
+                                ),
+                                "experience_evidence": (),
+                            }
+                        )
                 case "writer":
                     if request.schema is RevisionPatches:
                         revision = RevisionInput.model_validate_json(request.input)
@@ -374,7 +386,7 @@ async def test_analysis_gap_cancels_parallel_research_before_writing(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     source = request()
-    provider = ControlledProvider(source, analysis_gap=True)
+    provider = ControlledProvider(source, analysis_gap=True, missing_experience=True)
     started = anyio.Event()
     cancelled: list[bool] = []
 
